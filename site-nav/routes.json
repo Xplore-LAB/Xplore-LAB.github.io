@@ -1,113 +1,89 @@
 {
-    "generated_at":  "2026-04-05T11:03:00+08:00",
-    "items":  [
-                  {
-                      "desc":  "个人主页与最新动态总入口",
-                      "badge":  "Home",
-                      "featured":  true,
-                      "path":  "/",
-                      "emoji":  "🏠",
-                      "title":  "主页",
-                      "group":  "站点"
-                  },
-                  {
-                      "desc":  "LLM 论文追踪主页面，支持检索和多维筛选",
-                      "badge":  "Active",
-                      "featured":  true,
-                      "path":  "/llm-tracker/",
-                      "emoji":  "🤖",
-                      "title":  "LLM Papers Tracker",
-                      "group":  "AI 项目"
-                  },
-                  {
-                      "desc":  "按时间查看论文趋势、热度和主题分布",
-                      "badge":  "Timeline",
-                      "featured":  true,
-                      "path":  "/llm-tracker/timeline/",
-                      "emoji":  "📅",
-                      "title":  "LLM 时间轴",
-                      "group":  "AI 项目"
-                  },
-                  {
-                      "desc":  "每日自动抓取 Hacker News、GitHub Trending、V2EX 等科技资讯",
-                      "badge":  "New",
-                      "featured":  true,
-                      "path":  "https://xplore0114.github.io/tech-news/",
-                      "emoji":  "📰",
-                      "title":  "日知录 · 科技新闻",
-                      "group":  "AI 项目"
-                  },
-                  {
-                      "desc":  "查看个人介绍、合作方向与联系方式",
-                      "badge":  "About",
-                      "path":  "/about/",
-                      "emoji":  "🙋",
-                      "title":  "关于",
-                      "group":  "站点"
-                  },
-                  {
-                      "desc":  "浏览全部文章标签并按主题筛选内容",
-                      "badge":  "Tags",
-                      "path":  "/tags/",
-                      "emoji":  "🏷️",
-                      "title":  "标签",
-                      "group":  "站点"
-                  },
-                  {
-                      "desc":  "查看完整仓库列表与开源动态",
-                      "badge":  "External",
-                      "path":  "https://github.com/Xplore0114",
-                      "emoji":  "🐙",
-                      "title":  "GitHub 主页",
-                      "group":  "外部链接"
-                  },
-                  {
-                      "desc":  "FoxCode 模型 token 余量查询入口",
-                      "badge":  "External",
-                      "path":  "https://foxcode.rjj.cc/api-keys",
-                      "emoji":  "🦊",
-                      "title":  "FoxCode Token 余量",
-                      "group":  "模型 Token 余量"
-                  },
-                  {
-                      "desc":  "Love Gwen 模型 token 余量与统计查询入口",
-                      "badge":  "External",
-                      "path":  "https://ai.love-gwen.top/admin-next/api-stats",
-                      "emoji":  "💗",
-                      "title":  "Love Gwen Token 余量",
-                      "group":  "模型 Token 余量"
-                  },
-                  {
-                      "desc":  "zheda.site 主页入口",
-                      "badge":  "External",
-                      "path":  "https://zheda.site/",
-                      "emoji":  "🎓",
-                      "title":  "浙大站点",
-                      "group":  "外部链接"
-                  },
-                  {
-                      "desc":  "系统提示词与模型资料归档项目",
-                      "badge":  "Repo",
-                      "path":  "https://github.com/Xplore0114/system-prompts-and-models-of-ai-tools",
-                      "emoji":  "🧠",
-                      "title":  "system-prompts-and-models-of-ai-tools",
-                      "group":  "仓库"
-                  },
-                  {
-                      "desc":  "面向 Zotero 的 arXiv 每日推荐项目",
-                      "badge":  "Repo",
-                      "path":  "https://github.com/Xplore0114/zotero-arxiv-daily",
-                      "emoji":  "📚",
-                      "title":  "zotero-arxiv-daily",
-                      "group":  "仓库"
-                  },
-                  {
-                      "desc":  "自然语言转 SQL 的工具链与实验仓库",
-                      "badge":  "Repo",
-                      "path":  "https://github.com/Xplore0114/py-nl2sql",
-                      "emoji":  "🛠️",
-                      "title":  "py-nl2sql",
-                      "group":  "仓库"
-                  }
-              ]
+    "generated_at": "2026-06-14T01:15:00+08:00",
+    "items": [
+        {
+            "desc": "个人主页与开源项目总入口",
+            "badge": "Home",
+            "featured": true,
+            "path": "/",
+            "emoji": "🏠",
+            "title": "主页",
+            "group": "站点"
+        },
+        {
+            "desc": "查看个人介绍、研究方向与联系方式",
+            "badge": "About",
+            "featured": true,
+            "path": "/about/",
+            "emoji": "🙋",
+            "title": "关于",
+            "group": "站点"
+        },
+        {
+            "desc": "浏览全部文章标签并按主题筛选内容",
+            "badge": "Tags",
+            "path": "/tags/",
+            "emoji": "🏷️",
+            "title": "标签",
+            "group": "站点"
+        },
+        {
+            "desc": "将任意 LLM API 转换为 OpenAI 兼容端点",
+            "badge": "Python",
+            "featured": true,
+            "path": "https://github.com/Xplore-LAB/openai-compatible-proxy",
+            "emoji": "🔌",
+            "title": "openai-compatible-proxy",
+            "group": "开源项目"
+        },
+        {
+            "desc": "轻量级 Python LLM 网关，多模型路由",
+            "badge": "Python",
+            "path": "https://github.com/Xplore-LAB/llm-gateway-lite",
+            "emoji": "🚪",
+            "title": "llm-gateway-lite",
+            "group": "开源项目"
+        },
+        {
+            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV 导入即分析",
+            "badge": "HTML",
+            "path": "https://github.com/Xplore-LAB/DataLens",
+            "emoji": "📊",
+            "title": "DataLens",
+            "group": "开源项目"
+        },
+        {
+            "desc": "自然语言转 SQL 的工具链与实验仓库",
+            "badge": "Python",
+            "path": "https://github.com/Xplore-LAB/nl2sql-toolkit",
+            "emoji": "🛠️",
+            "title": "nl2sql-toolkit",
+            "group": "开源项目"
+        },
+        {
+            "desc": "Word + Outlook VBA 批量邮件工具",
+            "badge": "VBA",
+            "path": "https://github.com/Xplore-LAB/word-mail-merge-batch-sender",
+            "emoji": "📧",
+            "title": "word-mail-merge-batch-sender",
+            "group": "开源项目"
+        },
+        {
+            "desc": "Flutter 应用 · 引导式物体拍摄与 3D Gaussian Splatting 重建",
+            "badge": "Dart",
+            "path": "https://github.com/Xplore-LAB/3DGS-REAL",
+            "emoji": "📱",
+            "title": "3DGS-REAL",
+            "group": "开源项目"
+        },
+        {
+            "desc": "查看完整仓库列表与开源动态",
+            "badge": "GitHub",
+            "featured": true,
+            "path": "https://github.com/Xplore-LAB",
+            "emoji": "🐙",
+            "title": "GitHub 主页",
+            "group": "外部链接"
+        }
+    ]
 }
