@@ -265,6 +265,9 @@ footer a:hover { color: var(--accent); }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+.project .logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.project .logo-row img { width: 40px; height: 40px; flex: none; }
+.project .logo-row h3 { margin: 0; }
 </style>
 </head>
 <body>
@@ -306,7 +309,10 @@ footer a:hover { color: var(--accent); }
     <h2 class="section-title">精选项目</h2>
     <div class="cards">
     <div class="project reveal">
-      <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird 信鸽</a><span class="metric">22 个工具 · MIT 开源</span></h3>
+      <div class="logo-row">
+        <img src="/img/postbird-logo.png" alt="Postbird 信鸽 Logo：蓝色信鸽衔信封">
+        <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird 信鸽</a><span class="metric">22 个工具 · MIT 开源</span></h3>
+      </div>
       <p>本地优先的 AI 邮件与材料整理助手：发信需确认、收信只读、无删除工具，AI 绝不代办，数据不出本机。<a href="https://xplore-lab.github.io/postbird/demo/">在线 Demo</a> 免登录体验。</p>
       <div class="tags"><span>DeepSeek Harness</span><span>Local-first</span><span>邮件办公</span></div>
     </div>
