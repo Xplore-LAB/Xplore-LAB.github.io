@@ -1,7 +1,8 @@
 {
   "featured_repos": [
     "openai-compatible-proxy",
-    "careerflow-agent"
+    "careerflow-agent",
+    "postbird"
   ],
   "items": [
     {
@@ -121,7 +122,8 @@
     "OKC-SFT-Dataset": "SFT 指令微调数据集（详见仓库 README）",
     "openclaw-scholar-pack": "OpenClaw 学术技能包：面向科研场景的 Agent 技能合集",
     "word-mail-merge-batch-sender": "Word + Outlook VBA 批量邮件工具：按 Excel 每行数据生成邮件并附对应附件",
-    "openai-compatible-proxy": "几分钟内把任意 LLM API 转成 OpenAI 兼容端点"
+    "openai-compatible-proxy": "几分钟内把任意 LLM API 转成 OpenAI 兼容端点",
+    "postbird": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机"
   },
   "repo_groups": {
     "大项目": [

@@ -218,13 +218,13 @@
             "group": "外部链接"
         },
         {
-            "desc": "A Simple and Universal Local-first AI Office Toolkit, Getting Email and Documents Done. 简洁通用的本地优先 AI 办公工具箱，让邮件与文档自动完成。",
+            "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机。",
             "badge": "JavaScript",
-            "featured": false,
+            "featured": true,
             "path": "https://github.com/Xplore-LAB/postbird",
             "emoji": "🟨",
             "title": "postbird",
-            "group": "开源项目"
+            "group": "大项目"
         }
     ]
 }
