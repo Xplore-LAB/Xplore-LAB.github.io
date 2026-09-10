@@ -1,28 +1,3 @@
-- title: "Postbird 信鸽"
-  status: "Active"
-  status_class: "status-active"
-  category: "开源工具 · AI 邮件办公"
-  description: "本地优先的 AI 邮件与材料整理助手。发信需确认、收信只读、无删除工具，AI 绝不代办，数据不出本机。"
-  tags:
-    - label: "DeepSeek Harness"
-      class: "system"
-    - label: "Local-first"
-      class: "oss"
-    - label: "MIT"
-      class: "ai"
-  links:
-    - label: "GitHub 仓库"
-      href: "https://github.com/Xplore-LAB/postbird"
-      blank: true
-    - label: "在线 Demo"
-      href: "https://xplore-lab.github.io/postbird/demo/"
-      blank: true
-  last_update: "2026.09"
-  log:
-    - "v1.5.0：22 个工具覆盖邮件分诊、材料台账与 Word/PPT/表格生成"
-    - "七类校园身份场景一键进入工作状态，附件与截止日期自动整理"
-    - "独立工作台预览版支持 macOS / Windows，无需 Harness 即可使用"
-
 - title: "气体运营数据自然语言查询引擎"
   status: "Active"
   status_class: "status-active"
