@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-10T03:59:48.016175+00:00",
+    "generated_at": "2026-09-10T04:11:23.120280+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -44,6 +44,15 @@
             "path": "https://github.com/Xplore-LAB/llm-tracker",
             "emoji": "🌐",
             "title": "llm-tracker",
+            "group": "大项目"
+        },
+        {
+            "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
+            "badge": "JavaScript",
+            "featured": true,
+            "path": "https://github.com/Xplore-LAB/postbird",
+            "emoji": "🟨",
+            "title": "postbird",
             "group": "大项目"
         },
         {
@@ -216,15 +225,6 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
-        },
-        {
-            "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
-            "badge": "JavaScript",
-            "featured": true,
-            "path": "https://github.com/Xplore-LAB/postbird",
-            "emoji": "🟨",
-            "title": "postbird",
-            "group": "大项目"
         }
     ]
 }
