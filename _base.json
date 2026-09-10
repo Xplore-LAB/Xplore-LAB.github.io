@@ -131,7 +131,8 @@
       "tech-news",
       "DataLens",
       "OKC-SFT-Dataset",
-      "minimax-h3-dgx-spark"
+      "minimax-h3-dgx-spark",
+      "postbird"
     ],
     "Agent 技能": [
       "pc-doctor",
