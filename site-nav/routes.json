@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-10T04:11:23.120280+00:00",
+    "generated_at": "2026-09-11T06:04:43.729469+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -47,21 +47,12 @@
             "group": "大项目"
         },
         {
-            "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
-            "badge": "JavaScript",
-            "featured": true,
-            "path": "https://github.com/Xplore-LAB/postbird",
-            "emoji": "🟨",
-            "title": "postbird",
-            "group": "大项目"
-        },
-        {
-            "desc": "SFT 指令微调数据集（详见仓库 README）",
-            "badge": "Shell",
+            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
+            "badge": "HTML",
             "featured": false,
-            "path": "https://github.com/Xplore-LAB/OKC-SFT-Dataset",
-            "emoji": "🐚",
-            "title": "OKC-SFT-Dataset",
+            "path": "https://github.com/Xplore-LAB/DataLens",
+            "emoji": "🌐",
+            "title": "DataLens",
             "group": "大项目"
         },
         {
@@ -74,12 +65,21 @@
             "group": "大项目"
         },
         {
-            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
-            "badge": "HTML",
+            "desc": "SFT 指令微调数据集（详见仓库 README）",
+            "badge": "Shell",
             "featured": false,
-            "path": "https://github.com/Xplore-LAB/DataLens",
-            "emoji": "🌐",
-            "title": "DataLens",
+            "path": "https://github.com/Xplore-LAB/OKC-SFT-Dataset",
+            "emoji": "🐚",
+            "title": "OKC-SFT-Dataset",
+            "group": "大项目"
+        },
+        {
+            "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
+            "badge": "JavaScript",
+            "featured": true,
+            "path": "https://github.com/Xplore-LAB/postbird",
+            "emoji": "🟨",
+            "title": "postbird",
             "group": "大项目"
         },
         {
@@ -119,6 +119,15 @@
             "group": "Agent 技能"
         },
         {
+            "desc": "几分钟内把任意 LLM API 转成 OpenAI 兼容端点",
+            "badge": "Python",
+            "featured": true,
+            "path": "https://github.com/Xplore-LAB/openai-compatible-proxy",
+            "emoji": "🐍",
+            "title": "openai-compatible-proxy",
+            "group": "小工具"
+        },
+        {
             "desc": "Word + Outlook VBA 批量邮件工具：按 Excel 每行数据生成邮件并附对应附件",
             "badge": "VBA",
             "featured": false,
@@ -134,15 +143,6 @@
             "path": "https://github.com/Xplore-LAB/llm-gateway-lite",
             "emoji": "🐍",
             "title": "llm-gateway-lite",
-            "group": "小工具"
-        },
-        {
-            "desc": "几分钟内把任意 LLM API 转成 OpenAI 兼容端点",
-            "badge": "Python",
-            "featured": true,
-            "path": "https://github.com/Xplore-LAB/openai-compatible-proxy",
-            "emoji": "🐍",
-            "title": "openai-compatible-proxy",
             "group": "小工具"
         },
         {
