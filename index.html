@@ -268,6 +268,24 @@ footer a:hover { color: var(--accent); }
 .project .logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .project .logo-row img { width: 40px; height: 40px; flex: none; }
 .project .logo-row h3 { margin: 0; }
+
+/* 常读链接区 */
+.link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 2px 20px; }
+.link-item {
+  display: flex; gap: 10px; align-items: baseline;
+  padding: 7px 8px; border-radius: 8px; text-decoration: none;
+  transition: background .25s var(--ease-natural);
+}
+.link-item:hover { background: var(--wash); }
+.link-item .lk-name { font-size: 15px; color: var(--ink); flex-shrink: 0; }
+.link-item:hover .lk-name { color: var(--accent); }
+.link-item .lk-desc { font-size: 13px; color: var(--ink-faint); }
+.link-item .lk-arrow {
+  margin-left: auto; flex-shrink: 0; font-size: 12px;
+  color: var(--ink-faint); opacity: .45;
+  transition: opacity .2s ease, transform .25s var(--ease-natural), color .2s ease;
+}
+.link-item:hover .lk-arrow { opacity: 1; transform: translateX(2px); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -367,6 +385,33 @@ footer a:hover { color: var(--accent); }
     {% else %}
     <p class="muted">文章筹备中，先看看下面的全部入口。</p>
     {% endif %}
+  </section>
+
+  <section id="reading">
+    <h2 class="section-title">常读<span class="count">13</span></h2>
+    <div class="writing-group">
+      <h3 class="group-head">研究者博客<span class="count">8</span></h3>
+      <div class="link-grid">
+        <a class="link-item reveal" href="https://lilianweng.github.io" target="_blank" rel="noopener"><span class="lk-name">Lil'Log</span><span class="lk-desc">Lilian Weng · Agent 与安全长文标杆</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://karpathy.github.io" target="_blank" rel="noopener"><span class="lk-name">Andrej Karpathy</span><span class="lk-desc">极简文字讲透神经网络</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://jalammar.github.io" target="_blank" rel="noopener"><span class="lk-name">Jay Alammar</span><span class="lk-desc">The Illustrated Transformer 图解派</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://colah.github.io" target="_blank" rel="noopener"><span class="lk-name">colah's blog</span><span class="lk-desc">Chris Olah · 可解释性开山</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://sebastianraschka.com" target="_blank" rel="noopener"><span class="lk-name">Sebastian Raschka</span><span class="lk-desc">LLM 工程与论文精读</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://huyenchip.com" target="_blank" rel="noopener"><span class="lk-name">Chip Huyen</span><span class="lk-desc">ML 系统设计与落地</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://hamel.dev" target="_blank" rel="noopener"><span class="lk-name">Hamel Husain</span><span class="lk-desc">LLM 评测与工程实操</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://simonwillison.net" target="_blank" rel="noopener"><span class="lk-name">Simon Willison</span><span class="lk-desc">LLM 工具链日更</span><span class="lk-arrow">↗</span></a>
+      </div>
+    </div>
+    <div class="writing-group">
+      <h3 class="group-head">工具与资讯<span class="count">5</span></h3>
+      <div class="link-grid">
+        <a class="link-item reveal" href="https://huggingface.co/papers" target="_blank" rel="noopener"><span class="lk-name">HuggingFace Papers</span><span class="lk-desc">每日热榜论文</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://alphaxiv.org" target="_blank" rel="noopener"><span class="lk-name">AlphaXiv</span><span class="lk-desc">arXiv 论文讨论层</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://arxiv.org/list/cs.CL/recent" target="_blank" rel="noopener"><span class="lk-name">arXiv cs.CL</span><span class="lk-desc">计算语言学新稿列表</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://labuladong.online" target="_blank" rel="noopener"><span class="lk-name">labuladong</span><span class="lk-desc">算法笔记与刷题框架</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://aihot.virxact.com" target="_blank" rel="noopener"><span class="lk-name">AIHOT</span><span class="lk-desc">中文 AI 资讯日报</span><span class="lk-arrow">↗</span></a>
+      </div>
+    </div>
   </section>
 
   <section id="all-entries">
