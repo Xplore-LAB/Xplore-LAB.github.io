@@ -1,0 +1,348 @@
+---
+title: 秋招网申自动填充 · 交互演示
+description: qiuzhao-autofill 的可交互演示：模拟网申表单，一键填充、字段识别标注、填写自检，零后端纯前端还原插件核心链路。
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>秋招网申自动填充 · 交互演示 | Xplore-LAB</title>
+<meta name="description" content="qiuzhao-autofill 的可交互演示：模拟网申表单，一键填充、字段识别标注、填写自检，零后端纯前端还原插件核心链路。">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root {
+  --accent: #0ea5e9;
+  --accent-deep: #6366f1;
+  --ink: #24292f;
+  --ink-soft: #57606a;
+  --ink-faint: #8b949e;
+  --line: #e5e9ee;
+  --wash: #f6f8fa;
+  --ok: #1a7f37;
+  --warn: #b85c00;
+  --ease-natural: cubic-bezier(0.22, 1, 0.36, 1);
+  --serif: Georgia, "Times New Roman", "Songti SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.75;
+  color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(14,165,233,.18); }
+.page { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
+nav { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 0; }
+.wordmark { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a {
+  color: var(--ink-soft); text-decoration: none; font-size: 15px;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1.5px; background-repeat: no-repeat; background-position: left 96%;
+  transition: background-size .3s var(--ease-natural), color .2s ease;
+  padding-bottom: 2px;
+}
+.nav-links a:hover { color: var(--ink); background-size: 100% 1.5px; }
+.nav-links a.active { color: var(--ink); background-size: 100% 1.5px; }
+
+header.archive-head { padding: 52px 0 18px; }
+header.archive-head h1 { font-family: var(--serif); font-size: clamp(28px, 5.5vw, 38px); margin: 0 0 8px; }
+header.archive-head p { margin: 0; color: var(--ink-faint); font-size: 15px; }
+header.archive-head .crumbs { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 14px; }
+header.archive-head .crumbs a { color: var(--ink-soft); text-decoration: none; }
+header.archive-head .crumbs a:hover { color: var(--accent); }
+
+section { padding: 26px 0 4px; }
+h2.section-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+}
+p.note { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+
+.demo-shell {
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(36,41,47,.06); margin-bottom: 18px;
+}
+.demo-bar {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--wash); border-bottom: 1px solid var(--line);
+  padding: 9px 14px; font-size: 12.5px; color: var(--ink-faint); font-family: var(--mono);
+}
+.demo-bar .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.demo-bar .dot.r { background: #f0a8a4; } .demo-bar .dot.y { background: #f5d08a; } .demo-bar .dot.g { background: #a8d8b0; }
+.demo-bar .url { margin-left: 8px; }
+.demo-body { display: grid; grid-template-columns: minmax(0,1fr) 264px; }
+
+.mock-form { padding: 20px 20px 14px; }
+.mock-form h3 { margin: 0 0 4px; font-size: 15.5px; }
+.mock-form .sub { font-size: 12.5px; color: var(--ink-faint); margin: 0 0 14px; }
+.field { position: relative; margin-bottom: 13px; }
+.field label { display: block; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 4px; font-weight: 600; }
+.field input, .field select, .field textarea {
+  width: 100%; font-family: var(--sans); font-size: 13.5px; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px;
+  background: #fff; transition: border-color .25s ease, box-shadow .35s var(--ease-natural), background .35s ease;
+}
+.field textarea { resize: none; height: 54px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+.field .ftag {
+  position: absolute; top: 0; right: 0;
+  font-family: var(--mono); font-size: 10.5px; color: var(--accent-deep);
+  background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.25);
+  border-radius: 99px; padding: 0 7px; opacity: 0;
+  transform: translateY(-3px); transition: opacity .3s ease, transform .3s var(--ease-natural);
+}
+.field.scanned .ftag { opacity: 1; transform: none; }
+.field.filled input, .field.filled select, .field.filled textarea {
+  border-color: rgba(26,127,55,.45); background: rgba(26,127,55,.05);
+  box-shadow: 0 0 0 3px rgba(26,127,55,.08);
+}
+.field.review input, .field.review textarea {
+  border-color: rgba(184,92,0,.5); background: rgba(184,92,0,.05);
+  box-shadow: 0 0 0 3px rgba(184,92,0,.08);
+}
+
+.demo-side {
+  border-left: 1px solid var(--line); background: var(--wash);
+  padding: 16px 16px 12px; font-size: 13px; color: var(--ink-soft);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.demo-side h4 { margin: 0; font-size: 13px; color: var(--ink); }
+.stat-row { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; }
+.stat-row b { color: var(--ink); }
+.progress { height: 6px; background: #e5e9ee; border-radius: 99px; overflow: hidden; }
+.progress i {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  transition: width .3s var(--ease-natural);
+}
+.log {
+  font-family: var(--mono); font-size: 11.5px; line-height: 1.7;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 10px; height: 132px; overflow-y: auto; color: var(--ink-soft);
+}
+.log .ok { color: var(--ok); } .log .warn { color: var(--warn); } .log .dim { color: var(--ink-faint); }
+
+.btn-row { display: flex; gap: 10px; }
+button.btn {
+  font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer;
+  border-radius: 8px; padding: 8px 14px; transition: all .25s var(--ease-natural);
+}
+button.btn-primary { border: none; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+button.btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(14,165,233,.35); }
+button.btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+button.btn-ghost { border: 1px solid var(--line); color: var(--ink-soft); background: #fff; }
+button.btn-ghost:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+.report {
+  display: none; border: 1px solid rgba(26,127,55,.3); background: rgba(26,127,55,.05);
+  border-radius: 10px; padding: 12px 16px; font-size: 13.5px; color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.report.show { display: block; }
+.report b { color: var(--ink); }
+.report .ok { color: var(--ok); font-weight: 600; }
+.report .warn { color: var(--warn); font-weight: 600; }
+
+ol.howto { margin: 0 0 14px; padding-left: 22px; font-size: 14px; color: var(--ink-soft); }
+ol.howto li { margin-bottom: 6px; }
+ol.howto li b { color: var(--ink); font-weight: 600; }
+
+footer {
+  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-faint);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+footer a { color: var(--ink-soft); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+.js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease-natural), transform .6s var(--ease-natural); }
+.js .reveal.visible { opacity: 1; transform: none; }
+@media (max-width: 720px) {
+  .demo-body { grid-template-columns: 1fr; }
+  .demo-side { border-left: none; border-top: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav>
+    <a class="wordmark" href="/">Xplore-LAB</a>
+    <div class="nav-links">
+      <a href="/tags/">Writing</a>
+      <a href="/figures/">绘图</a>
+      <a href="/demo-postbird/">Postbird 演示</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/Xplore-LAB">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="archive-head">
+    <p class="crumbs"><a href="/">/</a> &nbsp;›&nbsp; 交互演示</p>
+    <h1>秋招网申自动填充</h1>
+    <p>qiuzhao-autofill · 本页是纯前端仿真：表单、字段识别与自检逻辑均在浏览器内演示，不访问任何真实网站。</p>
+  </header>
+
+  <section class="reveal">
+    <h2 class="section-title">动手试一下</h2>
+    <p class="note">点击「一键填充」，观察字段被逐个识别并填入；带 <b>review</b> 标记的字段会进入待确认清单。真实插件在此基础上多了字段别名库与跨站控件打分。</p>
+
+    <div class="demo-shell">
+      <div class="demo-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="url">https://campus.example.com/apply/form</span>
+      </div>
+      <div class="demo-body">
+        <div class="mock-form">
+          <h3>2026 校园招聘 · 网申表单（模拟）</h3>
+          <p class="sub">共 8 个字段，其中 2 个需要人工确认</p>
+          <div class="field" data-key="name"><label>姓名 <span class="ftag">name · 置信 0.98</span></label><input type="text" placeholder=""></div>
+          <div class="field" data-key="phone"><label>手机号 <span class="ftag">phone · 置信 0.97</span></label><input type="text" placeholder=""></div>
+          <div class="field" data-key="email"><label>邮箱 <span class="ftag">email · 置信 0.99</span></label><input type="text" placeholder=""></div>
+          <div class="field" data-key="school"><label>毕业院校 <span class="ftag">school · 置信 0.95</span></label><input type="text" placeholder=""></div>
+          <div class="field" data-key="major"><label>专业 <span class="ftag">major · 置信 0.93</span></label><input type="text" placeholder=""></div>
+          <div class="field" data-key="city"><label>意向城市 <span class="ftag">city · 置信 0.88</span></label>
+            <select><option value="">请选择</option><option>深圳</option><option>杭州</option><option>北京</option><option>上海</option></select>
+          </div>
+          <div class="field" data-key="project"><label>项目经历 <span class="ftag">project · 置信 0.81</span></label><textarea placeholder=""></textarea></div>
+          <div class="field" data-key="expect"><label>期望年薪（万） <span class="ftag">salary · 置信 0.62 · review</span></label><input type="text" placeholder=""></div>
+        </div>
+        <aside class="demo-side">
+          <h4>填写进度</h4>
+          <div class="stat-row"><span>已填充</span><b><span id="stat-done">0</span> / 8</b></div>
+          <div class="progress"><i id="bar"></i></div>
+          <div class="stat-row"><span>耗时</span><b id="stat-time">0.0s</b></div>
+          <div class="log" id="log"><span class="dim">等待指令…</span></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="btn-fill">一键填充</button>
+            <button class="btn btn-ghost" id="btn-reset">重置</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="report" id="report">
+      <b>自检报告</b>：<span class="ok">6 个字段高置信填充</span>，<span class="warn">2 个字段建议人工确认</span>（期望年薪置信度 0.62，项目经历为长文本建议校对）。真实插件还会对每站生成填写诊断，标出未识别控件。
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2 class="section-title">这背后是什么</h2>
+    <ol class="howto">
+      <li><b>字段别名库</b>：姓名 / name / fullname / 姓名(中文) 等写法映射到同一语义字段，覆盖主流网申系统。</li>
+      <li><b>控件识别打分</b>：对 input / select / textarea 及 React、Vue 受控组件按标签文本、占位符、DOM 上下文综合打分，低置信字段标记 review。</li>
+      <li><b>填写自检</b>：填充完成后逐字段回放校验，输出可直接核对的诊断报告。</li>
+    </ol>
+    <p class="note">源码与真实插件：<a href="https://github.com/Xplore-LAB/qiuzhao-autofill" style="color:var(--accent);text-decoration:none;">github.com/Xplore-LAB/qiuzhao-autofill</a></p>
+  </section>
+
+  <footer>
+    <span>© 2026 Xplore-LAB · 交互演示页</span>
+    <span><a href="/demo-postbird/">下一场演示：Postbird 信鸽 →</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var DATA = {
+    name:    { value: '张全湖', review: false },
+    phone:   { value: '138****2247', review: false },
+    email:   { value: 'zhangquanhu@zju.edu.cn', review: false },
+    school:  { value: '浙江大学', review: false },
+    major:   { value: '控制工程', review: false },
+    city:    { value: '深圳', review: false },
+    project: { value: 'OKC-SFT：工业空分异常工况诊断 LLM 微调，幻觉率 34.4% 降至 15.6%（CAC 2026 在审）', review: true },
+    expect:  { value: '面议', review: true }
+  };
+  var fields = Array.prototype.slice.call(document.querySelectorAll('.field'));
+  var log = document.getElementById('log');
+  var bar = document.getElementById('bar');
+  var statDone = document.getElementById('stat-done');
+  var statTime = document.getElementById('stat-time');
+  var btnFill = document.getElementById('btn-fill');
+  var btnReset = document.getElementById('btn-reset');
+  var report = document.getElementById('report');
+  var running = false;
+
+  function addLog(text, cls) {
+    var line = document.createElement('div');
+    if (cls) line.className = cls;
+    line.textContent = text;
+    log.appendChild(line);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function reset() {
+    running = false;
+    btnFill.disabled = false;
+    fields.forEach(function (f) {
+      f.classList.remove('scanned', 'filled', 'review');
+      var el = f.querySelector('input, select, textarea');
+      if (el) el.value = '';
+    });
+    log.innerHTML = '<span class="dim">等待指令…</span>';
+    bar.style.width = '0%';
+    statDone.textContent = '0';
+    statTime.textContent = '0.0s';
+    report.classList.remove('show');
+  }
+
+  function run() {
+    if (running) return;
+    running = true;
+    btnFill.disabled = true;
+    reset();
+    running = true;
+    btnFill.disabled = true;
+    var t0 = performance.now();
+    addLog('扫描表单结构…', 'dim');
+
+    fields.forEach(function (f, i) {
+      setTimeout(function () { f.classList.add('scanned'); }, 220 + i * 90);
+    });
+
+    var fillStart = 220 + fields.length * 90 + 260;
+    setTimeout(function () { addLog('识别完成，开始填充'); }, fillStart - 200);
+
+    fields.forEach(function (f, i) {
+      setTimeout(function () {
+        var key = f.getAttribute('data-key');
+        var d = DATA[key];
+        var el = f.querySelector('input, select, textarea');
+        if (el) el.value = d.value;
+        f.classList.add(d.review ? 'review' : 'filled');
+        var done = i + 1;
+        statDone.textContent = String(done);
+        bar.style.width = (done / fields.length * 100) + '%';
+        statTime.textContent = ((performance.now() - t0) / 1000).toFixed(1) + 's';
+        addLog((d.review ? '△ ' : '✓ ') + key + ' 已填充' + (d.review ? '（待确认）' : ''), d.review ? 'warn' : 'ok');
+        if (done === fields.length) {
+          addLog('生成自检报告', 'dim');
+          report.classList.add('show');
+          running = false;
+        }
+      }, fillStart + i * 420);
+    });
+  }
+
+  btnFill.addEventListener('click', run);
+  btnReset.addEventListener('click', reset);
+
+  // reveal 动效
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+</body>
+</html>

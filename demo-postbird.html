@@ -1,0 +1,365 @@
+---
+title: Postbird 信鸽 · 交互演示
+description: Postbird 信鸽的可交互演示：模拟收件箱 AI 分类、草拟回复、发送前确认。跑腿而已，做主的还是你。
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postbird 信鸽 · 交互演示 | Xplore-LAB</title>
+<meta name="description" content="Postbird 信鸽的可交互演示：模拟收件箱 AI 分类、草拟回复、发送前确认。跑腿而已，做主的还是你。">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root {
+  --accent: #0ea5e9;
+  --accent-deep: #6366f1;
+  --ink: #24292f;
+  --ink-soft: #57606a;
+  --ink-faint: #8b949e;
+  --line: #e5e9ee;
+  --wash: #f6f8fa;
+  --ok: #1a7f37;
+  --warn: #b85c00;
+  --ease-natural: cubic-bezier(0.22, 1, 0.36, 1);
+  --serif: Georgia, "Times New Roman", "Songti SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.75;
+  color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(14,165,233,.18); }
+.page { max-width: 920px; margin: 0 auto; padding: 0 24px 80px; }
+nav { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 0; }
+.wordmark { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a {
+  color: var(--ink-soft); text-decoration: none; font-size: 15px;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1.5px; background-repeat: no-repeat; background-position: left 96%;
+  transition: background-size .3s var(--ease-natural), color .2s ease;
+  padding-bottom: 2px;
+}
+.nav-links a:hover { color: var(--ink); background-size: 100% 1.5px; }
+
+header.archive-head { padding: 52px 0 18px; }
+header.archive-head h1 { font-family: var(--serif); font-size: clamp(28px, 5.5vw, 38px); margin: 0 0 8px; }
+header.archive-head p { margin: 0; color: var(--ink-faint); font-size: 15px; }
+header.archive-head .crumbs { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 14px; }
+header.archive-head .crumbs a { color: var(--ink-soft); text-decoration: none; }
+header.archive-head .crumbs a:hover { color: var(--accent); }
+
+.guard-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.guard {
+  font-size: 12px; color: var(--ink-soft); background: var(--wash);
+  border: 1px solid var(--line); border-radius: 99px; padding: 2px 11px;
+}
+.guard b { color: var(--ink); font-weight: 600; }
+
+section { padding: 26px 0 4px; }
+h2.section-title {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+}
+p.note { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+
+.demo-shell {
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(36,41,47,.06); margin-bottom: 18px;
+}
+.demo-bar {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--wash); border-bottom: 1px solid var(--line);
+  padding: 9px 14px; font-size: 12.5px; color: var(--ink-faint); font-family: var(--mono);
+}
+.demo-bar .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.demo-bar .dot.r { background: #f0a8a4; } .demo-bar .dot.y { background: #f5d08a; } .demo-bar .dot.g { background: #a8d8b0; }
+.demo-bar .url { margin-left: 8px; }
+
+.mail-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); min-height: 380px; }
+
+.inbox { border-right: 1px solid var(--line); }
+.inbox-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--line);
+}
+.inbox-head span { font-size: 13px; font-weight: 700; }
+.mail-item {
+  padding: 11px 16px; border-bottom: 1px solid var(--line); cursor: pointer;
+  transition: background .2s ease; position: relative;
+}
+.mail-item:hover { background: var(--wash); }
+.mail-item.active { background: rgba(14,165,233,.07); box-shadow: inset 3px 0 0 var(--accent); }
+.mail-item .from { font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+.mail-item .subj { font-size: 12.5px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mail-item .chip {
+  display: inline-block; font-family: var(--mono); font-size: 10.5px; line-height: 1.5;
+  border-radius: 99px; padding: 0 7px; margin-top: 4px;
+  opacity: 0; transform: translateY(-3px);
+  transition: opacity .35s ease, transform .35s var(--ease-natural);
+}
+.mail-item.triaged .chip { opacity: 1; transform: none; }
+.chip.c-todo { color: #9a6700; background: rgba(187,128,9,.1); border: 1px solid rgba(187,128,9,.3); }
+.chip.c-info { color: var(--accent-deep); background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.28); }
+.chip.c-ads  { color: var(--ink-faint); background: var(--wash); border: 1px solid var(--line); }
+
+.detail { padding: 18px 20px; display: flex; flex-direction: column; }
+.detail .empty { margin: auto; color: var(--ink-faint); font-size: 13.5px; }
+.detail h3 { margin: 0 0 2px; font-size: 15.5px; }
+.detail .meta { font-size: 12px; color: var(--ink-faint); margin-bottom: 12px; }
+.detail .body-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 14px; }
+.ai-box {
+  border: 1px solid rgba(99,102,241,.3); border-radius: 10px;
+  background: rgba(99,102,241,.05); padding: 11px 14px; font-size: 13px; color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.ai-box b { color: var(--ink); }
+.ai-box .draft {
+  font-family: var(--mono); font-size: 11.5px; line-height: 1.65;
+  background: #fff; border: 1px solid var(--line); border-radius: 6px;
+  padding: 8px 10px; margin-top: 8px; color: var(--ink);
+}
+.action-row { display: flex; gap: 10px; margin-top: auto; flex-wrap: wrap; }
+button.btn {
+  font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer;
+  border-radius: 8px; padding: 8px 14px; transition: all .25s var(--ease-natural);
+}
+button.btn-primary { border: none; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+button.btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(14,165,233,.35); }
+button.btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+button.btn-ghost { border: 1px solid var(--line); color: var(--ink-soft); background: #fff; }
+button.btn-ghost:hover { color: var(--ink); border-color: var(--ink-faint); }
+.no-delete {
+  font-size: 11.5px; color: var(--ink-faint); font-family: var(--mono);
+  padding: 8px 14px; border: 1px dashed var(--line); border-radius: 8px;
+}
+
+.toast {
+  position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%) translateY(16px);
+  background: var(--ink); color: #fff; font-size: 13px; border-radius: 9px;
+  padding: 10px 18px; opacity: 0; pointer-events: none;
+  transition: opacity .3s ease, transform .35s var(--ease-natural);
+  box-shadow: 0 12px 32px rgba(0,0,0,.22); z-index: 20;
+}
+.toast.show { opacity: 1; transform: translateX(-50%); }
+
+ol.howto { margin: 0 0 14px; padding-left: 22px; font-size: 14px; color: var(--ink-soft); }
+ol.howto li { margin-bottom: 6px; }
+ol.howto li b { color: var(--ink); font-weight: 600; }
+
+footer {
+  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-faint);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+footer a { color: var(--ink-soft); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+.js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease-natural), transform .6s var(--ease-natural); }
+.js .reveal.visible { opacity: 1; transform: none; }
+@media (max-width: 720px) {
+  .mail-body { grid-template-columns: 1fr; }
+  .inbox { border-right: none; border-bottom: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav>
+    <a class="wordmark" href="/">Xplore-LAB</a>
+    <div class="nav-links">
+      <a href="/tags/">Writing</a>
+      <a href="/figures/">绘图</a>
+      <a href="/demo-autofill/">自动填充演示</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/Xplore-LAB">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="archive-head">
+    <p class="crumbs"><a href="/">/</a> &nbsp;›&nbsp; 交互演示</p>
+    <h1>Postbird 信鸽</h1>
+    <p>AI 替你跑邮件和文档这趟腿。跑腿而已，做主的还是你。本页为纯前端仿真，不连接真实邮箱。</p>
+    <div class="guard-row">
+      <span class="guard"><b>发信需你点头</b>，AI 只草拟</span>
+      <span class="guard"><b>收信严格只读</b>，原件不动</span>
+      <span class="guard"><b>没有删除工具</b>，清理仅建议</span>
+      <span class="guard"><b>数据留在本地</b>，不上云</span>
+    </div>
+  </header>
+
+  <section class="reveal">
+    <h2 class="section-title">动手试一下</h2>
+    <p class="note">点「开始 Triage」让 AI 给收件箱分类，再点开一封邮件看 AI 的建议。注意：发送按钮永远需要你亲手点。</p>
+
+    <div class="demo-shell">
+      <div class="demo-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="url">postbird://inbox（本地演示）</span>
+      </div>
+      <div class="mail-body">
+        <div class="inbox">
+          <div class="inbox-head">
+            <span>收件箱 · 4 封未读</span>
+            <button class="btn btn-primary" id="btn-triage" style="padding:5px 12px;font-size:12px;">开始 Triage</button>
+          </div>
+          <div id="mail-list"></div>
+        </div>
+        <div class="detail" id="detail">
+          <p class="empty">← 点击左侧邮件查看 AI 建议</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2 class="section-title">三条护栏，写进产品里</h2>
+    <ol class="howto">
+      <li><b>发送必须确认</b>：AI 可以起草、排版、填收件人，发送键只在你手里。</li>
+      <li><b>收件严格只读</b>：分类与摘要发生在副本上，原始邮件一个字节都不改。</li>
+      <li><b>不提供删除工具</b>：清理只给建议清单，删不删由你在邮箱里自己决定。</li>
+    </ol>
+    <p class="note">源码与 14 个工具矩阵：<a href="https://github.com/Xplore-LAB/postbird" style="color:var(--accent);text-decoration:none;">github.com/Xplore-LAB/postbird</a></p>
+  </section>
+
+  <footer>
+    <span>© 2026 Xplore-LAB · 交互演示页</span>
+    <span><a href="/demo-autofill/">下一场演示：网申自动填充 →</a></span>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  var MAILS = [
+    {
+      from: 'HR · 某厂招聘组', subj: '【面试邀请】算法工程师二面安排', tag: '待办', cls: 'c-todo',
+      body: '你好，恭喜通过一面。二面定于本周四 15:00，腾讯会议链接见正文，请提前 10 分钟入会并准备项目讲解。',
+      ai: '建议：这是一封有时效的行动邮件。已为你草拟确认回信，并提取了时间信息可写入台账。',
+      draft: '收到，周四 15:00 我会准时入会，谢谢安排。',
+      action: 'confirm'
+    },
+    {
+      from: 'arXiv Daily', subj: 'cs.CL 每日更新：142 篇新论文', tag: '资讯', cls: 'c-info',
+      body: '今日 cs.CL 共 142 篇新提交，其中 3 篇与你的关注词（agent memory, RL post-training）相关。',
+      ai: '建议：资讯类，已按主题相关性挑出 3 篇。无需回复，可归档到「论文」文件夹（建议操作，不会自动执行）。',
+      draft: null,
+      action: 'suggest'
+    },
+    {
+      from: '导师', subj: '开题报告修改意见', tag: '待办', cls: 'c-todo',
+      body: '第三版看过了，问题链的逻辑还要再收紧，RQ2 和 RQ3 的递进关系写得不够清楚，周末前改一版给我。',
+      ai: '建议：高优先级待办。已提取截止时间（本周末），草拟了简短回信。',
+      draft: '好的老师，我按问题链重写 RQ2 到 RQ3 的过渡，周六前发您。',
+      action: 'confirm'
+    },
+    {
+      from: '某电商促销', subj: '限时 5 折！今晚 24 点截止', tag: '推广', cls: 'c-ads',
+      body: '全场直降，爆款清单已更新，点击领取你的专属优惠券。',
+      ai: '建议：推广邮件。可加入「低优先」清单，是否退订由你决定，信鸽不提供删除操作。',
+      draft: null,
+      action: 'suggest'
+    }
+  ];
+
+  var list = document.getElementById('mail-list');
+  var detail = document.getElementById('detail');
+  var btnTriage = document.getElementById('btn-triage');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+
+  function showToast(text) {
+    toast.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2400);
+  }
+
+  function renderList() {
+    list.innerHTML = '';
+    MAILS.forEach(function (m, i) {
+      var item = document.createElement('div');
+      item.className = 'mail-item';
+      item.setAttribute('data-i', String(i));
+      item.innerHTML =
+        '<div class="from"><span>' + m.from + '</span></div>' +
+        '<div class="subj">' + m.subj + '</div>' +
+        '<span class="chip ' + m.cls + '">' + m.tag + '</span>';
+      item.addEventListener('click', function () { openMail(i); });
+      list.appendChild(item);
+    });
+  }
+
+  function openMail(i) {
+    var m = MAILS[i];
+    Array.prototype.forEach.call(list.children, function (el, j) {
+      el.classList.toggle('active', j === i);
+    });
+    var draftHtml = m.draft
+      ? '<div class="draft">草稿：' + m.draft + '</div>'
+      : '';
+    var btnHtml = m.draft
+      ? '<button class="btn btn-primary" id="btn-confirm">确认发送（需本人点击）</button>' +
+        '<button class="btn btn-ghost" id="btn-edit">我来改写</button>'
+      : '<button class="btn btn-ghost" id="btn-archive">采纳归档建议</button>';
+    detail.innerHTML =
+      '<h3>' + m.subj + '</h3>' +
+      '<div class="meta">' + m.from + ' · 分类：' + m.tag + '</div>' +
+      '<p class="body-text">' + m.body + '</p>' +
+      '<div class="ai-box"><b>信鸽</b>：' + m.ai + draftHtml + '</div>' +
+      '<div class="action-row">' + btnHtml +
+      '<span class="no-delete">删除：不可用（设计如此）</span></div>';
+
+    var btnConfirm = document.getElementById('btn-confirm');
+    if (btnConfirm) {
+      btnConfirm.addEventListener('click', function () {
+        showToast('已按你的确认发出。AI 全程没有替你按过这个键。');
+      });
+    }
+    var btnEdit = document.getElementById('btn-edit');
+    if (btnEdit) {
+      btnEdit.addEventListener('click', function () {
+        showToast('真实插件中会打开草稿编辑，内容由你改、由你发。');
+      });
+    }
+    var btnArchive = document.getElementById('btn-archive');
+    if (btnArchive) {
+      btnArchive.addEventListener('click', function () {
+        showToast('已记录你的采纳。真实插件中归档动作也由你最终确认。');
+      });
+    }
+  }
+
+  btnTriage.addEventListener('click', function () {
+    btnTriage.disabled = true;
+    Array.prototype.forEach.call(list.children, function (el, j) {
+      setTimeout(function () { el.classList.add('triaged'); }, 260 + j * 320);
+    });
+    setTimeout(function () {
+      showToast('Triage 完成：2 封待办、1 封资讯、1 封推广');
+      btnTriage.disabled = false;
+    }, 260 + MAILS.length * 320 + 200);
+  });
+
+  renderList();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+</body>
+</html>
