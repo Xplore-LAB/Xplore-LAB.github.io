@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-23T06:03:13.560201+00:00",
+    "generated_at": "2026-09-24T06:13:11.986515+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -38,6 +38,15 @@
             "group": "大项目"
         },
         {
+            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
+            "badge": "HTML",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/DataLens",
+            "emoji": "🌐",
+            "title": "DataLens",
+            "group": "大项目"
+        },
+        {
             "desc": "🤖 大模型情报局 | 每日自动追踪 arXiv 前沿论文：13k+ 论文、34 个实验室、模型时间线与学习路径",
             "badge": "HTML",
             "featured": false,
@@ -53,15 +62,6 @@
             "path": "https://github.com/Xplore-LAB/postbird",
             "emoji": "🟨",
             "title": "postbird",
-            "group": "大项目"
-        },
-        {
-            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
-            "badge": "HTML",
-            "featured": false,
-            "path": "https://github.com/Xplore-LAB/DataLens",
-            "emoji": "🌐",
-            "title": "DataLens",
             "group": "大项目"
         },
         {
