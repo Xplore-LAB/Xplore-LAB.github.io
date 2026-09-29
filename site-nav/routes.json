@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-25T06:11:20.545228+00:00",
+    "generated_at": "2026-09-29T06:59:33.362959+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -225,6 +225,15 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
+        },
+        {
+            "desc": "Multi-Max H3 图生视频 Skill — 复现何老师 workshop 2 的 4 文件 Skill 范式",
+            "badge": "Python",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/minimax-h3-story",
+            "emoji": "🐍",
+            "title": "minimax-h3-story",
+            "group": "开源项目"
         },
         {
             "desc": "秋招网申自动填充助手：本地资料管理、可选 AI 提取、填写自检与问题诊断",
