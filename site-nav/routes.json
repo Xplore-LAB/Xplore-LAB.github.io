@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-29T06:59:33.362959+00:00",
+    "generated_at": "2026-09-30T06:48:31.666938+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -47,21 +47,21 @@
             "group": "大项目"
         },
         {
-            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
-            "badge": "HTML",
-            "featured": false,
-            "path": "https://github.com/Xplore-LAB/DataLens",
-            "emoji": "🌐",
-            "title": "DataLens",
-            "group": "大项目"
-        },
-        {
             "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
             "badge": "JavaScript",
             "featured": true,
             "path": "https://github.com/Xplore-LAB/postbird",
             "emoji": "🟨",
             "title": "postbird",
+            "group": "大项目"
+        },
+        {
+            "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
+            "badge": "HTML",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/DataLens",
+            "emoji": "🌐",
+            "title": "DataLens",
             "group": "大项目"
         },
         {
@@ -225,6 +225,15 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
+        },
+        {
+            "desc": "postbird-agent-skills",
+            "badge": "HTML",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/postbird-agent-skills",
+            "emoji": "🌐",
+            "title": "postbird-agent-skills",
+            "group": "开源项目"
         },
         {
             "desc": "Multi-Max H3 图生视频 Skill — 复现何老师 workshop 2 的 4 文件 Skill 范式",
