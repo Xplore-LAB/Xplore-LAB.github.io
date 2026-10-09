@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-07T07:17:40.698647+00:00",
+    "generated_at": "2026-10-09T07:27:33.835309+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -225,6 +225,15 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
+        },
+        {
+            "desc": "KEV Decision Model Playground - Interactive frontend for probability-based decision making",
+            "badge": "Repo",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/kev-playground",
+            "emoji": "📦",
+            "title": "kev-playground",
+            "group": "开源项目"
         },
         {
             "desc": "暂无描述，点击查看仓库详情",
