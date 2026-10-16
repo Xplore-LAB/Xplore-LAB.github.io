@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-11T07:16:37.713278+00:00",
+    "generated_at": "2026-10-16T05:54:59.303042+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -225,6 +225,15 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
+        },
+        {
+            "desc": "在 QQ 私聊中继续本地 Codex 会话 | Control Codex from QQ: streaming replies, files, approvals & durable tasks",
+            "badge": "TypeScript",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/qq-codex-bridge",
+            "emoji": "🟦",
+            "title": "qq-codex-bridge",
+            "group": "开源项目"
         },
         {
             "desc": "论文精读与成果转化的标准流程（SOP）：筛-拆-转三层流程 + 六段式精读卡片模板，可直接转成解读文章与文献综述",
