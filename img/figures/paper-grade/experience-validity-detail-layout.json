@@ -1,0 +1,542 @@
+[
+  {
+    "id": "title",
+    "x": 20,
+    "y": 20,
+    "w": 1380,
+    "h": 38,
+    "text": "Experience applicability: a gate before relevance ranking",
+    "size": 30,
+    "bold": true
+  },
+  {
+    "id": "sub",
+    "x": 20,
+    "y": 62,
+    "w": 1380,
+    "h": 28,
+    "text": "CONCEPTUAL DESIGN EXAMPLE  /  illustrative records and signals  /  no experimental results",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "records-heading",
+    "x": 38,
+    "y": 126,
+    "w": 349,
+    "h": 32,
+    "text": "(a) Candidate records",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "current-title",
+    "x": 53,
+    "y": 185,
+    "w": 319,
+    "h": 27,
+    "text": "Current query",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "current-line0",
+    "x": 53,
+    "y": 215,
+    "w": 319,
+    "h": 25,
+    "text": "Task k; regime A; time t",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-0-title",
+    "x": 53,
+    "y": 305,
+    "w": 319,
+    "h": 27,
+    "text": "E1  Compatible case",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "experience-0-line0",
+    "x": 53,
+    "y": 335,
+    "w": 319,
+    "h": 25,
+    "text": "Regime A; current; checked",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-0-line1",
+    "x": 53,
+    "y": 360,
+    "w": 319,
+    "h": 25,
+    "text": "Relevance: high",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-1-title",
+    "x": 53,
+    "y": 430,
+    "w": 319,
+    "h": 27,
+    "text": "E2  Similar but expired",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "experience-1-line0",
+    "x": 53,
+    "y": 460,
+    "w": 319,
+    "h": 25,
+    "text": "Regime A; superseded rule",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-1-line1",
+    "x": 53,
+    "y": 485,
+    "w": 319,
+    "h": 25,
+    "text": "Relevance: high",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-2-title",
+    "x": 53,
+    "y": 555,
+    "w": 319,
+    "h": 27,
+    "text": "E3  Missing evidence",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "experience-2-line0",
+    "x": 53,
+    "y": 585,
+    "w": 319,
+    "h": 25,
+    "text": "Regime unknown; current",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "experience-2-line1",
+    "x": 53,
+    "y": 610,
+    "w": 319,
+    "h": 25,
+    "text": "Relevance: moderate",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "record-schema",
+    "x": 40,
+    "y": 678,
+    "w": 340,
+    "h": 25,
+    "text": "Record = context + action + evidence",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "gate-heading",
+    "x": 458,
+    "y": 126,
+    "w": 484,
+    "h": 32,
+    "text": "(b) Three-valued condition gate",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "predicate-label",
+    "x": 460,
+    "y": 175,
+    "w": 480,
+    "h": 28,
+    "text": "All required checks must be supported",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "col-0",
+    "x": 535,
+    "y": 235,
+    "w": 125,
+    "h": 28,
+    "text": "Regime",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "col-1",
+    "x": 655,
+    "y": 235,
+    "w": 125,
+    "h": 28,
+    "text": "Fresh",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "col-2",
+    "x": 775,
+    "y": 235,
+    "w": 125,
+    "h": 28,
+    "text": "Limits",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "row-0",
+    "x": 460,
+    "y": 292,
+    "w": 65,
+    "h": 45,
+    "text": "E1",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-0-0",
+    "x": 535,
+    "y": 287,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-0-1",
+    "x": 655,
+    "y": 287,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-0-2",
+    "x": 775,
+    "y": 287,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "row-1",
+    "x": 460,
+    "y": 366,
+    "w": 65,
+    "h": 45,
+    "text": "E2",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-1-0",
+    "x": 535,
+    "y": 361,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-1-1",
+    "x": 655,
+    "y": 361,
+    "w": 105,
+    "h": 60,
+    "text": "NO",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-1-2",
+    "x": 775,
+    "y": 361,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "row-2",
+    "x": 460,
+    "y": 440,
+    "w": 65,
+    "h": 45,
+    "text": "E3",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-2-0",
+    "x": 535,
+    "y": 435,
+    "w": 105,
+    "h": 60,
+    "text": "?",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-2-1",
+    "x": 655,
+    "y": 435,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "matrix-label-2-2",
+    "x": 775,
+    "y": 435,
+    "w": 105,
+    "h": 60,
+    "text": "YES",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "gate-output-label",
+    "x": 912,
+    "y": 235,
+    "w": 36,
+    "h": 28,
+    "text": "g",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "gate-output-text-0",
+    "x": 912,
+    "y": 297,
+    "w": 36,
+    "h": 40,
+    "text": "1",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "gate-output-text-1",
+    "x": 912,
+    "y": 371,
+    "w": 36,
+    "h": 40,
+    "text": "0",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "gate-output-text-2",
+    "x": 912,
+    "y": 445,
+    "w": 36,
+    "h": 40,
+    "text": "0",
+    "size": 21,
+    "bold": true
+  },
+  {
+    "id": "predicate-title",
+    "x": 473,
+    "y": 555,
+    "w": 454,
+    "h": 27,
+    "text": "Admissibility predicate",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "predicate-line0",
+    "x": 473,
+    "y": 585,
+    "w": 454,
+    "h": 25,
+    "text": "g(e,c) = 1 iff every check = YES",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "predicate-line1",
+    "x": 473,
+    "y": 610,
+    "w": 454,
+    "h": 25,
+    "text": "NO or ? \u2192 do not automatically reuse",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "rank",
+    "x": 460,
+    "y": 658,
+    "w": 480,
+    "h": 28,
+    "text": "Rank by relevance only within {e : g(e,c)=1}",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "decision-heading",
+    "x": 1013,
+    "y": 126,
+    "w": 369,
+    "h": 32,
+    "text": "(c) Decisions & updates",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "reuse-title",
+    "x": 1028,
+    "y": 185,
+    "w": 339,
+    "h": 27,
+    "text": "E1  Eligible for planning",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "reuse-line0",
+    "x": 1028,
+    "y": 215,
+    "w": 339,
+    "h": 25,
+    "text": "Reuse with provenance",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "reuse-line1",
+    "x": 1028,
+    "y": 240,
+    "w": 339,
+    "h": 25,
+    "text": "Then apply execution constraints",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "exclude-title",
+    "x": 1028,
+    "y": 320,
+    "w": 339,
+    "h": 27,
+    "text": "E2  Exclude expired version",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "exclude-line0",
+    "x": 1028,
+    "y": 350,
+    "w": 339,
+    "h": 25,
+    "text": "Keep history for audit",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "verify-title",
+    "x": 1028,
+    "y": 435,
+    "w": 339,
+    "h": 27,
+    "text": "E3  Request missing evidence",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "verify-line0",
+    "x": 1028,
+    "y": 465,
+    "w": 339,
+    "h": 25,
+    "text": "Tool / operator verification",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "verify-line1",
+    "x": 1028,
+    "y": 490,
+    "w": 339,
+    "h": 25,
+    "text": "Unknown \u2192 hold until verified",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "version-title",
+    "x": 1028,
+    "y": 595,
+    "w": 339,
+    "h": 27,
+    "text": "Verified update \u2192 new version",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "version-line0",
+    "x": 1028,
+    "y": 625,
+    "w": 339,
+    "h": 25,
+    "text": "YES: reevaluate; NO: restrict scope",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "version-line1",
+    "x": 1028,
+    "y": 650,
+    "w": 339,
+    "h": 25,
+    "text": "Unverified feedback cannot upgrade",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "fixture-note",
+    "x": 20,
+    "y": 770,
+    "w": 1380,
+    "h": 28,
+    "text": "Illustrative gate: E1 passes; E2 is stale; E3 is unresolved. This example does not establish method novelty or effectiveness.",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "legend",
+    "x": 20,
+    "y": 810,
+    "w": 1380,
+    "h": 25,
+    "text": "YES = supported;  NO = contradicted;  ? = missing evidence.  Verify feedback before changing validity.",
+    "size": 20,
+    "bold": false
+  }
+]

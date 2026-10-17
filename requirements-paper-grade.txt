@@ -1,0 +1,4 @@
+# Generator: Python standard library + Inkscape CLI on PATH.
+# Checker: Linux Liberation Sans fonts + packages below.
+Pillow>=10
+PyMuPDF>=1.24

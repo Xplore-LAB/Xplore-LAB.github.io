@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="123.04mm" viewBox="0 0 1420 960">
+  <title>Industrial agent with context-dependent experience reuse</title>
+  <defs>
+    <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#23364A" />
+    </marker>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2775A5" />
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#26836E" />
+    </marker>
+    <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#B36A26" />
+    </marker>
+  </defs>
+  <rect width="1420" height="960" fill="white" />
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="start" id="title" x="20" y="49.2" fill="#23364A">Industrial agent with context-dependent experience reuse</text>
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="sub" x="20" y="82.8" fill="#65758A">CONCEPTUAL DESIGN EXAMPLE  /  illustrative records and signals  /  no experimental results</text>
+  <g data-module="context" id="context-group">
+    <rect stroke-width="1.4" id="context" x="20" y="110" width="300" height="590" rx="10" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="context-heading" x="38" y="150.5" fill="#23364A">(a) Process context</text>
+    <g data-module="state" id="state-group">
+      <rect stroke-width="1.4" id="state" x="40" y="175" width="260" height="90" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="state-title" x="53" y="205.98" fill="#23364A">Operating context</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="state-line0" x="53" y="234.64" fill="#23364A">Regime A · limits · time t</text>
+    </g>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="plant-label" x="40" y="305.8" fill="#23364A">Process sketch</text>
+    <g data-module="compress" id="compress-group">
+      <rect stroke-width="1.4" id="compress" x="45" y="335" width="110" height="70" rx="10" fill="white" stroke="#A8B3BF" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="compress-title" x="58" y="365.98" fill="#23364A">Feed</text>
+    </g>
+    <g data-module="column" id="column-group">
+      <rect stroke-width="1.4" id="column" x="190" y="335" width="105" height="70" rx="10" fill="white" stroke="#A8B3BF" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="column-title" x="203" y="365.98" fill="#23364A">Unit</text>
+    </g>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="signals-label" x="40" y="450.8" fill="#23364A">Observed trends (schematic)</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="window-label" x="45" y="599.8" fill="#23364A">Window → state estimate</text>
+    <rect stroke-width="1.4" id="constraints" x="40" y="635" width="260" height="34" rx="6" fill="#FBF5EA" stroke="#B36A26" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" id="constraints-text" x="170.0" y="658.8" fill="#B36A26">Constraints + provenance</text>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="feed-column" d="M155 370 L190 370" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" id="signal-x" d="M50 565 L290 565" fill="none" stroke="#23364A" />
+  <path stroke-width="1.8" id="signal-y" d="M50 475 L50 565" fill="none" stroke="#23364A" />
+  <path stroke-width="1.8" id="trace-0" d="M52 520.0 L55 521.685243854056 L58 523.3420471745981 L61 524.9424493966011 L64 526.4594417919686 L67 527.8674232745685 L70 529.1426324496053 L73 530.2635486159694 L76 531.2112549541635 L79 531.9697577705698 L82 532.5262564104235 L85 532.8713592843833 L88 532.9992423629895 L91 532.9077474642236 L94 532.5984186754459 L97 532.0764762950503 L100 531.3507287335977 L103 530.4334238612078 L106 529.3400423098986 L109 528.089036219151 L112 526.7015178336791 L115 525.2009032087014 L118 523.6125170356156 L121 521.9631652571225 L124 520.2806826844393 L127 518.5934632511086 L130 516.9299808309404 L133 515.3183087068644 L136 513.7856458002406 L139 512.3578576560798 L142 511.0590399306083 L145 509.9111117478517 L148 508.9334457878375 L151 508.14254134912994 L154 507.5517459031595 L157 507.1710298394579 L160 507.0068182032453 L163 507.06188226500086 L166 507.33529275191347 L169 507.822435530487 L172 490.51508947563804 L175 491.4015652121505 L178 492.46690238705645 L181 493.6931221437331 L184 495.0595305369086 L187 496.54306776808187 L190 498.1186973475833 L193 499.7598286156971 L196 501.4387654922865 L199 503.1271738817301 L202 504.7965598451416 L205 506.4187504701407 L208 507.96636932290994 L211 509.41329845871223 L214 510.73511919387715 L217 511.90952420069834 L220 512.9166939706367 L223 513.7396312925604 L226 514.3644481012924 L229 514.780599855551 L232 514.9810634898698 L235 514.9624559373435 L238 514.7250912229837 L241 514.2729751641668 L244 513.613737767608 L247 512.7585044637458 L250 511.72170835161353 L253 510.52084662279185 L256 509.176185275084 L259 507.71041709922895 L262 506.1482787105416 L265 504.5161330885337 L268 502.8415246696684 L271 501.15271450159435 L274 499.4782033036993 L277 497.8462504829105 L280 496.2843972219363 L283 494.81900168841275" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" id="trace-1" d="M52 554.9391228025027 L55 555.7573584619247 L58 556.3771744406768 L61 556.7881105925466 L64 556.9832318716826 L67 556.9592453699009 L70 556.7165558885046 L73 556.2592591067702 L76 555.5950724623939 L79 554.7352049103729 L82 553.6941677582973 L85 552.4895297704394 L88 551.1416206735527 L91 549.6731880680817 L94 548.1090135348217 L97 546.4754944156933 L100 544.8001983265889 L103 543.1113979204264 L106 541.4375937518492 L109 539.8070332958077 L112 538.2472342371669 L115 536.7845200764075 L118 535.4435758886362 L121 534.247031733011 L124 533.2150807430522 L127 532.3651383430284 L130 531.7115483415552 L133 531.2653408624312 L136 531.0340461979248 L139 531.0215677259605 L142 531.2281160358837 L145 531.6502053745102 L148 532.2807124724374 L151 533.1089967578537 L154 534.1210799290897 L157 535.2998818554086 L160 536.6255088249234 L163 538.0755892751075 L166 539.6256513400394 L169 541.249535842814 L172 524.9198377633726 L175 526.608368731447 L178 528.2866327394883 L181 529.9263070473476 L184 531.4997201628589 L187 532.9803188318242 L190 534.3431161563741 L193 535.5651132791694 L196 536.6256875170053 L199 537.5069403935972 L202 538.1939996980716 L205 538.6752704715577 L208 538.9426306861781 L211 538.9915683141181 L214 538.8212574735659 L217 538.4345723664696 L220 537.8380387728945 L223 537.041723920571 L226 536.0590665882202 L229 534.9066503098664 L232 533.6039235075929 L235 532.1728712758361 L238 530.6376443562583 L241 529.0241515646983 L244 527.3596225484872 L247 525.6721482531324 L250 523.9902068535494 L253 522.3421831503283 L256 520.755889541806 L259 519.2580966561189 L262 517.8740815643926 L265 516.6272011995153 L268 515.538498179575 L271 514.6263456881619 L274 513.906137404618 L277 513.3900277170312 L280 513.086726602199 L283 513.001352634208" fill="none" stroke="#26836E" />
+  <g data-module="memory" id="memory-group">
+    <rect stroke-width="1.4" id="memory" x="355" y="110" width="680" height="590" rx="10" fill="#EEF6FB" stroke="#2775A5" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="memory-heading" x="373" y="150.5" fill="#23364A">(b) Applicability-aware memory</text>
+    <g data-module="query" id="query-group">
+      <rect stroke-width="1.4" id="query" x="375" y="175" width="640" height="75" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="query-title" x="388" y="205.98" fill="#23364A">Task-conditioned query</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="query-line0" x="388" y="234.64" fill="#23364A">q(t) = task + c(t) + available tools</text>
+    </g>
+    <g data-module="retrieve" id="retrieve-group">
+      <rect stroke-width="1.4" id="retrieve" x="375" y="290" width="205" height="95" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="retrieve-title" x="388" y="320.98" fill="#23364A">1  Retrieve</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="retrieve-line0" x="388" y="349.64" fill="#23364A">Candidate set C(t)</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="retrieve-line1" x="388" y="374.64" fill="#23364A">Semantic similarity</text>
+    </g>
+    <g data-module="validate" id="validate-group">
+      <rect stroke-width="1.4" id="validate" x="625" y="290" width="390" height="95" rx="10" fill="#EEF7F2" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="validate-title" x="638" y="320.98" fill="#23364A">2  Check applicability</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="validate-line0" x="638" y="349.64" fill="#23364A">Match regime ∧ fresh ∧ within limits</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="validate-line1" x="638" y="374.64" fill="#23364A">Unknown → request evidence</text>
+    </g>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="table-heading" x="375" y="431.98" fill="#23364A">3  Filter first; rank the admissible candidates</text>
+    <rect stroke-width="1.4" id="th0" x="375" y="455" width="190" height="42" rx="0" fill="#EEF6FB" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" id="thl0" x="385" y="480.8" fill="#23364A">Experience</text>
+    <rect stroke-width="1.4" id="th1" x="565" y="455" width="155" height="42" rx="0" fill="#EEF6FB" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" id="thl1" x="575" y="480.8" fill="#23364A">Relevance</text>
+    <rect stroke-width="1.4" id="th2" x="720" y="455" width="145" height="42" rx="0" fill="#EEF6FB" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" id="thl2" x="730" y="480.8" fill="#23364A">Validity</text>
+    <rect stroke-width="1.4" id="th3" x="865" y="455" width="150" height="42" rx="0" fill="#EEF6FB" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" id="thl3" x="875" y="480.8" fill="#23364A">Decision</text>
+    <rect stroke-width="1.4" id="tc00" x="375" y="497" width="190" height="42" rx="0" fill="#EEF7F2" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt00" x="385" y="522.8" fill="#23364A">E1 · regime A</text>
+    <rect stroke-width="1.4" id="tc01" x="565" y="497" width="155" height="42" rx="0" fill="#EEF7F2" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt01" x="575" y="522.8" fill="#23364A">High</text>
+    <rect stroke-width="1.4" id="tc02" x="720" y="497" width="145" height="42" rx="0" fill="#EEF7F2" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt02" x="730" y="522.8" fill="#23364A">Pass</text>
+    <rect stroke-width="1.4" id="tc03" x="865" y="497" width="150" height="42" rx="0" fill="#EEF7F2" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt03" x="875" y="522.8" fill="#23364A">KEEP</text>
+    <rect stroke-width="1.4" id="tc10" x="375" y="539" width="190" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt10" x="385" y="564.8" fill="#23364A">E2 · old rule</text>
+    <rect stroke-width="1.4" id="tc11" x="565" y="539" width="155" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt11" x="575" y="564.8" fill="#23364A">High</text>
+    <rect stroke-width="1.4" id="tc12" x="720" y="539" width="145" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt12" x="730" y="564.8" fill="#23364A">Expired</text>
+    <rect stroke-width="1.4" id="tc13" x="865" y="539" width="150" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt13" x="875" y="564.8" fill="#23364A">BLOCK</text>
+    <rect stroke-width="1.4" id="tc20" x="375" y="581" width="190" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt20" x="385" y="606.8" fill="#23364A">E3 · incomplete</text>
+    <rect stroke-width="1.4" id="tc21" x="565" y="581" width="155" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt21" x="575" y="606.8" fill="#23364A">Moderate</text>
+    <rect stroke-width="1.4" id="tc22" x="720" y="581" width="145" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt22" x="730" y="606.8" fill="#23364A">Unknown</text>
+    <rect stroke-width="1.4" id="tc23" x="865" y="581" width="150" height="42" rx="0" fill="#FBF5EA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="txt23" x="875" y="606.8" fill="#23364A">VERIFY</text>
+    <g data-module="selected" id="selected-group">
+      <rect stroke-width="1.4" id="selected" x="375" y="645" width="640" height="40" rx="10" fill="white" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="selected-title" x="388" y="675.98" fill="#23364A">Selected E1 → bounded planning context</text>
+    </g>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="ctx-query" d="M300 212 L375 212" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="query-retrieve" d="M478 250 L478 290" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="retrieve-check" d="M580 337 L625 337" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="table-selected" d="M695 623 L695 645" fill="none" stroke="#26836E" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="check-table" d="M825 385 L825 404" fill="none" stroke="#26836E" />
+  <g data-module="execution" id="execution-group">
+    <rect stroke-width="1.4" id="execution" x="1070" y="110" width="330" height="590" rx="10" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="execution-heading" x="1088" y="150.5" fill="#23364A">(c) Tools &amp; constraints</text>
+    <g data-module="planner" id="planner-group">
+      <rect stroke-width="1.4" id="planner" x="1090" y="175" width="285" height="90" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="planner-title" x="1103" y="205.98" fill="#23364A">LLM planner</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="planner-line0" x="1103" y="234.64" fill="#23364A">Task + selected experience</text>
+    </g>
+    <g data-module="inspect" id="inspect-group">
+      <rect stroke-width="1.4" id="inspect" x="1090" y="310" width="130" height="70" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="inspect-title" x="1103" y="340.98" fill="#23364A">Inspect</text>
+    </g>
+    <g data-module="simulator" id="simulator-group">
+      <rect stroke-width="1.4" id="simulator" x="1245" y="310" width="130" height="70" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="simulator-title" x="1258" y="340.98" fill="#23364A">Simulate</text>
+    </g>
+    <g data-module="safety" id="safety-group">
+      <rect stroke-width="1.4" id="safety" x="1090" y="435" width="260" height="100" rx="10" fill="#FBF5EA" stroke="#B36A26" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="safety-title" x="1103" y="465.98" fill="#23364A">Constraint evaluation</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="safety-line0" x="1103" y="494.64" fill="#23364A">Check tool predictions</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="safety-line1" x="1103" y="519.64" fill="#23364A">Approve / reject / review</text>
+    </g>
+    <g data-module="execute" id="execute-group">
+      <rect stroke-width="1.4" id="execute" x="1245" y="600" width="130" height="70" rx="10" fill="#EEF7F2" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="execute-title" x="1258" y="630.98" fill="#23364A">Execute</text>
+    </g>
+    <g data-module="review" id="review-group">
+      <rect stroke-width="1.4" id="review" x="1090" y="600" width="130" height="70" rx="10" fill="#FBF5EA" stroke="#B36A26" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="review-title" x="1103" y="630.98" fill="#23364A">Review</text>
+    </g>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="planner-tool-a" d="M1160 265 L1160 310" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="planner-tool-b" d="M1310 265 L1310 310" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="tool-check-a" d="M1160 380 L1160 435" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="tool-check-b" d="M1310 380 L1310 435" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" id="safety-review" d="M1150 535 L1150 600" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="safety-execute" d="M1300 535 L1300 600" fill="none" stroke="#26836E" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" stroke-dasharray="7 5" id="safety-replan" d="M1350 485 L1384 485 L1384 285 L1335 285 L1335 265" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="selected-planner" d="M1015 665 L1052 665 L1052 215 L1090 215" fill="none" stroke="#26836E" />
+  <g data-module="feedback" id="feedback-group">
+    <rect stroke-width="1.4" id="feedback" x="20" y="760" width="1380" height="140" rx="10" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="feedback-heading" x="38" y="800.5" fill="#23364A">(d) Outcome verification and versioned feedback</text>
+    <g data-module="outcome" id="outcome-group">
+      <rect stroke-width="1.4" id="outcome" x="1070" y="810" width="305" height="75" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="outcome-title" x="1083" y="840.98" fill="#23364A">Observe outcome</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="outcome-line0" x="1083" y="869.64" fill="#23364A">Actual response + tool trace</text>
+    </g>
+    <g data-module="attribute" id="attribute-group">
+      <rect stroke-width="1.4" id="attribute" x="620" y="810" width="380" height="75" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="attribute-title" x="633" y="840.98" fill="#23364A">Verify &amp; attribute</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="attribute-line0" x="633" y="869.64" fill="#23364A">Check evidence; attribute errors</text>
+    </g>
+    <g data-module="update" id="update-group">
+      <rect stroke-width="1.4" id="update" x="40" y="810" width="510" height="75" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="update-title" x="53" y="840.98" fill="#23364A">Revise experience record</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="update-line0" x="53" y="869.64" fill="#23364A">Update conditions / version / evidence link</text>
+    </g>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" stroke-dasharray="7 5" id="outcome-attribute" d="M1070 848 L1000 848" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" stroke-dasharray="7 5" id="attribute-update" d="M620 848 L550 848" fill="none" stroke="#26836E" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" stroke-dasharray="7 5" id="action-outcome" d="M1310 670 L1310 810" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-green)" stroke-dasharray="7 5" id="update-memory" d="M40 848 L8 848 L8 720 L700 720 L700 700" fill="none" stroke="#26836E" />
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="legend" x="20" y="939.3" fill="#65758A">Solid: task / tool flow  |  Dashed: blue = observations; green = verified updates; orange = rejected plan</text>
+</svg>

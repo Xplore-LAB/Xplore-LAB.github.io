@@ -1,0 +1,562 @@
+[
+  {
+    "id": "title",
+    "x": 20,
+    "y": 20,
+    "w": 1380,
+    "h": 38,
+    "text": "Industrial agent with context-dependent experience reuse",
+    "size": 30,
+    "bold": true
+  },
+  {
+    "id": "sub",
+    "x": 20,
+    "y": 62,
+    "w": 1380,
+    "h": 28,
+    "text": "CONCEPTUAL DESIGN EXAMPLE  /  illustrative records and signals  /  no experimental results",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "context-heading",
+    "x": 38,
+    "y": 126,
+    "w": 264,
+    "h": 32,
+    "text": "(a) Process context",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "state-title",
+    "x": 53,
+    "y": 185,
+    "w": 234,
+    "h": 27,
+    "text": "Operating context",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "state-line0",
+    "x": 53,
+    "y": 215,
+    "w": 234,
+    "h": 25,
+    "text": "Regime A \u00b7 limits \u00b7 time t",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "plant-label",
+    "x": 40,
+    "y": 285,
+    "w": 260,
+    "h": 28,
+    "text": "Process sketch",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "compress-title",
+    "x": 58,
+    "y": 345,
+    "w": 84,
+    "h": 27,
+    "text": "Feed",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "column-title",
+    "x": 203,
+    "y": 345,
+    "w": 79,
+    "h": 27,
+    "text": "Unit",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "signals-label",
+    "x": 40,
+    "y": 430,
+    "w": 260,
+    "h": 28,
+    "text": "Observed trends (schematic)",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "window-label",
+    "x": 45,
+    "y": 580,
+    "w": 250,
+    "h": 26,
+    "text": "Window \u2192 state estimate",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "constraints-text",
+    "x": 40,
+    "y": 635,
+    "w": 260,
+    "h": 34,
+    "text": "Constraints + provenance",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "memory-heading",
+    "x": 373,
+    "y": 126,
+    "w": 644,
+    "h": 32,
+    "text": "(b) Applicability-aware memory",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "query-title",
+    "x": 388,
+    "y": 185,
+    "w": 614,
+    "h": 27,
+    "text": "Task-conditioned query",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "query-line0",
+    "x": 388,
+    "y": 215,
+    "w": 614,
+    "h": 25,
+    "text": "q(t) = task + c(t) + available tools",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "retrieve-title",
+    "x": 388,
+    "y": 300,
+    "w": 179,
+    "h": 27,
+    "text": "1  Retrieve",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "retrieve-line0",
+    "x": 388,
+    "y": 330,
+    "w": 179,
+    "h": 25,
+    "text": "Candidate set C(t)",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "retrieve-line1",
+    "x": 388,
+    "y": 355,
+    "w": 179,
+    "h": 25,
+    "text": "Semantic similarity",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "validate-title",
+    "x": 638,
+    "y": 300,
+    "w": 364,
+    "h": 27,
+    "text": "2  Check applicability",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "validate-line0",
+    "x": 638,
+    "y": 330,
+    "w": 364,
+    "h": 25,
+    "text": "Match regime \u2227 fresh \u2227 within limits",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "validate-line1",
+    "x": 638,
+    "y": 355,
+    "w": 364,
+    "h": 25,
+    "text": "Unknown \u2192 request evidence",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "table-heading",
+    "x": 375,
+    "y": 411,
+    "w": 630,
+    "h": 27,
+    "text": "3  Filter first; rank the admissible candidates",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "thl0",
+    "x": 385,
+    "y": 460,
+    "w": 170,
+    "h": 28,
+    "text": "Experience",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "thl1",
+    "x": 575,
+    "y": 460,
+    "w": 135,
+    "h": 28,
+    "text": "Relevance",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "thl2",
+    "x": 730,
+    "y": 460,
+    "w": 125,
+    "h": 28,
+    "text": "Validity",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "thl3",
+    "x": 875,
+    "y": 460,
+    "w": 130,
+    "h": 28,
+    "text": "Decision",
+    "size": 20,
+    "bold": true
+  },
+  {
+    "id": "txt00",
+    "x": 385,
+    "y": 502,
+    "w": 170,
+    "h": 28,
+    "text": "E1 \u00b7 regime A",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt01",
+    "x": 575,
+    "y": 502,
+    "w": 135,
+    "h": 28,
+    "text": "High",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt02",
+    "x": 730,
+    "y": 502,
+    "w": 125,
+    "h": 28,
+    "text": "Pass",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt03",
+    "x": 875,
+    "y": 502,
+    "w": 130,
+    "h": 28,
+    "text": "KEEP",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt10",
+    "x": 385,
+    "y": 544,
+    "w": 170,
+    "h": 28,
+    "text": "E2 \u00b7 old rule",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt11",
+    "x": 575,
+    "y": 544,
+    "w": 135,
+    "h": 28,
+    "text": "High",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt12",
+    "x": 730,
+    "y": 544,
+    "w": 125,
+    "h": 28,
+    "text": "Expired",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt13",
+    "x": 875,
+    "y": 544,
+    "w": 130,
+    "h": 28,
+    "text": "BLOCK",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt20",
+    "x": 385,
+    "y": 586,
+    "w": 170,
+    "h": 28,
+    "text": "E3 \u00b7 incomplete",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt21",
+    "x": 575,
+    "y": 586,
+    "w": 135,
+    "h": 28,
+    "text": "Moderate",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt22",
+    "x": 730,
+    "y": 586,
+    "w": 125,
+    "h": 28,
+    "text": "Unknown",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "txt23",
+    "x": 875,
+    "y": 586,
+    "w": 130,
+    "h": 28,
+    "text": "VERIFY",
+    "size": 20,
+    "bold": false
+  },
+  {
+    "id": "selected-title",
+    "x": 388,
+    "y": 655,
+    "w": 614,
+    "h": 27,
+    "text": "Selected E1 \u2192 bounded planning context",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "execution-heading",
+    "x": 1088,
+    "y": 126,
+    "w": 294,
+    "h": 32,
+    "text": "(c) Tools & constraints",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "planner-title",
+    "x": 1103,
+    "y": 185,
+    "w": 259,
+    "h": 27,
+    "text": "LLM planner",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "planner-line0",
+    "x": 1103,
+    "y": 215,
+    "w": 259,
+    "h": 25,
+    "text": "Task + selected experience",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "inspect-title",
+    "x": 1103,
+    "y": 320,
+    "w": 104,
+    "h": 27,
+    "text": "Inspect",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "simulator-title",
+    "x": 1258,
+    "y": 320,
+    "w": 104,
+    "h": 27,
+    "text": "Simulate",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "safety-title",
+    "x": 1103,
+    "y": 445,
+    "w": 234,
+    "h": 27,
+    "text": "Constraint evaluation",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "safety-line0",
+    "x": 1103,
+    "y": 475,
+    "w": 234,
+    "h": 25,
+    "text": "Check tool predictions",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "safety-line1",
+    "x": 1103,
+    "y": 500,
+    "w": 234,
+    "h": 25,
+    "text": "Approve / reject / review",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "execute-title",
+    "x": 1258,
+    "y": 610,
+    "w": 104,
+    "h": 27,
+    "text": "Execute",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "review-title",
+    "x": 1103,
+    "y": 610,
+    "w": 104,
+    "h": 27,
+    "text": "Review",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "feedback-heading",
+    "x": 38,
+    "y": 776,
+    "w": 1344,
+    "h": 32,
+    "text": "(d) Outcome verification and versioned feedback",
+    "size": 25,
+    "bold": true
+  },
+  {
+    "id": "outcome-title",
+    "x": 1083,
+    "y": 820,
+    "w": 279,
+    "h": 27,
+    "text": "Observe outcome",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "outcome-line0",
+    "x": 1083,
+    "y": 850,
+    "w": 279,
+    "h": 25,
+    "text": "Actual response + tool trace",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "attribute-title",
+    "x": 633,
+    "y": 820,
+    "w": 354,
+    "h": 27,
+    "text": "Verify & attribute",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "attribute-line0",
+    "x": 633,
+    "y": 850,
+    "w": 354,
+    "h": 25,
+    "text": "Check evidence; attribute errors",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "update-title",
+    "x": 53,
+    "y": 820,
+    "w": 484,
+    "h": 27,
+    "text": "Revise experience record",
+    "size": 22,
+    "bold": true
+  },
+  {
+    "id": "update-line0",
+    "x": 53,
+    "y": 850,
+    "w": 484,
+    "h": 25,
+    "text": "Update conditions / version / evidence link",
+    "size": 21,
+    "bold": false
+  },
+  {
+    "id": "legend",
+    "x": 20,
+    "y": 920,
+    "w": 1380,
+    "h": 25,
+    "text": "Solid: task / tool flow  |  Dashed: blue = observations; green = verified updates; orange = rejected plan",
+    "size": 20,
+    "bold": false
+  }
+]

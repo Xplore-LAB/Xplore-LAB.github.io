@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="108.94mm" viewBox="0 0 1420 850">
+  <title>Experience applicability: a gate before relevance ranking</title>
+  <defs>
+    <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#23364A" />
+    </marker>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2775A5" />
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#26836E" />
+    </marker>
+    <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#B36A26" />
+    </marker>
+  </defs>
+  <rect width="1420" height="850" fill="white" />
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="start" id="title" x="20" y="49.2" fill="#23364A">Experience applicability: a gate before relevance ranking</text>
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="sub" x="20" y="82.8" fill="#65758A">CONCEPTUAL DESIGN EXAMPLE  /  illustrative records and signals  /  no experimental results</text>
+  <g data-module="records" id="records-group">
+    <rect stroke-width="1.4" id="records" x="20" y="110" width="385" height="600" rx="10" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="records-heading" x="38" y="150.5" fill="#23364A">(a) Candidate records</text>
+    <g data-module="current" id="current-group">
+      <rect stroke-width="1.4" id="current" x="40" y="175" width="345" height="85" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="current-title" x="53" y="205.98" fill="#23364A">Current query</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="current-line0" x="53" y="234.64" fill="#23364A">Task k; regime A; time t</text>
+    </g>
+    <g data-module="experience-0" id="experience-0-group">
+      <rect stroke-width="1.4" id="experience-0" x="40" y="295" width="345" height="105" rx="10" fill="white" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="experience-0-title" x="53" y="325.98" fill="#23364A">E1  Compatible case</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-0-line0" x="53" y="354.64" fill="#23364A">Regime A; current; checked</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-0-line1" x="53" y="379.64" fill="#23364A">Relevance: high</text>
+    </g>
+    <g data-module="experience-1" id="experience-1-group">
+      <rect stroke-width="1.4" id="experience-1" x="40" y="420" width="345" height="105" rx="10" fill="white" stroke="#B36A26" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="experience-1-title" x="53" y="450.98" fill="#23364A">E2  Similar but expired</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-1-line0" x="53" y="479.64" fill="#23364A">Regime A; superseded rule</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-1-line1" x="53" y="504.64" fill="#23364A">Relevance: high</text>
+    </g>
+    <g data-module="experience-2" id="experience-2-group">
+      <rect stroke-width="1.4" id="experience-2" x="40" y="545" width="345" height="105" rx="10" fill="white" stroke="#B36A26" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="experience-2-title" x="53" y="575.98" fill="#23364A">E3  Missing evidence</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-2-line0" x="53" y="604.64" fill="#23364A">Regime unknown; current</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="experience-2-line1" x="53" y="629.64" fill="#23364A">Relevance: moderate</text>
+    </g>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="record-schema" x="40" y="697.3" fill="#23364A">Record = context + action + evidence</text>
+  </g>
+  <g data-module="gate" id="gate-group">
+    <rect stroke-width="1.4" id="gate" x="440" y="110" width="520" height="600" rx="10" fill="#EEF6FB" stroke="#2775A5" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="gate-heading" x="458" y="150.5" fill="#23364A">(b) Three-valued condition gate</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="predicate-label" x="460" y="196.48" fill="#23364A">All required checks must be supported</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="col-0" x="597.5" y="256.14" fill="#23364A">Regime</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="col-1" x="717.5" y="256.14" fill="#23364A">Fresh</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="col-2" x="837.5" y="256.14" fill="#23364A">Limits</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="row-0" x="460" y="321.98" fill="#23364A">E1</text>
+    <rect stroke-width="1.4" id="matrix-0-0" x="535" y="287" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-0-0" x="587.5" y="324.48" fill="#23364A">YES</text>
+    <rect stroke-width="1.4" id="matrix-0-1" x="655" y="287" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-0-1" x="707.5" y="324.48" fill="#23364A">YES</text>
+    <rect stroke-width="1.4" id="matrix-0-2" x="775" y="287" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-0-2" x="827.5" y="324.48" fill="#23364A">YES</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="row-1" x="460" y="395.98" fill="#23364A">E2</text>
+    <rect stroke-width="1.4" id="matrix-1-0" x="535" y="361" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-1-0" x="587.5" y="398.48" fill="#23364A">YES</text>
+    <rect stroke-width="1.4" id="matrix-1-1" x="655" y="361" width="105" height="60" rx="6" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-1-1" x="707.5" y="398.48" fill="#23364A">NO</text>
+    <rect stroke-width="1.4" id="matrix-1-2" x="775" y="361" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-1-2" x="827.5" y="398.48" fill="#23364A">YES</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="row-2" x="460" y="469.98" fill="#23364A">E3</text>
+    <rect stroke-width="1.4" id="matrix-2-0" x="535" y="435" width="105" height="60" rx="6" fill="#FBF5EA" stroke="#B36A26" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-2-0" x="587.5" y="472.48" fill="#23364A">?</text>
+    <rect stroke-width="1.4" id="matrix-2-1" x="655" y="435" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-2-1" x="707.5" y="472.48" fill="#23364A">YES</text>
+    <rect stroke-width="1.4" id="matrix-2-2" x="775" y="435" width="105" height="60" rx="6" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" id="matrix-label-2-2" x="827.5" y="472.48" fill="#23364A">YES</text>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="gate-output-label" x="930.0" y="256.14" fill="#23364A">g</text>
+    <rect stroke-width="1.4" id="gate-output-0" x="912" y="297" width="36" height="40" rx="4" fill="#EEF7F2" stroke="#26836E" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="gate-output-text-0" x="930.0" y="324.14" fill="#23364A">1</text>
+    <rect stroke-width="1.4" id="gate-output-1" x="912" y="371" width="36" height="40" rx="4" fill="#FBF5EA" stroke="#B36A26" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="gate-output-text-1" x="930.0" y="398.14" fill="#23364A">0</text>
+    <rect stroke-width="1.4" id="gate-output-2" x="912" y="445" width="36" height="40" rx="4" fill="#FBF5EA" stroke="#B36A26" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle" id="gate-output-text-2" x="930.0" y="472.14" fill="#23364A">0</text>
+    <g data-module="predicate" id="predicate-group">
+      <rect stroke-width="1.4" id="predicate" x="460" y="545" width="480" height="90" rx="10" fill="white" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="predicate-title" x="473" y="575.98" fill="#23364A">Admissibility predicate</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="predicate-line0" x="473" y="604.64" fill="#23364A">g(e,c) = 1 iff every check = YES</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="predicate-line1" x="473" y="629.64" fill="#23364A">NO or ? → do not automatically reuse</text>
+    </g>
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" id="rank" x="460" y="678.8" fill="#23364A">Rank by relevance only within {e : g(e,c)=1}</text>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="row-g-0" d="M880 317 L912 317" fill="none" stroke="#26836E" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" id="row-g-1" d="M880 391 L912 391" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" id="row-g-2" d="M880 465 L912 465" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="candidate-bus-0" d="M385 347 L423 347" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="candidate-bus-1" d="M385 472 L423 472" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="candidate-bus-2" d="M385 597 L423 597" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" id="candidate-spine" d="M423 347 L423 597" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="candidates-gate" d="M423 475 L440 475" fill="none" stroke="#2775A5" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" id="current-conditions" d="M385 217 L440 217" fill="none" stroke="#2775A5" />
+  <g data-module="decision" id="decision-group">
+    <rect stroke-width="1.4" id="decision" x="995" y="110" width="405" height="600" rx="10" fill="#F4F7FA" stroke="#A8B3BF" />
+    <text font-family="Liberation Sans,Arial,sans-serif" font-size="25" font-weight="700" text-anchor="start" id="decision-heading" x="1013" y="150.5" fill="#23364A">(c) Decisions &amp; updates</text>
+    <g data-module="reuse" id="reuse-group">
+      <rect stroke-width="1.4" id="reuse" x="1015" y="175" width="365" height="95" rx="10" fill="#EEF7F2" stroke="#26836E" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="reuse-title" x="1028" y="205.98" fill="#23364A">E1  Eligible for planning</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="reuse-line0" x="1028" y="234.64" fill="#23364A">Reuse with provenance</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="reuse-line1" x="1028" y="259.64" fill="#23364A">Then apply execution constraints</text>
+    </g>
+    <g data-module="exclude" id="exclude-group">
+      <rect stroke-width="1.4" id="exclude" x="1015" y="310" width="365" height="75" rx="10" fill="white" stroke="#A8B3BF" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="exclude-title" x="1028" y="340.98" fill="#23364A">E2  Exclude expired version</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="exclude-line0" x="1028" y="369.64" fill="#23364A">Keep history for audit</text>
+    </g>
+    <g data-module="verify" id="verify-group">
+      <rect stroke-width="1.4" id="verify" x="1015" y="425" width="365" height="95" rx="10" fill="#FBF5EA" stroke="#B36A26" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="verify-title" x="1028" y="455.98" fill="#23364A">E3  Request missing evidence</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="verify-line0" x="1028" y="484.64" fill="#23364A">Tool / operator verification</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="verify-line1" x="1028" y="509.64" fill="#23364A">Unknown → hold until verified</text>
+    </g>
+    <g data-module="version" id="version-group">
+      <rect stroke-width="1.4" id="version" x="1015" y="585" width="365" height="95" rx="10" fill="white" stroke="#2775A5" />
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="start" id="version-title" x="1028" y="615.98" fill="#23364A">Verified update → new version</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="version-line0" x="1028" y="644.64" fill="#23364A">YES: reevaluate; NO: restrict scope</text>
+      <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="version-line1" x="1028" y="669.64" fill="#23364A">Unverified feedback cannot upgrade</text>
+    </g>
+  </g>
+  <path stroke-width="1.8" marker-end="url(#arr-green)" id="yes-reuse" d="M948 317 L974 317 L974 220 L1015 220" fill="none" stroke="#26836E" />
+  <path stroke-width="1.8" marker-end="url(#arr-ink)" id="no-exclude" d="M948 391 L984 391 L984 348 L1015 348" fill="none" stroke="#23364A" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" id="unknown-verify" d="M948 465 L1015 465" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-orange)" stroke-dasharray="7 5" id="verify-update" d="M1200 520 L1200 585" fill="none" stroke="#B36A26" />
+  <path stroke-width="1.8" marker-end="url(#arr-blue)" stroke-dasharray="7 5" id="version-gate" d="M1110 680 L1110 733 L700 733 L700 710" fill="none" stroke="#2775A5" />
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" id="fixture-note" x="20" y="791.14" fill="#65758A">Illustrative gate: E1 passes; E2 is stale; E3 is unresolved. This example does not establish method novelty or effectiveness.</text>
+  <text font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" id="legend" x="20" y="829.3" fill="#65758A">YES = supported;  NO = contradicted;  ? = missing evidence.  Verify feedback before changing validity.</text>
+</svg>
