@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120mm" height="173.456790mm" viewBox="0 0 972 1405" role="img">
+  <title>Transformer — faithful editable reconstruction of Figure 1</title>
+  <desc>Reconstructed from Attention Is All You Need (Vaswani et al., 2017), Figure 1, PDF page 3. Original architecture, label order, residual paths, pastel colors and layout retained. Native editable SVG geometry and text; no embedded bitmap. Roboto Light is used to approximate the original typography. Reconstruction is not pixel-identical to the original.</desc>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 18 16" refX="17" refY="8" markerWidth="18" markerHeight="16" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L18 8 L0 16 L4.2 8 Z" fill="#000" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="972" height="1405" fill="white" />
+  <g id="encoder-stack">
+    <rect x="131.5" y="545.5" width="323" height="469" rx="28" fill="#f3f3f4" stroke="#000" stroke-width="5.2" />
+  </g>
+  <g id="decoder-stack">
+    <rect x="512" y="326.5" width="316" height="688" rx="30" fill="#f3f3f4" stroke="#000" stroke-width="5.2" />
+  </g>
+  <g id="encoder-main-stream">
+    <path d="M321 1285 V1222" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M321 1131 V1099" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M321 1060 V934" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M321 841 V832" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M321 788 V712" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M321 620 V611" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" />
+  </g>
+  <g id="decoder-main-stream">
+    <path d="M645 1285 V1222" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 1131 V1103" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 1066 V932" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 806 V798" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M645 753 V678" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 588 V576" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M645 533 V492" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 401 V390" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M645 345 V297" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 251 V213" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 168 V128" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="encoder-self-attention-residual">
+    <path d="M321 992 H176 Q155 992 155 971 V835 Q155 811 179 811 H210" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="encoder-feed-forward-residual">
+    <path d="M321 750 H177 Q155 750 155 728 V613 Q155 589 178 589 H210" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="encoder-self-attention-qkv">
+    <path d="M321 964 H262 Q241 964 241 943 V934" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M321 964 H379 Q400 964 400 943 V934" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="decoder-masked-attention-qkv">
+    <path d="M645 964 H586 Q565 964 565 944 V934" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M645 964 H705 Q725 964 725 944 V934" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="decoder-masked-attention-residual">
+    <path d="M645 993 H783 Q806 993 806 970 V800 Q806 776 782 776 H756" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="decoder-cross-attention-residual">
+    <path d="M645 736 H782 Q805 736 805 713 V579 Q805 555 782 555 H756" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="decoder-feed-forward-residual">
+    <path d="M645 521 H782 Q805 521 805 497 V390 Q805 365 782 365 H756" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="encoder-output-to-decoder-kv">
+    <path d="M321 568 V541 Q321 518 344 518 H461 Q485 518 485 542 V689 Q485 713 509 713 H542 Q565 713 565 689 V678" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+    <path d="M509 713 H623 Q645 713 645 690 V678" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="decoder-query-to-cross-attention">
+    <path d="M645 753 V735 Q645 712 668 712 H703 Q725 712 725 690 V678" fill="none" stroke="#000" stroke-width="5.2" stroke-linecap="butt" stroke-linejoin="round" marker-end="url(#arrowhead)" />
+  </g>
+  <g id="input-embedding">
+    <rect x="212.5" y="1133" width="217" height="87" rx="7" fill="#fce0e1" stroke="#000" stroke-width="5.2" />
+    <text x="321.0" y="1166.44" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321.0" dy="0">Input</tspan>
+      <tspan x="321.0" dy="37.199999999999996">Embedding</tspan>
+    </text>
+  </g>
+  <g id="output-embedding">
+    <rect x="537" y="1133" width="216" height="87" rx="7" fill="#fce0e1" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="1166.44" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Output</tspan>
+      <tspan x="645.0" dy="37.199999999999996">Embedding</tspan>
+    </text>
+  </g>
+  <g id="encoder-self-attention">
+    <rect x="212.5" y="843" width="217" height="87" rx="7" fill="#ffe2bb" stroke="#000" stroke-width="5.2" />
+    <text x="321.0" y="876.4399999999999" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321.0" dy="0">Multi-Head</tspan>
+      <tspan x="321.0" dy="37.199999999999996">Attention</tspan>
+    </text>
+  </g>
+  <g id="encoder-self-attention-add-norm">
+    <rect x="212.5" y="790" width="217" height="42" rx="7" fill="#f2f4c1" stroke="#000" stroke-width="5.2" />
+    <text x="321.0" y="819.54" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321.0" dy="0">Add &amp; Norm</tspan>
+    </text>
+  </g>
+  <g id="encoder-feed-forward">
+    <rect x="212.5" y="622" width="217" height="87" rx="7" fill="#c2e8f7" stroke="#000" stroke-width="5.2" />
+    <text x="321.0" y="655.4399999999999" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321.0" dy="0">Feed</tspan>
+      <tspan x="321.0" dy="37.199999999999996">Forward</tspan>
+    </text>
+  </g>
+  <g id="encoder-feed-forward-add-norm">
+    <rect x="212.5" y="569" width="217" height="41" rx="7" fill="#f2f4c1" stroke="#000" stroke-width="5.2" />
+    <text x="321.0" y="598.04" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321.0" dy="0">Add &amp; Norm</tspan>
+    </text>
+  </g>
+  <g id="decoder-masked-self-attention">
+    <rect x="537" y="807" width="216" height="123" rx="7" fill="#ffe2bb" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="839.8399999999999" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Masked</tspan>
+      <tspan x="645.0" dy="37.199999999999996">Multi-Head</tspan>
+      <tspan x="645.0" dy="37.199999999999996">Attention</tspan>
+    </text>
+  </g>
+  <g id="decoder-masked-self-attention-add-norm">
+    <rect x="537" y="754" width="216" height="42" rx="7" fill="#f2f4c1" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="783.54" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Add &amp; Norm</tspan>
+    </text>
+  </g>
+  <g id="decoder-cross-attention">
+    <rect x="537" y="589" width="216" height="87" rx="7" fill="#ffe2bb" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="622.4399999999999" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Multi-Head</tspan>
+      <tspan x="645.0" dy="37.199999999999996">Attention</tspan>
+    </text>
+  </g>
+  <g id="decoder-cross-attention-add-norm">
+    <rect x="537" y="534" width="216" height="41" rx="7" fill="#f2f4c1" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="563.04" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Add &amp; Norm</tspan>
+    </text>
+  </g>
+  <g id="decoder-feed-forward">
+    <rect x="537" y="401" width="216" height="87" rx="7" fill="#c2e8f7" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="434.44" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Feed</tspan>
+      <tspan x="645.0" dy="37.199999999999996">Forward</tspan>
+    </text>
+  </g>
+  <g id="decoder-feed-forward-add-norm">
+    <rect x="537" y="346" width="216" height="41" rx="7" fill="#f2f4c1" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="375.04" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Add &amp; Norm</tspan>
+    </text>
+  </g>
+  <g id="linear-projection">
+    <rect x="537" y="253" width="216" height="40" rx="7" fill="#dbdfef" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="281.54" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Linear</tspan>
+    </text>
+  </g>
+  <g id="softmax">
+    <rect x="537" y="169" width="216" height="40" rx="7" fill="#cce7cf" stroke="#000" stroke-width="5.2" />
+    <text x="645.0" y="197.54" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645.0" dy="0">Softmax</tspan>
+    </text>
+  </g>
+  <g id="input-position-addition">
+    <circle cx="321" cy="1078" r="16" fill="white" stroke="black" stroke-width="3" />
+    <path d="M310 1078 H332 M321 1067 V1089" fill="none" stroke="#000" stroke-width="2.7" stroke-linecap="butt" stroke-linejoin="round" />
+  </g>
+  <g id="input-positional-encoding">
+    <circle cx="236" cy="1078" r="35" fill="white" stroke="black" stroke-width="3" />
+    <path d="M202 1078 C207 1054 237 1055 237 1079 C237 1101 263 1101 270 1078" fill="none" stroke="#000" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M271 1078 H304" fill="none" stroke="#000" stroke-width="4.8" stroke-linecap="butt" stroke-linejoin="round" />
+  </g>
+  <g id="output-position-addition">
+    <circle cx="645" cy="1083" r="16" fill="white" stroke="black" stroke-width="3" />
+    <path d="M634 1083 H656 M645 1072 V1094" fill="none" stroke="#000" stroke-width="2.7" stroke-linecap="butt" stroke-linejoin="round" />
+  </g>
+  <g id="output-positional-encoding">
+    <circle cx="730" cy="1083" r="35" fill="white" stroke="black" stroke-width="3" />
+    <path d="M695 1083 C701 1060 730 1060 730 1084 C730 1107 757 1106 764 1083" fill="none" stroke="#000" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round" />
+    <path d="M662 1083 H695" fill="none" stroke="#000" stroke-width="4.8" stroke-linecap="butt" stroke-linejoin="round" />
+  </g>
+  <g id="stack-multiplicity">
+    <text x="76" y="809" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="76" dy="0">N×</tspan>
+    </text>
+    <text x="882" y="696" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="882" dy="0">N×</tspan>
+    </text>
+  </g>
+  <g id="input-output-labels">
+    <text x="321" y="1332" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="321" dy="0">Inputs</tspan>
+    </text>
+    <text x="645" y="1332" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645" dy="0">Outputs</tspan>
+      <tspan x="645" dy="43.199999999999996">(shifted right)</tspan>
+    </text>
+    <text x="645" y="74" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="middle" fill="#000">
+      <tspan x="645" dy="0">Output</tspan>
+      <tspan x="645" dy="43.199999999999996">Probabilities</tspan>
+    </text>
+  </g>
+  <g id="positional-encoding-labels">
+    <text x="26" y="1066" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="start" fill="#000">
+      <tspan x="26" dy="0">Positional</tspan>
+      <tspan x="26" dy="43.199999999999996">Encoding</tspan>
+    </text>
+    <text x="786" y="1072" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="300" text-anchor="start" fill="#000">
+      <tspan x="786" dy="0">Positional</tspan>
+      <tspan x="786" dy="43.199999999999996">Encoding</tspan>
+    </text>
+  </g>
+  <style>@font-face {font-family:'Roboto';font-style:normal;font-weight:300;src:url(data:font/woff2;base64,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) format('woff2');}</style>
+</svg>

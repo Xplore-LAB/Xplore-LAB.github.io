@@ -1,0 +1,50 @@
+{
+  "svg_audit": {
+    "svg": "src/projects/xplore-lab-site/img/figures/transformer-faithful/transformer-faithful.svg",
+    "verdict": "PASS WITH WARNINGS",
+    "auditable": true,
+    "width_mm": 120.0,
+    "text_count": 21,
+    "minimum_found_pt": 10.848643919510062,
+    "maximum_found_pt": 12.598425196850394,
+    "thresholds": {
+      "min_pt": 8.0,
+      "max_pt": 16.0,
+      "max_width_mm": 183.0
+    },
+    "findings": [
+      {
+        "severity": "WARN",
+        "kind": "canvas.width",
+        "message": "width 120.0 mm is not 89 mm or 183 mm"
+      }
+    ]
+  },
+  "editability": {
+    "modified_native_text": "Softmax*",
+    "modified_native_fill": "#dceafc",
+    "pdf_text_verified": true,
+    "master_unmodified": true,
+    "add_norm_count": 5,
+    "embedded_raster_images": 0
+  },
+  "browser": [
+    {
+      "width": 1440,
+      "imagesLoaded": true,
+      "sliderOpacity": "0.83",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "imagesLoaded": true,
+      "sliderOpacity": "0.83",
+      "overflow": false
+    },
+    {
+      "embeddedFontLoaded": true
+    }
+  ],
+  "visual_review": "Original, side-by-side and 50% overlay inspected; structure/color/layout faithfully reconstructed. Typography and arrowhead/curve details remain approximate.",
+  "audit_warning_disposition": "120mm is deliberate reference-reconstruction size; no Nature submission compliance claimed."
+}

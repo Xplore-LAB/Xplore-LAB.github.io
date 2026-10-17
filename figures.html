@@ -675,11 +675,11 @@ fig.savefig("fig_arch.pdf")</code></pre>
       </div>
     </details>
     <details id="c-p3" class="fig-card reveal" open>
-      <summary><h3><span class="fnum">P3</span>Transformer（NeurIPS 2017）：对称双塔</h3><span class="chev" aria-hidden="true">›</span></summary>
+      <summary><h3><span class="fnum">P3</span>Transformer（NeurIPS 2017）：编码器与解码器双塔</h3><span class="chev" aria-hidden="true">›</span></summary>
       <div class="card-body">
 
-      <p class="why">被引超十万的架构图。对称构图中唯一的斜线就是创新点，值得逐像素学习。</p>
-      <div class="paper-compare"><figure><figcaption>论文原图 · Figure 1 · PDF 第 3 页</figcaption><a href="/img/figures/originals/transformer.png" target="_blank" rel="noopener"><img src="/img/figures/originals/transformer.png" alt="Transformer 论文原图 Figure 1，直接从 PDF 第 3 页提取" width="972" height="1405" loading="lazy"></a></figure><figure><figcaption>教学重绘 · 简化示意</figcaption><svg viewBox="0 0 632 220" role="img" aria-label="Transformer 编码器解码器双塔示意">
+      <p class="why">原图完整展示编码器与解码器的子层顺序、残差连接和跨塔信息流；本次按同一布局忠实重绘。</p>
+      <div class="paper-compare"><figure><figcaption>论文原图 · Figure 1 · PDF 第 3 页</figcaption><a href="/img/figures/originals/transformer.png" target="_blank" rel="noopener"><img src="/img/figures/originals/transformer.png" alt="Transformer 论文原图 Figure 1，直接从 PDF 第 3 页提取" width="972" height="1405" loading="lazy"></a></figure><figure><figcaption>忠实重绘 · 文字与形状可编辑</figcaption><a href="/img/figures/transformer-faithful/comparison.html"><img src="/img/figures/transformer-faithful/transformer-faithful.svg" alt="按原论文 Figure 1 忠实重绘的 Transformer 架构图" width="972" height="1405" loading="lazy"></a></figure></div><p class="paper-provenance"><a href="/img/figures/transformer-faithful/comparison.html">放大并排 / 叠加对照</a> · <a href="/img/figures/transformer-faithful/transformer-faithful.svg" download>忠实重绘 SVG</a> · <a href="/img/figures/transformer-faithful/transformer-faithful.pdf" download>矢量 PDF</a> · <a href="/img/figures/transformer-faithful/transformer-faithful.png" download>高清 PNG</a> · <a href="/downloads/figures-originals/transformer-faithful.zip">完整源文件包</a></p><details class="previous-version"><summary>此前的简化教学重绘</summary><svg viewBox="0 0 632 220" role="img" aria-label="Transformer 编码器解码器双塔示意">
         <defs>
           <marker id="arr2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
             <path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/>
@@ -721,12 +721,12 @@ fig.savefig("fig_arch.pdf")</code></pre>
         <text x="318" y="66" text-anchor="middle" font-size="9" fill="#D55E00" font-style="italic">cross attention</text>
         <text x="166" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#24292f">Encoder</text>
         <text x="471" y="216" text-anchor="middle" font-size="9.5" fill="#8b949e"> </text>
-      </svg></figure></div><p class="paper-provenance"><a href="/img/figures/originals/transformer.png" download>下载原图 PNG</a> · <a href="/img/figures/originals/transformer.pdf" download>下载裁剪 PDF</a> · <a href="/img/figures/originals/transformer-redraw.svg" download>教学重绘 SVG</a> · <a href="https://arxiv.org/pdf/1706.03762#page=3" target="_blank" rel="noopener">论文 PDF · 第 3 页</a></p><p class="paper-difference"><b>对照看什么：</b>原图保留完整编解码子层、残差与归一化；重绘压缩了这些结构。</p>
+      </svg></details><p class="paper-provenance"><a href="/img/figures/originals/transformer.png" download>下载原图 PNG</a> · <a href="/img/figures/originals/transformer.pdf" download>下载裁剪 PDF</a> · <a href="/img/figures/originals/transformer-redraw.svg" download>教学重绘 SVG</a> · <a href="https://arxiv.org/pdf/1706.03762#page=3" target="_blank" rel="noopener">论文 PDF · 第 3 页</a></p><p class="paper-difference"><b>对照看什么：</b>本次重绘恢复完整编解码子层、五个 Add & Norm、五条残差绕线、交叉注意力与位置编码，并匹配原图配色和比例。原生SVG可改字与形状；字体和箭头细节仍有差异。旧版简化图折叠保留。</p>
       <ol class="tips">
-        <li><b>对称构图制造反差。</b>双塔垂直镜像、走线全部竖直，全场唯一的两条斜线恰好落在 cross-attention 上，视觉焦点即论文创新点。</li>
+        <li><b>双塔表达不同职责。</b>左塔编码输入，右塔按移位输出做因果解码；跨塔连线把编码器输出送入交叉注意力，右塔因此多一个注意力子层。</li>
         <li><b>N× 角标折叠重复。</b>6 层堆叠收进一个圆角块加角标，密度骤降，结构感保留。</li>
         <li><b>流向与阅读方向一致。</b>数据自下而上，输入在下、输出在顶，读者不需要方向图例。</li>
-        <li><b>次要元素降饱和度。</b>Add &amp; Norm 只用一行小字带过，线稿浅灰，不抢主体的戏。</li>
+        <li><b>颜色编码模块类别。</b>注意力为浅橙、前馈为浅蓝、归一化为浅黄，嵌入与输出头另设颜色，轮廓和箭头保持黑色。</li>
       </ol>
       </div>
     </details>

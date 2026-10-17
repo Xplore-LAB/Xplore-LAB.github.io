@@ -1,0 +1,20 @@
+{
+  "reference": "https://arxiv.org/pdf/1706.03762#page=3",
+  "figure": "1",
+  "source_pdf_sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+  "canvas": [
+    972,
+    1405
+  ],
+  "width_mm": 120,
+  "font": "Roboto Light",
+  "font_source": "https://github.com/googlefonts/roboto-2",
+  "font_license": "Apache-2.0",
+  "native_text_elements": 21,
+  "functional_nodes": 14,
+  "add_norm_nodes": 5,
+  "residual_paths": 5,
+  "embedded_raster_images": 0,
+  "fidelity": "Faithful hand-built reconstruction; typography, arrowheads and curve details differ slightly; not pixel-identical.",
+  "master": "transformer-faithful.svg"
+}

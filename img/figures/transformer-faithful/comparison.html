@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Transformer 原图与忠实重绘</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.65 system-ui,sans-serif;color:#17212b;max-width:1200px;margin:auto;padding:24px;background:#f7f8fa}h1{font-size:26px;margin:0 0 8px}p{margin:10px 0}a{color:#006fa6}button{font:inherit;border:1px solid #bbc7d1;background:white;border-radius:7px;padding:8px 15px;cursor:pointer}button[aria-pressed="true"]{background:#e2eff6;border-color:#006fa6}.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}figure{margin:0;background:white;border:1px solid #dce2e7;border-radius:10px;overflow:hidden}figcaption{padding:10px 14px;border-bottom:1px solid #eee;font-weight:600}figure img{display:block;width:100%;height:auto}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}.overlay{position:relative;background:white;width:min(100%,650px);aspect-ratio:972/1405;margin:auto;border:1px solid #dce2e7;border-radius:10px;overflow:hidden}.overlay img{position:absolute;inset:0;width:100%;height:100%}.controls{max-width:650px;margin:12px auto}.controls input{width:100%;accent-color:#0072b2}.help{font-size:14px;color:#536576} [hidden]{display:none!important}@media(max-width:600px){body{padding:14px}.columns{grid-template-columns:1fr}h1{font-size:22px}}
+</style></head><body>
+<h1>Transformer：原图 × 忠实重绘</h1>
+<p>依据 <a href="https://arxiv.org/pdf/1706.03762#page=3">Attention Is All You Need · Figure 1</a>，重绘原始布局、模块、配色与连线。SVG 中的文字、方框和路径均可编辑；采用 Roboto Light 近似原图字体，字体与箭头细节仍有差异。</p>
+<p><a href="transformer-faithful.svg" download>可编辑 SVG</a> · <a href="transformer-faithful.pdf" download>矢量 PDF</a> · <a href="transformer-faithful.png" download>高清 PNG</a> · <a href="/downloads/figures-originals/transformer-faithful.zip">完整源文件包</a></p>
+<div class="toolbar" role="group" aria-label="对照方式"><button id="side" aria-pressed="true">并排对照</button><button id="blend" aria-pressed="false">叠加对照</button><span class="help">叠加模式可拖动滑块检查边框、文字与连线的位置。</span></div>
+<div id="side-view" class="columns"><figure><figcaption>原论文图像</figcaption><img src="../originals/transformer.png" width="972" height="1405" alt="Transformer 原论文 Figure 1"></figure><figure><figcaption>忠实重绘 · 原生 SVG</figcaption><img src="transformer-faithful.svg" width="972" height="1405" alt="Transformer 可编辑忠实重绘"></figure></div>
+<div id="blend-view" hidden><div class="overlay"><img src="../originals/transformer.png" alt="原图底层"><img id="reconstruction" src="transformer-faithful.svg" alt="重绘叠加层" style="opacity:0.5"></div><div class="controls"><label for="opacity">重绘透明度：<output id="value">50%</output></label><input id="opacity" type="range" min="0" max="100" value="50"><p class="help">0% 显示原图，100% 显示重绘；50% 可检查对齐。</p></div></div>
+<p class="help">原图及其衍生重绘均标注来源，版权归相关权利人。本页用于图形学习与对照。</p>
+<script>
+const side=document.getElementById('side'),blend=document.getElementById('blend');
+function mode(overlay){document.getElementById('side-view').hidden=overlay;document.getElementById('blend-view').hidden=!overlay;side.setAttribute('aria-pressed',!overlay);blend.setAttribute('aria-pressed',overlay)}
+side.onclick=()=>mode(false);blend.onclick=()=>mode(true);
+document.getElementById('opacity').oninput=e=>{document.getElementById('reconstruction').style.opacity=e.target.value/100;document.getElementById('value').value=e.target.value+'%'};
+</script></body></html>
