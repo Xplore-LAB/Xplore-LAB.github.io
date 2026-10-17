@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="100mm" viewBox="0 0 1200 660" role="img">
+<title>Preference alignment: RLHF / PPO versus DPO</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#526174"/></marker></defs><rect width="1200" height="660" fill="white"/>
+<text x="36" y="42" font-family="Liberation Sans,Arial,sans-serif" font-size="27" font-weight="700" fill="#203044">Preference alignment: RLHF / PPO versus DPO</text>
+<text x="36" y="73" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">A training-path comparison; both paths begin with preference data and an initial policy.</text>
+<g><rect x="35" y="120" width="310" height="125" rx="10" fill="#B58200" fill-opacity=".07" stroke="#B58200" stroke-width="1.5"/>
+<text x="51" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Shared preference dataset</text>
+<text x="51" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Prompt x</text>
+<text x="51" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Chosen y+ / rejected y−</text>
+</g>
+<path d="M345 180 L410 180" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="410" y="120" width="745" height="125" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="426" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Classical RLHF / PPO</text>
+<text x="426" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Fit reward model r(x,y) from preference pairs</text>
+<text x="426" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Generate policy rollouts → reward scores → PPO updates with reference KL</text>
+</g>
+<path d="M190 245 L190 330" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M190 330 L410 330" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="410" y="300" width="745" height="140" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="426" y="330" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">DPO: optimize on preference pairs</text>
+<text x="426" y="361" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Score chosen and rejected responses under policy and frozen reference</text>
+<text x="426" y="388" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Minimize −log σ(β [log[πθ(y+|x)/πref(y+|x)] − log[πθ(y−|x)/πref(y−|x)]])</text>
+</g>
+<g><rect x="35" y="485" width="535" height="100" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="51" y="515" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">RLHF components</text>
+<text x="51" y="546" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Policy updated; reward model and reference frozen in PPO</text>
+</g>
+<g><rect x="620" y="485" width="535" height="100" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="636" y="515" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">DPO components</text>
+<text x="636" y="546" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Trainable policy + frozen reference; no PPO rollout loop</text>
+</g>
+<text x="36" y="636" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="400" fill="#203044">Original educational redraw · schematic values only · SVG text and objects remain editable</text>
+</svg>

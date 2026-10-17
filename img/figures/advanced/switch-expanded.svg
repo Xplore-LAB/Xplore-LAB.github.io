@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="100mm" viewBox="0 0 1200 660" role="img">
+<title>Switch routing: one expert selected for each token</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#526174"/></marker></defs><rect width="1200" height="660" fill="white"/>
+<text x="36" y="42" font-family="Liberation Sans,Arial,sans-serif" font-size="27" font-weight="700" fill="#203044">Switch routing: one expert selected for each token</text>
+<text x="36" y="73" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Top-1 routing, sparse expert computation and auxiliary load balancing (Fedus et al., 2022).</text>
+<g><rect x="35" y="130" width="270" height="130" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="51" y="160" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Token representations</text>
+<text x="51" y="191" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">One row per token</text>
+<text x="51" y="218" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Router scores → softmax</text>
+</g>
+<rect x="100" y="310" width="38" height="26" fill="#0072B2" fill-opacity="0.8"/>
+<rect x="142" y="310" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="184" y="310" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="100" y="340" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="142" y="340" width="38" height="26" fill="#0072B2" fill-opacity="0.8"/>
+<rect x="184" y="340" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="100" y="370" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="142" y="370" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="184" y="370" width="38" height="26" fill="#0072B2" fill-opacity="0.8"/>
+<rect x="100" y="400" width="38" height="26" fill="#0072B2" fill-opacity="0.8"/>
+<rect x="142" y="400" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="184" y="400" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="100" y="430" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<rect x="142" y="430" width="38" height="26" fill="#0072B2" fill-opacity="0.8"/>
+<rect x="184" y="430" width="38" height="26" fill="#0072B2" fill-opacity="0.12"/>
+<text x="95" y="295" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Experts 1 / 2 / 3</text>
+<text x="35" y="495" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Rows: five illustrative tokens</text>
+<g><rect x="385" y="130" width="285" height="130" rx="10" fill="#8064A2" fill-opacity=".07" stroke="#8064A2" stroke-width="1.5"/>
+<text x="401" y="160" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Top-1 dispatch</text>
+<text x="401" y="191" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">e(t) = argmax p(e | t)</text>
+<text x="401" y="218" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Capacity limits per expert</text>
+</g>
+<path d="M305 195 L385 195" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="800" y="110" width="350" height="105" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="816" y="140" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Expert 1 · FFN</text>
+<text x="816" y="171" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Compute only assigned tokens</text>
+</g>
+<path d="M760 163 L800 163" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="800" y="255" width="350" height="105" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="816" y="285" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Expert 2 · FFN</text>
+<text x="816" y="316" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Compute only assigned tokens</text>
+</g>
+<path d="M760 308 L800 308" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="800" y="400" width="350" height="105" rx="10" fill="#D55E00" fill-opacity=".07" stroke="#D55E00" stroke-width="1.5"/>
+<text x="816" y="430" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Expert 3 · FFN</text>
+<text x="816" y="461" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Compute only assigned tokens</text>
+</g>
+<path d="M760 453 L800 453" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M670 195 L760 195" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M760 163 V453" fill="none" stroke="#526174" stroke-width="2"/>
+<g><rect x="370" y="450" width="350" height="115" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="386" y="480" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Combine outputs</text>
+<text x="386" y="511" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">y_t = p(e(t) | t) · E_e(t)(x_t)</text>
+<text x="386" y="538" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Restore original token order</text>
+</g>
+<path d="M1150 163 L1175 163" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M1150 308 L1175 308" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M1150 453 L1175 453" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M1175 163 V535" fill="none" stroke="#526174" stroke-width="2"/>
+<path d="M1175 535 L720 535" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="35" y="585" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Training: task loss + load-balancing loss. Capacity overflow handling must be specified by implementation.</text>
+<text x="36" y="636" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="400" fill="#203044">Original educational redraw · schematic values only · SVG text and objects remain editable</text>
+</svg>

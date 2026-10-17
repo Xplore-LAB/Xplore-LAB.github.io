@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="100mm" viewBox="0 0 1200 660" role="img">
+<title>Transformer: encoder memory meets causal decoding</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#526174"/></marker></defs><rect width="1200" height="660" fill="white"/>
+<text x="36" y="42" font-family="Liberation Sans,Arial,sans-serif" font-size="27" font-weight="700" fill="#203044">Transformer: encoder memory meets causal decoding</text>
+<text x="36" y="73" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Classic post-norm architecture (Vaswani et al., 2017); arrows run bottom → top.</text>
+<text x="45" y="115" font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" fill="#203044">ENCODER</text>
+<g><rect x="45" y="500" width="500" height="66" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="61" y="530" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Input embeddings + position</text>
+</g>
+<g><rect x="45" y="407" width="500" height="66" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="61" y="437" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Self-attention → Add &amp; Norm</text>
+</g>
+<path d="M295 500 L295 473" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="45" y="314" width="500" height="66" rx="10" fill="#D55E00" fill-opacity=".07" stroke="#D55E00" stroke-width="1.5"/>
+<text x="61" y="344" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Feed-forward → Add &amp; Norm</text>
+</g>
+<path d="M295 407 L295 380" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="650" y="115" font-family="Liberation Sans,Arial,sans-serif" font-size="22" font-weight="700" fill="#203044">DECODER</text>
+<g><rect x="650" y="500" width="500" height="66" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="666" y="530" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Shifted targets + position</text>
+</g>
+<g><rect x="650" y="407" width="500" height="66" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="666" y="437" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Masked self-attention → Add &amp; Norm</text>
+</g>
+<path d="M900 500 L900 473" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="650" y="314" width="500" height="66" rx="10" fill="#D55E00" fill-opacity=".07" stroke="#D55E00" stroke-width="1.5"/>
+<text x="666" y="344" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Cross-attention → Add &amp; Norm</text>
+</g>
+<path d="M900 407 L900 380" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="650" y="221" width="500" height="66" rx="10" fill="#8064A2" fill-opacity=".07" stroke="#8064A2" stroke-width="1.5"/>
+<text x="666" y="251" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Feed-forward → Add &amp; Norm</text>
+</g>
+<path d="M900 314 L900 287" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="60" y="290" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Repeat encoder layer N times</text>
+<path d="M545 347 L650 347" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="550" y="315" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="700" fill="#203044">K, V</text>
+<text x="100" y="210" font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" fill="#203044">Encoder outputs = memory</text>
+<path d="M295 314 L295 230" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="650" y="195" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Repeat decoder layer N times</text>
+<path d="M900 221 L900 155" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<text x="775" y="140" font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="700" fill="#203044">Linear → softmax → next token</text>
+<text x="45" y="595" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Decoder Q attends to encoder K,V; causal masking prevents access to future target tokens.</text>
+<text x="36" y="636" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="400" fill="#203044">Original educational redraw · schematic values only · SVG text and objects remain editable</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182mm" height="100mm" viewBox="0 0 1200 660" role="img">
+<title>Industrial agent: decisions with an explicit feedback loop</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#526174"/></marker></defs><rect width="1200" height="660" fill="white"/>
+<text x="36" y="42" font-family="Liberation Sans,Arial,sans-serif" font-size="27" font-weight="700" fill="#203044">Industrial agent: decisions with an explicit feedback loop</text>
+<text x="36" y="73" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Conceptual design example; simulator validation and safety checks precede plant execution.</text>
+<g><rect x="35" y="120" width="220" height="150" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="51" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Observe context</text>
+<text x="51" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Sensors / alarms</text>
+<text x="51" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Operating regime</text>
+<text x="51" y="235" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Uncertainty / timestamps</text>
+</g>
+<g><rect x="325" y="120" width="250" height="150" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="341" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Retrieve experience</text>
+<text x="341" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Semantic relevance</text>
+<text x="341" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Regime applicability</text>
+<text x="341" y="235" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Provenance + expiry</text>
+</g>
+<g><rect x="645" y="120" width="240" height="150" rx="10" fill="#8064A2" fill-opacity=".07" stroke="#8064A2" stroke-width="1.5"/>
+<text x="661" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Plan &amp; call tools</text>
+<text x="661" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Candidate actions</text>
+<text x="661" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Simulator / knowledge</text>
+<text x="661" y="235" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Predicted constraints</text>
+</g>
+<g><rect x="955" y="120" width="210" height="150" rx="10" fill="#D55E00" fill-opacity=".07" stroke="#D55E00" stroke-width="1.5"/>
+<text x="971" y="150" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Safety gate</text>
+<text x="971" y="181" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Check hard limits</text>
+<text x="971" y="208" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Approve or reject</text>
+<text x="971" y="235" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Human escalation</text>
+</g>
+<path d="M255 195 L325 195" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M575 195 L645 195" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M885 195 L955 195" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<g><rect x="35" y="365" width="270" height="145" rx="10" fill="#009E73" fill-opacity=".07" stroke="#009E73" stroke-width="1.5"/>
+<text x="51" y="395" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Experience store</text>
+<text x="51" y="426" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Context → action → outcome</text>
+<text x="51" y="453" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Revise validity conditions</text>
+<text x="51" y="480" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Keep an auditable history</text>
+</g>
+<g><rect x="390" y="365" width="300" height="145" rx="10" fill="#B58200" fill-opacity=".07" stroke="#B58200" stroke-width="1.5"/>
+<text x="406" y="395" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Feedback &amp; attribution</text>
+<text x="406" y="426" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Compare expected / observed</text>
+<text x="406" y="453" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Separate tool and model errors</text>
+<text x="406" y="480" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Update with verified outcomes</text>
+</g>
+<g><rect x="850" y="365" width="315" height="145" rx="10" fill="#0072B2" fill-opacity=".07" stroke="#0072B2" stroke-width="1.5"/>
+<text x="866" y="395" font-family="Liberation Sans,Arial,sans-serif" font-size="21" font-weight="700" fill="#203044">Execute &amp; monitor</text>
+<text x="866" y="426" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Approved action / operator review</text>
+<text x="866" y="453" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Observe process response</text>
+<text x="866" y="480" font-family="Liberation Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#203044">Stop or fall back on violation</text>
+</g>
+<path d="M1060 270 L1060 365" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M850 435 L690 435" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M390 435 L305 435" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M170 365 L170 295" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M170 295 L430 295" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M430 295 L430 270" fill="none" stroke="#526174" stroke-width="2"  marker-end="url(#arrow)"/>
+<path d="M1060 270 L1060 295" fill="none" stroke="#526174" stroke-width="2"  stroke-dasharray='7 5' marker-end="url(#arrow)"/>
+<path d="M1060 295 L765 295" fill="none" stroke="#526174" stroke-width="2"  stroke-dasharray='7 5' marker-end="url(#arrow)"/>
+<path d="M765 295 L765 270" fill="none" stroke="#526174" stroke-width="2"  stroke-dasharray='7 5' marker-end="url(#arrow)"/>
+<text x="820" y="321" font-family="Liberation Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#203044">Reject → replan</text>
+<text x="36" y="570" font-family="Liberation Sans,Arial,sans-serif" font-size="20" font-weight="400" fill="#203044">Evaluation: task success + constraint violations + stale-experience reuse + tool / token cost</text>
+<text x="36" y="636" font-family="Liberation Sans,Arial,sans-serif" font-size="15" font-weight="400" fill="#203044">Original educational redraw · schematic values only · SVG text and objects remain editable</text>
+</svg>

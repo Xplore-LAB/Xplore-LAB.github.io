@@ -296,6 +296,7 @@ footer a:hover { color: var(--accent); }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+.advanced-preview{display:block;width:100%;height:auto;background:#fff;margin:16px 0}.advanced-links{font-size:14px;line-height:1.9}#fig-advanced{scroll-margin-top:24px} @media(max-width:640px){#fig-advanced .card-body{padding:12px} .advanced-preview{min-width:660px}#fig-advanced .card-body{overflow-x:auto}}
 </style>
 </head>
 <body data-page-node-id="Oi5ZWb3jv24drQvmok1FCC">
@@ -318,17 +319,17 @@ footer a:hover { color: var(--accent); }
   </header>
 
   <section id="gallery" data-page-node-id="ID59MS8rwYLYrVCjI2DBqw">
-    <h2 class="section-title" data-page-node-id="Xx3pQ9WV2fbAQ9VE4MN1Sb">图例速览</h2>
-    <p class="note" data-page-node-id="bGnMRe18fGqyCtXmzSD0KZ">按论文结构分四块：A 组基础模板与顶会案例、B 组主实验对比、C 组消融分析。卡片默认折叠，点标题展开图例与完整 matplotlib 代码，复制即用。配色统一采用 Okabe-Ito 色盲友好方案。</p>
-    <p class="toc">分组直达：<a href="#fig-method">A · 方法与流程</a><a href="#fig-results">B · 实验结果</a><a href="#fig-analysis">C · 消融与分析</a><a href="#howto">绘制方法论</a></p>
+    <h2 class="section-title" data-page-node-id="Xx3pQ9WV2fbAQ9VE4MN1Sb">图例速览</h2><p class="note">本页为教学示例，数据不能作为论文实验结果。尺寸与字体以目标会议当年度官方模板为准。D 组预览与下载文件由同一脚本生成。</p>
+    <p class="note" data-page-node-id="bGnMRe18fGqyCtXmzSD0KZ">按论文结构分四块：A 组基础模板与顶会案例、B 组主实验对比、C 组消融分析、D 组机制展开版。基础卡片点击展开；D 组附可编辑源文件和生成脚本。配色统一采用 Okabe-Ito 色盲友好方案。</p>
+    <p class="toc">分组直达：<a href="#fig-method">A · 方法与流程</a><a href="#fig-results">B · 实验结果</a><a href="#fig-analysis">C · 消融与分析</a><a href="#fig-advanced">D · 机制展开版</a><a href="#howto">绘制方法论</a></p>
 
     <div class="expand-ctrl">
-      <button type="button" id="expand-all">展开全部 20 张</button>
+      <button type="button" id="expand-all">展开全部 26 张</button>
       <button type="button" id="collapse-all">收起全部</button>
     </div>
 
     <div class="case-index">
-      <div class="case-index-head">案例索引 <span class="count">20 张 · 点击直达</span></div>
+      <div class="case-index-head">案例索引 <span class="count">26 张 · 点击直达</span></div>
       <div class="ci-label"><b>A</b>方法与流程 · 基础模板<span class="cnt">2 张</span></div>
       <a class="case-card" href="#c-01"><span class="fnum">01</span><span class="title">横向 Pipeline 流程图</span></a>
       <a class="case-card" href="#c-02"><span class="fnum">02</span><span class="title">Transformer 堆叠架构图</span></a>
@@ -353,7 +354,7 @@ footer a:hover { color: var(--accent); }
       <a class="case-card" href="#c-08"><span class="fnum">08</span><span class="title">多次运行稳定性（箱线）</span></a>
       <a class="case-card" href="#c-09"><span class="fnum">09</span><span class="title">超参敏感性（小倍数）</span></a>
       <a class="case-card" href="#c-10"><span class="fnum">10</span><span class="title">精度-延迟帕累托前沿</span></a>
-    </div>
+<div class="ci-label sep"><b>D</b>机制展开与工业评估<span class="cnt">6 张</span></div><a class="case-card" href="#advanced-industrial-agent"><span class="fnum">D1</span><span class="title">工业智能体：有约束的闭环决策</span></a><a class="case-card" href="#advanced-transformer-expanded"><span class="fnum">D2</span><span class="title">Transformer：编码器与因果解码器</span></a><a class="case-card" href="#advanced-clip-expanded"><span class="fnum">D3</span><span class="title">CLIP：从双编码器到对比目标</span></a><a class="case-card" href="#advanced-switch-expanded"><span class="fnum">D4</span><span class="title">Switch Transformer：稀疏路由</span></a><a class="case-card" href="#advanced-alignment-expanded"><span class="fnum">D5</span><span class="title">RLHF / DPO：对齐训练路径</span></a><a class="case-card" href="#advanced-industrial-evaluation"><span class="fnum">D6</span><span class="title">工业评估：从动态响应到跨工况证据</span></a>    </div>
 
     <h3 class="group-title" id="fig-method"><span class="gletter">A</span>方法与流程（Method）</h3>
     <p class="group-note">论文 Method 章节的流程图与架构图，用 matplotlib 的 Patch 与箭头即可画，无需切换到其他工具。</p>
@@ -459,9 +460,9 @@ fig.savefig("fig_pipeline.pdf")</code></pre>
         <!-- 重复容器 -->
         <rect x="206" y="76" width="220" height="108" rx="6" fill="none" stroke="#8b949e" stroke-width="1" stroke-dasharray="5 4"/>
         <rect x="226" y="88" width="180" height="40" rx="6" fill="#e9f3fa" stroke="#0072B2" stroke-width="1.4"/>
-        <text x="316" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="10.5" fill="#24292f">Multi-Head Attention</text>
+        <text x="316" y="111" text-anchor="middle" font-family="Georgia, serif" font-size="10.5" fill="#24292f">Feed-Forward Network</text>
         <rect x="226" y="140" width="180" height="40" rx="6" fill="#e9f3fa" stroke="#0072B2" stroke-width="1.4"/>
-        <text x="316" y="163" text-anchor="middle" font-family="Georgia, serif" font-size="10.5" fill="#24292f">Feed-Forward Network</text>
+        <text x="316" y="163" text-anchor="middle" font-family="Georgia, serif" font-size="10.5" fill="#24292f">Multi-Head Attention</text>
         <text x="440" y="134" font-family="Georgia, serif" font-size="13" font-style="italic" fill="#57606a">× N</text>
         <!-- 箭头 embedding -> container -->
         <line x1="316" y1="198" x2="316" y2="192" stroke="#57606a" stroke-width="1.2"/>
@@ -506,16 +507,16 @@ block(ax, 1.8, 0.3, 2.4, 0.62, "Input Tokens")
 block(ax, 1.8, 1.5, 2.4, 0.62, "Token + Position Embedding")
 ax.add_patch(Rectangle((1.55, 2.75), 2.9, 3.2, fill=False,
                        edgecolor="#8b949e", linestyle="--"))
-block(ax, 1.8, 4.9, 2.4, 0.8, "Multi-Head Attention",
+block(ax, 1.8, 3.15, 2.4, 0.8, "Multi-Head Attention",
       fc="#e9f3fa", ec="#0072B2")
-block(ax, 1.8, 3.15, 2.4, 0.8, "Feed-Forward Network",
+block(ax, 1.8, 4.9, 2.4, 0.8, "Feed-Forward Network",
       fc="#e9f3fa", ec="#0072B2")
 ax.text(4.65, 4.35, "× N", fontsize=12, style="italic")
 block(ax, 1.8, 6.6, 2.4, 0.62, "LM Head + Softmax")
 ax.text(3.0, 8.35, "Next-token Probabilities",
         ha="center", fontsize=9.5, color="#57606a")
 
-for y0, y1 in [(0.92, 1.5), (2.12, 2.75), (5.95, 6.6), (7.22, 8.1)]:
+for y0, y1 in [(0.92, 1.5), (2.12, 2.75), (3.95, 4.9), (5.95, 6.6), (7.22, 8.1)]:
     ax.annotate("", xy=(3.0, y1), xytext=(3.0, y0),
                 arrowprops=dict(arrowstyle="-|&gt;",
                                 color="#57606a", lw=1.2))
@@ -679,9 +680,9 @@ fig.savefig("fig_arch.pdf")</code></pre>
           <rect x="96" y="60" width="140" height="106" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-width="0.8"/>
           <text x="244" y="76" font-size="10" fill="#57606a">N×</text>
           <rect x="110" y="74" width="112" height="24" rx="4" fill="#dceaf5" stroke="#0072B2" stroke-width="0.8"/>
-          <text x="166" y="90" font-size="9.5" fill="#24292f">Multi-Head Attn</text>
+          <text x="166" y="90" font-size="9.5" fill="#24292f">Feed Forward</text>
           <rect x="110" y="106" width="112" height="24" rx="4" fill="#fff" stroke="#b0b8c0" stroke-width="0.8"/>
-          <text x="166" y="122" font-size="9.5" fill="#24292f">Feed Forward</text>
+          <text x="166" y="122" font-size="9.5" fill="#24292f">Multi-Head Attn</text>
           <text x="166" y="152" font-size="8.5" fill="#8b949e">Add &amp; Norm × 2</text>
           <rect x="116" y="184" width="100" height="20" rx="4" fill="#fff" stroke="#0072B2"/>
           <text x="166" y="198" font-size="9" fill="#24292f">Inputs + Embed</text>
@@ -692,11 +693,11 @@ fig.savefig("fig_arch.pdf")</code></pre>
           <rect x="396" y="46" width="150" height="120" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-width="0.8"/>
           <text x="554" y="62" font-size="10" fill="#57606a">N×</text>
           <rect x="410" y="60" width="122" height="22" rx="4" fill="#dceaf5" stroke="#0072B2" stroke-width="0.8"/>
-          <text x="471" y="75" font-size="9.5" fill="#24292f">Masked MHA</text>
+          <text x="471" y="75" font-size="9.5" fill="#24292f">Feed Forward</text>
           <rect x="410" y="88" width="122" height="22" rx="4" fill="#fdeeda" stroke="#E69F00" stroke-width="0.8"/>
           <text x="471" y="103" font-size="9.5" fill="#24292f">Cross MHA</text>
           <rect x="410" y="116" width="122" height="22" rx="4" fill="#fff" stroke="#b0b8c0" stroke-width="0.8"/>
-          <text x="471" y="131" font-size="9.5" fill="#24292f">Feed Forward</text>
+          <text x="471" y="131" font-size="9.5" fill="#24292f">Masked MHA</text>
           <rect x="416" y="184" width="110" height="20" rx="4" fill="#fff" stroke="#0072B2"/>
           <text x="471" y="198" font-size="9" fill="#24292f">Outputs (右移)</text>
           <line x1="471" y1="184" x2="471" y2="168" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr2)"/>
@@ -1171,7 +1172,7 @@ fig.savefig("fig_arch.pdf")</code></pre>
       <summary><h3 data-page-node-id="sDBW0YBMnK7AEO4chl3L31"><span class="fnum" data-page-node-id="vON68TQVjzt6d4voOF65pu">03</span>训练曲线对比（折线图）</h3><span class="chev" aria-hidden="true">›</span></summary>
       <div class="card-body">
 
-      <p class="why" data-page-node-id="kjKajBF8ZL7yUDF3F3RZUK">多方法对比的主图。主线用实线加置信带，基线用虚线压低视觉权重，读者一眼锁定你的方法。</p>
+      <p class="why" data-page-node-id="kjKajBF8ZL7yUDF3F3RZUK">多方法对比的主图。主线用实线与不确定性带，基线用虚线区分。此处固定 ±1.2 为示意范围，并非从重复实验估计的置信区间；真实统计示例见 D6。</p>
       <svg viewBox="0 0 632 252" role="img" aria-label="训练曲线对比示例图" data-page-node-id="UJXxBNVvZmj3Zp4B8TBBgq">
         <!-- 网格线 -->
         <g stroke="#e5e9ee" stroke-width="1" data-page-node-id="G2qGorpkPq1hSKPESTO8Qs">
@@ -1233,7 +1234,7 @@ import matplotlib.pyplot as plt
 epochs = np.arange(0, 51)
 okc = 34.4 - (34.4 - 15.6) * (1 - np.exp(-epochs / 8))
 qa = 34.4 - 6.4 * (1 - np.exp(-epochs / 20))
-base = np.full_like(epochs, 34.4)
+base = np.full_like(epochs, 34.4, dtype=float)
 
 fig, ax = plt.subplots(figsize=(3.5, 2.6))
 ax.fill_between(epochs, okc - 1.2, okc + 1.2,
@@ -1432,7 +1433,7 @@ fig.savefig("fig4_radar.pdf")</code></pre>
       <summary><h3><span class="fnum">06</span>Scaling 分析（对数轴散点 + 拟合线）</h3><span class="chev" aria-hidden="true">›</span></summary>
       <div class="card-body">
 
-      <p class="why">参数量与指标的幂律关系是对数轴散点的经典场景。散点给原始观测，直线给拟合趋势，log-log 坐标下幂律天然呈直线。</p>
+      <p class="why">半对数趋势演示：横轴使用对数刻度，纵轴保持线性；拟合形式为 y = k log₁₀(x) + b。这不是 log-log 幂律拟合，不能据此宣称发现 scaling law。</p>
       <svg viewBox="0 0 632 252" role="img" aria-label="Scaling 对数散点图示例">
         <!-- 网格 -->
         <g stroke="#e5e9ee" stroke-width="1">
@@ -1848,7 +1849,7 @@ fig.savefig("fig_sensitivity_panels.pdf")</code></pre>
       <summary><h3><span class="fnum">10</span>精度与延迟权衡（帕累托前沿）</h3><span class="chev" aria-hidden="true">›</span></summary>
       <div class="card-body">
 
-      <p class="why">部署场景的标准叙事图。前沿线上的模型才有资格进对比表，灰色区域的点被直接淘汰。左上是更好的方向，阴影标出被支配区域。</p>
+      <p class="why">部署场景的标准叙事图。前沿帮助比较成本与效果；被支配的方法仍可能是必要基线，不能仅凭此图排除。左上是更好的方向，阴影标出被支配区域。</p>
       <svg viewBox="0 0 632 300" role="img" aria-label="精度与延迟帕累托前沿图示例">
         <!-- 被支配区域阴影 -->
         <polygon points="140,250 140,200 170,150 215,112.5 305,80 470,62.5 560,62.5 560,250"
@@ -1926,7 +1927,7 @@ models = [
 
 def pareto_front(points):
     front, best = [], -np.inf
-    for x, y in sorted(points):
+    for x, y in sorted(set(points), key=lambda p: (p[0], -p[1])):
         if y &gt; best:
             front.append((x, y))
             best = y
@@ -1958,6 +1959,7 @@ fig.savefig("fig_pareto.pdf")</code></pre>
       </div>
     </details>
   </section>
+<section id="fig-advanced"><h2 class="section-title">D · 机制展开版与实验图组</h2><p class="note">基础图展示构图；这里进一步展开模块内部关系、目标函数、信息路径与实验口径。全部为独立绘制的教学图，不复用原论文图像。手机可横向滑动图片，或点击图片打开完整 SVG。矩阵、响应与指标均为示意或模拟数据，不是实测科研结果。</p><p><a href="/downloads/figures-advanced/editable-figures.zip">下载六图完整源文件包（SVG / PDF / PNG / Python / CSV）</a> · <a href="/scripts/build_advanced_figures.py">生成脚本</a> · <a href="/img/figures/advanced/synthetic-runs.csv">模拟原始数据 CSV</a> · <a href="/img/figures/advanced/README.md">复现与统计口径</a></p><details id="advanced-industrial-agent" class="fig-card reveal" open><summary><h3><span class="fnum">D1</span>工业智能体：有约束的闭环决策</h3></summary><div class="card-body"><p class="why">从工况识别到经验适用性、仿真验证、安全检查与反馈更新，区分批准执行和拒绝重规划。</p><a href="/img/figures/advanced/industrial-agent.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/industrial-agent.svg" alt="工业智能体：有约束的闭环决策" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/industrial-agent.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/industrial-agent.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/industrial-agent.png" download>PNG 预览</a> · 教学设计示例；不主张已验证的科研贡献</p></div></details><details id="advanced-transformer-expanded" class="fig-card reveal" open><summary><h3><span class="fnum">D2</span>Transformer：编码器与因果解码器</h3></summary><div class="card-body"><p class="why">展示正确的子层顺序、移位目标、编码器记忆及交叉注意力 K/V 路径；沿用原论文 post-norm 结构。</p><a href="/img/figures/advanced/transformer-expanded.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/transformer-expanded.svg" alt="Transformer：编码器与因果解码器" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/transformer-expanded.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/transformer-expanded.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/transformer-expanded.png" download>PNG 预览</a> · <a href="https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf" target="_blank" rel="noopener">原论文 / 官方出版页</a></p></div></details><details id="advanced-clip-expanded" class="fig-card reveal" open><summary><h3><span class="fnum">D3</span>CLIP：从双编码器到对比目标</h3></summary><div class="card-body"><p class="why">不只画两个编码器：展开归一化、可学习温度、批内相似度矩阵与双向交叉熵。</p><a href="/img/figures/advanced/clip-expanded.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/clip-expanded.svg" alt="CLIP：从双编码器到对比目标" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/clip-expanded.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/clip-expanded.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/clip-expanded.png" download>PNG 预览</a> · <a href="https://proceedings.mlr.press/v139/radford21a.html" target="_blank" rel="noopener">原论文 / 官方出版页</a></p></div></details><details id="advanced-switch-expanded" class="fig-card reveal" open><summary><h3><span class="fnum">D4</span>Switch Transformer：稀疏路由</h3></summary><div class="card-body"><p class="why">展开 token 路由、top-1 分发、专家容量、概率加权合并及辅助负载均衡目标。</p><a href="/img/figures/advanced/switch-expanded.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/switch-expanded.svg" alt="Switch Transformer：稀疏路由" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/switch-expanded.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/switch-expanded.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/switch-expanded.png" download>PNG 预览</a> · <a href="https://www.jmlr.org/papers/v23/21-0998.html" target="_blank" rel="noopener">原论文 / 官方出版页</a></p></div></details><details id="advanced-alignment-expanded" class="fig-card reveal" open><summary><h3><span class="fnum">D5</span>RLHF / DPO：对齐训练路径</h3></summary><div class="card-body"><p class="why">区分奖励模型拟合、在线策略采样与离线偏好优化，并标出冻结参考模型的角色。</p><a href="/img/figures/advanced/alignment-expanded.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/alignment-expanded.svg" alt="RLHF / DPO：对齐训练路径" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/alignment-expanded.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/alignment-expanded.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/alignment-expanded.png" download>PNG 预览</a> · <a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract.html" target="_blank" rel="noopener">原论文 / 官方出版页</a></p></div></details><details id="advanced-industrial-evaluation" class="fig-card reveal" open><summary><h3><span class="fnum">D6</span>工业评估：从动态响应到跨工况证据</h3></summary><div class="card-body"><p class="why">四面板区分构造响应、独立模拟重复的均值与区间、成本前沿和工况分解。CSV 保留全部模拟观测；不代表实际工业效果。</p><a href="/img/figures/advanced/industrial-evaluation.svg" target="_blank"><img class="advanced-preview" src="/img/figures/advanced/industrial-evaluation.svg" alt="工业评估：从动态响应到跨工况证据" loading="lazy" width="1200" height="660"></a><p class="advanced-links"><a href="/img/figures/advanced/industrial-evaluation.svg" download>可编辑 SVG</a> · <a href="/img/figures/advanced/industrial-evaluation.pdf" download>矢量 PDF</a> · <a href="/img/figures/advanced/industrial-evaluation.png" download>PNG 预览</a> · 教学设计示例；不主张已验证的科研贡献</p></div></details></section>
   <section id="howto">
     <h2 class="section-title">实图绘制方法论</h2>
     <p class="note">上面的图例与案例解剖回答「好图长什么样」，这一节回答「怎么亲手画出来」。覆盖从白纸到投稿成稿的全过程，所有纪律与数据均有出处，来源附在节末。</p>
@@ -1968,7 +1970,7 @@ fig.savefig("fig_pareto.pdf")</code></pre>
       <li><b>定主张。</b>动笔前用一句话写下「这张图要让读者记住什么」。这句话是所有取舍的裁判，删元素、选配色、定布局时都要回来对表。（Rougier 2014, Rule 2）</li>
       <li><b>纸笔草图三版。</b>只画方框和箭头，每版五分钟，比的是布局而非细节；纸笔的修改成本最低，最适合快速试错。（Wong 2012「Pencil and paper」）</li>
       <li><b>选工具、开网格。</b>按图型选工具（见下表），打开 8px 对齐网格；模块间距统一取网格倍数（8/16/24px），视线才能扫出层级。</li>
-      <li><b>先形后字。</b>精绘顺序：布局框架 → 模块形状 → 连线箭头 → 最后才填文字。文字永远最后放，避免为迁就标签而破坏布局。</li>
+      <li><b>先形后字。</b>精绘顺序：布局框架 → 模块形状 → 连线箭头 → 最后才填文字。布局阶段就预留标签空间，再细调文字、连线和对齐，避免文字溢出。</li>
       <li><b>缩放盲测。</b>导出 PDF 缩到最终栏宽（单栏 3.5 in / 双栏 7.16 in）后打印或投屏检查字号；再请同事 5 秒盲测，说不出图的主张就回炉。</li>
     </ol>
 
@@ -1990,7 +1992,7 @@ fig.savefig("fig_pareto.pdf")</code></pre>
       <tr><td>Figma</td><td>双流对称结构、多人协作</td><td>组件复用、自动布局</td><td>需要账号；导出 SVG / PDF</td></tr>
       <tr><td>TikZ</td><td>需要嵌公式的图</td><td>LaTeX 原生、精确、纯文本可 diff</td><td>学习曲线陡、迭代慢</td></tr>
       <tr><td>matplotlib</td><td>数据驱动图、简单框图</td><td>代码可复现、与实验图同源</td><td>复杂框图布局繁琐；导出 PDF / SVG</td></tr>
-      <tr><td>Inkscape</td><td>SVG 后处理、多图拼接</td><td>免费开源、路径编辑强</td><td>不适合从零起稿；导出 PDF / SVG</td></tr>
+      <tr><td>Inkscape</td><td>SVG 后处理、多图拼接</td><td>免费开源、路径编辑强</td><td>可从零绘制结构图，也可后处理；导出 PDF / SVG</td></tr>
       <tr><td>Excalidraw</td><td>讨论期草图</td><td>手绘风上手最快</td><td>不适合成稿；导出 SVG / PNG</td></tr>
     </table>
 
@@ -2037,6 +2039,7 @@ fig.savefig("fig_pareto.pdf")</code></pre>
       <pre><code>import matplotlib.pyplot as plt
 
 plt.rcParams.update({
+    "svg.fonttype": "none",
     "font.family": "serif",
     "font.serif": ["Times New Roman", "Songti SC"],
     "mathtext.fontset": "stix",

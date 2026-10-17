@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "industrial-agent",
+    "title": "工业智能体：有约束的闭环决策",
+    "why": "从工况识别到经验适用性、仿真验证、安全检查与反馈更新，区分批准执行和拒绝重规划。",
+    "source": ""
+  },
+  {
+    "slug": "transformer-expanded",
+    "title": "Transformer：编码器与因果解码器",
+    "why": "展示正确的子层顺序、移位目标、编码器记忆及交叉注意力 K/V 路径；沿用原论文 post-norm 结构。",
+    "source": "https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf"
+  },
+  {
+    "slug": "clip-expanded",
+    "title": "CLIP：从双编码器到对比目标",
+    "why": "不只画两个编码器：展开归一化、可学习温度、批内相似度矩阵与双向交叉熵。",
+    "source": "https://proceedings.mlr.press/v139/radford21a.html"
+  },
+  {
+    "slug": "switch-expanded",
+    "title": "Switch Transformer：稀疏路由",
+    "why": "展开 token 路由、top-1 分发、专家容量、概率加权合并及辅助负载均衡目标。",
+    "source": "https://www.jmlr.org/papers/v23/21-0998.html"
+  },
+  {
+    "slug": "alignment-expanded",
+    "title": "RLHF / DPO：对齐训练路径",
+    "why": "区分奖励模型拟合、在线策略采样与离线偏好优化，并标出冻结参考模型的角色。",
+    "source": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract.html"
+  },
+  {
+    "slug": "industrial-evaluation",
+    "title": "工业评估：从动态响应到跨工况证据",
+    "why": "四面板区分构造响应、独立模拟重复的均值与区间、成本前沿和工况分解。CSV 保留全部模拟观测；不代表实际工业效果。",
+    "source": ""
+  }
+]
