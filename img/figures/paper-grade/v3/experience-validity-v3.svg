@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="62.0mm" viewBox="0 0 900 310" role="img">
+  <title>Applicability gate: relevance alone does not justify reuse</title>
+  <desc>Conceptual example; not experimental evidence. Live text and grouped vector geometry.</desc>
+  <rect x="0" y="0" width="900" height="310" rx="0" fill="white" stroke="none" stroke-width="1" />
+  <g id="context">
+    <text x="24" y="31" font-family="Liberation Sans, Arial, sans-serif" font-size="21" font-weight="600" fill="#223442" text-anchor="start">Applicability gate</text>
+    <text x="876" y="31" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="end">Current context: regime A · time t · limits</text>
+  </g>
+  <g id="column-labels">
+    <text x="24" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Candidate experience</text>
+    <text x="419" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Regime</text>
+    <text x="512" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Fresh</text>
+    <text x="605" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Limits</text>
+    <text x="682" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">g</text>
+    <text x="736" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Decision</text>
+    <path d="M24 88 H876" fill="none" stroke="#D6DFE3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <g id="record-E1">
+    <rect x="16" y="96" width="868" height="51" rx="5" fill="#EAF5F2" stroke="none" stroke-width="1" />
+    <text x="28" y="121" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#087F78" text-anchor="start">E1</text>
+    <text x="68" y="121" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#223442" text-anchor="start">Compatible case</text>
+    <text x="68" y="141" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Current; supported</text>
+    <circle cx="419" cy="119" r="9" fill="#087F78" stroke="#087F78" stroke-width="1.2" />
+    <path d="M415 119 l3 3 l5 -6" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="512" cy="119" r="9" fill="#087F78" stroke="#087F78" stroke-width="1.2" />
+    <path d="M508 119 l3 3 l5 -6" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="605" cy="119" r="9" fill="#087F78" stroke="#087F78" stroke-width="1.2" />
+    <path d="M601 119 l3 3 l5 -6" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="682" y="125" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#087F78" text-anchor="middle">1</text>
+    <path d="M707 119 L726 119" fill="none" stroke="#087F78" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M719 115.5 L726 119 L719 122.5 Z" fill="#087F78" />
+    <text x="740" y="125" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#087F78" text-anchor="start">Reuse</text>
+  </g>
+  <g id="record-E2">
+    <text x="28" y="178" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#223442" text-anchor="start">E2</text>
+    <text x="68" y="178" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#223442" text-anchor="start">Expired rule</text>
+    <text x="68" y="198" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Similar; superseded</text>
+    <circle cx="419" cy="176" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M415 176 l3 3 l5 -6" fill="none" stroke="#526672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="512" cy="176" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M509 173 l6 6 m0 -6 l-6 6" fill="none" stroke="#526672" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="605" cy="176" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M601 176 l3 3 l5 -6" fill="none" stroke="#526672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="682" y="182" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#526672" text-anchor="middle">0</text>
+    <path d="M707 176 L726 176" fill="none" stroke="#526672" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M719 172.5 L726 176 L719 179.5 Z" fill="#526672" />
+    <text x="740" y="182" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#223442" text-anchor="start">Exclude</text>
+  </g>
+  <g id="record-E3">
+    <text x="28" y="235" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#223442" text-anchor="start">E3</text>
+    <text x="68" y="235" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="400" fill="#223442" text-anchor="start">Missing evidence</text>
+    <text x="68" y="255" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Regime unknown</text>
+    <circle cx="419" cy="233" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <text x="419" y="238" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#526672" text-anchor="middle">?</text>
+    <circle cx="512" cy="233" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M508 233 l3 3 l5 -6" fill="none" stroke="#526672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="605" cy="233" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M601 233 l3 3 l5 -6" fill="none" stroke="#526672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="682" y="239" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#526672" text-anchor="middle">0</text>
+    <path d="M707 233 L726 233" fill="none" stroke="#526672" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M719 229.5 L726 233 L719 236.5 Z" fill="#526672" />
+    <text x="740" y="239" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#223442" text-anchor="start">Verify</text>
+  </g>
+  <g id="gate-definition">
+    <path d="M24 263 H876" fill="none" stroke="#D6DFE3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="24" y="285" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="start">Reuse iff all checks are supported; otherwise exclude or request evidence.</text>
+    <text x="24" y="306" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Conceptual example · verified evidence creates a new version and triggers rechecking.</text>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+{
+  "industrial-agent-v3": {
+    "native_text_spans": 50,
+    "raster_images": 0,
+    "overlapping_native_spans": [],
+    "outside_canvas": [],
+    "actual_edit_and_pdf_export": true,
+    "svg_audit": {
+      "svg": "/home/lab434/src/projects/xplore-lab-site/img/figures/paper-grade/v3/industrial-agent-v3.svg",
+      "verdict": "PASS WITH WARNINGS",
+      "auditable": true,
+      "width_mm": 180.0,
+      "text_count": 46,
+      "minimum_found_pt": 8.050393700787403,
+      "maximum_found_pt": 11.338582677165356,
+      "thresholds": {
+        "min_pt": 8.0,
+        "max_pt": 13.0,
+        "max_width_mm": 180.0
+      },
+      "findings": [
+        {
+          "severity": "WARN",
+          "kind": "canvas.width",
+          "message": "width 180.0 mm is not 89 mm or 183 mm"
+        }
+      ]
+    },
+    "visual_review": "Author self-review completed; user acceptance pending"
+  },
+  "experience-validity-v3": {
+    "native_text_spans": 26,
+    "raster_images": 0,
+    "overlapping_native_spans": [],
+    "outside_canvas": [],
+    "actual_edit_and_pdf_export": true,
+    "svg_audit": {
+      "svg": "/home/lab434/src/projects/xplore-lab-site/img/figures/paper-grade/v3/experience-validity-v3.svg",
+      "verdict": "PASS WITH WARNINGS",
+      "auditable": true,
+      "width_mm": 180.0,
+      "text_count": 26,
+      "minimum_found_pt": 8.050393700787403,
+      "maximum_found_pt": 11.905511811023624,
+      "thresholds": {
+        "min_pt": 8.0,
+        "max_pt": 13.0,
+        "max_width_mm": 180.0
+      },
+      "findings": [
+        {
+          "severity": "WARN",
+          "kind": "canvas.width",
+          "message": "width 180.0 mm is not 89 mm or 183 mm"
+        }
+      ]
+    },
+    "visual_review": "Author self-review completed; user acceptance pending"
+  },
+  "scientific_scope": "Original conceptual fixture; not experimental results or evidence of safety.",
+  "submission_scope": "180 mm provisional width; no specific venue/year compliance claimed.",
+  "collision_tool_triage": {
+    "raw_reports": [
+      "overview-collision.json",
+      "detail-collision.json"
+    ],
+    "overview": "Five FAIL and one WARN: trace unions merge Observed trends with Limits + provenance, subtitle with column headers, and the separate question marks. Native span rectangles have no overlaps; rendered PNG checked for line/text contact. All six findings reviewed as false positives.",
+    "detail": "Seven FAIL: one unioned trace bbox spans both heading and all table headers. Native spans show no overlaps. All seven findings reviewed as false positives.",
+    "status": "Raw tool verdict retained; not claimed to be an automated clean pass."
+  }
+}

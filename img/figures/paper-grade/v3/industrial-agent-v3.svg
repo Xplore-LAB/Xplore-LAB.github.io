@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="96.0mm" viewBox="0 0 900 480" role="img">
+  <title>Industrial agent: check experience before planning</title>
+  <desc>Conceptual example; not experimental evidence. Live text and grouped vector geometry.</desc>
+  <rect x="0" y="0" width="900" height="480" rx="0" fill="white" stroke="none" stroke-width="1" />
+  <g id="headings">
+    <text x="24" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#087F78" text-anchor="start">a</text>
+    <text x="49" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#223442" text-anchor="start">Observe</text>
+    <text x="246" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#087F78" text-anchor="start">b</text>
+    <text x="271" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#223442" text-anchor="start">Check before reuse</text>
+    <text x="660" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#087F78" text-anchor="start">c</text>
+    <text x="685" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#223442" text-anchor="start">Plan &amp; validate</text>
+  </g>
+  <g id="process-context">
+    <text x="24" y="77" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#223442" text-anchor="start">Operating context</text>
+    <text x="24" y="103" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Regime A · time t</text>
+    <rect x="24" y="125" width="78" height="45" rx="6" fill="white" stroke="#D6DFE3" stroke-width="1" />
+    <text x="63" y="153" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="middle">Feed</text>
+    <rect x="130" y="125" width="78" height="45" rx="6" fill="white" stroke="#D6DFE3" stroke-width="1" />
+    <text x="169" y="153" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="middle">Unit</text>
+    <path d="M102 147 L130 147" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M123 143.5 L130 147 L123 150.5 Z" fill="#526672" />
+    <path d="M30 211 H198 M30 211 V184" fill="none" stroke="#D6DFE3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M31 199 C55 181 72 211 94 197 S130 179 149 194 S180 204 198 187" fill="none" stroke="#526672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="24" y="242" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Observed trends</text>
+    <text x="24" y="269" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Limits + provenance</text>
+    <text x="24" y="306" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#223442" text-anchor="start">Task + context</text>
+    <text x="24" y="329" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Query for retrieval</text>
+    <path d="M205 313 H232 V92 H246" fill="none" stroke="#087F78" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M232 92 L246 92" fill="none" stroke="#087F78" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M239 88.5 L246 92 L239 95.5 Z" fill="#087F78" />
+  </g>
+  <g id="applicability-gate">
+    <rect x="246" y="53" width="382" height="282" rx="8" fill="#EAF5F2" stroke="none" stroke-width="1" />
+    <text x="264" y="81" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#223442" text-anchor="start">Retrieve candidates</text>
+    <text x="264" y="107" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Check regime, freshness and limits</text>
+    <text x="264" y="144" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="start">Experience</text>
+    <text x="447" y="144" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Relevant</text>
+    <text x="566" y="144" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#087F78" text-anchor="middle">Applicable</text>
+    <path d="M264 154 H610" fill="none" stroke="#C4DDD7" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="264" y="186" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#223442" text-anchor="start">E1  Compatible</text>
+    <text x="447" y="186" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">High</text>
+    <circle cx="529" cy="181" r="9" fill="#087F78" stroke="#087F78" stroke-width="1.2" />
+    <path d="M525 181 l3 3 l5 -6" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="570" y="186" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#087F78" text-anchor="middle">YES</text>
+    <text x="264" y="227" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="start">E2  Expired</text>
+    <text x="447" y="227" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">High</text>
+    <circle cx="529" cy="222" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <path d="M526 219 l6 6 m0 -6 l-6 6" fill="none" stroke="#526672" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="570" y="227" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#526672" text-anchor="middle">NO</text>
+    <text x="264" y="268" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="start">E3  Unresolved</text>
+    <text x="447" y="268" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Moderate</text>
+    <circle cx="529" cy="263" r="9" fill="white" stroke="#D6DFE3" stroke-width="1.2" />
+    <text x="529" y="268" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#526672" text-anchor="middle">?</text>
+    <text x="570" y="268" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#526672" text-anchor="middle">?</text>
+    <rect x="264" y="286" width="346" height="33" rx="4" fill="#087F78" stroke="none" stroke-width="1" />
+    <text x="437" y="308" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Rank only admissible experiences</text>
+  </g>
+  <g id="planner-and-tools">
+    <path d="M610 303 H644 V87 H660" fill="none" stroke="#087F78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M644 87 L660 87" fill="none" stroke="#087F78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M653 83.5 L660 87 L653 90.5 Z" fill="#087F78" />
+    <rect x="660" y="60" width="216" height="54" rx="6" fill="white" stroke="#D6DFE3" stroke-width="1" />
+    <text x="768" y="83" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#223442" text-anchor="middle">LLM planner</text>
+    <text x="768" y="104" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#526672" text-anchor="middle">Task + selected E1</text>
+    <path d="M768 114 V122 H709 M768 122 H824" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M709 122 L709 132" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M705.5 125 L709 132 L712.5 125 Z" fill="#526672" />
+    <path d="M824 122 L824 132" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M820.5 125 L824 132 L827.5 125 Z" fill="#526672" />
+    <rect x="660" y="132" width="99" height="40" rx="6" fill="#F4F6F7" stroke="none" stroke-width="1" />
+    <text x="709" y="157" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="middle">Inspect</text>
+    <rect x="773" y="132" width="103" height="40" rx="6" fill="#F4F6F7" stroke="none" stroke-width="1" />
+    <text x="824" y="157" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="middle">Simulate</text>
+    <path d="M709 172 V190 H824 V172" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M768 190 L768 207" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M764.5 200 L768 207 L771.5 200 Z" fill="#526672" />
+    <rect x="660" y="208" width="216" height="44" rx="6" fill="white" stroke="#D6DFE3" stroke-width="1" />
+    <text x="768" y="235" font-family="Liberation Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#223442" text-anchor="middle">Constraint check</text>
+    <path d="M768 252 V264 H711 M768 264 H825" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M711 264 L711 280" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M707.5 273 L711 280 L714.5 273 Z" fill="#526672" />
+    <path d="M825 264 L825 280" fill="none" stroke="#087F78" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M821.5 273 L825 280 L828.5 273 Z" fill="#087F78" />
+    <rect x="660" y="280" width="102" height="52" rx="6" fill="#F4F6F7" stroke="none" stroke-width="1" />
+    <text x="711" y="301" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#223442" text-anchor="middle">Review</text>
+    <rect x="774" y="280" width="102" height="52" rx="6" fill="#087F78" stroke="none" stroke-width="1" />
+    <text x="825" y="301" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Execute</text>
+    <text x="711" y="320" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="middle">uncertain</text>
+    <text x="825" y="320" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="white" text-anchor="middle">approved</text>
+    <path d="M876 230 H888 V87 H877" fill="none" stroke="#526672" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M888 87 L877 87" fill="none" stroke="#526672" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M884 83.5 L877 87 L884 90.5 Z" fill="#526672" />
+    <text x="660" y="349" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Reject → replan</text>
+  </g>
+  <g id="verified-feedback">
+    <path d="M825 332 V383" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" />
+    <path d="M825 376 L825 387" fill="none" stroke="#526672" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M821.5 380 L825 387 L828.5 380 Z" fill="#526672" />
+    <path d="M24 358 H772" fill="none" stroke="#D6DFE3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="24" y="386" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#087F78" text-anchor="start">d</text>
+    <text x="49" y="386" font-family="Liberation Sans, Arial, sans-serif" font-size="18" font-weight="600" fill="#223442" text-anchor="start">Verified feedback</text>
+    <text x="876" y="406" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#223442" text-anchor="end">Observe outcome</text>
+    <path d="M729 400 L619 400" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M626 396.5 L619 400 L626 403.5 Z" fill="#526672" />
+    <text x="504" y="406" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#223442" text-anchor="middle">Verify &amp; attribute</text>
+    <path d="M390 400 L355 400" fill="none" stroke="#526672" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M362 396.5 L355 400 L362 403.5 Z" fill="#526672" />
+    <text x="281" y="406" font-family="Liberation Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#223442" text-anchor="middle">Version record</text>
+    <path d="M281 387 V350 H437" fill="none" stroke="#087F78" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" />
+    <path d="M437 350 L437 335" fill="none" stroke="#087F78" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M433.5 342 L437 335 L440.5 342 Z" fill="#087F78" />
+    <text x="24" y="458" font-family="Liberation Sans, Arial, sans-serif" font-size="14.2" font-weight="400" fill="#526672" text-anchor="start">Conceptual design · illustrative context and records · no experimental results</text>
+  </g>
+</svg>

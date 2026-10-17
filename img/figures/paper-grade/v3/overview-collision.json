@@ -1,0 +1,160 @@
+{
+  "pdf": "src/projects/xplore-lab-site/img/figures/paper-grade/v3/industrial-agent-v3.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 42,
+  "text_trace_count": 44,
+  "stroke_path_count": 34,
+  "filled_region_count": 27,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 5,
+    "warn": 1,
+    "contained_fill_overlays": 12,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "?",
+      "text_bbox": [
+        297.1351013183594,
+        144.58116149902344,
+        325.924560546875,
+        153.6520233154297
+      ],
+      "other_text": null,
+      "other_bbox": [
+        294.80499267578125,
+        144.0,
+        305.00799560546875,
+        154.2030029296875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Observed trends",
+      "text_bbox": [
+        13.60629940032959,
+        129.84100341796875,
+        95.02778625488281,
+        154.2189483642578
+      ],
+      "other_text": "Limits + provenance",
+      "other_bbox": [
+        13.60629940032959,
+        144.2947998046875,
+        95.02640533447266,
+        154.4178924560547
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Check regime, freshness and limits",
+      "text_bbox": [
+        149.66929626464844,
+        53.30556106567383,
+        290.8118896484375,
+        83.3528060913086
+      ],
+      "other_text": "Experience",
+      "other_bbox": [
+        149.66929626464844,
+        73.42866516113281,
+        195.04173278808594,
+        83.55175018310547
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Check regime, freshness and limits",
+      "text_bbox": [
+        149.66929626464844,
+        53.30556106567383,
+        290.8118896484375,
+        83.3528060913086
+      ],
+      "other_text": "Relevant",
+      "other_bbox": [
+        235.50686645507812,
+        73.42866516113281,
+        271.30047607421875,
+        83.55175018310547
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 89.6% of the smaller box",
+      "text": "?",
+      "text_bbox": [
+        297.1351013183594,
+        144.58116149902344,
+        325.924560546875,
+        153.6520233154297
+      ],
+      "other_text": "?",
+      "other_bbox": [
+        320.38372802734375,
+        143.72787475585938,
+        325.926025390625,
+        153.85096740722656
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "?",
+      "text_bbox": [
+        297.1351013183594,
+        144.58116149902344,
+        325.924560546875,
+        153.6520233154297
+      ],
+      "other_text": null,
+      "other_bbox": [
+        294.80499267578125,
+        144.0,
+        305.00799560546875,
+        154.2030029296875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    }
+  ]
+}

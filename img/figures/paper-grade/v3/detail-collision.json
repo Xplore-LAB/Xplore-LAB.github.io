@@ -1,0 +1,178 @@
+{
+  "pdf": "src/projects/xplore-lab-site/img/figures/paper-grade/v3/experience-validity-v3.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 26,
+  "text_trace_count": 20,
+  "stroke_path_count": 22,
+  "filled_region_count": 14,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 7,
+    "warn": 0,
+    "contained_fill_overlays": 6,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 100.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Current context: regime A · time t · limits",
+      "other_bbox": [
+        335.3252868652344,
+        9.365669250488281,
+        496.63238525390625,
+        19.488754272460938
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Candidate experience",
+      "other_bbox": [
+        13.6063232421875,
+        35.44440841674805,
+        101.8386459350586,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Regime",
+      "other_bbox": [
+        221.9151153564453,
+        35.44440841674805,
+        253.1642303466797,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Fresh",
+      "other_bbox": [
+        278.6715087890625,
+        35.44440841674805,
+        301.85662841796875,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Limits",
+      "other_bbox": [
+        331.13739013671875,
+        35.44440841674805,
+        354.8214111328125,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "g",
+      "other_bbox": [
+        384.1112365722656,
+        35.44440841674805,
+        389.1546325683594,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Applicability gate",
+      "text_bbox": [
+        13.60629940032959,
+        7.920243263244629,
+        496.63238525390625,
+        45.368553161621094
+      ],
+      "other_text": "Decision",
+      "other_bbox": [
+        417.25982666015625,
+        35.44440841674805,
+        452.0375061035156,
+        45.5674934387207
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    }
+  ]
+}
