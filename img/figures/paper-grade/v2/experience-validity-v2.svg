@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="121.76mm" viewBox="0 0 510 345" role="img">
+  <title>Context-dependent experience applicability</title>
+  <desc>Three candidate experiences are checked for regime, freshness and limits. Only E1 is eligible; E2 is expired and E3 needs evidence.</desc>
+  <rect x="0" y="0" width="510" height="345" fill="white" />
+  <g id="stage-labels">
+    <text x="18" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="700" text-anchor="start">a</text>
+    <text x="32" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="600" text-anchor="start">Candidate memory</text>
+    <text x="190" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="700" text-anchor="start">b</text>
+    <text x="204" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="600" text-anchor="start">Applicability gate</text>
+    <text x="395" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="700" text-anchor="start">c</text>
+    <text x="409" y="23" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.5" font-weight="600" text-anchor="start">Decision</text>
+  </g>
+  <g id="current-context">
+    <rect x="190" y="43" width="182" height="36" rx="3" fill="#F4F6F7" />
+    <text x="200" y="57" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="8.1" font-weight="600" text-anchor="start">Current context c(t)</text>
+    <text x="200" y="70" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.8" font-weight="400" text-anchor="start">Regime A · time t · required limits</text>
+    <line x1="281" y1="79" x2="281" y2="94" stroke="#657782" stroke-width="0.75" />
+    <path d="M278.8 91 L281 95 L283.2 91Z" fill="#657782" />
+    <text x="18" y="63" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.2" font-weight="400" text-anchor="start">Retrieved by relevance</text>
+    <text x="18" y="77" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.2" font-weight="400" text-anchor="start">Checked before reuse</text>
+  </g>
+  <g id="condition-headings">
+    <text x="218" y="112" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.2" font-weight="400" text-anchor="middle">Regime</text>
+    <text x="261" y="112" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.2" font-weight="400" text-anchor="middle">Freshness</text>
+    <text x="304" y="112" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.2" font-weight="400" text-anchor="middle">Limits</text>
+    <text x="354" y="112" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.5" font-weight="400" text-anchor="middle" font-style="italic">g</text>
+    <line x1="190" y1="119" x2="372" y2="119" stroke="#DAE2E6" stroke-width="0.65" />
+  </g>
+  <g id="record-E1">
+    <rect x="185" y="124" width="189" height="48" rx="4" fill="#E9F4F1" />
+    <rect x="185" y="124" width="2.2" height="48" rx="1.1" fill="#137D72" />
+    <path d="M18 133 h16 l6 6 v24 h-22 Z" stroke="#137D72" stroke-width="0.8" fill="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M34 133 v6 h6" stroke="#137D72" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="22" y1="145" x2="34" y2="145" stroke="#137D72" stroke-width="0.6" />
+    <line x1="22" y1="150" x2="32" y2="150" stroke="#137D72" stroke-width="0.6" />
+    <line x1="22" y1="155" x2="29" y2="155" stroke="#137D72" stroke-width="0.6" />
+    <text x="50" y="143" fill="#137D72" font-family="Liberation Sans,Arial,sans-serif" font-size="9.2" font-weight="700" text-anchor="start">E1</text>
+    <text x="70" y="143" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="8.3" font-weight="400" text-anchor="start">Compatible case</text>
+    <text x="50" y="158" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.7" font-weight="400" text-anchor="start">Regime A · current</text>
+    <line x1="161" y1="148" x2="177.6" y2="148" stroke="#137D72" stroke-width="0.95" />
+    <path d="M176.6 145.8 L181 148 L176.6 150.2Z" fill="#137D72" />
+    <circle cx="218" cy="148" r="7.6" fill="#137D72" stroke="none" stroke-width="0.7" />
+    <path d="M214.8 148 l2.1 2.2 l4.3 -4.5" stroke="white" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="261" cy="148" r="7.6" fill="#137D72" stroke="none" stroke-width="0.7" />
+    <path d="M257.8 148 l2.1 2.2 l4.3 -4.5" stroke="white" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="304" cy="148" r="7.6" fill="#137D72" stroke="none" stroke-width="0.7" />
+    <path d="M300.8 148 l2.1 2.2 l4.3 -4.5" stroke="white" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="328" y1="135" x2="328" y2="161" stroke="#A5CFC6" stroke-width="0.65" />
+    <text x="354" y="152" fill="#137D72" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle">1</text>
+    <line x1="375" y1="148" x2="387.6" y2="148" stroke="#137D72" stroke-width="1.2" />
+    <path d="M386.6 145.8 L391 148 L386.6 150.2Z" fill="#137D72" />
+    <circle cx="400" cy="141" r="7.6" fill="#137D72" stroke="none" stroke-width="0.7" />
+    <path d="M396.8 141 l2.1 2.2 l4.3 -4.5" stroke="white" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="414" y="145" fill="#137D72" font-family="Liberation Sans,Arial,sans-serif" font-size="10.3" font-weight="600" text-anchor="start">Eligible</text>
+    <text x="393" y="160" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.8" font-weight="400" text-anchor="start">Plan with provenance</text>
+  </g>
+  <g id="record-E2">
+    <path d="M18 196 h16 l6 6 v24 h-22 Z" stroke="#82939E" stroke-width="0.8" fill="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M34 196 v6 h6" stroke="#82939E" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="22" y1="208" x2="34" y2="208" stroke="#82939E" stroke-width="0.6" />
+    <line x1="22" y1="213" x2="32" y2="213" stroke="#82939E" stroke-width="0.6" />
+    <line x1="22" y1="218" x2="29" y2="218" stroke="#82939E" stroke-width="0.6" />
+    <text x="50" y="206" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="9.2" font-weight="700" text-anchor="start">E2</text>
+    <text x="70" y="206" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="8.3" font-weight="400" text-anchor="start">Expired rule</text>
+    <text x="50" y="221" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.7" font-weight="400" text-anchor="start">Regime A · superseded</text>
+    <line x1="161" y1="211" x2="177.6" y2="211" stroke="#A5B1B8" stroke-width="0.65" />
+    <path d="M176.6 208.8 L181 211 L176.6 213.2Z" fill="#A5B1B8" />
+    <circle cx="218" cy="211" r="7.6" fill="#EEF1F3" stroke="none" stroke-width="0.7" />
+    <path d="M214.8 211 l2.1 2.2 l4.3 -4.5" stroke="#657782" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="261" cy="211" r="7.6" fill="white" stroke="#A2ADB5" stroke-width="0.7" />
+    <path d="M258.5 208.5 l5 5 M263.5 208.5 l-5 5" stroke="#243C4C" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="304" cy="211" r="7.6" fill="#EEF1F3" stroke="none" stroke-width="0.7" />
+    <path d="M300.8 211 l2.1 2.2 l4.3 -4.5" stroke="#657782" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="328" y1="198" x2="328" y2="224" stroke="#DAE2E6" stroke-width="0.65" />
+    <text x="354" y="215" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle">0</text>
+    <line x1="375" y1="211" x2="387.6" y2="211" stroke="#A5B1B8" stroke-width="0.65" />
+    <path d="M386.6 208.8 L391 211 L386.6 213.2Z" fill="#A5B1B8" />
+    <circle cx="400" cy="204" r="7.6" fill="white" stroke="#A2ADB5" stroke-width="0.7" />
+    <path d="M397.5 201.5 l5 5 M402.5 201.5 l-5 5" stroke="#657782" stroke-width="0.9" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="414" y="208" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.3" font-weight="600" text-anchor="start">Exclude</text>
+    <text x="393" y="223" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.8" font-weight="400" text-anchor="start">Retain history for audit</text>
+  </g>
+  <g id="record-E3">
+    <path d="M18 259 h16 l6 6 v24 h-22 Z" stroke="#82939E" stroke-width="0.8" fill="white" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M34 259 v6 h6" stroke="#82939E" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="22" y1="271" x2="34" y2="271" stroke="#82939E" stroke-width="0.6" />
+    <line x1="22" y1="276" x2="32" y2="276" stroke="#82939E" stroke-width="0.6" />
+    <line x1="22" y1="281" x2="29" y2="281" stroke="#82939E" stroke-width="0.6" />
+    <text x="50" y="269" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="9.2" font-weight="700" text-anchor="start">E3</text>
+    <text x="70" y="269" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="8.3" font-weight="400" text-anchor="start">Missing evidence</text>
+    <text x="50" y="284" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.7" font-weight="400" text-anchor="start">Regime unknown · current</text>
+    <line x1="161" y1="274" x2="177.6" y2="274" stroke="#A5B1B8" stroke-width="0.65" />
+    <path d="M176.6 271.8 L181 274 L176.6 276.2Z" fill="#A5B1B8" />
+    <circle cx="218" cy="274" r="7.6" fill="white" stroke="#A2ADB5" stroke-width="0.7" />
+    <text x="218" y="277" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="9.1" font-weight="600" text-anchor="middle">?</text>
+    <circle cx="261" cy="274" r="7.6" fill="#EEF1F3" stroke="none" stroke-width="0.7" />
+    <path d="M257.8 274 l2.1 2.2 l4.3 -4.5" stroke="#657782" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="304" cy="274" r="7.6" fill="#EEF1F3" stroke="none" stroke-width="0.7" />
+    <path d="M300.8 274 l2.1 2.2 l4.3 -4.5" stroke="#657782" stroke-width="1.05" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="328" y1="261" x2="328" y2="287" stroke="#DAE2E6" stroke-width="0.65" />
+    <text x="354" y="278" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle">0</text>
+    <line x1="375" y1="274" x2="387.6" y2="274" stroke="#A5B1B8" stroke-width="0.65" />
+    <path d="M386.6 271.8 L391 274 L386.6 276.2Z" fill="#A5B1B8" />
+    <circle cx="398.8" cy="265.7" r="5.2" fill="white" stroke="#243C4C" stroke-width="0.9" />
+    <path d="M402.5 269.4 l4 4" stroke="#243C4C" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="414" y="271" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="10.3" font-weight="600" text-anchor="start">Verify</text>
+    <text x="393" y="286" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.8" font-weight="400" text-anchor="start">Request missing evidence</text>
+  </g>
+  <g id="verification-note">
+    <line x1="393" y1="295" x2="494" y2="295" stroke="#DAE2E6" stroke-width="0.65" />
+    <text x="393" y="309" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="7.7" font-weight="600" text-anchor="start">Verified evidence</text>
+    <text x="393" y="321" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.7" font-weight="400" text-anchor="start">New version → recheck</text>
+    <line x1="430" y1="311" x2="430" y2="314" stroke="#657782" stroke-width="0.6" />
+  </g>
+  <g id="gate-definition">
+    <text x="190" y="312" fill="#243C4C" font-family="Liberation Sans,Arial,sans-serif" font-size="8.1" font-weight="400" text-anchor="start">Reuse only if every required check is supported.</text>
+    <text x="190" y="326" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="8.1" font-weight="400" text-anchor="start">g(e, c) = 1  ⇔  all checks = supported</text>
+    <text x="18" y="326" fill="#657782" font-family="Liberation Sans,Arial,sans-serif" font-size="7.5" font-weight="400" text-anchor="start">Conceptual example</text>
+  </g>
+</svg>

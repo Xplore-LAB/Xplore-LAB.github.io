@@ -1,0 +1,10 @@
+{
+  "kind": "conceptual fixture, not experimental results",
+  "context": "Regime A · time t · required limits",
+  "conditions": ["Regime", "Freshness", "Limits"],
+  "records": [
+    {"id": "E1", "label": "Compatible case", "detail": "Regime A · current", "checks": ["yes", "yes", "yes"], "decision": "Eligible", "action": "Plan with provenance"},
+    {"id": "E2", "label": "Expired rule", "detail": "Regime A · superseded", "checks": ["yes", "no", "yes"], "decision": "Exclude", "action": "Retain history for audit"},
+    {"id": "E3", "label": "Missing evidence", "detail": "Regime unknown · current", "checks": ["unknown", "yes", "yes"], "decision": "Verify", "action": "Request missing evidence"}
+  ]
+}

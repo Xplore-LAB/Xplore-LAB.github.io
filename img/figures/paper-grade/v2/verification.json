@@ -1,0 +1,16 @@
+{
+  "svg_text_objects": 38,
+  "pdf_native_text_spans": 38,
+  "pdf_raster_images": 0,
+  "minimum_font_pt": 7.5,
+  "direct_span_text_overlaps": 0,
+  "gate_outputs": [
+    1,
+    0,
+    0
+  ],
+  "edit_test": "Moved the E2 semantic group, edited its whole label, exported and verified native PDF text.",
+  "nature_svg_audit": "pass with intentional 180mm canvas warning; no target venue fixed",
+  "pdf_collision_auditor": "9 FAIL and 1 WARN from unioned PDF trace bounds; triaged against direct spans and rendered PNG, not reported as a clean automated pass",
+  "visual_status": "awaiting user feedback"
+}

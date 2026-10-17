@@ -1,0 +1,21 @@
+{
+  "svg": "img/figures/paper-grade/v2/experience-validity-v2.svg",
+  "verdict": "PASS WITH WARNINGS",
+  "auditable": true,
+  "width_mm": 180.0,
+  "text_count": 38,
+  "minimum_found_pt": 7.503473830477074,
+  "maximum_found_pt": 11.005094951366376,
+  "thresholds": {
+    "min_pt": 7.0,
+    "max_pt": 12.0,
+    "max_width_mm": 183.0
+  },
+  "findings": [
+    {
+      "severity": "WARN",
+      "kind": "canvas.width",
+      "message": "width 180.0 mm is not 89 mm or 183 mm"
+    }
+  ]
+}

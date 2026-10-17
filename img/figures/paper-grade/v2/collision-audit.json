@@ -1,0 +1,249 @@
+{
+  "pdf": "img/figures/paper-grade/v2/experience-validity-v2.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 35,
+  "text_trace_count": 33,
+  "stroke_path_count": 43,
+  "filled_region_count": 26,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 9,
+    "warn": 1,
+    "contained_fill_overlays": 3,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": null,
+      "other_bbox": [
+        281.1289978027344,
+        79.03500366210938,
+        281.1289978027344,
+        94.03900146484375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        2
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 89.6% of the smaller box",
+      "text": "aCandidate memory",
+      "text_bbox": [
+        18.01749038696289,
+        14.491363525390625,
+        452.9609069824219,
+        24.995820999145508
+      ],
+      "other_text": "bApplicability gate",
+      "other_bbox": [
+        190.0805206298828,
+        13.503229141235352,
+        291.0704040527344,
+        25.22620391845703
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 89.6% of the smaller box",
+      "text": "aCandidate memory",
+      "text_bbox": [
+        18.01749038696289,
+        14.491363525390625,
+        452.9609069824219,
+        24.995820999145508
+      ],
+      "other_text": "cDecision",
+      "other_bbox": [
+        395.1775817871094,
+        13.503229141235352,
+        452.96258544921875,
+        25.22620391845703
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 91.6% of the smaller box",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": "Retrieved by relevance",
+      "other_bbox": [
+        18.01749038696289,
+        55.602596282958984,
+        101.90628051757812,
+        64.75768280029297
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 100.0% of the smaller box",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": "Checked before reuse",
+      "other_bbox": [
+        18.01749038696289,
+        69.60853576660156,
+        98.72332763671875,
+        78.76361846923828
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": "Regime",
+      "other_bbox": [
+        203.96859741210938,
+        104.62339782714844,
+        232.22959899902344,
+        113.77848052978516
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": "Freshness",
+      "other_bbox": [
+        241.96713256835938,
+        104.62339782714844,
+        280.260986328125,
+        113.77848052978516
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.0% of the smaller box",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": "Limits",
+      "other_bbox": [
+        293.41937255859375,
+        104.62339782714844,
+        314.8386535644531,
+        113.77848052978516
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 26.9% of the smaller box",
+      "text": "Current context c(t)",
+      "text_bbox": [
+        200.09475708007812,
+        50.452857971191406,
+        275.278564453125,
+        58.556297302246094
+      ],
+      "other_text": "Regime A · time t · required limits",
+      "other_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 2 filled region(s)",
+      "text": "Regime A · time t · required limits",
+      "text_bbox": [
+        18.01749038696289,
+        56.3742790222168,
+        315.00628662109375,
+        113.59856414794922
+      ],
+      "other_text": null,
+      "other_bbox": [
+        190.08999633789062,
+        43.02000045776367,
+        372.1679992675781,
+        95.03900146484375
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        1,
+        3
+      ]
+    }
+  ]
+}
