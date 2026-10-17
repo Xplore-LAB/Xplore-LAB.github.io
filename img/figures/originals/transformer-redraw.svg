@@ -1,0 +1,43 @@
+<svg viewBox="0 0 632 220" role="img" aria-label="Transformer 编码器解码器双塔示意">
+        <defs>
+          <marker id="arr2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/>
+          </marker>
+        </defs>
+        <!-- 编码器塔 -->
+        <g text-anchor="middle">
+          <rect x="96" y="60" width="140" height="106" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-width="0.8"/>
+          <text x="244" y="76" font-size="10" fill="#57606a">N×</text>
+          <rect x="110" y="74" width="112" height="24" rx="4" fill="#dceaf5" stroke="#0072B2" stroke-width="0.8"/>
+          <text x="166" y="90" font-size="9.5" fill="#24292f">Feed Forward</text>
+          <rect x="110" y="106" width="112" height="24" rx="4" fill="#fff" stroke="#b0b8c0" stroke-width="0.8"/>
+          <text x="166" y="122" font-size="9.5" fill="#24292f">Multi-Head Attn</text>
+          <text x="166" y="152" font-size="8.5" fill="#8b949e">Add &amp; Norm × 2</text>
+          <rect x="116" y="184" width="100" height="20" rx="4" fill="#fff" stroke="#0072B2"/>
+          <text x="166" y="198" font-size="9" fill="#24292f">Inputs + Embed</text>
+          <line x1="166" y1="184" x2="166" y2="168" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr2)"/>
+        </g>
+        <!-- 解码器塔 -->
+        <g text-anchor="middle">
+          <rect x="396" y="46" width="150" height="120" rx="8" fill="#f6f8fa" stroke="#8b949e" stroke-width="0.8"/>
+          <text x="554" y="62" font-size="10" fill="#57606a">N×</text>
+          <rect x="410" y="60" width="122" height="22" rx="4" fill="#dceaf5" stroke="#0072B2" stroke-width="0.8"/>
+          <text x="471" y="75" font-size="9.5" fill="#24292f">Feed Forward</text>
+          <rect x="410" y="88" width="122" height="22" rx="4" fill="#fdeeda" stroke="#E69F00" stroke-width="0.8"/>
+          <text x="471" y="103" font-size="9.5" fill="#24292f">Cross MHA</text>
+          <rect x="410" y="116" width="122" height="22" rx="4" fill="#fff" stroke="#b0b8c0" stroke-width="0.8"/>
+          <text x="471" y="131" font-size="9.5" fill="#24292f">Masked MHA</text>
+          <rect x="416" y="184" width="110" height="20" rx="4" fill="#fff" stroke="#0072B2"/>
+          <text x="471" y="198" font-size="9" fill="#24292f">Outputs (右移)</text>
+          <line x1="471" y1="184" x2="471" y2="168" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr2)"/>
+          <rect x="416" y="12" width="110" height="20" rx="4" fill="#009E73"/>
+          <text x="471" y="26" font-size="9" fill="#fff">Linear + Softmax</text>
+          <line x1="471" y1="46" x2="471" y2="34" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr2)"/>
+        </g>
+        <!-- 交叉注意力：全场唯一斜线 -->
+        <line x1="236" y1="86" x2="408" y2="94" stroke="#D55E00" stroke-width="1.4" marker-end="url(#arr2)"/>
+        <line x1="236" y1="98" x2="408" y2="102" stroke="#D55E00" stroke-width="1.4" marker-end="url(#arr2)"/>
+        <text x="318" y="66" text-anchor="middle" font-size="9" fill="#D55E00" font-style="italic">cross attention</text>
+        <text x="166" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#24292f">Encoder</text>
+        <text x="471" y="216" text-anchor="middle" font-size="9.5" fill="#8b949e"> </text>
+      </svg>

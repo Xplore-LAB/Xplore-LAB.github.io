@@ -1,0 +1,37 @@
+<svg viewBox="0 0 632 190" role="img" aria-label="标准提示与思维链提示对照示意">
+        <defs>
+          <marker id="arrp10" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/>
+          </marker>
+        </defs>
+        <!-- 左：标准提示 -->
+        <rect x="16" y="14" width="296" height="158" rx="8" fill="#f6f8fa" stroke="#e5e9ee"/>
+        <text x="164" y="32" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#24292f" font-weight="bold">Standard Prompting</text>
+        <rect x="32" y="42" width="264" height="34" rx="5" fill="#fff" stroke="#d0d7de"/>
+        <g font-size="8.5" fill="#24292f">
+          <text x="40" y="56">Q: The cafeteria had 23 apples. Used</text>
+          <text x="40" y="68">20 for lunch, bought 6 more. Now?</text>
+        </g>
+        <path d="M164 78 L164 86" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arrp10)"/>
+        <rect x="32" y="90" width="264" height="32" rx="5" fill="#fff" stroke="#d0d7de"/>
+        <text x="40" y="106" font-size="10" fill="#24292f">A: 27</text>
+        <text x="40" y="116" font-size="7.5" fill="#8b949e">一步作答，无中间步骤</text>
+        <text x="278" y="110" font-size="13" fill="#D55E00" font-weight="bold">✗</text>
+        <!-- 右：思维链提示 -->
+        <rect x="320" y="14" width="296" height="158" rx="8" fill="#f6f8fa" stroke="#e5e9ee"/>
+        <text x="468" y="32" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#24292f" font-weight="bold">Chain-of-Thought Prompting</text>
+        <rect x="336" y="42" width="264" height="34" rx="5" fill="#fff" stroke="#d0d7de"/>
+        <g font-size="8.5" fill="#24292f">
+          <text x="344" y="56">Q: The cafeteria had 23 apples. Used</text>
+          <text x="344" y="68">20 for lunch, bought 6 more. Now?</text>
+        </g>
+        <path d="M468 78 L468 86" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arrp10)"/>
+        <rect x="336" y="90" width="264" height="60" rx="5" fill="#fff" stroke="#d0d7de"/>
+        <g font-size="8.5" fill="#24292f">
+          <text x="344" y="104">23 − 20 = 3</text>
+          <text x="344" y="117">3 + 6 = 9</text>
+        </g>
+        <text x="344" y="138" font-size="10" fill="#009E73" font-weight="bold">A: 9</text>
+        <text x="582" y="142" font-size="13" fill="#009E73" font-weight="bold">✓</text>
+        <text x="316" y="186" text-anchor="middle" font-size="9.5" fill="#8b949e">两侧 prompt 逐字一致，唯一变量是中间步骤的存在与否</text>
+      </svg>

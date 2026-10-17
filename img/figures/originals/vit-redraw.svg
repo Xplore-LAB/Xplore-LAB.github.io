@@ -1,0 +1,64 @@
+<svg viewBox="0 0 632 190" role="img" aria-label="ViT patch 化流水线示意">
+        <defs>
+          <marker id="arrp6" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/>
+          </marker>
+        </defs>
+        <!-- 输入图像：3×3 网格，左上角 patch 高亮 -->
+        <rect x="18" y="36" width="96" height="96" fill="#f6f8fa" stroke="#24292f" stroke-width="1.2"/>
+        <rect x="18" y="36" width="32" height="32" fill="#E69F00"/>
+        <rect x="50" y="36" width="32" height="32" fill="#7fa8c9"/>
+        <rect x="82" y="36" width="32" height="32" fill="#6a99be"/>
+        <rect x="18" y="68" width="32" height="32" fill="#89b4d0"/>
+        <rect x="50" y="68" width="32" height="32" fill="#5d90b8"/>
+        <rect x="82" y="68" width="32" height="32" fill="#a4c3da"/>
+        <rect x="18" y="100" width="32" height="32" fill="#76a3c4"/>
+        <rect x="50" y="100" width="32" height="32" fill="#9dbcd4"/>
+        <rect x="82" y="100" width="32" height="32" fill="#6897bf"/>
+        <text x="66" y="150" text-anchor="middle" font-size="9.5" fill="#8b949e">输入图像</text>
+        <!-- 图像 → patch 序列 -->
+        <path d="M120 84 L156 84" stroke="#8b949e" stroke-width="1.4" marker-end="url(#arrp6)"/>
+        <text x="139" y="72" text-anchor="middle" font-size="8" fill="#8b949e">切分</text>
+        <!-- patch 序列（含 class token） -->
+        <text x="244" y="64" text-anchor="middle" font-size="8.5" fill="#8b949e">展平 patch + 位置编码</text>
+        <g font-family="Georgia, serif" font-size="9" text-anchor="middle">
+          <rect x="166" y="74" width="22" height="22" rx="3" fill="#fff" stroke="#0072B2" stroke-width="1.2"/>
+          <text x="177" y="89" fill="#0072B2">0*</text>
+          <rect x="194" y="74" width="22" height="22" rx="3" fill="#E69F00"/>
+          <text x="205" y="89" fill="#fff">1</text>
+          <rect x="222" y="74" width="22" height="22" rx="3" fill="#8ab0cf"/>
+          <text x="233" y="89" fill="#fff">2</text>
+          <rect x="250" y="74" width="22" height="22" rx="3" fill="#a4c3da"/>
+          <text x="261" y="89" fill="#fff">3</text>
+          <text x="286" y="89" fill="#8b949e">…</text>
+          <rect x="300" y="74" width="22" height="22" rx="3" fill="#a4c3da"/>
+          <text x="311" y="89" fill="#fff">9</text>
+        </g>
+        <!-- 序列 → Encoder -->
+        <path d="M330 85 L368 85" stroke="#8b949e" stroke-width="1.4" marker-end="url(#arrp6)"/>
+        <!-- Transformer Encoder -->
+        <rect x="372" y="40" width="104" height="88" rx="8" fill="#e9f3fa" stroke="#0072B2" stroke-width="1.5"/>
+        <g text-anchor="middle">
+          <text x="424" y="58" font-family="Georgia, serif" font-size="9.5" fill="#0072B2" font-weight="bold">Transformer</text>
+          <text x="424" y="71" font-family="Georgia, serif" font-size="9.5" fill="#0072B2" font-weight="bold">Encoder</text>
+          <rect x="386" y="80" width="76" height="12" rx="2" fill="#fff" stroke="#0072B2" stroke-width="0.8"/>
+          <text x="424" y="89" font-size="7.5" fill="#24292f">Multi-Head Attn</text>
+          <rect x="386" y="98" width="76" height="12" rx="2" fill="#fff" stroke="#0072B2" stroke-width="0.8"/>
+          <text x="424" y="107" font-size="7.5" fill="#24292f">MLP</text>
+          <text x="424" y="121" font-size="7.5" fill="#8b949e">× L 层</text>
+        </g>
+        <!-- Encoder → 分类头 -->
+        <path d="M480 85 L512 85" stroke="#8b949e" stroke-width="1.4" marker-end="url(#arrp6)"/>
+        <rect x="516" y="40" width="98" height="88" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+        <g font-size="7.5" fill="#57606a">
+          <text x="528" y="58" font-size="8.5" fill="#24292f">类别概率</text>
+          <rect x="528" y="66" width="48" height="9" rx="2" fill="#009E73"/>
+          <text x="580" y="73.5">cat .87</text>
+          <rect x="528" y="82" width="18" height="9" rx="2" fill="#b7c4ce"/>
+          <text x="550" y="89.5">dog .09</text>
+          <rect x="528" y="98" width="9" height="9" rx="2" fill="#d4dce2"/>
+          <text x="541" y="105.5">car .02</text>
+          <text x="565" y="120" text-anchor="middle" fill="#8b949e">MLP 头</text>
+        </g>
+        <text x="316" y="176" text-anchor="middle" font-size="9.5" fill="#8b949e">橙色 patch 全程保持橙色：图元颜色即身份，跨阶段可追踪</text>
+      </svg>

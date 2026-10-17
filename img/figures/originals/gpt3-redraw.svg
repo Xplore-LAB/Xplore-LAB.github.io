@@ -1,0 +1,41 @@
+<svg viewBox="0 0 632 190" role="img" aria-label="GPT-3 few-shot 缩放小倍数图示意">
+        <text x="20" y="20" font-family="Georgia, serif" font-size="10" fill="#24292f" font-weight="bold">Few-Shot Performance</text>
+        <g font-family="Georgia, serif" font-size="9" fill="#24292f">
+          <line x1="428" y1="14" x2="448" y2="14" stroke="#0072B2" stroke-width="2.4"/>
+          <text x="453" y="17">few-shot</text>
+          <line x1="428" y1="28" x2="448" y2="28" stroke="#E69F00" stroke-width="1.6"/>
+          <text x="453" y="31">one-shot</text>
+          <line x1="428" y1="42" x2="448" y2="42" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <text x="453" y="45">zero-shot</text>
+        </g>
+        <!-- 四个同构面板 -->
+        <g>
+          <rect x="20" y="52" width="280" height="56" rx="4" fill="#fff" stroke="#e5e9ee"/>
+          <text x="28" y="64" font-size="8.5" fill="#57606a">LAMBADA</text>
+          <polyline points="30,98 100,90 170,76 230,66 288,62" fill="none" stroke="#0072B2" stroke-width="2"/>
+          <polyline points="30,102 100,98 170,92 230,86 288,82" fill="none" stroke="#E69F00" stroke-width="1.4"/>
+          <polyline points="30,105 100,103 170,101 230,99 288,97" fill="none" stroke="#8b949e" stroke-width="1.1" stroke-dasharray="4 3"/>
+        </g>
+        <g>
+          <rect x="332" y="52" width="280" height="56" rx="4" fill="#fff" stroke="#e5e9ee"/>
+          <text x="340" y="64" font-size="8.5" fill="#57606a">TriviaQA</text>
+          <polyline points="342,98 412,86 482,70 542,60 600,58" fill="none" stroke="#0072B2" stroke-width="2"/>
+          <polyline points="342,102 412,96 482,88 542,80 600,76" fill="none" stroke="#E69F00" stroke-width="1.4"/>
+          <polyline points="342,105 412,104 482,102 542,100 600,99" fill="none" stroke="#8b949e" stroke-width="1.1" stroke-dasharray="4 3"/>
+        </g>
+        <g>
+          <rect x="20" y="118" width="280" height="56" rx="4" fill="#fff" stroke="#e5e9ee"/>
+          <text x="28" y="130" font-size="8.5" fill="#57606a">HellaSwag</text>
+          <polyline points="30,166 100,160 170,150 230,140 288,132" fill="none" stroke="#0072B2" stroke-width="2"/>
+          <polyline points="30,169 100,166 170,162 230,158 288,154" fill="none" stroke="#E69F00" stroke-width="1.4"/>
+          <polyline points="30,171 100,170 170,169 230,168 288,167" fill="none" stroke="#8b949e" stroke-width="1.1" stroke-dasharray="4 3"/>
+        </g>
+        <g>
+          <rect x="332" y="118" width="280" height="56" rx="4" fill="#fff" stroke="#e5e9ee"/>
+          <text x="340" y="130" font-size="8.5" fill="#57606a">SuperGLUE</text>
+          <polyline points="342,164 412,156 482,146 542,136 600,130" fill="none" stroke="#0072B2" stroke-width="2"/>
+          <polyline points="342,168 412,165 482,160 542,156 600,152" fill="none" stroke="#E69F00" stroke-width="1.4"/>
+          <polyline points="342,170 412,170 482,169 542,169 600,168" fill="none" stroke="#8b949e" stroke-width="1.1" stroke-dasharray="4 3"/>
+        </g>
+        <text x="316" y="186" text-anchor="middle" font-size="9" fill="#8b949e">横轴：模型参数量（对数刻度，125M → 175B）　纵轴：任务性能（各面板同构）</text>
+      </svg>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 632 190" role="img" aria-label="InstructGPT 三阶段流程示意">
+        <defs>
+          <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/>
+          </marker>
+        </defs>
+        <!-- 三个幕布 -->
+        <g fill="#f6f8fa" stroke="#e5e9ee">
+          <rect x="8" y="26" width="196" height="126" rx="8"/>
+          <rect x="216" y="26" width="196" height="126" rx="8"/>
+          <rect x="424" y="26" width="196" height="126" rx="8"/>
+        </g>
+        <g font-family="Georgia, serif" font-size="10" fill="#0ea5e9" font-weight="bold">
+          <text x="22" y="46">STEP 1</text>
+          <text x="230" y="46">STEP 2</text>
+          <text x="438" y="46">STEP 3</text>
+        </g>
+        <g font-size="11" fill="#24292f">
+          <text x="22" y="63">监督微调 SFT</text>
+          <text x="230" y="63">训练奖励模型</text>
+          <text x="438" y="63">PPO 强化学习</text>
+        </g>
+        <!-- 幕 1 -->
+        <g font-size="9.5" text-anchor="middle">
+          <rect x="22" y="80" width="76" height="26" rx="5" fill="#fff" stroke="#0072B2"/>
+          <text x="60" y="97" fill="#24292f">Prompt 数据</text>
+          <rect x="114" y="80" width="76" height="26" rx="5" fill="#0072B2"/>
+          <text x="152" y="97" fill="#fff">GPT-3 SFT</text>
+          <line x1="98" y1="93" x2="112" y2="93" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr)"/>
+        </g>
+        <!-- 幕 2 -->
+        <g font-size="9.5" text-anchor="middle">
+          <rect x="228" y="80" width="88" height="26" rx="5" fill="#fff" stroke="#0072B2"/>
+          <text x="272" y="97" fill="#24292f">Prompt+多回答</text>
+          <rect x="330" y="80" width="68" height="26" rx="5" fill="#fff" stroke="#E69F00"/>
+          <text x="364" y="97" fill="#24292f">人工排序</text>
+          <line x1="316" y1="93" x2="328" y2="93" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr)"/>
+          <rect x="272" y="122" width="88" height="24" rx="5" fill="#E69F00"/>
+          <text x="316" y="138" fill="#fff">奖励模型 RM</text>
+          <line x1="364" y1="106" x2="330" y2="120" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr)"/>
+        </g>
+        <!-- 幕 3 -->
+        <g font-size="9.5" text-anchor="middle">
+          <rect x="436" y="80" width="64" height="26" rx="5" fill="#fff" stroke="#0072B2"/>
+          <text x="468" y="97" fill="#24292f">Prompt</text>
+          <rect x="516" y="80" width="76" height="26" rx="5" fill="#009E73"/>
+          <text x="554" y="97" fill="#fff">PPO 策略</text>
+          <line x1="500" y1="93" x2="514" y2="93" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arr)"/>
+          <rect x="480" y="122" width="80" height="24" rx="5" fill="#E69F00"/>
+          <text x="520" y="138" fill="#fff">RM 打分</text>
+          <line x1="535" y1="122" x2="550" y2="108" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#arr)"/>
+        </g>
+        <text x="316" y="178" text-anchor="middle" font-size="9.5" fill="#8b949e">实线 = 数据流　虚线 = 训练更新（全图仅此两种箭头）</text>
+      </svg>
