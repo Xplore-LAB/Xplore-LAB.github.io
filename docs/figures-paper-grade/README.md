@@ -62,3 +62,6 @@
 - draw.io 官方嵌入协议：https://www.drawio.com/docs/reference/embed-mode/ ：XML 加载、保存和 SVG 导出接口。
 - draw.io 官方编辑入口：https://app.diagrams.net/ 。本轮实际验证状态见配套 QA；不把桌面 CLI 记为已安装。
 - 本地已有工具验证与旧版工作流：`tools/academic-skills/figures/README.md` 和原飞书《科研绘图工作流》；V1.2 增补复杂方法图经验，不覆盖既有内容。
+
+
+本轮编辑器状态：SVG/Inkscape 的模块移动、整句改字和 PDF 重导出已实测通过；draw.io 对象和连线引用结构检查通过，但网页编辑器打开／导出验收受网络阻断，未计为通过。当前经过实际验证的人工编辑路线是 SVG → Inkscape。详见 editor-validation.json。

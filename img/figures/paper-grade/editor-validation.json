@@ -1,0 +1,7 @@
+{
+  "svg_module_move_and_label_edit": "passed_in_inkscape_cli",
+  "vector_pdf_export": "passed",
+  "drawio_object_structure": "passed",
+  "drawio_editor_import_export": "not_verified",
+  "drawio_validation_limit": "Public editor returned HTTP 403; local validation attempt did not complete. SVG/Inkscape is the verified editing route."
+}
