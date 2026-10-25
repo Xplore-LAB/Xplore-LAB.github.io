@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-24T05:58:19.802477+00:00",
+    "generated_at": "2026-10-25T06:13:36.347799+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -227,6 +227,15 @@
             "group": "外部链接"
         },
         {
+            "desc": "暂无描述，点击查看仓库详情",
+            "badge": "Python",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/home-lab434",
+            "emoji": "🐍",
+            "title": "home-lab434",
+            "group": "开源项目"
+        },
+        {
             "desc": "在 QQ 私聊中继续本地 Codex 会话 | Control Codex from QQ: streaming replies, files, approvals & durable tasks",
             "badge": "TypeScript",
             "featured": false,
@@ -251,15 +260,6 @@
             "path": "https://github.com/Xplore-LAB/kev-playground",
             "emoji": "📦",
             "title": "kev-playground",
-            "group": "开源项目"
-        },
-        {
-            "desc": "暂无描述，点击查看仓库详情",
-            "badge": "Python",
-            "featured": false,
-            "path": "https://github.com/Xplore-LAB/home-lab434",
-            "emoji": "🐍",
-            "title": "home-lab434",
             "group": "开源项目"
         },
         {
