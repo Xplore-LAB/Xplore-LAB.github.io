@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="648" viewBox="0 0 720 648" role="img" aria-labelledby="title desc">
+  <title id="title">一次 Portal 认证实验的顺序</title>
+  <desc id="desc">先让目标设备离线，再由树莓派临时采用目标地址并由本人完成网页登录，最后让树莓派退出，启动目标设备观察是否能够联网。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#78949d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="720" height="648" rx="20" fill="#faf9f5"/>
+  <g font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, sans-serif">
+    <text x="360" y="39" text-anchor="middle" font-size="25" font-weight="700" fill="#24434d">一次只让一台设备使用目标 MAC</text>
+    <g stroke="#dae5e7" stroke-width="1.5">
+      <rect x="28" y="68" width="664" height="140" rx="15" fill="#fff"/>
+      <rect x="28" y="244" width="664" height="174" rx="15" fill="#eef7f8"/>
+      <rect x="28" y="454" width="664" height="140" rx="15" fill="#fff"/>
+    </g>
+    <g fill="#197f92">
+      <circle cx="76" cy="119" r="24"/>
+      <circle cx="76" cy="295" r="24"/>
+      <circle cx="76" cy="505" r="24"/>
+    </g>
+    <g text-anchor="middle" font-size="26" font-weight="700" fill="#fff">
+      <text x="76" y="128">1</text>
+      <text x="76" y="304">2</text>
+      <text x="76" y="514">3</text>
+    </g>
+    <g font-size="29" font-weight="700" fill="#24434d">
+      <text x="120" y="124">目标设备先离线</text>
+      <text x="120" y="300">本人完成网页登录</text>
+      <text x="120" y="510">树莓派退出，目标设备再连接</text>
+    </g>
+    <g font-size="22" fill="#526a72">
+      <text x="120" y="166">保留独立的树莓派控制通道。</text>
+      <text x="120" y="343">树莓派临时使用目标 MAC，</text>
+      <text x="120" y="378">连接测试 Wi-Fi，再登录官方认证页。</text>
+      <text x="120" y="552">确认树莓派已经断开，必要时先关机。</text>
+    </g>
+    <g stroke="#78949d" stroke-width="2" fill="none" marker-end="url(#arrow)">
+      <path d="M360 216 V236"/>
+      <path d="M360 426 V446"/>
+    </g>
+    <text x="360" y="628" text-anchor="middle" font-size="21" fill="#526a72">观察目标设备能否直接上网，结果以实测为准。</text>
+  </g>
+</svg>
