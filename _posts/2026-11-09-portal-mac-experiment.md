@@ -6,6 +6,13 @@ date: 2026-11-09
 author: Kevin
 header-img: img/post-bg-2015.jpg
 catalog: true
+nav_links:
+  - title: Writing
+    url: /tags/
+  - title: About
+    url: /about/
+  - title: GitHub
+    url: https://github.com/Xplore-LAB
 section: 实践复盘
 permalink: /2026/11/09/portal-mac-experiment/
 description: 用树莓派进行一次获得许可的无屏设备 Portal 兼容性实验，说明 Windows SSH、VNC、独立管理链路、脚本执行与清理边界。

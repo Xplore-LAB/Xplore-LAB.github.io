@@ -19,11 +19,19 @@
                     <li>
                         <a href="{{ site.baseurl }}/">Home</a>
                     </li>
+                    {% if page.nav_links %}
+                    {% for nav_item in page.nav_links %}
+                    <li>
+                        <a href="{{ nav_item.url | escape }}">{{ nav_item.title | escape }}</a>
+                    </li>
+                    {% endfor %}
+                    {% else %}
                     {% for page in site.pages %}{% if page.title %}
                     <li>
                         <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                     </li>
                     {% endif %}{% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
