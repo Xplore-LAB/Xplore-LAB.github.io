@@ -5,7 +5,7 @@ subtitle: 看懂设备与场景，准备好物品，再按顺序做一次实验
 date: 2026-11-09
 author: Kevin
 header-img: img/portal-mac/devices.webp
-header-mask: 0.48
+header-mask: 0.58
 catalog: true
 nav_links:
   - title: Writing

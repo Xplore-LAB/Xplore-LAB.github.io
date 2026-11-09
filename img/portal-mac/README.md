@@ -23,4 +23,3 @@ Use case: illustration-story. Asset type: inline equipment illustration for the 
 ```
 
 生成方式：内置 image_gen 工具；未使用 CLI/API 备用生成路径。
-
