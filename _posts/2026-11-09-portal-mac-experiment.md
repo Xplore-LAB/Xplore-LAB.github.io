@@ -37,7 +37,9 @@ tags:
 .post-container .portal-figure figcaption { margin-top: 10px; color: #6a737d; font-size: 14px; line-height: 1.65; text-align: center; }
 .post-container .portal-figure--steps { max-width: 640px; margin-left: auto; margin-right: auto; }
 .post-container table { display: table; table-layout: fixed; width: 100%; }
-.post-container table th, .post-container table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+.post-container table th, .post-container table td,
+.post-container .table-responsive table.table th,
+.post-container .table-responsive table.table td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
 </style>
 
 ## 一、哪些设备和场景会遇到？
