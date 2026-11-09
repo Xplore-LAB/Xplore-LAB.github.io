@@ -7,13 +7,6 @@ author: Kevin
 header-img: img/portal-mac/devices.webp
 header-mask: 0.58
 catalog: true
-nav_links:
-  - title: Writing
-    url: /tags/
-  - title: About
-    url: /about/
-  - title: GitHub
-    url: https://github.com/Xplore-LAB
 section: 实践复盘
 permalink: /2026/11/09/portal-mac-experiment/
 description: 从智能音箱、Wi-Fi 摄像头、扫地机器人等常见设备讲起，说明校园宿舍、酒店、公寓等网页认证场景、所需物品与树莓派实验步骤。

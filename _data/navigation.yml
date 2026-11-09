@@ -1,0 +1,59 @@
+- title: 首页
+  url: /
+- title: 文章
+  id: writing
+  sections:
+    - links:
+        - title: 全部文章
+          url: /tags/
+          description: 按类型浏览所有文章
+        - title: 论文拆解
+          url: /tags/#papers
+          description: 方法、实验与证据
+        - title: 好文拆解
+          url: /tags/#essays
+          description: 技术长文与研究者观点
+        - title: 实践复盘
+          url: /tags/#practice
+          description: 工具、设备与应用实践
+- title: 科研绘图
+  id: figures
+  wide: true
+  sections:
+    - title: 开始绘图
+      links:
+        - title: 绘图总览
+          url: /figures/
+          description: 图例、模板与可编辑素材
+        - title: 绘图方法与工具
+          url: /figures/#methods
+          description: 排版、配色与制作方法
+        - title: 论文原图案例
+          url: /pipeline/
+          description: 从真实论文学习构图
+    - title: 示例与对照
+      links:
+        - title: 方法与流程模板
+          url: /figures/#fig-method
+          description: 架构图和技术流程
+        - title: 工业智能体方法图
+          url: /figures/#fig-paper-grade
+          description: 方法总览与机制对照
+        - title: 原图与重绘对照
+          url: /figures/#fig-original-comparison
+          description: 对照阅读原图与教学重绘
+- title: 项目演示
+  id: demos
+  sections:
+    - links:
+        - title: Postbird 信鸽
+          url: /demo-postbird/
+          description: 邮件与材料整理
+        - title: 秋招填表助手
+          url: /demo-autofill/
+          description: 网申填写与自检
+- title: 关于
+  url: /about/
+- title: GitHub
+  url: https://github.com/Xplore-LAB
+  external: true

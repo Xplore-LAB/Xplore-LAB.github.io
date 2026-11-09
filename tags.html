@@ -108,19 +108,12 @@ footer a:hover { color: var(--accent); }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 </style>
+{% include nav-assets.html %}
 </head>
 <body>
+{% include nav.html %}
 <div id="progress" aria-hidden="true"></div>
 <div class="page">
-  <nav>
-    <a class="wordmark" href="/">Xplore-LAB</a>
-    <div class="nav-links">
-      <a href="/tags/">Writing</a>
-      <a href="/figures/">绘图</a>
-      <a href="/about/">About</a>
-      <a href="https://github.com/Xplore-LAB">GitHub</a>
-    </div>
-  </nav>
 
   <header class="archive-head">
     <h1>Writing</h1>
@@ -132,7 +125,12 @@ footer a:hover { color: var(--accent); }
     {% for sec in section_order %}
     {% assign group_posts = site.posts | where: "section", sec %}
     {% if group_posts.size > 0 %}
-    <section class="year-group reveal">
+    {% case sec %}
+      {% when '论文拆解' %}{% assign section_id = 'papers' %}
+      {% when '好文拆解' %}{% assign section_id = 'essays' %}
+      {% when '实践复盘' %}{% assign section_id = 'practice' %}
+    {% endcase %}
+    <section class="year-group reveal" id="{{ section_id }}">
       <h2>{{ sec }}<span class="count">{{ group_posts.size }} 篇</span></h2>
       <ul class="post-list">
         {% for post in group_posts %}
