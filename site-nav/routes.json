@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-28T06:53:33.655632+00:00",
+    "generated_at": "2026-11-20T08:38:45.276348+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -233,6 +233,33 @@
             "path": "https://github.com/Xplore-LAB/home-lab434",
             "emoji": "🐍",
             "title": "home-lab434",
+            "group": "开源项目"
+        },
+        {
+            "desc": "Agent-first, local-first processing of talks into slides, transcripts and illustrated notes.",
+            "badge": "Python",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/talkweaver",
+            "emoji": "🐍",
+            "title": "talkweaver",
+            "group": "开源项目"
+        },
+        {
+            "desc": "CiteCargo · 文献直达｜面向科研人员的论文获取与归档助手。AI 技能或本地操作页，参考文献转 PDF、批量续跑、按需归档 Zotero。",
+            "badge": "Python",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/paper-tool",
+            "emoji": "🐍",
+            "title": "paper-tool",
+            "group": "开源项目"
+        },
+        {
+            "desc": "树莓派无屏设备 Portal 兼容性实验：临时 MAC、独立管理链路与手动网页认证；实验性方案，待实机验证",
+            "badge": "Shell",
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/portal-mac-experiment",
+            "emoji": "🐚",
+            "title": "portal-mac-experiment",
             "group": "开源项目"
         },
         {
