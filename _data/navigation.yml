@@ -25,6 +25,9 @@
         - title: 绘图总览
           url: /figures/
           description: 图例、模板与可编辑素材
+        - title: 科研配色专题
+          url: /palettes/
+          description: 顶刊级 SCI 色卡库 · 点击复制 HEX
         - title: 绘图方法与工具
           url: /figures/#methods
           description: 排版、配色与制作方法

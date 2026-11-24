@@ -33,6 +33,15 @@
       "group": "站点"
     },
     {
+      "desc": "顶刊级 SCI 配色色卡库·按文章归档·HEX 一键复制",
+      "badge": "Palette",
+      "featured": true,
+      "path": "https://xplore-lab.github.io/palettes/",
+      "emoji": "🎨",
+      "title": "科研配色",
+      "group": "站点"
+    },
+    {
       "desc": "查看完整仓库列表与开源动态",
       "badge": "GitHub",
       "featured": true,
