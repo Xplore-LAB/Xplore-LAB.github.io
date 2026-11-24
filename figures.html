@@ -2088,6 +2088,1211 @@ plt.rcParams.update({
   <section id="materials">
     <h2 class="section-title">素材与资源</h2>
 
+    <style>
+      #paper-palette { margin: 1.25rem 0 2rem; padding: 1rem; border: 1px solid #a9b8c7; border-radius: 12px; }
+      #paper-palette .palette-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin: .75rem 0; }
+      #paper-palette label { display: grid; gap: .25rem; }
+      #paper-palette [hidden] { display: none; }
+      #paper-palette select, #paper-palette button { font: inherit; padding: .28rem .5rem; }
+      #paper-palette .palette-previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: .75rem; }
+      #paper-palette article { min-width: 0; padding: .65rem; border: 1px solid #a9b8c7; border-radius: 8px; }
+      #paper-palette svg { display: block; width: 100%; max-width: 480px; margin: .5rem auto; background: white; border-radius: 4px; }
+      #paper-palette[data-width="single"] svg { max-width: 336px; }
+      #paper-palette .palette-swatches { display: flex; gap: .2rem; flex-wrap: wrap; margin: .6rem 0; }
+      #paper-palette .palette-swatches span { width: 1.25rem; height: 1.1rem; border: 1px solid #8999a8; border-radius: 2px; }
+      #paper-palette [data-code] { width: 100%; box-sizing: border-box; }
+    </style>
+    <section id="paper-palette" aria-labelledby="paper-palette-title">
+      <h3 class="sub-title" id="paper-palette-title">论文配色预览</h3>
+      <p class="note">用同一组示例数据比较两套配色，检查缩到单栏或灰度显示后能否辨认。</p>
+      <div class="palette-controls">
+        <label>颜色用途<select data-role="purpose">
+          <option value="category">区分模型或实验组</option>
+          <option value="sequence">表示数值高低</option>
+          <option value="difference">显示正负差异</option>
+        </select></label>
+        <label data-line>图表类型<select data-role="chart">
+          <option value="line">训练曲线</option><option value="bar">分组柱状图</option>
+        </select></label>
+        <label>显示模式<select data-role="vision">
+          <option value="normal">原色</option><option value="achromatopsia">灰度</option>
+          <option value="protanopia">红色盲模拟</option><option value="deuteranopia">绿色盲模拟</option>
+          <option value="tritanopia">蓝色盲模拟</option>
+        </select></label>
+        <label>预览宽度<select data-role="width">
+          <option value="wide">宽图</option><option value="single">单栏 3.5 英寸</option>
+        </select></label>
+        <label data-marker><span><input type="checkbox" data-role="markers"> 加线型和点标记</span></label>
+      </div>
+      <div class="palette-previews">
+        <article aria-label="方案 A">
+          <label>方案 A<select data-palette aria-label="方案 A 色板"></select></label>
+          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
+          <button type="button" data-copy>复制 Matplotlib 配置</button>
+          <p class="note" data-status role="status"></p>
+          <textarea data-code hidden readonly aria-label="方案 A Matplotlib 配置" rows="6"></textarea>
+        </article>
+        <article aria-label="方案 B">
+          <label>方案 B<select data-palette aria-label="方案 B 色板"></select></label>
+          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
+          <button type="button" data-copy>复制 Matplotlib 配置</button>
+          <p class="note" data-status role="status"></p>
+          <textarea data-code hidden readonly aria-label="方案 B Matplotlib 配置" rows="6"></textarea>
+        </article>
+      </div>
+      <p class="note">色板来自本页 Okabe–Ito 和 <a href="https://github.com/d3/d3-scale-chromatic">D3 Scale Chromatic</a>，色觉模拟使用 <a href="https://github.com/bluwy/colorblind">Colorblind</a>。复制的配置使用原始配色。</p>
+      <noscript><p>启用 JavaScript 后即可比较色板。下方仍可查看 Okabe–Ito 配色。</p></noscript>
+    </section>
+<script>
+/*
+d3-scale-chromatic
+Copyright 2010-2024 Mike Bostock
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+Apache-Style Software License for ColorBrewer software and ColorBrewer Color Schemes
+
+Copyright 2002 Cynthia Brewer, Mark Harrower, and The Pennsylvania State University
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+
+d3-color
+Copyright 2010-2026 Mike Bostock
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+d3-interpolate
+Copyright 2010-2026 Mike Bostock
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+@bjornlu/colorblind
+MIT License
+
+Copyright (c) 2020 Bjorn Lu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    try {
+      return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    } catch (e) {
+      throw mod = 0, e;
+    }
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/@bjornlu/colorblind/dist/colorblind.min.js
+  var require_colorblind_min = __commonJS({
+    "../../../AppData/Local/Temp/xplore-palette-build/node_modules/@bjornlu/colorblind/dist/colorblind.min.js"(exports, module) {
+      !(function(n, t) {
+        "object" == typeof exports && "undefined" != typeof module ? t(exports) : "function" == typeof define && define.amd ? define(["exports"], t) : t((n = "undefined" != typeof globalThis ? globalThis : n || self).colorblind = {});
+      })(exports, (function(n) {
+        "use strict";
+        const t = [0, 1.05118294, -0.05116099, 0, 1, 0, 0, 0, 1], e = [1, 0, 0, 0.9513092, 0, 0.04866992, 0, 0, 1], r = [1, 0, 0, 0, 1, 0, -0.86744736, 1.86727089, 0], o = [0.212656, 0.715158, 0.072186], i = [0.31399022, 0.63951294, 0.04649755, 0.15537241, 0.75789446, 0.08670142, 0.01775239, 0.10944209, 0.87256922], u = [5.47221206, -4.6419601, 0.16963708, -1.1252419, 2.29317094, -0.1678952, 0.02980165, -0.19318073, 1.16364789];
+        function c(n2, t4) {
+          return [n2[0] * t4[0] + n2[1] * t4[1] + n2[2] * t4[2], n2[3] * t4[0] + n2[4] * t4[1] + n2[5] * t4[2], n2[6] * t4[0] + n2[7] * t4[1] + n2[8] * t4[2]];
+        }
+        function a(n2) {
+          return [n2.r / 255, n2.g / 255, n2.b / 255];
+        }
+        function f(n2) {
+          return [n2.l, n2.m, n2.s];
+        }
+        function s(n2) {
+          return { r: 255 * n2[0], g: 255 * n2[1], b: 255 * n2[2] };
+        }
+        function l(n2) {
+          return { l: n2[0], m: n2[1], s: n2[2] };
+        }
+        function d(n2) {
+          return { r: p(n2.r), g: p(n2.g), b: p(n2.b) };
+        }
+        function p(n2) {
+          return Math.round(Math.min(Math.max(n2, 0), 255));
+        }
+        function m(n2, t4) {
+          const e2 = (function(n3) {
+            const t5 = a(n3);
+            return l(c(i, t5));
+          })(d(n2));
+          return d((function(n3) {
+            const t5 = f(n3);
+            return s(c(u, t5));
+          })(l(c(t4, f(e2)))));
+        }
+        function h(n2, t4) {
+          const e2 = a(d(n2)), r2 = (o2 = e2, i2 = t4, [o2[0] * i2[0] + o2[1] * i2[1] + o2[2] * i2[2]])[0];
+          var o2, i2;
+          return d(s(Array(3).fill(r2)));
+        }
+        n.simulate = function(n2, i2) {
+          switch (i2) {
+            case "protanopia":
+              return m(n2, t);
+            case "deuteranopia":
+              return m(n2, e);
+            case "tritanopia":
+              return m(n2, r);
+            case "achromatopsia":
+              return h(n2, o);
+            default:
+              throw new Error("Invalid color deficiency provided");
+          }
+        }, n.simulateDichromatic = m, n.simulateMonochromatic = h, Object.defineProperty(n, "__esModule", { value: true });
+      }));
+    }
+  });
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/colors.js
+  function colors_default(specifier) {
+    var n = specifier.length / 6 | 0, colors = new Array(n), i = 0;
+    while (i < n) colors[i] = "#" + specifier.slice(i * 6, ++i * 6);
+    return colors;
+  }
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/categorical/Dark2.js
+  var Dark2_default = colors_default("1b9e77d95f027570b3e7298a66a61ee6ab02a6761d666666");
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-color/dist/d3-color.mjs
+  function define2(constructor, factory, prototype) {
+    constructor.prototype = factory.prototype = prototype;
+    prototype.constructor = constructor;
+  }
+  function extend(parent, definition) {
+    var prototype = Object.create(parent.prototype);
+    for (var key in definition) prototype[key] = definition[key];
+    return prototype;
+  }
+  function Color() {
+  }
+  var darker = 0.7;
+  var brighter = 1 / darker;
+  var reI = "\\s*([+-]?\\d+)\\s*";
+  var reN = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*";
+  var reP = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*";
+  var reHex = /^#([0-9a-f]{3,8})$/;
+  var reRgbInteger = new RegExp(`^rgb\\(${reI},${reI},${reI}\\)$`);
+  var reRgbPercent = new RegExp(`^rgb\\(${reP},${reP},${reP}\\)$`);
+  var reRgbaInteger = new RegExp(`^rgba\\(${reI},${reI},${reI},${reN}\\)$`);
+  var reRgbaPercent = new RegExp(`^rgba\\(${reP},${reP},${reP},${reN}\\)$`);
+  var reHslPercent = new RegExp(`^hsl\\(${reN},${reP},${reP}\\)$`);
+  var reHslaPercent = new RegExp(`^hsla\\(${reN},${reP},${reP},${reN}\\)$`);
+  var named = {
+    aliceblue: 15792383,
+    antiquewhite: 16444375,
+    aqua: 65535,
+    aquamarine: 8388564,
+    azure: 15794175,
+    beige: 16119260,
+    bisque: 16770244,
+    black: 0,
+    blanchedalmond: 16772045,
+    blue: 255,
+    blueviolet: 9055202,
+    brown: 10824234,
+    burlywood: 14596231,
+    cadetblue: 6266528,
+    chartreuse: 8388352,
+    chocolate: 13789470,
+    coral: 16744272,
+    cornflowerblue: 6591981,
+    cornsilk: 16775388,
+    crimson: 14423100,
+    cyan: 65535,
+    darkblue: 139,
+    darkcyan: 35723,
+    darkgoldenrod: 12092939,
+    darkgray: 11119017,
+    darkgreen: 25600,
+    darkgrey: 11119017,
+    darkkhaki: 12433259,
+    darkmagenta: 9109643,
+    darkolivegreen: 5597999,
+    darkorange: 16747520,
+    darkorchid: 10040012,
+    darkred: 9109504,
+    darksalmon: 15308410,
+    darkseagreen: 9419919,
+    darkslateblue: 4734347,
+    darkslategray: 3100495,
+    darkslategrey: 3100495,
+    darkturquoise: 52945,
+    darkviolet: 9699539,
+    deeppink: 16716947,
+    deepskyblue: 49151,
+    dimgray: 6908265,
+    dimgrey: 6908265,
+    dodgerblue: 2003199,
+    firebrick: 11674146,
+    floralwhite: 16775920,
+    forestgreen: 2263842,
+    fuchsia: 16711935,
+    gainsboro: 14474460,
+    ghostwhite: 16316671,
+    gold: 16766720,
+    goldenrod: 14329120,
+    gray: 8421504,
+    green: 32768,
+    greenyellow: 11403055,
+    grey: 8421504,
+    honeydew: 15794160,
+    hotpink: 16738740,
+    indianred: 13458524,
+    indigo: 4915330,
+    ivory: 16777200,
+    khaki: 15787660,
+    lavender: 15132410,
+    lavenderblush: 16773365,
+    lawngreen: 8190976,
+    lemonchiffon: 16775885,
+    lightblue: 11393254,
+    lightcoral: 15761536,
+    lightcyan: 14745599,
+    lightgoldenrodyellow: 16448210,
+    lightgray: 13882323,
+    lightgreen: 9498256,
+    lightgrey: 13882323,
+    lightpink: 16758465,
+    lightsalmon: 16752762,
+    lightseagreen: 2142890,
+    lightskyblue: 8900346,
+    lightslategray: 7833753,
+    lightslategrey: 7833753,
+    lightsteelblue: 11584734,
+    lightyellow: 16777184,
+    lime: 65280,
+    limegreen: 3329330,
+    linen: 16445670,
+    magenta: 16711935,
+    maroon: 8388608,
+    mediumaquamarine: 6737322,
+    mediumblue: 205,
+    mediumorchid: 12211667,
+    mediumpurple: 9662683,
+    mediumseagreen: 3978097,
+    mediumslateblue: 8087790,
+    mediumspringgreen: 64154,
+    mediumturquoise: 4772300,
+    mediumvioletred: 13047173,
+    midnightblue: 1644912,
+    mintcream: 16121850,
+    mistyrose: 16770273,
+    moccasin: 16770229,
+    navajowhite: 16768685,
+    navy: 128,
+    oldlace: 16643558,
+    olive: 8421376,
+    olivedrab: 7048739,
+    orange: 16753920,
+    orangered: 16729344,
+    orchid: 14315734,
+    palegoldenrod: 15657130,
+    palegreen: 10025880,
+    paleturquoise: 11529966,
+    palevioletred: 14381203,
+    papayawhip: 16773077,
+    peachpuff: 16767673,
+    peru: 13468991,
+    pink: 16761035,
+    plum: 14524637,
+    powderblue: 11591910,
+    purple: 8388736,
+    rebeccapurple: 6697881,
+    red: 16711680,
+    rosybrown: 12357519,
+    royalblue: 4286945,
+    saddlebrown: 9127187,
+    salmon: 16416882,
+    sandybrown: 16032864,
+    seagreen: 3050327,
+    seashell: 16774638,
+    sienna: 10506797,
+    silver: 12632256,
+    skyblue: 8900331,
+    slateblue: 6970061,
+    slategray: 7372944,
+    slategrey: 7372944,
+    snow: 16775930,
+    springgreen: 65407,
+    steelblue: 4620980,
+    tan: 13808780,
+    teal: 32896,
+    thistle: 14204888,
+    tomato: 16737095,
+    turquoise: 4251856,
+    violet: 15631086,
+    wheat: 16113331,
+    white: 16777215,
+    whitesmoke: 16119285,
+    yellow: 16776960,
+    yellowgreen: 10145074
+  };
+  define2(Color, color, {
+    copy(channels) {
+      return Object.assign(new this.constructor(), this, channels);
+    },
+    displayable() {
+      return this.rgb().displayable();
+    },
+    hex: color_formatHex,
+    // Deprecated! Use color.formatHex.
+    formatHex: color_formatHex,
+    formatHex8: color_formatHex8,
+    formatHsl: color_formatHsl,
+    formatRgb: color_formatRgb,
+    toString: color_formatRgb
+  });
+  function color_formatHex() {
+    return this.rgb().formatHex();
+  }
+  function color_formatHex8() {
+    return this.rgb().formatHex8();
+  }
+  function color_formatHsl() {
+    return hslConvert(this).formatHsl();
+  }
+  function color_formatRgb() {
+    return this.rgb().formatRgb();
+  }
+  function color(format) {
+    var m, l;
+    format = (format + "").trim().toLowerCase();
+    return (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) : null) : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) : named.hasOwnProperty(format) ? rgbn(named[format]) : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
+  }
+  function rgbn(n) {
+    return new Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
+  }
+  function rgba(r, g, b, a) {
+    if (a <= 0) r = g = b = NaN;
+    return new Rgb(r, g, b, a);
+  }
+  function rgbConvert(o) {
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Rgb();
+    o = o.rgb();
+    return new Rgb(o.r, o.g, o.b, o.opacity);
+  }
+  function rgb(r, g, b, opacity) {
+    return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
+  }
+  function Rgb(r, g, b, opacity) {
+    this.r = +r;
+    this.g = +g;
+    this.b = +b;
+    this.opacity = +opacity;
+  }
+  define2(Rgb, rgb, extend(Color, {
+    brighter(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    darker(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+    },
+    rgb() {
+      return this;
+    },
+    clamp() {
+      return new Rgb(clampi(this.r), clampi(this.g), clampi(this.b), clampa(this.opacity));
+    },
+    displayable() {
+      return -0.5 <= this.r && this.r < 255.5 && (-0.5 <= this.g && this.g < 255.5) && (-0.5 <= this.b && this.b < 255.5) && (0 <= this.opacity && this.opacity <= 1);
+    },
+    hex: rgb_formatHex,
+    // Deprecated! Use color.formatHex.
+    formatHex: rgb_formatHex,
+    formatHex8: rgb_formatHex8,
+    formatRgb: rgb_formatRgb,
+    toString: rgb_formatRgb
+  }));
+  function rgb_formatHex() {
+    return `#${hex(this.r)}${hex(this.g)}${hex(this.b)}`;
+  }
+  function rgb_formatHex8() {
+    return `#${hex(this.r)}${hex(this.g)}${hex(this.b)}${hex((isNaN(this.opacity) ? 1 : this.opacity) * 255)}`;
+  }
+  function rgb_formatRgb() {
+    const a = clampa(this.opacity);
+    return `${a === 1 ? "rgb(" : "rgba("}${clampi(this.r)}, ${clampi(this.g)}, ${clampi(this.b)}${a === 1 ? ")" : `, ${a})`}`;
+  }
+  function clampa(opacity) {
+    return isNaN(opacity) ? 1 : Math.max(0, Math.min(1, opacity));
+  }
+  function clampi(value) {
+    return Math.max(0, Math.min(255, Math.round(value) || 0));
+  }
+  function hex(value) {
+    value = clampi(value);
+    return (value < 16 ? "0" : "") + value.toString(16);
+  }
+  function hsla(h, s, l, a) {
+    if (a <= 0) h = s = l = NaN;
+    else if (l <= 0 || l >= 1) h = s = NaN;
+    else if (s <= 0) h = NaN;
+    return new Hsl(h, s, l, a);
+  }
+  function hslConvert(o) {
+    if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof Color)) o = color(o);
+    if (!o) return new Hsl();
+    if (o instanceof Hsl) return o;
+    o = o.rgb();
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min = Math.min(r, g, b), max = Math.max(r, g, b), h = NaN, s = max - min, l = (max + min) / 2;
+    if (s) {
+      if (r === max) h = (g - b) / s + (g < b) * 6;
+      else if (g === max) h = (b - r) / s + 2;
+      else h = (r - g) / s + 4;
+      s /= l < 0.5 ? max + min : 2 - max - min;
+      h *= 60;
+    } else {
+      s = l > 0 && l < 1 ? 0 : h;
+    }
+    return new Hsl(h, s, l, o.opacity);
+  }
+  function hsl(h, s, l, opacity) {
+    return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
+  }
+  function Hsl(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+  define2(Hsl, hsl, extend(Color, {
+    brighter(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Hsl(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb() {
+      var h = this.h % 360 + (this.h < 0) * 360, s = isNaN(h) || isNaN(this.s) ? 0 : this.s, l = this.l, m2 = l + (l < 0.5 ? l : 1 - l) * s, m1 = 2 * l - m2;
+      return new Rgb(
+        hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
+        hsl2rgb(h, m1, m2),
+        hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
+        this.opacity
+      );
+    },
+    clamp() {
+      return new Hsl(clamph(this.h), clampt(this.s), clampt(this.l), clampa(this.opacity));
+    },
+    displayable() {
+      return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && (0 <= this.l && this.l <= 1) && (0 <= this.opacity && this.opacity <= 1);
+    },
+    formatHsl() {
+      const a = clampa(this.opacity);
+      return `${a === 1 ? "hsl(" : "hsla("}${clamph(this.h)}, ${clampt(this.s) * 100}%, ${clampt(this.l) * 100}%${a === 1 ? ")" : `, ${a})`}`;
+    }
+  }));
+  function clamph(value) {
+    value = (value || 0) % 360;
+    return value < 0 ? value + 360 : value;
+  }
+  function clampt(value) {
+    return Math.max(0, Math.min(1, value || 0));
+  }
+  function hsl2rgb(h, m1, m2) {
+    return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
+  }
+  var radians = Math.PI / 180;
+  var degrees = 180 / Math.PI;
+  var K = 18;
+  var Xn = 0.96422;
+  var Yn = 1;
+  var Zn = 0.82521;
+  var t0 = 4 / 29;
+  var t1 = 6 / 29;
+  var t2 = 3 * t1 * t1;
+  var t3 = t1 * t1 * t1;
+  function labConvert(o) {
+    if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
+    if (o instanceof Hcl) return hcl2lab(o);
+    if (!(o instanceof Rgb)) o = rgbConvert(o);
+    var r = rgb2lrgb(o.r), g = rgb2lrgb(o.g), b = rgb2lrgb(o.b), y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
+    if (r === g && g === b) x = z = y;
+    else {
+      x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
+      z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
+    }
+    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+  }
+  function lab(l, a, b, opacity) {
+    return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
+  }
+  function Lab(l, a, b, opacity) {
+    this.l = +l;
+    this.a = +a;
+    this.b = +b;
+    this.opacity = +opacity;
+  }
+  define2(Lab, lab, extend(Color, {
+    brighter(k) {
+      return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    darker(k) {
+      return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    },
+    rgb() {
+      var y = (this.l + 16) / 116, x = isNaN(this.a) ? y : y + this.a / 500, z = isNaN(this.b) ? y : y - this.b / 200;
+      x = Xn * lab2xyz(x);
+      y = Yn * lab2xyz(y);
+      z = Zn * lab2xyz(z);
+      return new Rgb(
+        lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
+        lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.033454 * z),
+        lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
+        this.opacity
+      );
+    }
+  }));
+  function xyz2lab(t) {
+    return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
+  }
+  function lab2xyz(t) {
+    return t > t1 ? t * t * t : t2 * (t - t0);
+  }
+  function lrgb2rgb(x) {
+    return 255 * (x <= 31308e-7 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
+  }
+  function rgb2lrgb(x) {
+    return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  }
+  function hclConvert(o) {
+    if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
+    if (!(o instanceof Lab)) o = labConvert(o);
+    if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0 < o.l && o.l < 100 ? 0 : NaN, o.l, o.opacity);
+    var h = Math.atan2(o.b, o.a) * degrees;
+    return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
+  }
+  function hcl(h, c, l, opacity) {
+    return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
+  }
+  function Hcl(h, c, l, opacity) {
+    this.h = +h;
+    this.c = +c;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+  function hcl2lab(o) {
+    if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
+    var h = o.h * radians;
+    return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+  }
+  define2(Hcl, hcl, extend(Color, {
+    brighter(k) {
+      return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
+    },
+    darker(k) {
+      return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
+    },
+    rgb() {
+      return hcl2lab(this).rgb();
+    }
+  }));
+  var A = -0.14861;
+  var B = 1.78277;
+  var C = -0.29227;
+  var D = -0.90649;
+  var E = 1.97294;
+  var ED = E * D;
+  var EB = E * B;
+  var BC_DA = B * C - D * A;
+  function cubehelixConvert(o) {
+    if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
+    if (!(o instanceof Rgb)) o = rgbConvert(o);
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB), bl = b - l, k = (E * (g - l) - C * bl) / D, s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), h = s ? Math.atan2(k, bl) * degrees - 120 : NaN;
+    return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
+  }
+  function cubehelix(h, s, l, opacity) {
+    return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
+  }
+  function Cubehelix(h, s, l, opacity) {
+    this.h = +h;
+    this.s = +s;
+    this.l = +l;
+    this.opacity = +opacity;
+  }
+  define2(Cubehelix, cubehelix, extend(Color, {
+    brighter(k) {
+      k = k == null ? brighter : Math.pow(brighter, k);
+      return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    darker(k) {
+      k = k == null ? darker : Math.pow(darker, k);
+      return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
+    },
+    rgb() {
+      var h = isNaN(this.h) ? 0 : (this.h + 120) * radians, l = +this.l, a = isNaN(this.s) ? 0 : this.s * l * (1 - l), cosh2 = Math.cos(h), sinh2 = Math.sin(h);
+      return new Rgb(
+        255 * (l + a * (A * cosh2 + B * sinh2)),
+        255 * (l + a * (C * cosh2 + D * sinh2)),
+        255 * (l + a * (E * cosh2)),
+        this.opacity
+      );
+    }
+  }));
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-interpolate/dist/d3-interpolate.mjs
+  function basis(t12, v0, v1, v2, v3) {
+    var t22 = t12 * t12, t32 = t22 * t12;
+    return ((1 - 3 * t12 + 3 * t22 - t32) * v0 + (4 - 6 * t22 + 3 * t32) * v1 + (1 + 3 * t12 + 3 * t22 - 3 * t32) * v2 + t32 * v3) / 6;
+  }
+  function basis$1(values) {
+    var n = values.length - 1;
+    return function(t) {
+      var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values[i], v2 = values[i + 1], v0 = i > 0 ? values[i - 1] : 2 * v1 - v2, v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+      return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+  }
+  function basisClosed(values) {
+    var n = values.length;
+    return function(t) {
+      var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values[(i + n - 1) % n], v1 = values[i % n], v2 = values[(i + 1) % n], v3 = values[(i + 2) % n];
+      return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+  }
+  var constant = (x) => () => x;
+  function linear(a, d) {
+    return function(t) {
+      return a + t * d;
+    };
+  }
+  function exponential(a, b, y) {
+    return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
+      return Math.pow(a + t * b, y);
+    };
+  }
+  function hue$1(a, b) {
+    var d = b - a;
+    return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : constant(isNaN(a) ? b : a);
+  }
+  function gamma(y) {
+    return (y = +y) === 1 ? nogamma : function(a, b) {
+      return b - a ? exponential(a, b, y) : constant(isNaN(a) ? b : a);
+    };
+  }
+  function nogamma(a, b) {
+    var d = b - a;
+    return d ? linear(a, d) : constant(isNaN(a) ? b : a);
+  }
+  var rgb2 = (function rgbGamma(y) {
+    var color2 = gamma(y);
+    function rgb3(start, end) {
+      var r = color2((start = rgb(start)).r, (end = rgb(end)).r), g = color2(start.g, end.g), b = color2(start.b, end.b), opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.r = r(t);
+        start.g = g(t);
+        start.b = b(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    }
+    rgb3.gamma = rgbGamma;
+    return rgb3;
+  })(1);
+  function rgbSpline(spline) {
+    return function(colors) {
+      var n = colors.length, r = new Array(n), g = new Array(n), b = new Array(n), i, color2;
+      for (i = 0; i < n; ++i) {
+        color2 = rgb(colors[i]);
+        r[i] = color2.r || 0;
+        g[i] = color2.g || 0;
+        b[i] = color2.b || 0;
+      }
+      r = spline(r);
+      g = spline(g);
+      b = spline(b);
+      color2.opacity = 1;
+      return function(t) {
+        color2.r = r(t);
+        color2.g = g(t);
+        color2.b = b(t);
+        return color2 + "";
+      };
+    };
+  }
+  var rgbBasis = rgbSpline(basis$1);
+  var rgbBasisClosed = rgbSpline(basisClosed);
+  function number(a, b) {
+    return a = +a, b = +b, function(t) {
+      return a * (1 - t) + b * t;
+    };
+  }
+  var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
+  var reB = new RegExp(reA.source, "g");
+  var degrees2 = 180 / Math.PI;
+  var identity = {
+    translateX: 0,
+    translateY: 0,
+    rotate: 0,
+    skewX: 0,
+    scaleX: 1,
+    scaleY: 1
+  };
+  function decompose(a, b, c, d, e, f) {
+    var scaleX, scaleY, skewX;
+    if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
+    if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
+    if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
+    if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
+    return {
+      translateX: e,
+      translateY: f,
+      rotate: Math.atan2(b, a) * degrees2,
+      skewX: Math.atan(skewX) * degrees2,
+      scaleX,
+      scaleY
+    };
+  }
+  var svgNode;
+  function parseCss(value) {
+    const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
+    return m.isIdentity ? identity : decompose(m.a, m.b, m.c, m.d, m.e, m.f);
+  }
+  function parseSvg(value) {
+    if (value == null) return identity;
+    if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    svgNode.setAttribute("transform", value);
+    if (!(value = svgNode.transform.baseVal.consolidate())) return identity;
+    value = value.matrix;
+    return decompose(value.a, value.b, value.c, value.d, value.e, value.f);
+  }
+  function interpolateTransform(parse, pxComma, pxParen, degParen) {
+    function pop(s) {
+      return s.length ? s.pop() + " " : "";
+    }
+    function translate(xa, ya, xb, yb, s, q) {
+      if (xa !== xb || ya !== yb) {
+        var i = s.push("translate(", null, pxComma, null, pxParen);
+        q.push({ i: i - 4, x: number(xa, xb) }, { i: i - 2, x: number(ya, yb) });
+      } else if (xb || yb) {
+        s.push("translate(" + xb + pxComma + yb + pxParen);
+      }
+    }
+    function rotate(a, b, s, q) {
+      if (a !== b) {
+        if (a - b > 180) b += 360;
+        else if (b - a > 180) a += 360;
+        q.push({ i: s.push(pop(s) + "rotate(", null, degParen) - 2, x: number(a, b) });
+      } else if (b) {
+        s.push(pop(s) + "rotate(" + b + degParen);
+      }
+    }
+    function skewX(a, b, s, q) {
+      if (a !== b) {
+        q.push({ i: s.push(pop(s) + "skewX(", null, degParen) - 2, x: number(a, b) });
+      } else if (b) {
+        s.push(pop(s) + "skewX(" + b + degParen);
+      }
+    }
+    function scale(xa, ya, xb, yb, s, q) {
+      if (xa !== xb || ya !== yb) {
+        var i = s.push(pop(s) + "scale(", null, ",", null, ")");
+        q.push({ i: i - 4, x: number(xa, xb) }, { i: i - 2, x: number(ya, yb) });
+      } else if (xb !== 1 || yb !== 1) {
+        s.push(pop(s) + "scale(" + xb + "," + yb + ")");
+      }
+    }
+    return function(a, b) {
+      var s = [], q = [];
+      a = parse(a), b = parse(b);
+      translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
+      rotate(a.rotate, b.rotate, s, q);
+      skewX(a.skewX, b.skewX, s, q);
+      scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
+      a = b = null;
+      return function(t) {
+        var i = -1, n = q.length, o;
+        while (++i < n) s[(o = q[i]).i] = o.x(t);
+        return s.join("");
+      };
+    };
+  }
+  var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
+  var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
+  var epsilon2 = 1e-12;
+  function cosh(x) {
+    return ((x = Math.exp(x)) + 1 / x) / 2;
+  }
+  function sinh(x) {
+    return ((x = Math.exp(x)) - 1 / x) / 2;
+  }
+  function tanh(x) {
+    return ((x = Math.exp(2 * x)) - 1) / (x + 1);
+  }
+  var zoom = (function zoomRho(rho, rho2, rho4) {
+    function zoom2(p0, p1) {
+      var ux0 = p0[0], uy0 = p0[1], w0 = p0[2], ux1 = p1[0], uy1 = p1[1], w1 = p1[2], dx = ux1 - ux0, dy = uy1 - uy0, d2 = dx * dx + dy * dy, i, S;
+      if (d2 < epsilon2) {
+        S = Math.log(w1 / w0) / rho;
+        i = function(t) {
+          return [
+            ux0 + t * dx,
+            uy0 + t * dy,
+            w0 * Math.exp(rho * t * S)
+          ];
+        };
+      } else {
+        var d1 = Math.sqrt(d2), b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1), b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1), r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0), r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
+        S = (r1 - r0) / rho;
+        i = function(t) {
+          var s = t * S, coshr0 = cosh(r0), u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
+          return [
+            ux0 + u * dx,
+            uy0 + u * dy,
+            w0 * coshr0 / cosh(rho * s + r0)
+          ];
+        };
+      }
+      i.duration = Math.abs(S) * 1e3 * rho / Math.SQRT2;
+      return i;
+    }
+    zoom2.rho = function(_) {
+      var _1 = Math.max(1e-3, +_), _2 = _1 * _1, _4 = _2 * _2;
+      return zoomRho(_1, _2, _4);
+    };
+    return zoom2;
+  })(Math.SQRT2, 2, 4);
+  function hsl2(hue) {
+    return function(start, end) {
+      var h = hue((start = hsl(start)).h, (end = hsl(end)).h), s = nogamma(start.s, end.s), l = nogamma(start.l, end.l), opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.h = h(t);
+        start.s = s(t);
+        start.l = l(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    };
+  }
+  var hsl_default = hsl2(hue$1);
+  var hslLong = hsl2(nogamma);
+  function hcl2(hue) {
+    return function(start, end) {
+      var h = hue((start = hcl(start)).h, (end = hcl(end)).h), c = nogamma(start.c, end.c), l = nogamma(start.l, end.l), opacity = nogamma(start.opacity, end.opacity);
+      return function(t) {
+        start.h = h(t);
+        start.c = c(t);
+        start.l = l(t);
+        start.opacity = opacity(t);
+        return start + "";
+      };
+    };
+  }
+  var hcl_default = hcl2(hue$1);
+  var hclLong = hcl2(nogamma);
+  function cubehelix2(hue) {
+    return (function cubehelixGamma(y) {
+      y = +y;
+      function cubehelix3(start, end) {
+        var h = hue((start = cubehelix(start)).h, (end = cubehelix(end)).h), s = nogamma(start.s, end.s), l = nogamma(start.l, end.l), opacity = nogamma(start.opacity, end.opacity);
+        return function(t) {
+          start.h = h(t);
+          start.s = s(t);
+          start.l = l(Math.pow(t, y));
+          start.opacity = opacity(t);
+          return start + "";
+        };
+      }
+      cubehelix3.gamma = cubehelixGamma;
+      return cubehelix3;
+    })(1);
+  }
+  var cubehelix_default = cubehelix2(hue$1);
+  var cubehelixLong = cubehelix2(nogamma);
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/ramp.js
+  var ramp_default = (scheme5) => rgbBasis(scheme5[scheme5.length - 1]);
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/diverging/PuOr.js
+  var scheme = new Array(3).concat(
+    "998ec3f7f7f7f1a340",
+    "5e3c99b2abd2fdb863e66101",
+    "5e3c99b2abd2f7f7f7fdb863e66101",
+    "542788998ec3d8daebfee0b6f1a340b35806",
+    "542788998ec3d8daebf7f7f7fee0b6f1a340b35806",
+    "5427888073acb2abd2d8daebfee0b6fdb863e08214b35806",
+    "5427888073acb2abd2d8daebf7f7f7fee0b6fdb863e08214b35806",
+    "2d004b5427888073acb2abd2d8daebfee0b6fdb863e08214b358067f3b08",
+    "2d004b5427888073acb2abd2d8daebf7f7f7fee0b6fdb863e08214b358067f3b08"
+  ).map(colors_default);
+  var PuOr_default = ramp_default(scheme);
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/diverging/RdBu.js
+  var scheme2 = new Array(3).concat(
+    "ef8a62f7f7f767a9cf",
+    "ca0020f4a58292c5de0571b0",
+    "ca0020f4a582f7f7f792c5de0571b0",
+    "b2182bef8a62fddbc7d1e5f067a9cf2166ac",
+    "b2182bef8a62fddbc7f7f7f7d1e5f067a9cf2166ac",
+    "b2182bd6604df4a582fddbc7d1e5f092c5de4393c32166ac",
+    "b2182bd6604df4a582fddbc7f7f7f7d1e5f092c5de4393c32166ac",
+    "67001fb2182bd6604df4a582fddbc7d1e5f092c5de4393c32166ac053061",
+    "67001fb2182bd6604df4a582fddbc7f7f7f7d1e5f092c5de4393c32166ac053061"
+  ).map(colors_default);
+  var RdBu_default = ramp_default(scheme2);
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/sequential-multi/GnBu.js
+  var scheme3 = new Array(3).concat(
+    "e0f3dba8ddb543a2ca",
+    "f0f9e8bae4bc7bccc42b8cbe",
+    "f0f9e8bae4bc7bccc443a2ca0868ac",
+    "f0f9e8ccebc5a8ddb57bccc443a2ca0868ac",
+    "f0f9e8ccebc5a8ddb57bccc44eb3d32b8cbe08589e",
+    "f7fcf0e0f3dbccebc5a8ddb57bccc44eb3d32b8cbe08589e",
+    "f7fcf0e0f3dbccebc5a8ddb57bccc44eb3d32b8cbe0868ac084081"
+  ).map(colors_default);
+  var GnBu_default = ramp_default(scheme3);
+
+  // ../../../AppData/Local/Temp/xplore-palette-build/node_modules/d3-scale-chromatic/src/sequential-multi/PuBu.js
+  var scheme4 = new Array(3).concat(
+    "ece7f2a6bddb2b8cbe",
+    "f1eef6bdc9e174a9cf0570b0",
+    "f1eef6bdc9e174a9cf2b8cbe045a8d",
+    "f1eef6d0d1e6a6bddb74a9cf2b8cbe045a8d",
+    "f1eef6d0d1e6a6bddb74a9cf3690c00570b0034e7b",
+    "fff7fbece7f2d0d1e6a6bddb74a9cf3690c00570b0034e7b",
+    "fff7fbece7f2d0d1e6a6bddb74a9cf3690c00570b0045a8d023858"
+  ).map(colors_default);
+  var PuBu_default = ramp_default(scheme4);
+
+  // palette-preview/preview.js
+  var import_colorblind = __toESM(require_colorblind_min());
+  var root = document.querySelector("#paper-palette");
+  var controls = Object.fromEntries([...root.querySelectorAll("[data-role]")].map((node) => [node.dataset.role, node]));
+  var panels = [...root.querySelectorAll("article")];
+  var palettes = {
+    category: {
+      "\u84DD\u6A59\u7070 \xB7 \u4E3B\u65B9\u6CD5\u5F3A\u8C03": ["#0072B2", "#E69F00", "#999999"],
+      "Okabe\u2013Ito": ["#0072B2", "#D55E00", "#009E73"],
+      "ColorBrewer \xB7 Dark2": Dark2_default.slice(0, 3)
+    },
+    sequence: { "ColorBrewer \xB7 GnBu 8 \u7EA7": scheme3[8], "ColorBrewer \xB7 PuBu 8 \u7EA7": scheme4[8] },
+    difference: { "ColorBrewer \xB7 RdBu 9 \u7EA7": scheme2[9], "ColorBrewer \xB7 PuOr 9 \u7EA7": scheme[9] }
+  };
+  var names = ["\u4E3B\u65B9\u6CD5", "\u5173\u952E\u5BF9\u7167", "\u57FA\u7840\u6A21\u578B"];
+  var curves = [[58, 69, 76, 85, 90, 92], [54, 62, 73, 78, 81, 84], [50, 61, 64, 68, 70, 73]];
+  var bars = [[92, 88, 94], [84, 81, 86], [73, 68, 78]];
+  var heatmaps = {
+    sequence: [[0.93, 0.08, 0.11, 0.02], [0.19, 0.84, 0.15, 0.07], [0.32, 0.28, 0.73, 0.13], [0.03, 0.24, 0.12, 0.94]],
+    difference: [[-0.18, -0.08, 0.04, 0.15], [-0.11, -0.04, 0.02, 0.13], [-0.06, 0.02, 0.09, 0.19], [-0.03, 0.06, 0.12, 0.2]]
+  };
+  var label = (x, y, value, align = "middle") => '<text x="' + x + '" y="' + y + '" text-anchor="' + align + '" fill="#263544">' + value + "</text>";
+  var rect = (x, y, w, h, color2) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + color2 + '"/>';
+  var path = (d, color2, attributes = "") => '<path d="' + d + '" fill="none" stroke="' + color2 + '" stroke-width="2.6" ' + attributes + "/>";
+  function displayColor(hex2) {
+    const mode = controls.vision.value;
+    if (mode === "normal") return hex2;
+    const [r, g, b] = hex2.slice(1).match(/../g).map((channel) => {
+      const value = parseInt(channel, 16) / 255;
+      return 255 * (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    });
+    const simulated = (0, import_colorblind.simulate)({ r, g, b }, mode);
+    const encoded = Object.values(simulated).map((channel) => {
+      const value = Math.min(1, Math.max(0, channel / 255));
+      return Math.round(255 * (value <= 31308e-7 ? value * 12.92 : 1.055 * value ** (1 / 2.4) - 0.055));
+    });
+    return "rgb(" + encoded.join(",") + ")";
+  }
+  function categoryChart(colors, isLine) {
+    const markers = isLine && controls.markers.checked;
+    const styles = ["", 'stroke-dasharray="7 4"', 'stroke-dasharray="2 4"'];
+    const marker = (x, y2, group, color2) => [
+      '<circle cx="' + x + '" cy="' + y2 + '" r="3.5" fill="' + color2 + '"/>',
+      rect(x - 3.5, y2 - 3.5, 7, 7, color2),
+      '<path d="M' + x + "," + (y2 - 4) + 'l4,8h-8z" fill="' + color2 + '"/>'
+    ][group];
+    const tickValues = isLine ? [50, 60, 70, 80, 90, 100] : [0, 25, 50, 75, 100];
+    const y = (value) => 190 - (value - tickValues[0]) * 146 / (100 - tickValues[0]);
+    let content = label(40, 29, "\u5F97\u5206 (%)", "start");
+    for (const value of tickValues) {
+      content += path("M40," + y(value) + "H374", "#e5ebf0") + label(35, y(value) + 4, value, "end");
+    }
+    content += path("M40,44V190H374", "#697787");
+    colors.forEach((color2, group) => {
+      const legendX = 52 + group * 114;
+      content += isLine ? path("M" + legendX + ",16h22", color2, markers ? styles[group] : "") : rect(legendX, 10, 15, 11, color2);
+      if (markers) content += marker(legendX + 11, 16, group, color2);
+      content += label(legendX + 27, 20, names[group], "start");
+      if (isLine) {
+        const points = curves[group].map((value, index) => [55 + index * 61, y(value)]);
+        content += path("M" + points.join("L"), color2, markers ? styles[group] : "");
+        if (markers) for (const [x, pointY] of points) content += marker(x, pointY, group, color2);
+      } else {
+        bars[group].forEach((value, index) => {
+          content += rect(67 + index * 111 + group * 21, y(value), 19, 190 - y(value), color2);
+        });
+      }
+    });
+    (isLine ? ["0", "10", "20", "30", "40", "50"] : ["\u6307\u6807 A", "\u6307\u6807 B", "\u6307\u6807 C"]).forEach((tick, index) => {
+      content += label(isLine ? 55 + index * 61 : 97 + index * 111, 208, tick);
+    });
+    if (isLine) content += label(207, 227, "\u8BAD\u7EC3\u8F6E\u6B21");
+    return content;
+  }
+  function heatmap(colors, purpose) {
+    const diverging = purpose === "difference";
+    let content = label(146, 20, diverging ? "\u76F8\u5BF9\u57FA\u7EBF\u7684\u5DEE\u503C" : "\u6307\u6807\u5F97\u5206");
+    heatmaps[purpose].forEach((row, i) => row.forEach((value, j) => {
+      const position = diverging ? (value + 0.2) / 0.4 : value;
+      const index = Math.min(colors.length - 1, Math.floor(position * colors.length));
+      content += rect(50 + j * 48, 30 + i * 45, 47, 44, colors[index]);
+    }));
+    for (let i = 0; i < 4; i++) {
+      content += label(42, 57 + i * 45, i + 1, "end") + label(74 + i * 48, 224, "ABCD"[i]);
+    }
+    [...colors].reverse().forEach((color2, index) => {
+      content += rect(264, 30 + index * 180 / colors.length, 16, 180 / colors.length + 0.2, color2);
+    });
+    const ticks = diverging ? ["+0.2", "0", "\u22120.2"] : ["1.0", "0.5", "0.0"];
+    ticks.forEach((value, index) => {
+      content += label(288, 34 + index * 88, value, "start");
+    });
+    return content;
+  }
+  function matplotlib(colors, purpose) {
+    const hex2 = JSON.stringify(colors.map((color2) => color2.toUpperCase()));
+    if (purpose === "category") return "colors = dict(zip(" + JSON.stringify(names) + ", " + hex2 + "))";
+    const norm = purpose === "difference" ? "TwoSlopeNorm(vmin=-0.2, vcenter=0, vmax=0.2)" : "Normalize(vmin=0, vmax=1)";
+    return "from matplotlib.colors import ListedColormap, Normalize, TwoSlopeNorm\n\ncmap = ListedColormap(" + hex2 + ")\nnorm = " + norm + "\n# ax.imshow(data, cmap=cmap, norm=norm)";
+  }
+  function render() {
+    const purpose = controls.purpose.value;
+    const isLine = controls.chart.value === "line";
+    root.dataset.width = controls.width.value;
+    root.querySelector("[data-line]").hidden = purpose !== "category";
+    root.querySelector("[data-marker]").hidden = purpose !== "category" || !isLine;
+    panels.forEach((panel) => {
+      const palette = panel.querySelector("[data-palette]").value;
+      const originals = palettes[purpose][palette];
+      const colors = originals.map(displayColor);
+      const chart = purpose === "category" ? categoryChart(colors, isLine) : heatmap(colors, purpose);
+      const description = purpose === "category" ? isLine ? "\u8BAD\u7EC3\u66F2\u7EBF" : "\u5206\u7EC4\u67F1\u72B6\u56FE" : "\u70ED\u56FE";
+      panel.querySelector("[data-preview]").innerHTML = '<svg viewBox="0 0 400 234" role="img" aria-label="' + description + "\uFF0C" + palette + '" font-family="system-ui, sans-serif" font-size="12">' + chart + "</svg>";
+      panel.querySelector("[data-swatches]").innerHTML = colors.map((color2, index) => '<span title="' + originals[index].toUpperCase() + '" style="background:' + color2 + '"></span>').join("");
+      const code = panel.querySelector("[data-code]");
+      const snippet = matplotlib(originals, purpose);
+      if (code.value !== snippet) {
+        code.value = snippet;
+        code.hidden = true;
+        panel.querySelector("[data-status]").textContent = "";
+      }
+    });
+  }
+  function setOptions() {
+    const options = Object.keys(palettes[controls.purpose.value]);
+    panels.forEach((panel, index) => {
+      const select = panel.querySelector("[data-palette]");
+      select.replaceChildren(...options.map((name) => new Option(name, name)));
+      select.selectedIndex = index;
+    });
+  }
+  root.addEventListener("change", (event) => {
+    if (event.target === controls.purpose) setOptions();
+    render();
+  });
+  panels.forEach((panel) => {
+    panel.querySelector("[data-copy]").addEventListener("click", async () => {
+      const code = panel.querySelector("[data-code]");
+      const status = panel.querySelector("[data-status]");
+      try {
+        await navigator.clipboard.writeText(code.value);
+        status.textContent = "\u5DF2\u590D\u5236 Matplotlib \u914D\u7F6E";
+      } catch {
+        code.hidden = false;
+        code.focus();
+        code.select();
+        status.textContent = "\u5DF2\u9009\u4E2D\u4EE3\u7801\uFF0C\u53EF\u624B\u52A8\u590D\u5236";
+      }
+    });
+  });
+  setOptions();
+  render();
+})();
+</script>
     <h3 class="sub-title">Okabe-Ito 色盲友好配色</h3>
     <p class="note">点击色块复制 HEX。前四色即可覆盖绝大多数对比场景。</p>
     <div class="palette reveal" id="palette-okabe"></div>
