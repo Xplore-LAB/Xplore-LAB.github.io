@@ -2089,13 +2089,28 @@ plt.rcParams.update({
     <h2 class="section-title">素材与资源</h2>
 
     <style>
-      #paper-palette { margin: 1.25rem 0 2rem; padding: 1rem; border: 1px solid #a9b8c7; border-radius: 12px; }
-      #paper-palette .palette-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin: .75rem 0; }
-      #paper-palette label { display: grid; gap: .25rem; }
+      #paper-palette { margin: 1.25rem 0 2rem; padding: clamp(.85rem, 2.4vw, 1.6rem); border: 1px solid #d8e4ee; border-radius: 18px; background: #f4f8fb; color: #172e43; font: .86rem/1.5 system-ui, sans-serif; }
+      #paper-palette h3 { margin: 0; font-size: 1.25rem; }
+      #paper-palette .note { color: #486175; margin: .4rem 0; }
+      #paper-palette .palette-presets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); gap: .6rem; margin: 1rem 0; }
+      #paper-palette .palette-presets button { display: grid; gap: .34rem; text-align: left; padding: .68rem .75rem; background: white; }
+      #paper-palette .palette-presets button[aria-pressed="true"] { border-color: #0072a6; background: #eaf5fb; box-shadow: inset 0 0 0 1px #0072a6; }
+      #paper-palette .palette-presets small { color: #486175; }
+      #paper-palette .preset-colors { display: flex; height: .46rem; border-radius: 4px; overflow: hidden; }
+      #paper-palette .preset-colors i { flex: 1; background: var(--swatch); }
+      #paper-palette .palette-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .55rem .75rem; margin: .8rem 0; }
+      #paper-palette details { border-top: 1px solid #d8e4ee; margin-top: 1rem; padding-top: .6rem; }
+      #paper-palette summary { cursor: pointer; color: #245572; font-weight: 650; }
+      #paper-palette label { display: grid; gap: .25rem; font-weight: 600; }
       #paper-palette [hidden] { display: none; }
-      #paper-palette select, #paper-palette button { font: inherit; padding: .28rem .5rem; }
+      #paper-palette select, #paper-palette button { font: inherit; color: inherit; padding: .42rem .58rem; border: 1px solid #c5d5e2; border-radius: 8px; background: #fff; }
+      #paper-palette button { cursor: pointer; }
+      #paper-palette :is(button, select, summary, input):focus-visible { outline: 2px solid #0072a6; outline-offset: 3px; }
       #paper-palette .palette-previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: .75rem; }
-      #paper-palette article { min-width: 0; padding: .65rem; border: 1px solid #a9b8c7; border-radius: 8px; }
+      #paper-palette article { min-width: 0; padding: .85rem; border: 1px solid #d8e4ee; border-radius: 12px; background: #fff; }
+      #paper-palette article label { color: #245572; }
+      #paper-palette [data-copy] { color: #12597c; background: #edf6fb; }
+      #paper-palette [data-status]:empty { display: none; }
       #paper-palette svg { display: block; width: 100%; max-width: 480px; margin: .5rem auto; background: white; border-radius: 4px; }
       #paper-palette[data-width="single"] svg { max-width: 336px; }
       #paper-palette .palette-swatches { display: flex; gap: .2rem; flex-wrap: wrap; margin: .6rem 0; }
@@ -2104,7 +2119,26 @@ plt.rcParams.update({
     </style>
     <section id="paper-palette" aria-labelledby="paper-palette-title">
       <h3 class="sub-title" id="paper-palette-title">论文配色预览</h3>
-      <p class="note">用同一组示例数据比较两套配色，检查缩到单栏或灰度显示后能否辨认。</p>
+      <p class="note">按图表用途选一套推荐配色，在同一组示例数据上并排比较。</p>
+      <div class="palette-presets" aria-label="推荐配色风格"></div>
+      <div class="palette-previews">
+        <article aria-label="当前方案">
+          <label>当前方案<select data-palette aria-label="当前方案色板"></select></label>
+          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
+          <button type="button" data-copy>复制 Matplotlib 配置</button>
+          <p class="note" data-status role="status"></p>
+          <textarea data-code hidden readonly aria-label="当前方案 Matplotlib 配置" rows="6"></textarea>
+        </article>
+        <article aria-label="对照方案">
+          <label>对照方案<select data-palette aria-label="对照方案色板"></select></label>
+          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
+          <button type="button" data-copy>复制 Matplotlib 配置</button>
+          <p class="note" data-status role="status"></p>
+          <textarea data-code hidden readonly aria-label="对照方案 Matplotlib 配置" rows="6"></textarea>
+        </article>
+      </div>
+      <details>
+      <summary>预览设置 · 图型、灰度、色觉模拟与栏宽</summary>
       <div class="palette-controls">
         <label>颜色用途<select data-role="purpose">
           <option value="category">区分模型或实验组</option>
@@ -2124,22 +2158,7 @@ plt.rcParams.update({
         </select></label>
         <label data-marker><span><input type="checkbox" data-role="markers"> 加线型和点标记</span></label>
       </div>
-      <div class="palette-previews">
-        <article aria-label="方案 A">
-          <label>方案 A<select data-palette aria-label="方案 A 色板"></select></label>
-          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
-          <button type="button" data-copy>复制 Matplotlib 配置</button>
-          <p class="note" data-status role="status"></p>
-          <textarea data-code hidden readonly aria-label="方案 A Matplotlib 配置" rows="6"></textarea>
-        </article>
-        <article aria-label="方案 B">
-          <label>方案 B<select data-palette aria-label="方案 B 色板"></select></label>
-          <div data-preview></div><div data-swatches class="palette-swatches" aria-hidden="true"></div>
-          <button type="button" data-copy>复制 Matplotlib 配置</button>
-          <p class="note" data-status role="status"></p>
-          <textarea data-code hidden readonly aria-label="方案 B Matplotlib 配置" rows="6"></textarea>
-        </article>
-      </div>
+      </details>
       <p class="note">色板来自本页 Okabe–Ito 和 <a href="https://github.com/d3/d3-scale-chromatic">D3 Scale Chromatic</a>，色觉模拟使用 <a href="https://github.com/bluwy/colorblind">Colorblind</a>。复制的配置使用原始配色。</p>
       <noscript><p>启用 JavaScript 后即可比较色板。下方仍可查看 Okabe–Ito 配色。</p></noscript>
     </section>
@@ -3153,6 +3172,22 @@ SOFTWARE.
     sequence: { "ColorBrewer \xB7 GnBu 8 \u7EA7": scheme3[8], "ColorBrewer \xB7 PuBu 8 \u7EA7": scheme4[8] },
     difference: { "ColorBrewer \xB7 RdBu 9 \u7EA7": scheme2[9], "ColorBrewer \xB7 PuOr 9 \u7EA7": scheme[9] }
   };
+  var presets = [
+    ["\u91CD\u70B9\u7A81\u51FA", "\u4E3B\u65B9\u6CD5\u4E0E\u57FA\u7EBF\u5BF9\u6BD4", "category", 0],
+    ["\u6E05\u6670\u5BF9\u7167", "\u4E09\u7EC4\u6298\u7EBF\u6216\u67F1\u72B6\u56FE", "category", 1],
+    ["\u6C89\u7A33\u5206\u7C7B", "\u591A\u7EC4\u5B9E\u9A8C\u7ED3\u679C", "category", 2],
+    ["\u84DD\u7EFF\u6E10\u53D8", "\u5F97\u5206\u70ED\u56FE\u4E0E\u6DF7\u6DC6\u77E9\u9635", "sequence", 0],
+    ["\u51B7\u6696\u5DEE\u503C", "\u4EE5 0 \u4E3A\u4E2D\u5FC3\u7684\u589E\u51CF", "difference", 0]
+  ];
+  var presetList = root.querySelector(".palette-presets");
+  presets.forEach(([title, description, purpose, index], presetIndex) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.preset = presetIndex;
+    const colors = Object.values(palettes[purpose])[index];
+    button.innerHTML = "<strong>" + title + "</strong><small>" + description + '</small><span class="preset-colors" aria-hidden="true">' + colors.map((color2) => '<i style="--swatch:' + color2 + '"></i>').join("") + "</span>";
+    presetList.append(button);
+  });
   var names = ["\u4E3B\u65B9\u6CD5", "\u5173\u952E\u5BF9\u7167", "\u57FA\u7840\u6A21\u578B"];
   var curves = [[58, 69, 76, 85, 90, 92], [54, 62, 73, 78, 81, 84], [50, 61, 64, 68, 70, 73]];
   var bars = [[92, 88, 94], [84, 81, 86], [73, 68, 78]];
@@ -3162,7 +3197,7 @@ SOFTWARE.
   };
   var label = (x, y, value, align = "middle") => '<text x="' + x + '" y="' + y + '" text-anchor="' + align + '" fill="#263544">' + value + "</text>";
   var rect = (x, y, w, h, color2) => '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + color2 + '"/>';
-  var path = (d, color2, attributes = "") => '<path d="' + d + '" fill="none" stroke="' + color2 + '" stroke-width="2.6" ' + attributes + "/>";
+  var path = (d, color2, attributes = "", width = 2.4) => '<path d="' + d + '" fill="none" stroke="' + color2 + '" stroke-width="' + width + '" ' + attributes + "/>";
   function displayColor(hex2) {
     const mode = controls.vision.value;
     if (mode === "normal") return hex2;
@@ -3187,11 +3222,11 @@ SOFTWARE.
     ][group];
     const tickValues = isLine ? [50, 60, 70, 80, 90, 100] : [0, 25, 50, 75, 100];
     const y = (value) => 190 - (value - tickValues[0]) * 146 / (100 - tickValues[0]);
-    let content = label(40, 29, "\u5F97\u5206 (%)", "start");
+    let content = label(40, 36, "\u5F97\u5206 (%)", "start");
     for (const value of tickValues) {
-      content += path("M40," + y(value) + "H374", "#e5ebf0") + label(35, y(value) + 4, value, "end");
+      content += path("M40," + y(value) + "H374", "#e5ebf0", "", 1) + label(35, y(value) + 4, value, "end");
     }
-    content += path("M40,44V190H374", "#697787");
+    content += path("M40,44V190H374", "#697787", "", 1.2);
     colors.forEach((color2, group) => {
       const legendX = 52 + group * 114;
       content += isLine ? path("M" + legendX + ",16h22", color2, markers ? styles[group] : "") : rect(legendX, 10, 15, 11, color2);
@@ -3241,6 +3276,11 @@ SOFTWARE.
   }
   function render() {
     const purpose = controls.purpose.value;
+    const currentIndex = panels[0].querySelector("[data-palette]").selectedIndex;
+    [...presetList.children].forEach((button, index) => {
+      const [, , presetPurpose, presetPalette] = presets[index];
+      button.setAttribute("aria-pressed", String(presetPurpose === purpose && presetPalette === currentIndex));
+    });
     const isLine = controls.chart.value === "line";
     root.dataset.width = controls.width.value;
     root.querySelector("[data-line]").hidden = purpose !== "category";
@@ -3262,16 +3302,24 @@ SOFTWARE.
       }
     });
   }
-  function setOptions() {
+  function setOptions(currentIndex = 0) {
     const options = Object.keys(palettes[controls.purpose.value]);
     panels.forEach((panel, index) => {
       const select = panel.querySelector("[data-palette]");
       select.replaceChildren(...options.map((name) => new Option(name, name)));
-      select.selectedIndex = index;
+      select.selectedIndex = (currentIndex + index) % options.length;
     });
   }
   root.addEventListener("change", (event) => {
     if (event.target === controls.purpose) setOptions();
+    render();
+  });
+  presetList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-preset]");
+    if (!button) return;
+    const [, , purpose, index] = presets[Number(button.dataset.preset)];
+    controls.purpose.value = purpose;
+    setOptions(index);
     render();
   });
   panels.forEach((panel) => {
