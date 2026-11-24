@@ -2121,6 +2121,12 @@ plt.rcParams.update({
       <h3 class="sub-title" id="paper-palette-title">论文配色预览</h3>
       <p class="note">按图表用途选一套推荐配色，在同一组示例数据上并排比较。</p>
       <div class="palette-presets" aria-label="推荐配色风格"></div>
+      <div class="palette-controls" data-line>
+        <label>预览图型<select data-role="chart">
+          <option value="line">训练曲线</option><option value="bar">分组柱状图</option>
+          <option value="scatter">分组散点图</option><option value="pie">占比环形图</option>
+        </select></label>
+      </div>
       <div class="palette-previews">
         <article aria-label="当前方案">
           <label>当前方案<select data-palette aria-label="当前方案色板"></select></label>
@@ -2138,15 +2144,12 @@ plt.rcParams.update({
         </article>
       </div>
       <details>
-      <summary>预览设置 · 图型、灰度、色觉模拟与栏宽</summary>
+      <summary>预览设置 · 灰度、色觉模拟与栏宽</summary>
       <div class="palette-controls">
         <label>颜色用途<select data-role="purpose">
           <option value="category">区分模型或实验组</option>
           <option value="sequence">表示数值高低</option>
           <option value="difference">显示正负差异</option>
-        </select></label>
-        <label data-line>图表类型<select data-role="chart">
-          <option value="line">训练曲线</option><option value="bar">分组柱状图</option>
         </select></label>
         <label>显示模式<select data-role="vision">
           <option value="normal">原色</option><option value="achromatopsia">灰度</option>
@@ -2159,7 +2162,7 @@ plt.rcParams.update({
         <label data-marker><span><input type="checkbox" data-role="markers"> 加线型和点标记</span></label>
       </div>
       </details>
-      <p class="note">色板来自本页 Okabe–Ito 和 <a href="https://github.com/d3/d3-scale-chromatic">D3 Scale Chromatic</a>，色觉模拟使用 <a href="https://github.com/bluwy/colorblind">Colorblind</a>。复制的配置使用原始配色。</p>
+      <p class="note">色板来自本页 Okabe–Ito、<a href="https://github.com/d3/d3-scale-chromatic">D3 Scale Chromatic</a> 和 TigerZ 的 <a href="https://github.com/ZhengTiger/CNScolor/blob/main/sciRcolor_config.R">sciRcolor 第 7、9 期</a>。色觉模拟使用 <a href="https://github.com/bluwy/colorblind">Colorblind</a>。复制的配置使用原始配色。</p>
       <noscript><p>启用 JavaScript 后即可比较色板。下方仍可查看 Okabe–Ito 配色。</p></noscript>
     </section>
 <script>
@@ -3167,7 +3170,9 @@ SOFTWARE.
     category: {
       "\u84DD\u6A59\u7070 \xB7 \u4E3B\u65B9\u6CD5\u5F3A\u8C03": ["#0072B2", "#E69F00", "#999999"],
       "Okabe\u2013Ito": ["#0072B2", "#D55E00", "#009E73"],
-      "ColorBrewer \xB7 Dark2": Dark2_default.slice(0, 3)
+      "ColorBrewer \xB7 Dark2": Dark2_default.slice(0, 3),
+      "sciRcolor \u7B2C 7 \u671F \xB7 \u6D77\u519B\u84DD\u3001\u8584\u8377\u3001\u6D45\u7070": ["#1C3C63", "#93C8C0", "#D3D5D4"],
+      "sciRcolor \u7B2C 9 \u671F \xB7 \u7EFF\u3001\u7D2B\u3001\u6A59": ["#0E986F", "#796CAD", "#D65813"]
     },
     sequence: { "ColorBrewer \xB7 GnBu 8 \u7EA7": scheme3[8], "ColorBrewer \xB7 PuBu 8 \u7EA7": scheme4[8] },
     difference: { "ColorBrewer \xB7 RdBu 9 \u7EA7": scheme2[9], "ColorBrewer \xB7 PuOr 9 \u7EA7": scheme[9] }
@@ -3177,7 +3182,9 @@ SOFTWARE.
     ["\u6E05\u6670\u5BF9\u7167", "\u4E09\u7EC4\u6298\u7EBF\u6216\u67F1\u72B6\u56FE", "category", 1],
     ["\u6C89\u7A33\u5206\u7C7B", "\u591A\u7EC4\u5B9E\u9A8C\u7ED3\u679C", "category", 2],
     ["\u84DD\u7EFF\u6E10\u53D8", "\u5F97\u5206\u70ED\u56FE\u4E0E\u6DF7\u6DC6\u77E9\u9635", "sequence", 0],
-    ["\u51B7\u6696\u5DEE\u503C", "\u4EE5 0 \u4E3A\u4E2D\u5FC3\u7684\u589E\u51CF", "difference", 0]
+    ["\u51B7\u6696\u5DEE\u503C", "\u4EE5 0 \u4E3A\u4E2D\u5FC3\u7684\u589E\u51CF", "difference", 0],
+    ["\u6D77\u519B\u84DD\u4E0E\u8584\u8377", "sciRcolor \u7B2C 7 \u671F \xB7 \u5F3A\u8C03\u4E3B\u7CFB\u5217", "category", 3],
+    ["\u7EFF\u7D2B\u6A59", "sciRcolor \u7B2C 9 \u671F \xB7 \u4E09\u7EC4\u5E76\u5217", "category", 4]
   ];
   var presetList = root.querySelector(".palette-presets");
   presets.forEach(([title, description, purpose, index], presetIndex) => {
@@ -3212,7 +3219,31 @@ SOFTWARE.
     });
     return "rgb(" + encoded.join(",") + ")";
   }
-  function categoryChart(colors, isLine) {
+  var scatterPoints = [
+    [[8, 56], [13, 58], [19, 71], [23, 66], [26, 73], [33, 78], [36, 70]],
+    [[12, 64], [17, 68], [24, 79], [28, 72], [32, 84], [38, 81], [44, 90]],
+    [[6, 59], [11, 65], [21, 57], [25, 68], [29, 62], [34, 67], [41, 73]]
+  ];
+  function shareChart(colors) {
+    const shares = [45, 35, 20];
+    const radius = 72;
+    const perimeter = 2 * Math.PI * radius;
+    let start = 0;
+    let content = label(122, 113, "\u6784\u6210\u5360\u6BD4");
+    colors.forEach((color2, index) => {
+      const length = perimeter * shares[index] / 100;
+      content += '<circle cx="122" cy="108" r="' + radius + '" fill="none" stroke="' + color2 + '" stroke-width="34" stroke-dasharray="' + (length - 2) + " " + (perimeter - length + 2) + '" stroke-dashoffset="' + -start + '" transform="rotate(-90 122 108)"/>';
+      start += length;
+      const legendY = 82 + index * 29;
+      content += rect(237, legendY - 10, 12, 12, color2) + label(257, legendY, names[index] + " " + shares[index] + "%", "start");
+    });
+    return content;
+  }
+  function categoryChart(colors, chartType) {
+    if (chartType === "pie") return shareChart(colors);
+    const isLine = chartType === "line";
+    const isScatter = chartType === "scatter";
+    const isBar = chartType === "bar";
     const markers = isLine && controls.markers.checked;
     const styles = ["", 'stroke-dasharray="7 4"', 'stroke-dasharray="2 4"'];
     const marker = (x, y2, group, color2) => [
@@ -3220,7 +3251,7 @@ SOFTWARE.
       rect(x - 3.5, y2 - 3.5, 7, 7, color2),
       '<path d="M' + x + "," + (y2 - 4) + 'l4,8h-8z" fill="' + color2 + '"/>'
     ][group];
-    const tickValues = isLine ? [50, 60, 70, 80, 90, 100] : [0, 25, 50, 75, 100];
+    const tickValues = isBar ? [0, 25, 50, 75, 100] : [50, 60, 70, 80, 90, 100];
     const y = (value) => 190 - (value - tickValues[0]) * 146 / (100 - tickValues[0]);
     let content = label(40, 36, "\u5F97\u5206 (%)", "start");
     for (const value of tickValues) {
@@ -3236,16 +3267,21 @@ SOFTWARE.
         const points = curves[group].map((value, index) => [55 + index * 61, y(value)]);
         content += path("M" + points.join("L"), color2, markers ? styles[group] : "");
         if (markers) for (const [x, pointY] of points) content += marker(x, pointY, group, color2);
+      } else if (isScatter) {
+        for (const [x, value] of scatterPoints[group]) {
+          content += '<circle cx="' + (55 + x * 6.1) + '" cy="' + y(value) + '" r="4.2" fill="' + color2 + '" stroke="#28394b" stroke-width=".65"/>';
+        }
       } else {
         bars[group].forEach((value, index) => {
           content += rect(67 + index * 111 + group * 21, y(value), 19, 190 - y(value), color2);
         });
       }
     });
-    (isLine ? ["0", "10", "20", "30", "40", "50"] : ["\u6307\u6807 A", "\u6307\u6807 B", "\u6307\u6807 C"]).forEach((tick, index) => {
-      content += label(isLine ? 55 + index * 61 : 97 + index * 111, 208, tick);
+    (isBar ? ["\u6307\u6807 A", "\u6307\u6807 B", "\u6307\u6807 C"] : ["0", "10", "20", "30", "40", "50"]).forEach((tick, index) => {
+      content += label(isBar ? 97 + index * 111 : 55 + index * 61, 208, tick);
     });
     if (isLine) content += label(207, 227, "\u8BAD\u7EC3\u8F6E\u6B21");
+    if (isScatter) content += label(207, 227, "\u8F93\u5165\u53D8\u91CF");
     return content;
   }
   function heatmap(colors, purpose) {
@@ -3281,16 +3317,16 @@ SOFTWARE.
       const [, , presetPurpose, presetPalette] = presets[index];
       button.setAttribute("aria-pressed", String(presetPurpose === purpose && presetPalette === currentIndex));
     });
-    const isLine = controls.chart.value === "line";
+    const chartType = controls.chart.value;
     root.dataset.width = controls.width.value;
     root.querySelector("[data-line]").hidden = purpose !== "category";
-    root.querySelector("[data-marker]").hidden = purpose !== "category" || !isLine;
+    root.querySelector("[data-marker]").hidden = purpose !== "category" || chartType !== "line";
     panels.forEach((panel) => {
       const palette = panel.querySelector("[data-palette]").value;
       const originals = palettes[purpose][palette];
       const colors = originals.map(displayColor);
-      const chart = purpose === "category" ? categoryChart(colors, isLine) : heatmap(colors, purpose);
-      const description = purpose === "category" ? isLine ? "\u8BAD\u7EC3\u66F2\u7EBF" : "\u5206\u7EC4\u67F1\u72B6\u56FE" : "\u70ED\u56FE";
+      const chart = purpose === "category" ? categoryChart(colors, chartType) : heatmap(colors, purpose);
+      const description = purpose === "category" ? controls.chart.selectedOptions[0].textContent : "\u70ED\u56FE";
       panel.querySelector("[data-preview]").innerHTML = '<svg viewBox="0 0 400 234" role="img" aria-label="' + description + "\uFF0C" + palette + '" font-family="system-ui, sans-serif" font-size="12">' + chart + "</svg>";
       panel.querySelector("[data-swatches]").innerHTML = colors.map((color2, index) => '<span title="' + originals[index].toUpperCase() + '" style="background:' + color2 + '"></span>').join("");
       const code = panel.querySelector("[data-code]");
