@@ -2,5 +2,5 @@
 <script defer src="{{ '/js/site-nav.js' | prepend: site.baseurl }}?v={{ site.github.build_revision | default: 'nav-1' }}"></script>
 {% assign fig_page_url = page.url | remove: '.html' %}
 {% if fig_page_url contains '/figures' %}
-<script defer src="{{ '/js/figures-sidenav.js' | prepend: site.baseurl }}?v=figures-nav-1"></script>
+<script defer src="{{ '/js/figures-sidenav.js' | prepend: site.baseurl }}?v={{ site.github.build_revision | default: 'figures-nav-2' }}"></script>
 {% endif %}
