@@ -53,6 +53,7 @@ def repo_to_item(r, name_to_group=None):
     return {
         "desc": desc or "暂无描述，点击查看仓库详情",
         "badge": lang or "Repo",
+        "stars": r.get("stargazers_count", 0),
         "featured": False,
         "path": r["html_url"],
         "emoji": LANG_EMOJI.get(lang, "📦"),
@@ -99,6 +100,7 @@ def main():
                 auto_items.append({
                     "desc": desc_overrides.get(name, "私有仓库，暂未公开"),
                     "badge": "私有",
+                    "stars": 0,
                     "featured": False,
                     "path": f"https://github.com/{OWNER}/{name}",
                     "emoji": "🔒",

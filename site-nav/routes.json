@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-11-20T08:38:45.276348+00:00",
+    "generated_at": "2026-11-24T10:50:04.495838+08:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -31,6 +31,7 @@
         {
             "desc": "每日科技新闻自动聚合 - 多源抓取/自动摘要/定时更新",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/tech-news",
             "emoji": "🐍",
@@ -40,6 +41,7 @@
         {
             "desc": "🤖 大模型情报局 | 每日自动追踪 arXiv 前沿论文：13k+ 论文、34 个实验室、模型时间线与学习路径",
             "badge": "HTML",
+            "stars": 5,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/llm-tracker",
             "emoji": "🌐",
@@ -49,6 +51,7 @@
         {
             "desc": "🕊️ Postbird 信鸽 | 本地优先的 AI 邮件与材料整理助手：22 个工具覆盖邮件与 Word/PPT/表格，发信需确认、收信只读、无删除工具，数据不出本机",
             "badge": "JavaScript",
+            "stars": 1,
             "featured": true,
             "path": "https://github.com/Xplore-LAB/postbird",
             "emoji": "🟨",
@@ -58,6 +61,7 @@
         {
             "desc": "在 NVIDIA DGX Spark/GB10 上运行 MiniMax H3（文/图生视频带声音）：全容器化 ComfyUI v0.30.0 + NGC PyTorch 25.11，HTTP API 工作流",
             "badge": "Shell",
+            "stars": 11,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/minimax-h3-dgx-spark",
             "emoji": "🐚",
@@ -67,6 +71,7 @@
         {
             "desc": "工业控制性能分析工具 · 单文件离线运行 · CSV导入即分析 · 脱硝优化 · 空分节能 · 零依赖",
             "badge": "HTML",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/DataLens",
             "emoji": "🌐",
@@ -76,6 +81,7 @@
         {
             "desc": "SFT 指令微调数据集（详见仓库 README）",
             "badge": "Shell",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/OKC-SFT-Dataset",
             "emoji": "🐚",
@@ -85,6 +91,7 @@
         {
             "desc": "OpenClaw 学术技能包：面向科研场景的 Agent 技能合集",
             "badge": "JavaScript",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/openclaw-scholar-pack",
             "emoji": "🟨",
@@ -94,6 +101,7 @@
         {
             "desc": "个人 Agent Skills 工具箱（WorkBuddy / Claude Code 可复用技能）",
             "badge": "JavaScript",
+            "stars": 1,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/Xplore-LAB-skills",
             "emoji": "🟨",
@@ -103,6 +111,7 @@
         {
             "desc": "Action-State Memory Engine: typed time-series memory (states + actions) with trend/anomaly/causal analysis for DeepSeek Harness",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/dsh-plugin-asmemory",
             "emoji": "🐍",
@@ -112,6 +121,7 @@
         {
             "desc": "🩺💻 Claude Code 电脑健康检查技能：快速/深度双模式，保守阈值，只读安全",
             "badge": "Shell",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/pc-doctor",
             "emoji": "🐚",
@@ -121,6 +131,7 @@
         {
             "desc": "几分钟内把任意 LLM API 转成 OpenAI 兼容端点",
             "badge": "Python",
+            "stars": 1,
             "featured": true,
             "path": "https://github.com/Xplore-LAB/openai-compatible-proxy",
             "emoji": "🐍",
@@ -130,6 +141,7 @@
         {
             "desc": "Word + Outlook VBA 批量邮件工具：按 Excel 每行数据生成邮件并附对应附件",
             "badge": "VBA",
+            "stars": 1,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/word-mail-merge-batch-sender",
             "emoji": "📧",
@@ -139,6 +151,7 @@
         {
             "desc": "轻量级 Python LLM 网关，支持 OpenAI / DeepSeek / Qwen / Claude 多模型统一路由",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/llm-gateway-lite",
             "emoji": "🐍",
@@ -229,6 +242,7 @@
         {
             "desc": "暂无描述，点击查看仓库详情",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/home-lab434",
             "emoji": "🐍",
@@ -238,6 +252,7 @@
         {
             "desc": "Agent-first, local-first processing of talks into slides, transcripts and illustrated notes.",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/talkweaver",
             "emoji": "🐍",
@@ -247,6 +262,7 @@
         {
             "desc": "CiteCargo · 文献直达｜面向科研人员的论文获取与归档助手。AI 技能或本地操作页，参考文献转 PDF、批量续跑、按需归档 Zotero。",
             "badge": "Python",
+            "stars": 1,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/paper-tool",
             "emoji": "🐍",
@@ -256,6 +272,7 @@
         {
             "desc": "树莓派无屏设备 Portal 兼容性实验：临时 MAC、独立管理链路与手动网页认证；实验性方案，待实机验证",
             "badge": "Shell",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/portal-mac-experiment",
             "emoji": "🐚",
@@ -265,6 +282,7 @@
         {
             "desc": "在 QQ 私聊中继续本地 Codex 会话 | Control Codex from QQ: streaming replies, files, approvals & durable tasks",
             "badge": "TypeScript",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/qq-codex-bridge",
             "emoji": "🟦",
@@ -274,6 +292,7 @@
         {
             "desc": "论文精读与成果转化的标准流程（SOP）：筛-拆-转三层流程 + 六段式精读卡片模板，可直接转成解读文章与文献综述",
             "badge": "Repo",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/paper-reading",
             "emoji": "📦",
@@ -283,6 +302,7 @@
         {
             "desc": "KEV Decision Model Playground - Interactive frontend for probability-based decision making",
             "badge": "Repo",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/kev-playground",
             "emoji": "📦",
@@ -292,6 +312,7 @@
         {
             "desc": "Multi-Max H3 图生视频 Skill — 复现何老师 workshop 2 的 4 文件 Skill 范式",
             "badge": "Python",
+            "stars": 0,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/minimax-h3-story",
             "emoji": "🐍",
@@ -301,6 +322,7 @@
         {
             "desc": "秋招网申自动填充助手：本地资料管理、可选 AI 提取、填写自检与问题诊断",
             "badge": "JavaScript",
+            "stars": 3,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/qiuzhao-autofill",
             "emoji": "🟨",
