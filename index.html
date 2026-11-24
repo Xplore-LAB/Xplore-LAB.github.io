@@ -295,7 +295,7 @@ footer a:hover { color: var(--accent); }
 }
 
 /* GitHub 风格 Star 徽章：配色对齐 GitHub 仓库页 Primer */
-.project h3 a.gh-star {
+.project a.gh-star {
   display: inline-flex; align-items: center; gap: 5px;
   margin-left: 8px; padding: 1px 8px;
   border: 1px solid #d0d7de; border-radius: 6px;
@@ -305,14 +305,27 @@ footer a:hover { color: var(--accent); }
   text-decoration: none; white-space: nowrap; vertical-align: middle;
   transition: background .2s ease, border-color .2s ease;
 }
-.project h3 a.gh-star:hover { background: #eaeef2; border-color: #afb8c1; color: #1f2328; }
+.project a.gh-star:hover { background: #eaeef2; border-color: #afb8c1; color: #1f2328; }
 .gh-star-ico { fill: #e3b341; flex: none; }
-.project h3 a.gh-star:hover .gh-star-ico { fill: #d29922; }
+.project a.gh-star:hover .gh-star-ico { fill: #d29922; }
 .gh-star-num { color: #1f2328; }
 /* 精选项目分类 */
 #projects .writing-group { margin-bottom: 22px; }
 #projects .writing-group:last-child { margin-bottom: 0; }
-.project .logo-row h3 { min-width: 0; overflow-wrap: anywhere; }
+.project .logo-row h3 { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.project .logo-row a.gh-star { margin-left: auto; align-self: flex-start; flex: none; }
+
+/* Star 轻量引导提示 */
+#star-toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 30;
+  transform: translate(-50%, 12px);
+  max-width: calc(100vw - 32px); padding: 10px 16px;
+  border-radius: 8px; background: #24292f; color: #fff;
+  font-size: 13px; line-height: 1.5; text-align: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .25s var(--ease-natural);
+}
+#star-toast.show { opacity: 1; transform: translate(-50%, 0); }
 </style>
 {% include nav-assets.html %}
 </head>
@@ -359,7 +372,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <img src="/img/okc-sft-icon.svg" alt="OKC-SFT 图标：空分塔与诊断对勾">
-            <h3><a href="https://github.com/Xplore-LAB/OKC-SFT-Dataset">OKC-SFT</a><span class="metric">幻觉率 34.4% → 15.6%</span><a class="gh-star" href="https://github.com/Xplore-LAB/OKC-SFT-Dataset/stargazers" target="_blank" rel="noopener" data-repo="OKC-SFT-Dataset" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/OKC-SFT-Dataset">OKC-SFT</a><span class="metric">幻觉率 34.4% → 15.6%</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/OKC-SFT-Dataset" target="_blank" rel="noopener" data-repo="OKC-SFT-Dataset" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
           </div>
           <p>空分装置异常工况诊断的 LLM 微调方法与数据集，一作论文在审，含完整评测循环。</p>
           <div class="tags"><span>SFT</span><span>工业诊断</span><span>CAC 2026 在审</span></div>
@@ -367,7 +381,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <img src="/img/datalens-icon.svg" alt="DataLens 图标：放大镜与柱状图">
-            <h3><a href="https://github.com/Xplore-LAB/DataLens">DataLens</a><span class="metric">单文件离线运行</span><a class="gh-star" href="https://github.com/Xplore-LAB/DataLens/stargazers" target="_blank" rel="noopener" data-repo="DataLens" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/DataLens">DataLens</a><span class="metric">单文件离线运行</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/DataLens" target="_blank" rel="noopener" data-repo="DataLens" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
           </div>
           <p>工业控制性能分析工具，CSV 导入即分析，服务脱硝优化场景。</p>
           <div class="tags"><span>数据可视化</span><span>HTML</span><span>工业控制</span></div>
@@ -375,7 +390,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🌐</span>
-            <h3><a href="https://github.com/Xplore-LAB/llm-tracker">llm-tracker</a><a class="gh-star" href="https://github.com/Xplore-LAB/llm-tracker/stargazers" target="_blank" rel="noopener" data-repo="llm-tracker" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">5</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/llm-tracker">llm-tracker</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/llm-tracker" target="_blank" rel="noopener" data-repo="llm-tracker" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">5</span></a>
           </div>
           <p>大模型情报局：13k+ arXiv 论文日更追踪、模型时间线与学习路径。</p>
           <div class="tags"><span>HTML</span><span>论文追踪</span><span>站点</span></div>
@@ -388,7 +404,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <img src="/img/postbird-logo.png" alt="Postbird 信鸽 Logo：蓝色信鸽衔信封">
-            <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird 信鸽</a><span class="metric">22 个工具 · MIT 开源</span><a class="gh-star" href="https://github.com/Xplore-LAB/postbird/stargazers" target="_blank" rel="noopener" data-repo="postbird" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird 信鸽</a><span class="metric">22 个工具 · MIT 开源</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/postbird" target="_blank" rel="noopener" data-repo="postbird" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
           <p>本地优先的 AI 邮件与材料整理助手：发信需确认、收信只读、无删除工具，AI 绝不代办，数据不出本机。<a href="https://xplore-lab.github.io/postbird/demo/">在线 Demo</a> 免登录体验。</p>
           <div class="tags"><span>DeepSeek Harness</span><span>Local-first</span><span>邮件办公</span></div>
@@ -396,7 +413,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐚</span>
-            <h3><a href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark">minimax-h3-dgx-spark</a><a class="gh-star" href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark/stargazers" target="_blank" rel="noopener" data-repo="minimax-h3-dgx-spark" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">11</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark">minimax-h3-dgx-spark</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark" target="_blank" rel="noopener" data-repo="minimax-h3-dgx-spark" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">11</span></a>
           </div>
           <p>在 DGX Spark / GB10 上跑 MiniMax H3 文/图生视频：ComfyUI + NGC PyTorch 全容器化，含 HTTP API 工作流。</p>
           <div class="tags"><span>Shell</span><span>DGX Spark</span><span>视频生成</span></div>
@@ -404,7 +422,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐍</span>
-            <h3><a href="https://github.com/Xplore-LAB/openai-compatible-proxy">openai-compatible-proxy</a><a class="gh-star" href="https://github.com/Xplore-LAB/openai-compatible-proxy/stargazers" target="_blank" rel="noopener" data-repo="openai-compatible-proxy" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/openai-compatible-proxy">openai-compatible-proxy</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/openai-compatible-proxy" target="_blank" rel="noopener" data-repo="openai-compatible-proxy" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
           <p>几分钟内把任意 LLM API 转成 OpenAI 兼容端点。</p>
           <div class="tags"><span>Python</span><span>LLM 网关</span></div>
@@ -412,7 +431,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🟨</span>
-            <h3><a href="https://github.com/Xplore-LAB/Xplore-LAB-skills">Xplore-LAB-skills</a><a class="gh-star" href="https://github.com/Xplore-LAB/Xplore-LAB-skills/stargazers" target="_blank" rel="noopener" data-repo="Xplore-LAB-skills" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/Xplore-LAB-skills">Xplore-LAB-skills</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/Xplore-LAB-skills" target="_blank" rel="noopener" data-repo="Xplore-LAB-skills" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
           <p>个人 Agent Skills 工具箱，WorkBuddy / Claude Code 可复用技能合集。</p>
           <div class="tags"><span>JavaScript</span><span>Agent Skills</span></div>
@@ -425,7 +445,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🟨</span>
-            <h3><a href="https://github.com/Xplore-LAB/qiuzhao-autofill">qiuzhao-autofill</a><a class="gh-star" href="https://github.com/Xplore-LAB/qiuzhao-autofill/stargazers" target="_blank" rel="noopener" data-repo="qiuzhao-autofill" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">3</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/qiuzhao-autofill">qiuzhao-autofill</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/qiuzhao-autofill" target="_blank" rel="noopener" data-repo="qiuzhao-autofill" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">3</span></a>
           </div>
           <p>秋招网申自动填充助手：本地资料管理、可选 AI 提取与填写自检。</p>
           <div class="tags"><span>JavaScript</span><span>求职</span><span>浏览器工具</span></div>
@@ -433,7 +454,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐍</span>
-            <h3><a href="https://github.com/Xplore-LAB/paper-tool">paper-tool</a><a class="gh-star" href="https://github.com/Xplore-LAB/paper-tool/stargazers" target="_blank" rel="noopener" data-repo="paper-tool" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/paper-tool">paper-tool</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/paper-tool" target="_blank" rel="noopener" data-repo="paper-tool" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
           <p>CiteCargo 文献直达：参考文献批量转 PDF、断点续跑、按需归档 Zotero。</p>
           <div class="tags"><span>Python</span><span>科研工具</span><span>Zotero</span></div>
@@ -441,7 +463,8 @@ footer a:hover { color: var(--accent); }
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">📧</span>
-            <h3><a href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender">word-mail-merge-batch-sender</a><a class="gh-star" href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender/stargazers" target="_blank" rel="noopener" data-repo="word-mail-merge-batch-sender" title="在 GitHub 查看 Star"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a></h3>
+            <h3><a href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender">word-mail-merge-batch-sender</a></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender" target="_blank" rel="noopener" data-repo="word-mail-merge-batch-sender" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
           <p>Word + Outlook VBA 批量邮件工具，按 Excel 每行生成邮件并附对应附件。</p>
           <div class="tags"><span>VBA</span><span>办公自动化</span></div>
@@ -521,6 +544,8 @@ footer a:hover { color: var(--accent); }
     <span><a href="https://github.com/Xplore-LAB">GitHub</a> · <a href="/about/">About</a></span>
   </footer>
 </div>
+
+<div id="star-toast" role="status" aria-live="polite"></div>
 
 {% raw %}
 <script>
@@ -689,6 +714,18 @@ footer a:hover { color: var(--accent); }
         var num = el.querySelector('.gh-star-num');
         if (num) num.textContent = n;
         else el.textContent = '★ ' + n;
+      });
+      /* 轻量引导：点击 Star 徽章打开仓库页，并提示访客点 Star */
+      var toast = document.getElementById('star-toast');
+      var toastTimer = null;
+      document.querySelectorAll('.project [data-repo]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          if (!toast) return;
+          toast.textContent = '已在 GitHub 打开仓库，点右上角 ★ Star 就帮我一下啦';
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+        });
       });
       var meta = document.getElementById('entries-meta');
       var gen = data.generated_at ? new Date(data.generated_at).toLocaleString('zh-CN') : '-';
