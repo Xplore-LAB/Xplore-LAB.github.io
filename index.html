@@ -286,6 +286,13 @@ footer a:hover { color: var(--accent); }
   transition: opacity .2s ease, transform .25s var(--ease-natural), color .2s ease;
 }
 .link-item:hover .lk-arrow { opacity: 1; transform: translateX(2px); color: var(--accent); }
+
+/* 开源精选：整卡可点击，紫色左边线与「精选项目」区分 */
+.section-note { margin: -6px 0 16px; font-size: 13px; color: var(--ink-faint); }
+#opensource .project { border-left-color: var(--accent-deep); text-decoration: none; }
+#opensource .project:hover { border-left-color: var(--accent); }
+#opensource .project:hover h3 { color: var(--accent); }
+#opensource .project .metric { color: var(--accent-deep); }
 </style>
 {% include nav-assets.html %}
 </head>
@@ -351,6 +358,53 @@ footer a:hover { color: var(--accent); }
       <p>工业控制性能分析工具，CSV 导入即分析，服务脱硝优化场景。</p>
       <div class="tags"><span>数据可视化</span><span>HTML</span><span>工业控制</span></div>
     </div>
+    </div>
+  </section>
+
+  <section id="opensource">
+    <h2 class="section-title">开源精选<span class="count">8</span></h2>
+    <p class="section-note">GitHub 上 star ≥ 1 的自有公开仓库，按 star 排序；点卡片直达仓库。</p>
+    <div class="cards">
+      <a class="project reveal" href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark" target="_blank" rel="noopener">
+        <h3>minimax-h3-dgx-spark<span class="metric">★ 11</span></h3>
+        <p>在 DGX Spark / GB10 上跑 MiniMax H3 文/图生视频：ComfyUI + NGC PyTorch 全容器化，含 HTTP API 工作流。</p>
+        <div class="tags"><span>Shell</span><span>DGX Spark</span><span>视频生成</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/llm-tracker" target="_blank" rel="noopener">
+        <h3>llm-tracker<span class="metric">★ 5</span></h3>
+        <p>大模型情报局：13k+ arXiv 论文日更追踪、模型时间线与学习路径。</p>
+        <div class="tags"><span>HTML</span><span>论文追踪</span><span>站点</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/qiuzhao-autofill" target="_blank" rel="noopener">
+        <h3>qiuzhao-autofill<span class="metric">★ 3</span></h3>
+        <p>秋招网申自动填充助手：本地资料管理、可选 AI 提取与填写自检。</p>
+        <div class="tags"><span>JavaScript</span><span>求职</span><span>浏览器工具</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/postbird" target="_blank" rel="noopener">
+        <h3>postbird<span class="metric">★ 1</span></h3>
+        <p>本地优先的 AI 邮件与材料整理助手：发信需确认、收信只读、数据不出本机。</p>
+        <div class="tags"><span>JavaScript</span><span>Local-first</span><span>Agent</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/openai-compatible-proxy" target="_blank" rel="noopener">
+        <h3>openai-compatible-proxy<span class="metric">★ 1</span></h3>
+        <p>几分钟内把任意 LLM API 转成 OpenAI 兼容端点。</p>
+        <div class="tags"><span>Python</span><span>LLM 网关</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/paper-tool" target="_blank" rel="noopener">
+        <h3>paper-tool<span class="metric">★ 1</span></h3>
+        <p>CiteCargo 文献直达：参考文献批量转 PDF、断点续跑、按需归档 Zotero。</p>
+        <div class="tags"><span>Python</span><span>科研工具</span><span>Zotero</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/Xplore-LAB-skills" target="_blank" rel="noopener">
+        <h3>Xplore-LAB-skills<span class="metric">★ 1</span></h3>
+        <p>个人 Agent Skills 工具箱，WorkBuddy / Claude Code 可复用技能合集。</p>
+        <div class="tags"><span>JavaScript</span><span>Agent Skills</span></div>
+      </a>
+      <a class="project reveal" href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender" target="_blank" rel="noopener">
+        <h3>word-mail-merge-batch-sender<span class="metric">★ 1</span></h3>
+        <p>Word + Outlook VBA 批量邮件工具，按 Excel 每行生成邮件并附对应附件。</p>
+        <div class="tags"><span>VBA</span><span>办公自动化</span></div>
+      </a>
     </div>
   </section>
 
