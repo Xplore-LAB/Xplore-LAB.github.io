@@ -495,7 +495,10 @@ pre.code code { background: none; padding: 0; font: inherit; }
         </div>
         <div class="bench-stage">
           <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span>
-            <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">进入试色图</button>
+            <select id="bk-reference-picker" aria-label="顶刊换色图" hidden>
+              <option value="Nature">Nature · 方法对照</option><option value="Science">Science · 组成比例</option><option value="Cell">Cell · 三面板嵌入</option>
+            </select>
+            <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看顶刊参考</button>
           </div>
           <div class="bk-canvas" id="bk-canvas"></div>
           <template id="bk-reference-template">
@@ -508,7 +511,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
                   <figcaption><b>Nature · 方法与函数对照</b></figcaption>
                   <small>Hollmann 等，2025，Fig. 3a · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
                   <div class="bk-reference-actions"><a href="https://www.nature.com/articles/s41586-024-08328-6/figures/3">看原刊</a>
-                    <button type="button" class="btn tiny" data-reference-journal="Nature" data-reference-plots="A04">试色折线图</button></div>
+                    <button type="button" class="btn tiny" data-reference-journal="Nature">在这张图上试色</button></div>
                 </figure>
                 <figure class="bk-reference">
                   <a class="bk-reference-image" href="/img/palettes/references/science-composition.webp" aria-label="放大 Science 结构重画">
@@ -517,7 +520,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
                   <figcaption><b>Science · 组成比例与分组</b></figcaption>
                   <small>参考 Tabula Sapiens Consortium，2022，Fig. 2B · 模拟数据重画</small>
                   <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9812260/#F2">看原刊</a>
-                    <button type="button" class="btn tiny" data-reference-journal="Science" data-reference-plots="A03">试色堆叠柱</button></div>
+                    <button type="button" class="btn tiny" data-reference-journal="Science">在这张图上试色</button></div>
                 </figure>
                 <figure class="bk-reference">
                   <a class="bk-reference-image" href="/img/palettes/references/cell-wnn.webp" aria-label="放大 Cell 参考图">
@@ -526,7 +529,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
                   <figcaption><b>Cell · 多面板嵌入对比</b></figcaption>
                   <small>Hao 等，2021，Fig. 2A · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
                   <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8238499/figure/fig2/">看原刊</a>
-                    <button type="button" class="btn tiny" data-reference-journal="Cell" data-reference-plots="D04 D05 D06">试色三面板</button></div>
+                    <button type="button" class="btn tiny" data-reference-journal="Cell">在这张图上试色</button></div>
                 </figure>
               </div>
             </section>
@@ -2417,9 +2420,9 @@ svg.fonttype: none</code></pre>
 
   /* ── 状态与通用 UI ─────────────────────────────────────────────── */
   var MAX_CMP = 4;
-  var S = { uid: null, cmp: [], type: 'A01', cat: 'A', all: false, open: {},
+  var S = { uid: null, cmp: [], type: 'A04', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
-    showReferences: true, comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
+    showReferences: false, referencePlot: 'Nature', comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
   function showToast(msg) {
@@ -2557,6 +2560,7 @@ svg.fonttype: none</code></pre>
   function setType(id) {
     var P = BY_ID[id]; if (!P) return;
     S.showReferences = false;
+    S.referencePlot = null;
     S.type = id; S.cat = P.c;
     renderTypeUI(); renderPreview();
     Array.prototype.forEach.call($('gal-list').querySelectorAll('.gal-cell'), function (el) {
@@ -3020,9 +3024,11 @@ svg.fonttype: none</code></pre>
 
     var canvas = $('bk-canvas');
     $('bk-reference-toggle').textContent = S.showReferences ? '进入试色图' : '看顶刊参考';
+    $('bk-reference-picker').hidden = S.showReferences || !S.referencePlot;
+    if (S.referencePlot) $('bk-reference-picker').value = S.referencePlot;
     $('bk-swatch').hidden = S.showReferences;
     $('bk-meta').hidden = S.showReferences;
-    $('bk-copy').disabled = S.showReferences;
+    $('bk-copy').disabled = S.showReferences || Boolean(S.referencePlot);
     $('bk-svg').disabled = S.showReferences;
     if (S.showReferences) {
       $('bk-title').textContent = '顶刊参考图';
@@ -3036,7 +3042,12 @@ svg.fonttype: none</code></pre>
     var G = benchGroup(), cols = benchCols(), ids = benchIds(), P = BY_ID[S.type];
     var columns = S.comboMode && S.combo.length > 1 ? 2 : 1;
     var panelWidth = printUnits(journal.singleMm);
-    if (S.comboMode) {
+    if (S.referencePlot) {
+      $('bk-title').textContent = REFERENCE_PLOTS[S.referencePlot].title;
+      $('bk-sub').textContent = '模拟数据重画 · 选右侧色卡直接换色';
+      canvas.className = 'bk-canvas combo';
+      canvas.innerHTML = referencePlotSvg(cols, S.referencePlot);
+    } else if (S.comboMode) {
       var panelIds = S.combo.filter(function (id) { return BY_ID[id]; });
       $('bk-title').textContent = '论文组合排版 · ' + panelIds.length + ' 图';
       $('bk-sub').textContent = (G ? G.name : 'Okabe-Ito 默认色板') + ' · ' + cols.length + ' 色 · 共享同一色卡';
@@ -3066,7 +3077,11 @@ svg.fonttype: none</code></pre>
       }).join('') + '</div><div class="bk-sw-hex">' + cols.map(function (h) {
         return '<button type="button" class="hexcopy" data-bhex="' + esc(h) + '">' + esc(h) + '</button>';
       }).join('') + '</div>';
-    if (S.comboMode) {
+    if (S.referencePlot) {
+      $('bk-meta').innerHTML = '<dl><dt>成图</dt><dd>' + $('bk-journal').value + ' · '
+        + journal.comboMm + ' mm · 可编辑 SVG</dd><dt>图例</dt><dd>'
+        + REFERENCE_PLOTS[S.referencePlot].legend + '</dd></dl>';
+    } else if (S.comboMode) {
       var chosen = S.combo.map(function (id) { return BY_ID[id] ? BY_ID[id].id + ' ' + BY_ID[id].cn : ''; }).filter(Boolean);
       $('bk-meta').innerHTML = '<dl>'
         + '<dt>组合</dt><dd>' + esc(chosen.join(' / ') || '在左栏点选图表') + '</dd>'
@@ -3159,10 +3174,186 @@ svg.fonttype: none</code></pre>
     });
     return s + '</svg>';
   }
+  function referenceLabel(x, y, label, size, anchor, transform) {
+    return '<text x="' + x + '" y="' + y + '" font-family="' + journalFont()
+      + '" font-size="' + size * 2 + '" text-anchor="' + (anchor || 'start') + '" fill="#18202a"'
+      + (transform ? ' transform="' + transform + '"' : '') + '>' + esc(label) + '</text>';
+  }
+
+  function referencePoint(x, y, r, fill, opacity) {
+    return tag('circle', {cx:x.toFixed(1), cy:y.toFixed(1), r:r, fill:fill, 'fill-opacity':opacity});
+  }
+
+  function referenceAxes(K, x, y, w, h) {
+    return K.line(x, y, x, y + h, '#26313a', 1.2) + K.line(x, y + h, x + w, y + h, '#26313a', 1.2);
+  }
+
+  function referenceNature(K, w) {
+    var names = ['Sine + trend', 'Quadratic', 'Absolute value', 'Step function', 'Constant noise', 'Variable noise'];
+    var methods = ['Target', 'Flexible fit', 'Tree fit', 'Piecewise fit', 'Linear fit'];
+    var models = [
+      function (x) { return .34 * Math.sin(x * 22) + .18 * x; },
+      function (x) { return 2.7 * x * x - .26; },
+      function (x) { return 1.4 * Math.abs(x) - .33; },
+      function (x) { return .23 * Math.sign(x) + .16 * x; },
+      function (x) { return .87 * x; },
+      function (x) { return .43 * x; }
+    ];
+    var left = 81, top = 38, dx = 30, dy = 12, h = 83;
+    var width = (w - left - 25 - dx * 5) / 6, out = '';
+    for (var col = 0; col < 6; col++) {
+      var x = left + col * (width + dx), model = models[col], r = rng(300 + col);
+      var samples = [];
+      for (var i = 0; i < (col >= 4 ? 52 : 24); i++) {
+        var u = r() - .5, noise = col === 4 ? .17 : col === 5 ? .5 * Math.abs(u) + .03 : .025;
+        samples.push([u, model(u) + noise * (r() - .5)]);
+      }
+      out += referenceLabel(x + width / 2, 23, names[col], journal.text, 'middle');
+      for (var row = 0; row < 5; row++) {
+        var y = top + row * (h + dy), points = [];
+        out += referenceAxes(K, x, y, width, h);
+        if (!col) {
+          out += referenceLabel(16, y + h / 2, methods[row], journal.text, 'middle',
+            'rotate(-90 16 ' + (y + h / 2) + ')');
+          [-.5, 0, .5].forEach(function (value) {
+            out += referenceLabel(x - 8, y + (0.5 - value) * h + 4, String(value), journal.text, 'end');
+          });
+        }
+        if (row === 0 || row >= 3 || col >= 4) {
+          samples.forEach(function (pair) {
+            out += referencePoint(x + (pair[0] + .5) * width, y + (.5 - pair[1]) * h, 1.45, K.C(0), .68);
+          });
+        }
+        if (row) {
+          var steps = row === 2 ? 14 : 100;
+          for (var j = 0; j <= steps; j++) {
+            var t = j / steps - .5, value;
+            if (row === 1) value = model(t) + .016 * Math.sin(8 * t);
+            else if (row === 2) value = model(t) + .022 * Math.cos(t * 32);
+            else if (row === 3) value = col === 0 ? .32 * t : col === 1 || col === 2 ? .95 * Math.abs(t) - .23 : .84 * t;
+            else value = col === 0 ? .37 * t : col === 1 || col === 2 ? -.06 : (col === 5 ? .43 : .78) * t;
+            points.push([x + (t + .5) * width, y + (.5 - value) * h]);
+          }
+          if (row === 2) {
+            for (var k = 0; k < points.length - 1; k++) {
+              out += K.line(points[k][0], points[k][1], points[k + 1][0], points[k][1], K.C(1), 1.6);
+            }
+          } else out += K.poly(points.map(ptsStr).join(' '), K.C(1), 1.6);
+        }
+        if (row === 4) [-.5, 0, .5].forEach(function (value) {
+          out += referenceLabel(x + (value + .5) * width, y + h + 17, String(value), journal.text, 'middle');
+        });
+      }
+    }
+    return out;
+  }
+
+  function referenceScience(K, w) {
+    var y = 32, h = 216, x = 95, width = w - 277, out = '';
+    var rows = [
+      [1,14,10,74,1],[1,27,17,54,1],[0,31,66,2,1],[1,47,48,3,1],[1,13,82,3,1],
+      [31,8,25,35,1],[15,4,25,55,1],[40,4,29,26,1],[35,5,32,27,1],[39,31,10,19,1],
+      [40,12,38,9,1],[34,15,39,11,1],[24,24,22,29,1]
+    ];
+    var slot = width / rows.length;
+    rows.forEach(function (row, i) {
+      var cx = x + (i + .5) * slot, bottom = y + h;
+      row.forEach(function (value, k) {
+        var height = value * h / 100; bottom -= height;
+        out += K.rect(cx - slot * .28, bottom, slot * .56, height, K.C(k), {rx:0});
+      });
+      out += referenceLabel(cx + 4, y + h + 13, 'Group ' + (i + 1), journal.text, 'end',
+        'rotate(-90 ' + (cx + 4) + ' ' + (y + h + 13) + ')');
+    });
+    for (var value = 0; value <= 100; value += 20) {
+      var yy = y + h * (1 - value / 100);
+      out += K.line(x - 4, yy, x, yy, '#26313a', 1.2);
+      out += referenceLabel(x - 8, yy + 4, String(value), journal.text, 'end');
+    }
+    out += K.rect(x, y, width, h, 'none', {rx:0, stroke:'#26313a', 'stroke-width':1.2});
+    out += referenceLabel(23, y + h / 2, 'Relative composition (%)', journal.axis, 'middle',
+      'rotate(-90 23 ' + (y + h / 2) + ')');
+    out += referenceLabel(x, 328, 'Group strata', journal.text);
+    ['Low', 'Medium', 'High'].forEach(function (name, i) {
+      var start = [0,4,9][i], length = [4,5,4][i];
+      out += K.rect(x + start * slot, 334, length * slot, 8, ['#afafaf','#777','#383838'][i], {rx:0});
+      out += referenceLabel(x + (start + length / 2) * slot, 360, name, journal.text, 'middle');
+    });
+    ['Component 1','Component 2','Component 3','Component 4','Component 5'].forEach(function (name, i) {
+      out += K.rect(x + width + 14, y + i * 24, 15, 10, K.C(i), {rx:0});
+      out += referenceLabel(x + width + 35, y + 10 + i * 24, name, journal.text);
+    });
+    return out;
+  }
+
+  function referenceCell(K, w) {
+    var layouts = [
+      [[.17,.57],[.3,.53],[.34,.74],[.63,.52],[.64,.22],[.79,.34]],
+      [[.19,.66],[.31,.44],[.61,.74],[.66,.50],[.75,.24],[.80,.34]],
+      [[.16,.52],[.37,.43],[.43,.77],[.71,.65],[.62,.24],[.79,.31]]
+    ];
+    var width = (w - 260) / 3, top = 55, h = 211, out = '';
+    var names = ['Modality 1','Modality 2','Joint embedding'];
+    layouts.forEach(function (centres, panel) {
+      var x = 55 + panel * (width + 41);
+      out += referenceAxes(K, x, top, width, h);
+      out += referenceLabel(x + width / 2, 34, names[panel], journal.axis, 'middle');
+      centres.forEach(function (centre, group) {
+        var r = rng(120 + group);
+        for (var i = 0; i < 145; i++) {
+          var theta = r() * 2 * Math.PI, radius = Math.pow(r(), .65);
+          var a = theta + group * .28 + panel * .14;
+          var u = centre[0] + (.105 + .02 * (group % 3)) * radius * Math.cos(a);
+          var v = centre[1] + (.055 + .025 * (group % 2)) * radius * Math.sin(a)
+            + .047 * Math.sin(radius * 3.2) * Math.cos(a);
+          out += referencePoint(x + u * width, top + (1 - v) * h, 1.25, K.C(group), .48);
+        }
+      });
+      [0, .25, .5, .75, 1].forEach(function (fraction) {
+        var xx = x + fraction * width, yy = top + (1 - fraction) * h;
+        out += K.line(xx, top + h, xx, top + h + 4, '#26313a', 1.2);
+        out += referenceLabel(xx, top + h + 17, String(20 * fraction - 10), journal.text, 'middle');
+        out += K.line(x - 4, yy, x, yy, '#26313a', 1.2);
+        out += referenceLabel(x - 7, yy + 4, String(20 * fraction - 10), journal.text, 'end');
+      });
+      out += referenceLabel(x + width / 2, 301, 'Embedding 1', journal.text, 'middle');
+    });
+    out += referenceLabel(22, top + h / 2, 'Embedding 2', journal.text, 'middle',
+      'rotate(-90 22 ' + (top + h / 2) + ')');
+    for (var i = 0; i < 6; i++) {
+      out += K.dot(w - 105, 88 + i * 24, 4, K.C(i));
+      out += referenceLabel(w - 94, 92 + i * 24, 'Group ' + (i + 1), journal.text);
+    }
+    return out;
+  }
+
+  var REFERENCE_PLOTS = {
+    Nature: {title:'Nature · 五行六列方法对照', height:535, legend:'前两色分别表示模拟目标与拟合曲线', draw:referenceNature},
+    Science: {title:'Science · 组成比例与分组', height:378, legend:'前五色依次对应五个组成类别', draw:referenceScience},
+    Cell: {title:'Cell · 三面板嵌入对比', height:317, legend:'前六色跨面板对应同一组模拟点', draw:referenceCell}
+  };
+
+  function referencePlotSvg(cols, name) {
+    var spec = REFERENCE_PLOTS[name], w = printUnits(journal.comboMm), h = spec.height;
+    var K = ctx(w, h, false, cols, 0);
+    if (VIEW.opacity !== 100) {
+      var paletteColor = K.C;
+      K.C = function (i) { return shade(paletteColor(i), (100 - VIEW.opacity) / 100); };
+    }
+    return '<svg ' + printSvgAttrs(w, h, journal.comboMm) + ' role="img" aria-label="' + esc(spec.title)
+      + ' · 模拟数据"><rect width="' + w + '" height="' + h + '" fill="#fff"/>'
+      + '<text x="12" y="21" font-family="' + journalFont() + '" font-size="' + journal.panel * 2
+      + '" font-weight="700" fill="#18202a">' + panelLetter(name === 'Science' ? 1 : 0) + '</text>'
+      + spec.draw(K, w) + '</svg>';
+  }
+
   function downloadSvg() {
     var P = BY_ID[S.type], cols = benchCols();
     var svg, name, width = printUnits(journal.singleMm);
-    if (S.comboMode) {
+    if (S.referencePlot) {
+      svg = referencePlotSvg(cols, S.referencePlot);
+      name = 'palette_reference_' + S.referencePlot.toLowerCase() + '.svg';
+    } else if (S.comboMode) {
       var ids = S.combo.filter(function (id) { return BY_ID[id]; });
       svg = comboFigureSvg(cols, ids);
       name = 'palette_combo_' + ids.join('-') + '.svg';
@@ -3330,6 +3521,7 @@ svg.fonttype: none</code></pre>
   });
   $('bk-combo').addEventListener('click', function () {
     S.showReferences = false;
+    S.referencePlot = null;
     S.comboMode = !S.comboMode;
     if (S.combo.indexOf(S.type) < 0 && S.combo.length < 4) S.combo.push(S.type);
     plotSig = ''; renderBench();
@@ -3354,6 +3546,7 @@ svg.fonttype: none</code></pre>
   $('bk-rand').addEventListener('click', function () { benchRandom(true, true); });
   $('bk-mode').addEventListener('click', function () {
     S.showReferences = false;
+    S.referencePlot = null;
     S.benchMulti = !S.benchMulti; renderBench();
   });
   $('bk-copy').addEventListener('click', function () {
@@ -3380,15 +3573,22 @@ svg.fonttype: none</code></pre>
     S.showReferences = !S.showReferences;
     renderBench();
   });
-  $('bk-canvas').addEventListener('click', function (event) {
-    var button = near(event.target, '[data-reference-plots]');
-    if (!button) return;
-    var ids = button.getAttribute('data-reference-plots').split(' ');
-    applyBenchJournal(button.getAttribute('data-reference-journal'));
-    S.comboMode = ids.length > 1;
+  function openReferencePlot(name) {
+    applyBenchJournal(name);
+    S.comboMode = false;
     S.benchMulti = false;
-    if (S.comboMode) S.combo = ids;
-    setType(ids[0]);
+    S.showReferences = false;
+    S.type = {Nature:'A04', Science:'A03', Cell:'D04'}[name];
+    S.cat = BY_ID[S.type].c;
+    S.referencePlot = name;
+    renderTypeUI();
+    renderPreview();
+  }
+  $('bk-reference-picker').addEventListener('change', function () { openReferencePlot(this.value); });
+  $('bk-canvas').addEventListener('click', function (event) {
+    var button = near(event.target, '[data-reference-journal]');
+    if (!button) return;
+    openReferencePlot(button.getAttribute('data-reference-journal'));
     $('bk-canvas').scrollIntoView({ block: 'nearest' });
   });
   $('bk-fav').addEventListener('click', function () {
