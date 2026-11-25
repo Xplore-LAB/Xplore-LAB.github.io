@@ -1,14 +1,14 @@
 ---
 title: 科研配色
-description: 顶刊级 SCI 科研配色色卡库 · 分类聚合 · 21 种图表实时预览 · 色盲模拟与配色体检
+description: 科研绘图图谱与配色色卡库 · 67 类图表按科研表达任务分类 · 选中配色实时试画 · 代码模板与绘图规范
 ---
 <!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>科研配色 · 色卡库 | Xplore-LAB</title>
-<meta name="description" content="顶刊级 SCI 科研配色色卡库，按文章、色数、风格与来源分类聚合；选中一组即可用 21 种示例图表预览上色效果，支持色盲模拟、配色体检、OKLCH 色阶扩展、上传图片提色与多组对比。">
+<title>科研绘图图谱 · 配色色卡库 | Xplore-LAB</title>
+<meta name="description" content="科研绘图图谱与 SCI 配色色卡库：67 类图表按基础对比、分布统计、时序动态、机器学习、关系结构、空间优化六大科研表达任务分类，每类附用途、Python 绘图方法与模板；选中一组配色即可实时试画，支持色盲模拟、配色体检、OKLCH 色阶、图片提色与多组对比。">
 <script>document.documentElement.classList.add('js');</script>
 <style>
 :root {
@@ -181,6 +181,55 @@ footer { margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--line);
   color: var(--ink-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 footer a { color: var(--ink-soft); }
 footer a:hover { color: var(--accent); }
+/* 科研绘图图谱总览 */
+.gal-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 0 0 16px; }
+.gal-tools .chip { font-size: 12px; padding: 4px 12px; }
+.gal-tools .gal-n { margin-left: auto; font-size: 12.5px; color: var(--ink-faint); }
+.gal-group { margin: 0 0 22px; }
+.gal-group h3 { font-size: 14px; margin: 0 0 10px; font-weight: 650; }
+.gal-group h3 span { font: 11px var(--mono); color: var(--ink-faint); margin-left: 7px; }
+.gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(138px, 1fr)); gap: 9px; }
+.gal-cell { display: block; width: 100%; text-align: left; font: inherit; border: 1px solid var(--line);
+  border-radius: 9px; background: #fff; padding: 7px; cursor: pointer;
+  transition: border-color .2s, box-shadow .25s var(--ease), transform .2s var(--ease); }
+.gal-cell:hover { border-color: var(--accent); box-shadow: 0 8px 20px rgba(36,41,47,.08); transform: translateY(-2px); }
+.gal-cell.is-on { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(14,165,233,.16); }
+.gal-fig { display: block; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; background: #fff; }
+.gal-fig svg { display: block; }
+.gal-cap { display: flex; align-items: baseline; gap: 5px; margin-top: 6px; }
+.gal-id { font: 10.5px var(--mono); color: var(--accent); flex: none; }
+.gal-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gal-en { display: block; font-size: 10px; color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gal-pri { font-size: 9.5px; padding: 0 5px; border-radius: 99px; background: #fff4e5;
+  color: #b45309; border: 1px solid #f5d9a8; margin-left: auto; flex: none; }
+.gal-hint { font-size: 12.5px; color: var(--ink-faint); margin: 0 0 14px; }
+
+/* 图表元数据 */
+.pv-meta { border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; margin: 10px 0 0; background: var(--wash); }
+.pv-meta dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 9px; font-size: 11.5px; }
+.pv-meta dt { color: var(--ink-faint); white-space: nowrap; }
+.pv-meta dd { margin: 0; color: var(--ink-soft); }
+.pv-meta code { font-size: 10.5px; background: #fff; }
+.pv-meta .tip { grid-column: 1 / -1; font-size: 11px; color: #b45309; margin-top: 5px;
+  padding-top: 5px; border-top: 1px dashed var(--line); line-height: 1.55; }
+
+/* 统一绘图规范 */
+.std-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.std-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.std-table th, .std-table td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+.std-table th { color: var(--ink-faint); font-weight: 600; font-size: 12px; }
+.std-table td:last-child { font-family: var(--mono); font-size: 11.5px; }
+pre.code { background: var(--wash); border: 1px solid var(--line); border-radius: 8px;
+  padding: 14px 16px; overflow-x: auto; font: 12px/1.65 var(--mono); color: var(--ink-soft); margin: 0 0 12px; }
+pre.code code { background: none; padding: 0; font: inherit; }
+.ref-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 8px;
+  padding: 0; margin: 0 0 14px; list-style: none; }
+.ref-list li { font-size: 12.5px; border: 1px solid var(--line); border-radius: 7px; padding: 9px 11px; }
+.pri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.pri-col { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--wash); }
+.pri-col b { font-size: 12px; }
+.pri-col ul { margin: 6px 0 0; padding-left: 17px; font-size: 12px; color: var(--ink-soft); }
+.pri-col li { margin-bottom: 2px; }
 .js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .js .reveal.visible { opacity: 1; transform: none; }
 
@@ -243,16 +292,25 @@ footer a:hover { color: var(--accent); }
 <div class="page">
 
   <header class="archive-head">
-    <h1>科研配色 · 色卡库</h1>
-    <p>顶刊级 SCI 配色方案 · 分类聚合 · 选中一组即可预览图表上色效果</p>
+    <h1>科研绘图图谱 · 配色色卡库</h1>
+    <p>67 类图表按科研表达任务分类 · 选中配色实时试画 · 附 Python 模板与统一绘图规范</p>
   </header>
 
   <section id="overview">
     <div class="stats" id="stats"></div>
     <p class="note">目前收录 39 篇文章、373 组配色、1878 个色值（其中 66 色经人工逐色核对）。色值来自公众号「观科研」<i>科研配色</i>系列文章的色卡原图，经人工核对与本地 OCR 提取后归档。
-      色卡按文章、色数、风格或来源<b>分类聚合</b>，默认收起；展开后点一组配色，右侧会用 <b>21 种示例图</b>预览上色效果，可切换色盲模拟、派生 OKLCH 色阶、查看 CIEDE2000 配色体检，并最多并排对比 4 组。另内置 12 组开源经典色板，也可<b>上传图片自动提色</b>直接试画。点色块复制 HEX，右上角按钮导出 matplotlib / ggplot2 / CSS 代码。</p>
+      本页把图形按<b>承担的科研表达任务</b>分成 A–F 六类共 <b>67 种</b>（而非只按外观分），每种都标注用途、推荐绘图方法、规范提示与优先级；所有示意图均为<b>模拟数据</b>，用于检验一组配色画在真实图表里的上色效果。
+      色卡按文章、色数、风格或来源<b>分类聚合</b>，默认收起；展开后点一组配色，右侧与上方图鉴会同步换色，可切换色盲模拟、派生 OKLCH 色阶、查看 CIEDE2000 配色体检，并最多并排对比 4 组。另内置 12 组开源经典色板，也可<b>上传图片自动提色</b>直接试画。点色块复制 HEX，卡片按钮导出 matplotlib / ggplot2 / CSS 代码。</p>
     <div class="callout"><b>用色值请以 HEX 为准。</b>RGB 由 HEX 反算，原图标注与 HEX 不一致的已在对应组里标出；
       含红绿搭配的组，投稿前把「色觉模拟」切到红色盲 / 绿色盲检查是否还能区分，并配合形状、纹理或线型区分。模拟色只作用于预览，复制与导出的始终是原文色值。</div>
+  </section>
+
+  <section id="gallery">
+    <h2 class="section-title">科研绘图图谱 <span style="font:12px var(--mono);color:var(--ink-faint);margin-left:8px">67 类 · A–F 六大表达任务</span></h2>
+    <p class="gal-hint">下面每张缩略图都用<b>当前选中的配色</b>绘制（未选中时用 Okabe-Ito 色盲友好色板）。点任意一张即可在右侧预览里放大试画、复制该图的 Python 模板；支持按类别与 P0/P1 优先级筛选，也可导出整份图谱 JSON 供脚本复用。</p>
+    <div class="gal-tools" id="gal-tools"><span class="gal-n" id="gal-n"></span></div>
+    <div id="gal-list"></div>
+    <noscript><p class="empty">图谱总览由 JavaScript 渲染，请启用 JavaScript 查看 67 类图表。</p></noscript>
   </section>
 
   <section id="library">
@@ -294,9 +352,9 @@ footer a:hover { color: var(--accent); }
       </div>
 
       <aside class="preview" id="preview" aria-label="图表预览">
-        <div class="pv-head"><h3>图表预览</h3><span class="pv-tip">跟着页面滚动</span></div>
+        <div class="pv-head"><h3>图表预览</h3><span class="pv-tip">67 类 · 跟着页面滚动</span></div>
 
-        <p class="pv-empty" id="pv-empty">还没有选中配色。<br>展开左侧任意分类，点一组配色，这里会画出它在 21 种示例图表上的上色效果。</p>
+        <p class="pv-empty" id="pv-empty">还没有选中配色。<br>展开左侧任意分类，点一组配色，这里会画出它在 67 类科研图表上的上色效果。</p>
 
         <div id="pv-body" hidden>
           <div class="pv-title"><b id="pv-name"></b><span id="pv-count"></span></div>
@@ -336,8 +394,10 @@ footer a:hover { color: var(--accent); }
           <label>经典色板 <select id="pv-classic" aria-label="开源经典色板"></select></label>
         </div>
         <p class="pv-desc" id="pv-desc"></p>
-        <div class="pv-chart" id="pv-chart"><p class="pv-empty" style="padding:24px 14px">选中左侧任意一组配色，这里会画出 21 种示例图。</p></div>
+        <div class="pv-chart" id="pv-chart"><p class="pv-empty" style="padding:24px 14px">选中左侧任意一组配色，这里会画出 67 类科研图表示意图。</p></div>
         <p class="pv-gray-note" id="pv-fx-note">色觉模拟用 Machado 2009 矩阵，色阶可选线性或 OKLCH 感知均匀派生；两者只影响预览绘图，复制与导出的仍是原文色值。</p>
+        <div class="pv-meta" id="pv-meta"></div>
+        <p style="margin:9px 0 0"><button type="button" class="btn tiny" id="pv-copy-py">复制该图 Python 模板</button></p>
 
         <details class="pv-report" id="pv-report">
           <summary>配色体检 <span class="pv-score" id="pv-score">选中配色后生成</span></summary>
@@ -356,6 +416,117 @@ footer a:hover { color: var(--accent); }
     </div>
   </section>
 
+  <section id="standards">
+    <h2 class="section-title">统一科研绘图规范</h2>
+    <p class="note">不要让每个图形各自设置字体、尺寸和配色：先固定一套全局样式与色板，再让每类图形只关心自己的几何。下面是建议的工程默认值，投稿前需按目标期刊或会议调整。</p>
+    <div class="std-grid">
+      <div>
+        <h3 class="sub-title">1 · 绘图参数（工程默认值）</h3>
+        <table class="std-table">
+          <thead><tr><th>参数</th><th>推荐配置</th></tr></thead>
+          <tbody>
+            <tr><td>单栏图宽度</td><td>85–90 mm（3.54 in）</td></tr>
+            <tr><td>双栏图宽度</td><td>170–180 mm</td></tr>
+            <tr><td>英文字体</td><td>Arial / Times New Roman</td></tr>
+            <tr><td>刊印字号</td><td>7–10 pt</td></tr>
+            <tr><td>主曲线线宽</td><td>1.2–1.8 pt</td></tr>
+            <tr><td>坐标轴 / 网格线宽</td><td>0.6–0.8 / 0.4–0.6 pt</td></tr>
+            <tr><td>刻度方向</td><td>in（向内）</td></tr>
+            <tr><td>背景</td><td>白色</td></tr>
+            <tr><td>矢量 / 位图格式</td><td>PDF、SVG / PNG、TIFF</td></tr>
+            <tr><td>位图分辨率</td><td>默认 600 DPI，按期刊要求调整</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 class="sub-title">2 · 标准配色库（点按钮直接试画）</h3>
+        <p class="note">分类变量用色盲友好的离散色板；连续数值用感知均匀且灰度单调的色阶；正负偏差用发散色阶。</p>
+        <ul class="src-list">
+          <li><b>Okabe–Ito</b> · 分类变量及算法对比优先。<br><button type="button" class="btn tiny" data-classic="cl-0">选中试画</button></li>
+          <li><b>Tableau 10</b> · 通用实验数据对比。<br><button type="button" class="btn tiny" data-classic="cl-10">选中试画</button></li>
+          <li><b>Viridis</b> · 连续数值、热力图与响应面。<br><button type="button" class="btn tiny" data-classic="cl-9">选中试画</button></li>
+          <li><b>RdBu</b> · 正负偏差、相关系数、残差。<br><button type="button" class="btn tiny" data-classic="cl-5">选中试画</button></li>
+        </ul>
+        <h3 class="sub-title">3 · 每种图形统一保留的模板字段</h3>
+        <pre class="code"><code>id: A05
+name: Radar Chart
+name_cn: 雷达图
+category: performance_comparison
+description: 多维性能比较
+use_cases: [多算法性能评价, 多任务场景比较]
+input: { format: csv, structure: methods_by_metrics }
+implementation: { language: python, libraries: [numpy, matplotlib], script: plot.py }
+output: [figure.pdf, figure.svg, figure.png]
+references: [official_documentation, published_paper_examples]
+limitations: [需要统一指标尺度, 多边形面积受轴排列顺序影响]</code></pre>
+      </div>
+    </div>
+    <h3 class="sub-title">4 · 全局样式文件 <code>paper.mplstyle</code></h3>
+    <p class="note">任何绘图脚本开头加载一次 <code>plt.style.use("paper.mplstyle")</code>；配色由本页色卡统一注入 <code>axes.prop_cycle</code>。</p>
+    <pre class="code" id="mplstyle"><code># Figure
+figure.figsize: 3.54, 2.65
+figure.dpi: 150
+figure.facecolor: white
+
+# Font
+font.family: sans-serif
+font.sans-serif: Arial, DejaVu Sans
+font.size: 8
+
+# Axes
+axes.labelsize: 8
+axes.titlesize: 9
+axes.linewidth: 0.8
+axes.spines.top: False
+axes.spines.right: False
+
+# Ticks
+xtick.labelsize: 7
+ytick.labelsize: 7
+xtick.direction: in
+ytick.direction: in
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+
+# Line
+lines.linewidth: 1.5
+lines.markersize: 4
+
+# Legend
+legend.fontsize: 7
+legend.frameon: False
+
+# Export
+savefig.dpi: 600
+savefig.bbox: tight
+savefig.pad_inches: 0.03
+
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none</code></pre>
+    <button type="button" class="btn" id="copy-style">复制 paper.mplstyle</button>
+    <h3 class="sub-title">5 · 值得收藏的官方绘图库与规范</h3>
+    <ul class="ref-list">
+      <li><b><a href="https://matplotlib.org/stable/plot_types/" target="_blank" rel="noopener">Matplotlib Plot Types</a></b> · 基础图形分类与缩略图；<a href="https://matplotlib.org/stable/gallery/" target="_blank" rel="noopener">完整示例库</a>提供源码与 Notebook 批量下载。</li>
+      <li><b><a href="https://seaborn.pydata.org/examples/index.html" target="_blank" rel="noopener">Seaborn Example Gallery</a></b> · 统计分析、数据分布、回归与多变量关系。</li>
+      <li><b><a href="https://python-graph-gallery.com/" target="_blank" rel="noopener">Python Graph Gallery</a></b> · 按图形类型查找实现案例。</li>
+      <li><b><a href="https://research-figure-guide.nature.com/" target="_blank" rel="noopener">Nature Research Figure Guide</a></b> · 图形尺寸、颜色、可读性、图像完整性与导出规范。</li>
+    </ul>
+    <h3 class="sub-title">6 · 第一阶段优先完善的 20 种</h3>
+    <div class="pri-grid">
+      <div class="pri-col"><b>P0 · 工业过程与基础对比（10）</b><ul>
+        <li>多变量时序图 · 轨迹对齐图</li><li>操作事件时间轴 / DCS 阶梯设定值</li>
+        <li>带置信带折线图 · 带误差棒柱状图</li><li>分组柱状图 · 雷达图 · 热力图 · 箱线图</li>
+      </ul></div>
+      <div class="pri-col"><b>P1 · 分布、诊断与解释（10）</b><ul>
+        <li>小提琴图 · 雨云图 · 散点回归图</li><li>混淆矩阵 · t-SNE / UMAP</li>
+        <li>Pareto 前沿 · SHAP 解释 · 消融实验</li><li>桑基图 · 有向关系图</li>
+      </ul></div>
+    </div>
+    <div class="callout" style="margin-top:16px"><b>本页的边界。</b>这里已经落地「图谱（Gallery）＋ 逐图代码模板（Cookbook）＋ 统一样式与配色（Style）」三块，且图谱元数据可导出 JSON 供脚本调用。
+      尚未建立的是独立 GitHub 仓库（<code>Scientific-Plot-Gallery</code> 的目录树、逐图 <code>example.csv</code> / <code>preview.png</code> / <code>metadata.yaml</code>、真实顶刊案例库、自动化测试与 <code>SKILL.md</code>）；本页所有示意图均为模拟数据，不是论文真实案例。</div>
+  </section>
+
   <section id="usage">
     <h2 class="section-title">选用与说明</h2>
     <h3 class="sub-title">怎么挑一组</h3>
@@ -363,7 +534,9 @@ footer a:hover { color: var(--accent); }
       <li><b>2–3 组对照</b>：选 2–4 色的渐层或成对浅色组，主次靠明度拉开，最稳。</li>
       <li><b>8–10 类多分类</b>：用高饱和多色相组（箱线图、气泡图、UMAP、细胞比例堆叠图）。</li>
       <li><b>综述插图 / 机制示意</b>：用全低饱和的奶油色组，观感柔和，不抢正文。</li>
-      <li><b>右侧图表预览</b>：按「趋势 / 比较 / 占比 / 分布 / 关系 / 其它」切换 21 种示例图，看这组色画在真实图表里是否清晰；「下一个」可依次轮看全部类型。</li>
+      <li><b>按科研表达任务选图</b>：上方图谱把 67 类图形分成 A 基础对比 / B 分布统计 / C 时序动态 / D 机器学习 / E 关系结构 / F 空间优化，点缩略图即选中；右侧按类切换、用「下一个」依次轮看，看这组色画在该类图表里是否清晰。</li>
+      <li><b>逐图元数据与代码模板</b>：每个图都标了编号、英文名、主要用途、推荐绘图方法和投稿规范提示；「复制该图 Python 模板」会带上当前配色生成可运行骨架，「导出图谱 JSON」可拿走全部 67 条元数据。</li>
+      <li><b>统一规范</b>：先用页面里的 <code>paper.mplstyle</code> 固定字号、线宽与导出格式，再注入色卡；单栏 85–90 mm、双栏 170–180 mm，默认 600 DPI，投稿前按期刊要求调整。</li>
       <li><b>色阶扩展</b>：色数少的组可派生浅色 / 明暗变体（×2 或 ×3）；线性模式是简单混合，OKLCH 模式在感知均匀空间里调亮度，中间段不发灰。图表默认用满组内全部颜色。</li>
       <li><b>色觉模拟</b>：切到红色盲 / 绿色盲 / 蓝黄色盲 / 灰度自查，避免红绿直接对比；还可拖透明度滑块模拟半透明填充叠放。</li>
       <li><b>配色体检</b>：展开右侧「配色体检」，看最小 CIEDE2000 色差、色盲模拟后的色差、灰度亮度差、白底对比度、命名冲突与建议类别数。</li>
@@ -397,7 +570,7 @@ footer a:hover { color: var(--accent); }
 </div>
 
 <div id="toast" role="status"></div>
-<script id="palette-data" type="application/json">{"v":2,"t":"2026-11-25 14:18","s":[39,373,1878,66],"a":[["001","科研配色 | 别让配色拖后腿：8组顶刊级 SCI 科研配色，论文作图直接用","https://mp.weixin.qq.com/s/cWiXGTZjCIveBg7hC4bwZg","主系列","本期",[["粉蓝渐层",["#F8CCEF","#C1BFFE","#8E9CFD","#8EC0FD","#01A2FD"],"低饱和粉 → 明亮蓝，单色系渐层，主次靠明度拉开",["双组","三组柱状图","带散点的柱图","直方图","粒径分布","蛋白表达量"],"示例图为 qPCR/蛋白表达柱状图、Zeta 电位直方图 · 00.jpg",1,0],["粉橙 × 蓝绿（柔和四色系）",["#FEE0DE","#FFE1BF","#C3DEF9","#DBF5E2","#ED99A1","#FDA041","#74AAD8","#3F9A7B"],"四组浅色 + 四组对应加深色，适合「处理 vs 对照」成对编码",["多分组柱状图","免疫细胞计数","肿瘤重量","成瘤实验","分组散点"],"示例图为免疫细胞亚群计数、肿瘤重量与体积柱状图 · 01.jpg",1,0],["橙黄 × 青蓝 × 粉紫",["#F7C596","#F2F09B","#9BB4C4","#7FC3C3","#C686A7","#D9B2C5","#B3ABCA","#437FAA"],"复古冷暖对比，饱和度中等偏灰，多条件并列不刺眼",["多条件柱状图","多组折线","时间曲线","细胞活力实验","蛋白印迹定量"],"示例图为细胞存活率柱状图、时间梯度折线图、生长曲线 · 02.jpg",1,1],["紫橙 × 绿蓝（高对比复古）",["#E1BBE4","#8D0B8D","#FEDFB3","#B0DEFB","#CDDCB1","#65982B","#0F9415","#477C65"],"浅紫 / 深紫 + 橙 + 四级绿 + 天蓝，深浅成对，视觉冲击强",["箱线图","散点分布","发育阶段表达量","星形胶质细胞形态统计","多时间点柱图"],"示例图为星形胶质细胞密度箱线图、发育期 Ze 表达柱状图 · 03.jpg",1,0],["马卡龙奶油色",["#C1B3D7","#DDECF6","#FFCB9B","#FEE7C7","#F4A4A4","#FDD5D6","#AED8A8","#DCECF3"],"全部低饱和高明度，紫 / 蓝 / 橙 / 粉 / 绿各一组深浅对",["饼图","堆叠柱状图","机制示意图","PCA 散点","脂质组学定量","UMAP"],"示例图为脂质分类饼图、堆叠柱图、细胞类型机制图与 PCA · 04.jpg",1,0],["黄橙青 × 紫红渐层",["#F2F09B","#F0A26F","#7FC3C3","#4785B2","#C4D7E5","#E3B4CC","#B3ABCA","#8573A7","#9B4C76"],"前 4 色明亮清爽，后 5 色紫红逐级加深，适合有序梯度",["细胞存活率柱状图","韦恩图","机制流程示意","药物处理多组比较","散点","火山图"],"示例图为谷氨酰胺饥饿存活率柱图、韦恩图、机制示意图 · 05.jpg",1,0],["明亮糖果色（10 色）",["#FEE89C","#ADD8E8","#1FA5FB","#ACD189","#F95F6F","#EED1F9","#FE99FC","#FFE3E1","#FCA894","#FF7A65"],"高饱和多色相，每类一个独立颜色，另含同色系深浅对",["多分类柱状图","基因型箱线图","气泡散点图","密度曲线","基因组轨道图","峰图","饼图"],"示例图为 eQTL 计数柱图、箱线图、SNP 气泡图与 H3K27ac 轨道图 · 06.jpg",1,0],["单细胞 UMAP 聚类色（10 色）",["#9FCE80","#41B54A","#0C713B","#20BCBE","#776EAF","#FCC1C8","#C61E27","#F79A3A","#F9C536","#2C2364"],"绿三级 + 青 + 紫 + 粉红 + 橙黄 + 深靛，细胞群辨识度最高",["scRNA-seq","scATAC-seq UMAP","细胞类型注释","细胞比例堆叠柱图","实验流程机制图"],"示例图为乳腺细胞 UMAP 降维图与不同年龄细胞比例堆叠柱图 · 07.jpg",1,0]]],["002","科研配色 | 第1期. 跟着顶刊选就对了！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247487999&idx=1&sn=484ba1075d3d14ccf8321bb318883ebe&chksm=c28e8310f5f90a066f7fea10ca5643837cbfd38729114a9030b8077bc6dd58d92562ccd5ffa8&scene=21","主系列","1",[["配色 01",["#299D8F","#E9C46A","#D87659"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#55B7E6","#193E8F","#E53528","#F09739"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 03",["#FFE9BE","#EEA599","#FAC795","#E3EDE0","#ABD3E1","#92B4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["三色折线图配色",["#EA8379","#7DAEE0","#B395BD"],"由文章正文文字直接提取",0,"002_重提.txt · 正文1",3,0],["三色柱状图配色",["#299D8F","#E9C46A","#D87659"],"由文章正文文字直接提取",0,"002_重提.txt · 正文2",3,0],["三色柱状图配色",["#456990","#48C0AA"],"由文章正文文字直接提取",0,"002_重提.txt · 正文3",3,0],["四色柱状图配色",["#55B7E6","#193E8F","#E53528","#F09739"],"由文章正文文字直接提取",0,"002_重提.txt · 正文4",3,0],["六色分面组图配色",["#427AB2","#F09148","#FF9896","#DBDB8D","#C59D94","#AFC7E8"],"由文章正文文字直接提取",0,"002_重提.txt · 正文5",3,0],["六色密度图配色",["#EEA599","#FAC795","#FFE9BE","#ABD3E1","#92B4C8"],"由文章正文文字直接提取",0,"002_重提.txt · 正文6",3,0],["多色机制图配色",["#43978F","#9EC4BE","#DCE9F4","#E56F5E","#F19685","#F6C957","#FFB77F","#FBE8D5"],"由文章正文文字直接提取",0,"002_重提.txt · 正文7",3,0]]],["003","科研配色 | 第2期. 为不同类型图挑选实用配色方案！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488081&idx=1&sn=2679ac1bba33339e02bcd5abf00bfbcb&chksm=c28e80bef5f909a8c2e110a64ca9da2a18e427d6792220945ea7094c589e7cdfc355efdbaacc&scene=21#wechat_redirect","主系列","2",[["配色 01",["#828D93","#EDB176","#EAB788"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#82969D","#CC312D","#F7EDCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#9281DD","#B7617D","#E4B112","#B7DB29","#159FD7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#930E14","#F8D5E4","#96D1C6","#BAD65D","#EE7D6B","#C8C1DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#2681B6","#35B9C5","#1E469B","#96D2B0","#F9F8CA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#C74647","#F8984F","#982C2C","#F3D78A","#F2F1E6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0]]],["004","科研配色 | 第3期. 到底什么配色才能俘获审稿人的“芳心”？！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488559&idx=2&sn=f3cf5dedf0d9b9ad67f88e574fc569b3&chksm=c28e86c0f5f90fd6f02b64757c91a590bc0d23f8c1a680a5faea1b1cb80906d035c53aac9877&scene=21#wechat_redirect","主系列","3",[["配色 01",["#9FC9DF","#F1E1C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F7EBC6","#9BB89C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#8CA3C3","#D2ADA8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#A4C8D9","#6C96CC","#EDAE92","#C92321"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#DB432C","#438870","#838AAF","#C4B797"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#FDF6A4","#E9EDDB","#EFE7F3","#E4F2F3","#F7E6E1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#8CA3C3","#F8DAD5","#F8D7D9","#F1B4B3","#EDA4A5","#EB9092","#E7797A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BFC1A5","#F6C6F6","#98CAF7","#FFF8AB","#F823A9","#CDC0DB","#A0DDAF","#F8D3A9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["005","科研配色 | 第4期. 为SCI增添高级感的实用配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488878&idx=1&sn=8bbdf5c9f66c5435f3cbc6732cd42d47&chksm=c28e8781f5f90e9700df2ca64f32d92ec1a220408dbf6a3e54fb95804bc0adc9d4342de8787f&scene=21#wechat_redirect","主系列","4",[["配色 01",["#F9BEBB","#89C9C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F9BEBB","#89C9C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#C9342B","#339DB5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C9342B","#339DB5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#8A7197"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#F4E7E8","#E3EAF1","#DFB6BC","#B7D0EA","#A32A31","#407BD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#3C224B","#6D4E7E","#A786BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#784B46","#C58F84","#818093","#9C8F92"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#784B46","#C58F84","#818093","#9C8F92"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#A57C82","#D7AE64","#F1D9BB","#A2B9BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#A57C82","#D7AE64","#F1D9BB","#A2B9BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0]]],["006","科研配色｜第5期. CNS科研配色闭眼抄！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488984&idx=1&sn=da835daadfcef282e87cb2ff47c5925f&chksm=c28e8737f5f90e21912a53d58385777079640ec4b119809d464954ec75a7650e6fa830533ddf&scene=21#wechat_redirect","主系列","5",[["配色 01",["#B291B5","#3BA997"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#CB7E83","#95BAA6","#76A2BB","#2B6688","#F1A93B","#A8ACB9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#F4E4EB","#CDE4E4","#F2F9F6","#C24976","#469393","#84C2AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#D3D3D3","#DEBF80","#DCCD5B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#D3D3D3","#73AD96","#DEBF80","#DCCD5B","#5F9069"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#999999","#F3F8FE","#537CB0","#A4D09D","#D9EED3","#83BC8B","#343434","#DFE9F4","#245297","#CDE8C3","#85C17E","#62AA67"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["007","科研配色 | 第6期. Nature文章中的缤纷nature配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489308&idx=1&sn=d50503d3f56c2e4d7610f5c8b13ef47b&chksm=c28e85f3f5f90ce51cc35139d3cdc2a212b71bb8dbca99ea8c932732611e1e48ab07d538a783&scene=21#wechat_redirect","主系列","6",[["配色 01",["#66BC98","#E3EA96","#FCDC89","#AAD09D","#E26844","#8A233F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#329845","#AED185","#276C9E","#A3C9D5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#D2BCDE","#AB521C","#ED7C72","#6E348C","#B5D4E9","#1D75B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#D96558","#B43970","#EFA143","#692F7C","#F6C63C","#282A62"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#FAE7D9","#E3EEEF","#C85D4D","#F0B79A","#AECDD7","#619DB8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#ECF4DD","#FFF7AC","#ECB477","#DDF1F3","#9EC1D4","#E87651"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["008","科研配色 | 第7期. 配色丰富多，文章少不了，彩调千万种，文采自然高","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489398&idx=1&sn=8a38171dc61d2d8fe9578a50a492081d&chksm=c28e8599f5f90c8f92d65d1fcb0e758b06e25bac6af04559adbe557c5ce3265d60286acd6dec&scene=21#wechat_redirect","主系列","7",[["配色 01",["#C3CEE4","#E8D6B6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#AEB6CF","#E8D3D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#AFB6D2","#E6EEF6","#E4DBE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#AFB6D2","#E6EEF6","#D7DDDF","#E4DBE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#2D66A5","#BFE3C1","#4B8DBC","#97CEBF","#DBEDD3","#E5F3DD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#E1703C","#F2BF9E","#4091CF","#8CBA54","#A1C6E7","#CCDDAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#992F87","#C9A2C6","#A695BD","#EFAE42","#552E81","#F9DAA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["009","科研配色｜第8期. 审稿人爱的配色这里都有！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489656&idx=1&sn=ac4a68a222ba74696fdb339c5e7884db&chksm=c28e8a97f5f903819367b03595ff44f865a2cf9b635f86e71cfc82bb32320631afeb27cb0e26&scene=21#wechat_redirect","主系列","8",[["配色 01",["#B8DDBC","#F0A780"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#8FC9E2","#ECC97F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#F89FA8","#D6AFB9","#7E9BB7","#F9E9A4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#9392BE","#D5E4A8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#E79397","#F1C89A","#A797DA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#E1C855","#E07B54","#51B1B7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#A5C496","#C7988C","#8891DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 08",["#F1DBE7","#E0F1F7","#DEECD9","#DBD8E9","#D0D2D4","#9BC985","#F7D58B","#B595BF","#797BB7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#C6B3D3","#ED9F9B","#80BA8A","#9CD1C8","#6BB7CA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 10",["#9180AC","#E58579","#D9BDD8","#8AB1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#EEC79F","#F1DFA4","#A6CDE4","#74B69F","#E2C8D8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 12",["#CC88B0","#998DB7","#87B5B2","#F4CEB4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0],["配色 13",["#F2CCA0","#818181","#2A5522","#BF9895","#E07E35","#A9C4E6","#D1392B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 13.png",2,0]]],["010","科研配色 | 第9期. 如何利用配色让论文脱颖而出？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489897&idx=1&sn=2a37065be26a9d1dad7f3fdecbd59a25&chksm=c28e8b86f5f902900679ed2470f9da3f9c56f62816a6945896778f212e5a6f09f385844c6f51&scene=21#wechat_redirect","主系列","9",[["配色 01",["#999999","#E4E7A2","#99DAEE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 02",["#AF9BC9","#99A8B0","#A9C7C4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 03",["#9BB9B9","#AECBD9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 04",["#A5CFE3","#197AB7","#55759E","#CFD4D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 05",["#DFE7C4","#CEBCD4","#93B237","#551C6E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 06",["#EFD6D1","#E6BCB0","#C89C91","#A8817A","#F7EABB","#F2DB96","#E9CB95","#E8BE74"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 07",["#E6BCB0","#EFD6D1","#C89C91","#A8817A","#F7EABB","#F2DB96","#E9CB95","#E8BE74"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 08",["#F1A8C5","#F4DEB1","#DDB391","#D2C6DA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 09",["#8DD2C5","#BFBCDA","#F47F72","#7FB2D5","#FDD3A0","#FCE1EC","#D1E4A5","#EBEBEB","#FBB461","#F9CDE0","#B5D66B","#D9D9D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 10",["#999999","#F7D7B0","#E4E7A2","#99DAEE","#CFB4C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0]]],["011","科研配色 | 第10期. 配色需要提前收藏！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489999&idx=1&sn=374285208a4e858f599218280b30106c&chksm=c28e8b20f5f90236cf87481f22ce06dc4b3b8303bf3b8d2b69dabc374010996f07795a7054b2&scene=21#wechat_redirect","主系列","10",[["配色 01",["#E9C2DA","#9B4692"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#AC6929","#7A52B5","#673D81","#EAA860"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#ACBEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#F4CE91","#6CBFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#FBEBBC","#A9BFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#CECCCB","#ACBEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#E68E70","#FBEBBC","#A9BFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["012","科研配色 | 第11期. 可以称之为神的配色大全这里找！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247490206&idx=1&sn=a16f7a016c40588d12ddc594c98e8ad7&chksm=c28e8871f5f9016705754a19b57d39927c093278065d8f8d2954112a62596b820d7c3c15028f&scene=21#wechat_redirect","主系列","11",[["配色 01",["#8EBAD6","#A7AED2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#EB9184","#80ACF9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E99C93","#9FACD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#F6C6CB","#6CB4AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8FA2C3","#E0D6C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#899CCB","#F1C0C4","#FBE7C0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#E99C93","#80ACF9","#B4DAA8","#80AC95"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 08",["#F1BFB5","#E2D8C1","#EBEBEB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#E99C93","#9FACD3","#F1DBB9","#D9D1E3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 10",["#F1DEBB","#EBB9BF","#C7A3B5","#788AB6","#EECDBE","#9B9CBD","#5B679B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#90B2DF","#F0B2EF","#705F9F","#B6A0DF","#CCE2A2","#65A1BE","#C7AD8A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 12",["#E99C93","#9FACD3","#CAD4E7","#F1DBB9","#D9D1E3","#D0E2E8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["013","科研配色 | 第12期. 科研绘图达人必看：揭秘顶刊的高级配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247490330&idx=1&sn=60e6e43d6c28ac4b50295eb7aadd4834&chksm=c28e89f5f5f900e364c2a72aed96fb4939e596f2731f2700d801e27d6a5e574b4698d03cf4b4&scene=21","主系列","12",[["配色 01",["#9CC3E5","#AAD390"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 02",["#516770","#EDD6D7","#A24D56","#D5DEDD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 03",["#F9C8C4","#FCD179"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 04",["#9D201C","#B192B4","#EDD2D2","#F2EAF6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 05",["#B3BC95","#D5E4A6","#ADBED6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 06",["#3E5D70","#E57259","#FAAF78","#A0AFB7","#F2B9AC","#FCD8BB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 07",["#B4B6B6","#8FC2C7","#C7E2E4","#488B87","#BD514A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 08",["#B5C6E7","#BED8EF","#C6E1B8","#FEE69A","#F8CDAD","#4474C4","#589CD6","#6FAE45","#FFC101","#EF7E33"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0]]],["014","科研配色｜第13期. 顶刊的图也是顶配","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491087&idx=1&sn=57264e3cb22910c3cdc92b5dfee5c83c&chksm=c28e8ce0f5f905f629efa7deaf6cb0a4a0a512aa274469a79294a190b3d1f8e9fdfa22098195&scene=21","主系列","13",[["配色 01",["#C1DBF0","#E8E8E8","#4A7298","#F3C846"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#C1DBF0","#E8E8E8","#4A7298","#F3C846"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#F9F5F6","#DDDEDE","#D882AD","#EDF4F5","#C5E3E2","#9EC6DB","#EEC2C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#E1B6B5","#F9F2C1","#F8D793","#9EE092","#D2D2D2","#A8E092"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F4DEBB","#E1B6B5","#F9F2C1","#F8D793","#9EE092","#D2D2D2","#A8E092"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 06",["#F3C846","#F7EFAE","#4A7298","#8BB5D1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#1B450E","#85B243","#CEE55D","#FBE59E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#F5D9E6","#DFE1E2","#CEE2F5","#F7E5CA","#CBE0BB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#5E6C82","#899FB0","#81B3A9","#B3C6BB","#D6CDBE","#7F8A9B","#B7CBD5","#C1DDDB","#D1DED7","#EBE6DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#5E6C82","#899FB0","#81B3A9","#B3C6BB","#D6CDBE","#7F8A9B","#B7CBD5","#C1DDDB","#D1DED7","#EBE6DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#551F33","#CBBBC1","#BD4146","#E4B7BC","#ECC68C","#F5E4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#551F33","#BD4146","#ECC68C","#CBBBC1","#E4B7BC","#F5E4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0],["配色 13",["#BCBD46","#E8E8B9","#86D3DE","#A5DFE7","#959595"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["015","科研配色｜第14期. 科研绘图必备的顶刊配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491266&idx=1&sn=3efed308d28277b722e4fe909406d1d1&chksm=c28e8c2df5f9053b068c190df93e1e1a5b843ec5c4f922c7c97a9cf4b8af6800b36b844d8129&scene=21","主系列","14",[["配色 01",["#BEDADA","#E89B7E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#AFC2DC","#FDBFCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E38D8C","#F2B74D","#67B1D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#5DA0B6","#76DAB3","#DDD872"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#5F86C4","#A9C962","#D29CA6","#A473AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#CB5C5B","#8DBA8F","#4581B2","#F5B47F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#7F0026","#DD181D","#FC913E","#FDD572","#FEFDCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D23B3E","#F16F45","#F9DF83","#80A5D6","#3E3991"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#7976A3","#4B5F66","#E39A56","#BA5B59","#4191C7","#87B6A2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["016","科研配色｜第15期. 绝美配色，自会说话！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491838&idx=1&sn=4df4ddacbb06e00fa723614a1b0b686f&chksm=c28d7211f5fafb07a1ed7409e7e8f77f043126235c84940d10d4f6e74c08650972b93b1f1927&scene=21","主系列","15",[["配色 01",["#A9B6C1","#BDC9AF","#E4E45F","#AB84B6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 02",["#EF8A43","#4865A9","#854C98","#D9423C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 03",["#B2B2B2","#F4B9D9","#666697","#D69C9B","#74A0A1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 04",["#CFE2E6","#85A8D3","#EBACCA","#F3C0B4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 05",["#C2DCBF","#FBE5B8","#BAD8FB","#E7D8FA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 06",["#9A9AF8","#B1FCA3","#F19E9C","#CF90EC","#EF7F51","#9355B0","#78D3AC","#74C1F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 07",["#9A9AF8","#F19E9C","#B1FCA3","#CF90EC","#EF7F51","#78D3AC","#9355B0","#74C1F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 08",["#EDADC5","#9584C1","#6CBEC3","#AAD7C8","#619CD9","#CEAAD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 09",["#ADAFB1","#D8D9DA","#ECB884","#E4E45F","#4758A2","#E08D8B","#AF8CBB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["017","科研配色 | 第16期. 配色秘诀：善用不饱和色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492047&idx=1&sn=b57ea9ecae9a28c0ab71909c2b13b610&chksm=c28d7320f5fafa36133766f7f22b08ccc7bebb7500fd07840c41c0f0b9644233f026d90ec5fa&scene=21","主系列","16",[["配色 01",["#8CA5EA","#495373","#DCE4FA","#C9CBD6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#8CA5EA","#495373","#DCE4FA","#C9CBD6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#7BC4C5","#3F6561","#D9EEEE","#C5D1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#7BC4C5","#3F6561","#D9EEEE","#C5D1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#C17F9E","#8BACD1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E7C1D7","#F7D8B7","#AFB0D0","#F0B47C","#BE7A9A","#7985B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#A3A5A6","#F8B496","#B0B7DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BF83A5","#F7D08D","#989A9C","#8684B0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#BF83A5","#F7D08D","#989A9C","#8684B0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#9DB4CE","#F9C08A","#EDA1A4","#B3D8D5","#A4CB9E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#EF994B","#E7C1D7","#F8D8B9","#F1B37D","#DCA5C3","#893E81","#AFB2CF","#E17327","#CF8DB3","#4F104B","#7C87B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["018","科研配色 | 第17期. 五彩缤纷的红绿蓝配色，你值得拥有！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492409&idx=1&sn=8d31b328b2f7719257bf54bd5027b257&chksm=c28d71d6f5faf8c03e52bbadb86ecaed646b9ea3d594b4168a2cf7ca525829d5ea5691ac1390&scene=21","主系列","17",[["配色 01",["#69B1D6","#D1938A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#004697","#8D3256"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E09F87","#A3BAE2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#145390","#68B69F","#F08E59"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#4A8CC3","#E37939","#8FBC89"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#CD3800","#4F94CD","#6A8B21"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C9D895","#D98B73","#76AECB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#B6D7CE","#D3D6F5","#E8BBC5","#9FDDCA","#9EA3F1","#E17887"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#F37781","#FAAC90","#BB6B84","#83A388","#DCE0D1","#B3CAAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#4DBBD6","#00A088","#3C5487","#E64B34"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0]]],["019","科研配色 | 第18期. 配色难道真的能配出“花”？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492114&idx=1&sn=a0fc1852453fcaf0b6ff2414d748f154&chksm=c28d70fdf5faf9eba3536f0e219381b948a4d1f871e38f5711abbd91add940fe931593fd2d16&scene=21","主系列","18",[["配色 01",["#1A908C","#D59B3A","#3D4A78","#D17133"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#C381A8","#FFDD14","#AC592A","#407BAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#C381A8","#FFDD14","#AC592A","#407BAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#2DABB2","#DAAB36","#F0552B","#CCD6BC","#EBC4B8","#CACDE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8C96B8","#EC8360","#DB80AE","#54B097"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#6194C9","#FE8D00","#0E5FBD","#970030","#681A98"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#3C5488","#F39B7F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BE7FBC","#FCB359","#FECBE3","#AB5326","#49B243","#87D5C6","#367DB8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#A85399","#E7481B","#D0A026","#A82324","#62BEB8","#5581C1","#664496","#098584"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#CBB2D8","#B2DF8C","#A8CEE5","#9FB2DA","#33A02D","#1E79B5","#A4771F","#623B88"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#FB8E41","#FDD0A2","#AD5F2C","#E31B1E","#F6E36D","#CAEAC2","#FAD1E0","#D3BAD9","#B982BC","#BBE173","#65C2A4","#A8CEE0","#89A6AF","#1B79AF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#9D77AC","#E4D1DD","#E1A3C6","#EE3E80","#DEC680","#E0A075","#F0BC81","#DFA15D","#C2A289","#D1E0AB","#DBDCDE","#44B0E2","#5A89C5","#37999C","#3781C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["020","科研配色｜第19期. 渐变色——虽似云中色，却非天上来","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492634&idx=1&sn=4584e9ca92cbc1b5127b64ed84da0953&chksm=c28d76f5f5faffe31d6e0f2df945d44b7783a061970c63bd43bdff88a7ca9f06664dc53a2ed9&scene=21","主系列","19",[["配色 01",["#D0B9C5","#9CACA8","#E38D8C","#9AB8D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#364857","#859BA7","#C4D5AF","#A7A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#364857","#859BA7","#C4D5AF","#A7A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#FAE8D1","#E0C7BC","#D5E1D6","#D6E2E4","#E99945","#842421","#469562","#469393"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#439667","#A1A1A1","#C0DFD3","#5AB27C","#EFE095"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#A1A1A1","#C0DFD3","#5AB27C","#439667","#EFE095"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#DA635C","#6387BB","#F0C296","#717171","#5FB6B9","#999999","#C0CAD9","#EBBFBF","#F6DCC2","#BFDBDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D5A19C","#D1DBC5","#A4CBCC","#9999C9","#F7D1E6","#A0BADB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#9F9FA3","#E9A1A2","#C4CADE","#84C4CC","#D1E4C3","#F5EA87","#C0BEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#9F9FA3","#C4CADE","#E9A1A2","#84C4CC","#D1E4C3","#F5EA87","#C0BEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#D5A19C","#CFD3E3","#D9EBF2","#DBD8EA","#E1ECDA","#F1E4AE","#F9F2EF","#8D6278","#7C7896","#71919D","#628255","#E2C74B","#635C7E","#AF9392"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#F2D086","#C3BC6C","#43BC97","#E2CD89","#B1C07A","#95BE7E","#7CBC8A","#57B1A9","#4F8ED6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#73C2CD","#65B9D1","#57A8D4","#559BD4","#4F8ED6","#427FDB","#2A60D9","#5A6CCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["021","科研配色｜第20期. 你的渐变标尺指南","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493196&idx=1&sn=e4d6acdd50c97126c2a5b99b7b5a9b5d&chksm=c28d74a3f5fafdb5d26327b0e8b34145137e1a547804861385aa9f115820fb2ad2e670aae613&scene=21","主系列","20",[["配色 01",["#D4383B","#CE3165","#644080","#414F93"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#DF553F","#E58065","#F8DDD3","#E4D9EB","#8B83BC","#3D54A1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#EA3326","#EA3356","#DD64D3","#B750F1","#8030F5","#EA3379","#5122F5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C0D6E4","#7BADD3","#3A70AF","#AED9F5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#BDDDD3","#F1CFB6","#E5EBED","#C2DCC6","#7AC7E0","#E3977F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#EDF4F1","#C2DCC6","#AFDAE0","#77C0C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0]]],["023","科研配色｜第22期. 顶刊也在过夏天？！——杀疯了的蓝绿配色","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493478&idx=1&sn=052ea48f9f5c05a405f28e025aac5d85&chksm=c28d7589f5fafc9fb39c8074e41c8fc701769edd4eb7d582b606632f51a6da23a1dde3ea8a0e&scene=21","主系列","22",[["配色 01",["#92C6A0","#53A6D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#92C6A0","#53A6D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#428B69","#E4C671","#82B1D3","#D5A65B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#428B69","#E4C671","#82B1D3","#D5A65B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#CCC8DA","#9B8EB6","#4E3480","#DDD4E0","#9672A2","#4F1D61"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#479650","#345AA4","#919396"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#479650","#345AA4","#919396"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#6DBB86","#B8DFB9","#76BDE5","#E7E6D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#6DBB86","#B8DFB9","#76BDE5","#E7E6D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#D3D3D3","#9BB0BD","#859B97","#A8C7CE","#E0B48C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#F2F3E9","#D6E4D2","#C1D5BE","#9EC3AA","#76B5AF","#3B85B6","#2C67A7","#274B83"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["024","科研配色 | 第23期. 夏天 “味道”","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493668&idx=1&sn=1722bedd0afe6823c3dcd40099003eee&chksm=c28d7acbf5faf3ddfb87dd94326e455ddbaf9ca09f787aedc68073a53ca6bc87fd17fd75e301&scene=21","主系列","23",[["配色 01",["#FCEDE4","#F9DED6","#F3B3BC","#701474"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E6C964","#F4E3A6","#E6E4D5","#ECCBC9","#E3A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F6EDEF","#E58C95","#E19987","#C69486","#995451"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#ABCF91","#F4ECA1","#CE7B66","#DEE8AD","#E8C282"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#D2D49C","#A679BE","#7FA4BB","#D79EB0","#ADA3C4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0]]],["025","科研配色｜第24期. 清凉解暑的暑期配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493908&idx=1&sn=b0865b8a2fbc442468220e9e71105519&chksm=c28d7bfbf5faf2ed21fc82d157e839a385af65f0451e55244d7da25956520e886990a8dea2a4&scene=21","主系列","24",[["配色 01",["#131161","#91BFDB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F3CBBB","#67A6D3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E1E1E1","#99CDCE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D0D2D4","#BD9AAD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F5F4F8","#DDDDEA","#B9B3D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#BFD6FE","#BCE0B6","#F6A899"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C9A4B6","#9C9CBE","#1B294E","#F1DFBB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#E5F1D4","#DEEBF2","#AECBE1","#BBD8B0","#F7D8D5","#EBAEAC","#FAE6CB","#F6CEAE","#E7E1EC","#C2B4D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["026","科研配色｜第25期. 嚯！Nature居然也有少女心——被我发现的甜甜糖果色系","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247494079&idx=1&sn=89762d46a66fa8dfe1c64d8653a487f1&chksm=c28d7b50f5faf24628bc4f57ee2c3ba6ef9e6ce4c095fae68ef522369347ff3b94747bb343b0&scene=21","主系列","25",[["配色 01",["#CBCBCB","#BED3E3","#F1E2AD","#AED0CE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E4DFE7","#7C6B8B","#C4EDE6","#70BAA8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E08985","#476BAB","#818181","#E7933D","#96CDE7","#CEA6C9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#F7CB65","#C1E1C4","#EFA39F","#A0D8EA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8AB0D0","#F2B76F","#F5CFE5","#BBDD78"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E58577","#FAF8BB","#BCBADA","#F0B770","#9CCFC6","#8AB0CF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#E89C9A","#F9F3A5","#F5D47D","#D17737","#BBD6B1","#427FDB","#3C76AF","#B4D7AE","#AECDE0","#F69898"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["027","科研配色｜第26期. 复古之美：顶刊精选配色指南","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247494715&idx=1&sn=b666d3001887dfd98617382262374a14&chksm=c28d7ed4f5faf7c2a571c6d3b6faa5e7888ca61929b1ce341e6c92db1aa36ead317b543e8921&scene=21","主系列","26",[["配色 01",["#F6C353","#E1933B","#C6B200","#795B34","#645600"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.jpg",2,0],["配色 02",["#AC2124","#ECB426","#416594"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#87C1AD","#F5E886","#F2A98B","#E7A9C5","#9FAED0","#F4806E","#F28BA9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#FCD924","#1CB3B0","#CBDFDF","#F1895E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#B04B43","#E1933B","#F6C353","#ADA041","#857733","#80C6D2","#A8D8B8","#57B1DB","#85BF67","#5EAB80"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E73235","#5CA788","#FA9171","#B96D93","#FA9ECB","#7D9681","#FE9015","#6F7CA6","#FDD363","#FFCAD4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#B9717D","#AD93B8","#F5C8B5","#7EB4C6","#98CA8B","#E06E6E","#6E86AC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D94E55","#9AB8C0","#FBDAA6","#F4B38D","#7DA7BF","#3288BD","#BBCEC0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#888B7A","#044F5F","#783B36","#AA8984","#EDC385","#DF785D","#C77D1C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["028","科研配色｜第27期. 听说紫色更有韵味，那么我拿出蓝色，阁下又该如何应对？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495158&idx=1&sn=44d7fa9ddfa7fb1b18c53225eca4bc84&chksm=c28d7f19f5faf60f68f4557fef0c83ba30f9bbbbd704bd59b92eef709339aec7907a28c85a39&scene=21","主系列","27",[["配色 01",["#C9D8EB","#DECBE0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E2E1E0","#A892BF","#F1DBA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F5F4F8","#DDDCEB","#B8B3D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C2989C","#D9ADA3","#A6B9D8","#CDD8E4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#2F2D51","#9193B1","#B79BAC","#E2D1B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#81AEAF","#E9ADA4","#B2D8EC","#DAB376","#82B181","#BBAACD","#BA98C0","#90AAD3","#ACAE76"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#40204D","#734C81","#AE84BE","#D7C3DF","#F4ECF4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#547DB1","#719DC9","#C6D6EA","#DEE7F3","#40204D","#734C81","#AE84BE","#D7C3DF","#F4ECF4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#CBE6E0","#FEF7CB","#C1BED7","#8AB0D1","#F2C896","#F6E1D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#DECAE0","#B190B8","#8B5C9E","#C9D8EB","#9ACCE4","#52A5C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#C9D8EB","#97B4D9","#6A92C2","#448EA4","#37778D","#1E4C5C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#403D7E","#403E7F","#364381","#396C9A","#456398","#3C7584","#478084","#3A766B","#60A568","#5E997B","#62AD56","#4E963D","#636398"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#B3B2CF","#8086BB","#458DA3","#C1DCE5","#ADD4E5","#D4E8ED","#96CAE0","#80C1D7","#70BBD6","#65B6D3","#65BBD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["029","科研配色｜第28期. 同色系配色典范，还得是Nature！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495781&idx=1&sn=6b18190baba843e69c3b33a2a65ebd9e&chksm=c28d628af5faeb9c85ab129fc33ffb2c9a83aafae6012f98a5deba5d3379d68e31df5c143888&scene=21","主系列","28",[["配色 01",["#AABCDB","#C0D6EA","#6E6415","#C0D602"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.jpg",2,0],["配色 02",["#9AC4DB","#ACA1BE","#E1BD83","#CB8D8B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#C0D6EA","#A6C7E2","#86B7DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#7698C3","#AABCDB","#487DB2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#B5A8CA","#9A8AB4","#826BA2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 06",["#D59EBE","#CA81A9","#E0BBD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#D0908F","#BE6C6D","#AA3A49"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#EFC99B","#E8B574","#E19D49"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 09",["#DBDBA7","#CECE84","#C0C05A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#89AD9F","#79A091","#4E8872"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#FFE8C9","#FDCABF","#EBB3BE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#882E71","#AF76A2","#D2BBD5","#884C45","#DC5829","#F4A638"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0],["配色 13",["#B5C3D7","#F5D8B7","#F1D0C6","#DDAEAB","#E9CDDF","#C8BFD9","#B6C9C0","#E4E3BF","#E5A79A","#9F8DB8","#EAB67A","#D8A0C1","#6E8FB2","#7DA494","#C16E71","#ABC8E5","#D0D08A","#D0E0EF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.jpg",2,0]]],["030","科研配色 | 第29期. 天冷了，连我读的文献也要是暖暖的","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496339&idx=1&sn=b1e0b5510556dc975e0b72768e738f0f&chksm=c28d607cf5fae96af6286d4d23fe2897395aa692d58a967aff1e54e01d05479658b76569bf17&scene=21","主系列","29",[["配色 01",["#D9A982","#F2D364","#B2A260","#668C7E","#AE5254","#E8A566"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#D9A982","#F2D364","#B2A260","#668C7E","#AE5254","#E8A566"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#D97F59","#7D1B12","#3D7072","#8DC6C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D97F59","#7D1B12","#3D7072","#8DC6C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#193F1F","#8B351F","#A2A47A","#89A78F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#193F1F","#8B351F","#A2A47A","#89A78F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#7B659D","#A1BA65","#B25752","#5B80B9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#7B659D","#A1BA65","#B25752","#5B80B9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 09",["#A56D36","#C69541","#408E94","#DACFA8","#7C241E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#B05096","#B3AA7B","#D5D5D5","#7496C7","#616161"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#7496C7","#B05096","#D5D5D5","#B3AA7B","#616161"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#F4C389","#6185BC","#BEE99C","#ACA44C","#BF733B","#DBCDEC","#D2458C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#5D7CA0","#98AA67","#CE9359","#9D377C","#79678C","#679DAC","#A3B1C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0],["配色 14",["#7FA7C9","#B65C4B","#EEAF6E","#8B3539","#394693","#838383","#6680B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 13.png",2,0],["配色 15",["#7FA7C9","#8B3539","#B65C4B","#EEAF6E","#394693","#838383","#6680B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 14.jpg",2,0],["配色 16",["#812B27","#306137","#468B4B","#A0332D","#6091C9","#426587","#ECA861","#BE8949","#96332D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 15.png",2,0]]],["031","科研配色 | 第30期. 柱状图配色？一文搞","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496734&idx=1&sn=0164dd6b90ae5a52e190417bed667383&chksm=c28d66f1f5faefe7e6db224b0ad62c1ff9181b26d943f63872f79c7c34cba9b2678aa97a4fd9&scene=21","主系列","30",[["配色 01",["#90BED5","#477978"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F0D490","#80B1D3","#99CCCC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F7BF67","#8BA475","#93B4D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#BAD540","#85A2D0","#FFC339"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#4D7CC5","#F58E38","#FFC339"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#D93526","#F7A902","#1A6196"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#FFBF8D","#6491C5","#89316C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#8FB1CF","#8AA173","#EEB969","#B9BAD7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#E71A11","#004B9A","#F7BEA0","#6CB328","#ABD9EA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#F0A946","#8C8C8C","#F9D4A0","#668AC4","#99AB3D","#C3CA9F","#A5BED0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#98C5B4","#384073","#B54030"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["032","科研配色｜第31期. 科研配色里的秋冬图景","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497576&idx=1&sn=2b2cee7bf1b3a20ad99a19898701bb9a&chksm=c28d6587f5faec9146bcdeb53b6803adf070c569da87845335d4c46cb6d7fa252ab16430497f&scene=21","主系列","31",[["配色 01",["#FBF3C4","#CCE9B5","#FFC9AF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F93800","#007A8B","#FFB500"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#B85748","#A0BAA4","#3A7B9C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#FFC966","#7F94CA","#99B87D","#D8847A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#D35F00","#E69E00","#EFE341","#009C73","#7F7F7F","#0072B2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#4597B0","#467BA2","#50AFD1","#44AB72","#D3A95A","#C97F5F","#CB5765"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#2A496C","#F6EBBF","#ECD36E","#E6AC55","#E48440","#DE574B","#30505E","#A1BC96"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D65D02","#0F7366","#E2CD93","#000000"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#4A76A9","#6EA4C4","#94C6D7","#E6A46A","#E17157","#9C1A3D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["059","科研配色『单细胞测序专栏』| 第1期. 当UMAP遇上巴黎奥运会，你说city不city！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495366&idx=1&sn=9b403faf78ee5eb1520c7069c188f4af&chksm=c28d7c29f5faf53f79d747b1f14abe8a9ee44daff9eca6840cc627dd5ecca6d0c3f8eb8e1975&scene=21","单细胞测序专栏","1",[["配色 01",["#8F5F95","#9BC6B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#8F5F95","#9BC6B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#A65094","#D3D2D2","#8CA351"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#859645","#508798"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 05",["#DEB7B5","#B86763","#5A7F8F","#404040"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 06",["#9F4542","#C4A852","#3F9495","#ABACAF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#9F4542","#C4A852","#3F9495","#ABACAF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 08",["#C47BB4","#ED9860","#F0B891","#DAB6D1","#B099C9","#549745","#75AC74","#847FB5","#D5D4D7","#C8D7C8","#C3DFE6","#7FBECA","#3099B1","#E8D585","#A4A494","#847F51"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#ED9860","#F0B891","#C47BB4","#DAB6D1","#B099C9","#847FB5","#D5D4D7","#549745","#75AC74","#C8D7C8","#C3DFE6","#7FBECA","#3099B1","#E8D585","#A4A494","#847F51"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 10",["#235702","#143C55","#386DAA","#86D1F8","#B185DC","#7051B1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#235702","#143C55","#386DAA","#86D1F8","#B185DC","#7051B1","#B185F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0]]],["060","科研配色『单细胞测序专栏』 | 第2期. 秋天的第一份科研配色！细胞比例图和秋天有个约","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495565&idx=1&sn=3dbfda4a1b5c73fe3adbc532e6efb568&chksm=c28d7d62f5faf47447d2ebec0b5c30d38c418c3cb9c3ff33d6d8b85e040612c0b5b4a5169aea&scene=21","单细胞测序专栏","2",[["配色 01",["#EE7677","#539490"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#92278F","#FCB040","#00A652"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E66102","#D1B48C","#5E3C9A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#E66102","#D1B48C","#5E3C9A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#9ACEDB","#F5A9B6","#FFDE99","#737373","#C0C0BE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#BAA97E","#C88683","#F7887E","#F6AAA6","#FFBE7F","#F6DBA5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#BAA97E","#C88683","#FFBE7F","#F7887E","#F6AAA6","#F6DBA5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#FF9B9B","#FFDE95","#D9E7C9","#BDEFDE","#CF8997","#FFC99B","#C09F7D","#7FD8CF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#C2E599","#79C579","#016837","#959595","#636363","#BABCDB","#9C99C8","#7F7DB9","#6A51A2","#4A1386"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#FDBF6F","#FF7F00","#E31A1C","#FB9A99","#8C510A","#7F73AC","#542788","#2D004B","#A6CEE3","#1F78B4","#E17F00"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#FDBF6F","#FF7F00","#E31A1C","#FB9A99","#8C510A","#7F73AC","#542788","#2D004B","#A6CEE3","#1F78B4","#E17F00"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#CA261C","#D556A3","#E5A7B4","#EDD22D","#D87D22","#B0AEAF","#9EFA29","#6BC0C3","#5274F9","#13006B","#6F10C4","#CC6AE5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["061","科研配色『单细胞测序专栏』 | 第3期. 对比色or相邻色？跟着CNS学气泡图配色","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496126&idx=1&sn=c8ae15f4ed49415045b689b2b738fb14&chksm=c28d6351f5faea47af0592f1f94c8c0fc5bb672b084c0d1da250e2fb1a4a033ecd277ddb41a9&scene=21","单细胞测序专栏","3",[["配色 01",["#6B5382","#C1719C","#D9BAD0","#D0ECD7","#A3E0BB","#4FC3B0","#367FA4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#6C3E96","#8965A5","#AD9ABA","#E4C1AB","#EFB58F","#F9A46B","#F58627"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#A4453F","#C4612A","#DE9429","#EDD280","#FCFFCA","#D1F1DC","#67CEB0","#3596A9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#B2182B","#DD6E57","#F09C7B","#FCD5BF","#D1E5F0","#A7CFE4","#4E99C7","#337AB7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#01491D","#077431","#38A154","#97D390","#C6E9C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E31812","#E7614E","#E17463","#D0A197","#C5AFAB","#61AFAB","#BEBAC0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#542C89","#70499F","#765DA5","#928CC2","#B2B0DA","#E7E3EF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#1A264C","#223B8F","#21579D","#2682B1","#57B4B6","#BDDDAE","#E9F0BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["062","科研配色『单细胞测序专栏』| 第4期. 此图只应天上有！这样的热图才配得上顶刊","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496375&idx=1&sn=df22a926c3e8961ee31b5729ab5ac1e8&chksm=c28d6058f5fae94ed002dcbaadd30d1afad8dce495da22e6f7e79e047aed0d937309fb052260&scene=21","单细胞测序专栏","4",[["配色 01",["#08306C","#2E548C","#4778A9","#68AAD1","#9FC7E0","#C9DBEA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#006400","#328333","#8FBB91","#D9E6D9","#F1DFDC","#EBCCC9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#036862","#47A49B","#74C3B8","#B5E1D9","#F4E8C5","#D9B975"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#DA3C46","#E37F86","#EAB2B7","#F0E4E6","#D1DEE3","#93B5C1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#42603E","#2B3C2A","#5D8958","#79AE90","#B6D6C7","#D8E8E5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#0C5B72","#596B6B","#767668","#A4895D","#E5A74A","#FBB242"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#094687","#1B7CB3","#79C9C7","#8DD5BF","#B3E0B7","#DBF2D8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#C85320","#D7703E","#ED9B65","#F9E9B9","#CFCFAF","#88AF9B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["063","科研配色『单细胞测序专栏』 | 第5期. 顶刊的小提琴图配色已经","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496540&idx=1&sn=a692208f98ef869b4f49eaa3edb60096&chksm=c28d61b3f5fae8a5175c9361e890c8ef0fea4c676554b548a6c90bf49b33f3ce79fd61d69244&scene=21","单细胞测序专栏","5",[["配色 01",["#D3A2C3","#4351A3","#95CDCF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#4351A3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#EAC16D","#DF894D","#33BFBD","#E77B8D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#DE9E4B","#6A3B6A","#B3B3B3","#D94943","#E06235"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F1DACA","#CB8791","#7F9FD1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#65205A","#4B3C97","#ADA4CB","#A84B9C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#F1DEC4","#BC8080","#80253F","#649FBB","#015694"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#87638F","#204B75","#CAB2D6","#6083A0","#6ECDDC","#EDAED5","#EA86BA","#E9358B","#BD5E95","#A0DAE0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#58799C","#A9C9DE","#95C788","#538E8C","#77726E","#F2C18F","#D06869","#D88E42","#A8913D","#F0A9A7","#C87E99"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["064","科研配色『单细胞测序专栏』 | 第6期. 顶刊偏爱的弦图配色是这样的！当糖果配色与复古配色撞个满怀~","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496826&idx=1&sn=a826aaabd82a0509009d6329eceebe92&chksm=c28d6695f5faef83c8a65da5e568d2081163a860b7c88f5f54b85bd9247686cdfba7e8fc5d98&scene=21","单细胞测序专栏","6",[["配色 01",["#90D8D4","#9899D1","#91C8FF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#DBA2CF","#DFE14F","#D0926D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#A5DAEA","#F2B9A8","#B3ED65"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D17CB5","#C3B2D6","#9368AD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#51475B","#F25E60","#8A7F94"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#F1BE74","#88AECF","#E57D7C","#C6997D","#F0B2D0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#BC94C2","#F0B2D0","#F1BE74","#95C991","#8BAED0","#D5C2DC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#87638F","#D3D477","#F9954C","#6DCDDD","#0090AB","#7AC894"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#F4D791","#735241","#B5A399","#C74F3E","#EAB942","#DC9A8E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#71AAC8","#383F73","#4D8F74","#D28D70","#B73F2F","#88665D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#003959","#04598D","#3690C0","#A9BCE1","#D6CDE4","#EA4E38","#3FB175"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#EAF1C4","#D4E8B5","#B4DFB2","#8CCCA9","#7FB59B","#A7CAE6","#9294BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["065","科研配色『单细胞测序专栏』 | 第7期. 火山图配色远不止红蓝！让审稿人眼前一亮的火山图都在这里！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497135&idx=1&sn=82608f4164a595d6d39b84cdda834d2e&chksm=c28d6740f5faee56f0a78af5407ac86961eea6d94f228672e4eeb72bb3fcb006ed2ae398b90b&scene=21","单细胞测序专栏","7",[["配色 01",["#FDEAEE","#3C57A6","#A8AAA9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E13122","#75AAD6","#D3CFD0","#E13103"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#FE0403","#1715FF","#BEBEBE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#ED5718","#3A82BC","#787677","#ED0718"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#EAD093","#9E7823","#E71F18"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#6C5BCE","#008D8B","#747474"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#B1D2E7","#4387C0","#E8F0FB","#75D2E7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#B1D7D8","#D6AED3","#CDCDCD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["066","科研配色『单细胞测序专栏』 | 第8期. 顶刊配色方案让拟时序分析不再单调！快来抄作业~","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497510&idx=1&sn=20bde6032d3c0adf9d4176e2696fa38c&chksm=c28d65c9f5faecdf7563584e23b4147141ffc095595b5f931e938543f5d07afa27c971fdfcf2&scene=21","单细胞测序专栏","8",[["配色 01",["#183552","#3C7AAE","#55AEF2","#3C7A93"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E26B51","#DADDF5","#7F7F7F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#3BA064","#88C49F","#CEE9DD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#793092","#BE7B84","#D39F76"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8FC5B7","#A29A85","#C03A2F","#504DA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#1AB17C","#EA8BC3","#C5C1E2","#93A8D8","#F9B4AB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C8892B","#4863AA","#C44C52","#EBD374","#94C6D4","#A24C97"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#F99D50","#E04243","#80388A","#9485EA","#407AFA","#F8D7D8","#D3EAF2","#AFF19A","#FBEF9D","#54DAD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0]]]]}</script>
+<script id="palette-data" type="application/json">{"v":2,"t":"2026-11-25 14:50","s":[39,373,1878,66],"a":[["001","科研配色 | 别让配色拖后腿：8组顶刊级 SCI 科研配色，论文作图直接用","https://mp.weixin.qq.com/s/cWiXGTZjCIveBg7hC4bwZg","主系列","本期",[["粉蓝渐层",["#F8CCEF","#C1BFFE","#8E9CFD","#8EC0FD","#01A2FD"],"低饱和粉 → 明亮蓝，单色系渐层，主次靠明度拉开",["双组","三组柱状图","带散点的柱图","直方图","粒径分布","蛋白表达量"],"示例图为 qPCR/蛋白表达柱状图、Zeta 电位直方图 · 00.jpg",1,0],["粉橙 × 蓝绿（柔和四色系）",["#FEE0DE","#FFE1BF","#C3DEF9","#DBF5E2","#ED99A1","#FDA041","#74AAD8","#3F9A7B"],"四组浅色 + 四组对应加深色，适合「处理 vs 对照」成对编码",["多分组柱状图","免疫细胞计数","肿瘤重量","成瘤实验","分组散点"],"示例图为免疫细胞亚群计数、肿瘤重量与体积柱状图 · 01.jpg",1,0],["橙黄 × 青蓝 × 粉紫",["#F7C596","#F2F09B","#9BB4C4","#7FC3C3","#C686A7","#D9B2C5","#B3ABCA","#437FAA"],"复古冷暖对比，饱和度中等偏灰，多条件并列不刺眼",["多条件柱状图","多组折线","时间曲线","细胞活力实验","蛋白印迹定量"],"示例图为细胞存活率柱状图、时间梯度折线图、生长曲线 · 02.jpg",1,1],["紫橙 × 绿蓝（高对比复古）",["#E1BBE4","#8D0B8D","#FEDFB3","#B0DEFB","#CDDCB1","#65982B","#0F9415","#477C65"],"浅紫 / 深紫 + 橙 + 四级绿 + 天蓝，深浅成对，视觉冲击强",["箱线图","散点分布","发育阶段表达量","星形胶质细胞形态统计","多时间点柱图"],"示例图为星形胶质细胞密度箱线图、发育期 Ze 表达柱状图 · 03.jpg",1,0],["马卡龙奶油色",["#C1B3D7","#DDECF6","#FFCB9B","#FEE7C7","#F4A4A4","#FDD5D6","#AED8A8","#DCECF3"],"全部低饱和高明度，紫 / 蓝 / 橙 / 粉 / 绿各一组深浅对",["饼图","堆叠柱状图","机制示意图","PCA 散点","脂质组学定量","UMAP"],"示例图为脂质分类饼图、堆叠柱图、细胞类型机制图与 PCA · 04.jpg",1,0],["黄橙青 × 紫红渐层",["#F2F09B","#F0A26F","#7FC3C3","#4785B2","#C4D7E5","#E3B4CC","#B3ABCA","#8573A7","#9B4C76"],"前 4 色明亮清爽，后 5 色紫红逐级加深，适合有序梯度",["细胞存活率柱状图","韦恩图","机制流程示意","药物处理多组比较","散点","火山图"],"示例图为谷氨酰胺饥饿存活率柱图、韦恩图、机制示意图 · 05.jpg",1,0],["明亮糖果色（10 色）",["#FEE89C","#ADD8E8","#1FA5FB","#ACD189","#F95F6F","#EED1F9","#FE99FC","#FFE3E1","#FCA894","#FF7A65"],"高饱和多色相，每类一个独立颜色，另含同色系深浅对",["多分类柱状图","基因型箱线图","气泡散点图","密度曲线","基因组轨道图","峰图","饼图"],"示例图为 eQTL 计数柱图、箱线图、SNP 气泡图与 H3K27ac 轨道图 · 06.jpg",1,0],["单细胞 UMAP 聚类色（10 色）",["#9FCE80","#41B54A","#0C713B","#20BCBE","#776EAF","#FCC1C8","#C61E27","#F79A3A","#F9C536","#2C2364"],"绿三级 + 青 + 紫 + 粉红 + 橙黄 + 深靛，细胞群辨识度最高",["scRNA-seq","scATAC-seq UMAP","细胞类型注释","细胞比例堆叠柱图","实验流程机制图"],"示例图为乳腺细胞 UMAP 降维图与不同年龄细胞比例堆叠柱图 · 07.jpg",1,0]]],["002","科研配色 | 第1期. 跟着顶刊选就对了！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247487999&idx=1&sn=484ba1075d3d14ccf8321bb318883ebe&chksm=c28e8310f5f90a066f7fea10ca5643837cbfd38729114a9030b8077bc6dd58d92562ccd5ffa8&scene=21","主系列","1",[["配色 01",["#299D8F","#E9C46A","#D87659"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#55B7E6","#193E8F","#E53528","#F09739"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 03",["#FFE9BE","#EEA599","#FAC795","#E3EDE0","#ABD3E1","#92B4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["三色折线图配色",["#EA8379","#7DAEE0","#B395BD"],"由文章正文文字直接提取",0,"002_重提.txt · 正文1",3,0],["三色柱状图配色",["#299D8F","#E9C46A","#D87659"],"由文章正文文字直接提取",0,"002_重提.txt · 正文2",3,0],["三色柱状图配色",["#456990","#48C0AA"],"由文章正文文字直接提取",0,"002_重提.txt · 正文3",3,0],["四色柱状图配色",["#55B7E6","#193E8F","#E53528","#F09739"],"由文章正文文字直接提取",0,"002_重提.txt · 正文4",3,0],["六色分面组图配色",["#427AB2","#F09148","#FF9896","#DBDB8D","#C59D94","#AFC7E8"],"由文章正文文字直接提取",0,"002_重提.txt · 正文5",3,0],["六色密度图配色",["#EEA599","#FAC795","#FFE9BE","#ABD3E1","#92B4C8"],"由文章正文文字直接提取",0,"002_重提.txt · 正文6",3,0],["多色机制图配色",["#43978F","#9EC4BE","#DCE9F4","#E56F5E","#F19685","#F6C957","#FFB77F","#FBE8D5"],"由文章正文文字直接提取",0,"002_重提.txt · 正文7",3,0]]],["003","科研配色 | 第2期. 为不同类型图挑选实用配色方案！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488081&idx=1&sn=2679ac1bba33339e02bcd5abf00bfbcb&chksm=c28e80bef5f909a8c2e110a64ca9da2a18e427d6792220945ea7094c589e7cdfc355efdbaacc&scene=21#wechat_redirect","主系列","2",[["配色 01",["#828D93","#EDB176","#EAB788"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#82969D","#CC312D","#F7EDCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#9281DD","#B7617D","#E4B112","#B7DB29","#159FD7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#930E14","#F8D5E4","#96D1C6","#BAD65D","#EE7D6B","#C8C1DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#2681B6","#35B9C5","#1E469B","#96D2B0","#F9F8CA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#C74647","#F8984F","#982C2C","#F3D78A","#F2F1E6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0]]],["004","科研配色 | 第3期. 到底什么配色才能俘获审稿人的“芳心”？！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488559&idx=2&sn=f3cf5dedf0d9b9ad67f88e574fc569b3&chksm=c28e86c0f5f90fd6f02b64757c91a590bc0d23f8c1a680a5faea1b1cb80906d035c53aac9877&scene=21#wechat_redirect","主系列","3",[["配色 01",["#9FC9DF","#F1E1C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F7EBC6","#9BB89C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#8CA3C3","#D2ADA8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#A4C8D9","#6C96CC","#EDAE92","#C92321"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#DB432C","#438870","#838AAF","#C4B797"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#FDF6A4","#E9EDDB","#EFE7F3","#E4F2F3","#F7E6E1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#8CA3C3","#F8DAD5","#F8D7D9","#F1B4B3","#EDA4A5","#EB9092","#E7797A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BFC1A5","#F6C6F6","#98CAF7","#FFF8AB","#F823A9","#CDC0DB","#A0DDAF","#F8D3A9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["005","科研配色 | 第4期. 为SCI增添高级感的实用配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488878&idx=1&sn=8bbdf5c9f66c5435f3cbc6732cd42d47&chksm=c28e8781f5f90e9700df2ca64f32d92ec1a220408dbf6a3e54fb95804bc0adc9d4342de8787f&scene=21#wechat_redirect","主系列","4",[["配色 01",["#F9BEBB","#89C9C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F9BEBB","#89C9C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#C9342B","#339DB5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C9342B","#339DB5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#8A7197"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#F4E7E8","#E3EAF1","#DFB6BC","#B7D0EA","#A32A31","#407BD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#3C224B","#6D4E7E","#A786BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#784B46","#C58F84","#818093","#9C8F92"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#784B46","#C58F84","#818093","#9C8F92"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#A57C82","#D7AE64","#F1D9BB","#A2B9BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#A57C82","#D7AE64","#F1D9BB","#A2B9BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0]]],["006","科研配色｜第5期. CNS科研配色闭眼抄！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247488984&idx=1&sn=da835daadfcef282e87cb2ff47c5925f&chksm=c28e8737f5f90e21912a53d58385777079640ec4b119809d464954ec75a7650e6fa830533ddf&scene=21#wechat_redirect","主系列","5",[["配色 01",["#B291B5","#3BA997"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#CB7E83","#95BAA6","#76A2BB","#2B6688","#F1A93B","#A8ACB9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#F4E4EB","#CDE4E4","#F2F9F6","#C24976","#469393","#84C2AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#D3D3D3","#DEBF80","#DCCD5B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#D3D3D3","#73AD96","#DEBF80","#DCCD5B","#5F9069"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#999999","#F3F8FE","#537CB0","#A4D09D","#D9EED3","#83BC8B","#343434","#DFE9F4","#245297","#CDE8C3","#85C17E","#62AA67"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["007","科研配色 | 第6期. Nature文章中的缤纷nature配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489308&idx=1&sn=d50503d3f56c2e4d7610f5c8b13ef47b&chksm=c28e85f3f5f90ce51cc35139d3cdc2a212b71bb8dbca99ea8c932732611e1e48ab07d538a783&scene=21#wechat_redirect","主系列","6",[["配色 01",["#66BC98","#E3EA96","#FCDC89","#AAD09D","#E26844","#8A233F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#329845","#AED185","#276C9E","#A3C9D5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#D2BCDE","#AB521C","#ED7C72","#6E348C","#B5D4E9","#1D75B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#D96558","#B43970","#EFA143","#692F7C","#F6C63C","#282A62"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#FAE7D9","#E3EEEF","#C85D4D","#F0B79A","#AECDD7","#619DB8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#ECF4DD","#FFF7AC","#ECB477","#DDF1F3","#9EC1D4","#E87651"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["008","科研配色 | 第7期. 配色丰富多，文章少不了，彩调千万种，文采自然高","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489398&idx=1&sn=8a38171dc61d2d8fe9578a50a492081d&chksm=c28e8599f5f90c8f92d65d1fcb0e758b06e25bac6af04559adbe557c5ce3265d60286acd6dec&scene=21#wechat_redirect","主系列","7",[["配色 01",["#C3CEE4","#E8D6B6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#AEB6CF","#E8D3D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#AFB6D2","#E6EEF6","#E4DBE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#AFB6D2","#E6EEF6","#D7DDDF","#E4DBE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#2D66A5","#BFE3C1","#4B8DBC","#97CEBF","#DBEDD3","#E5F3DD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#E1703C","#F2BF9E","#4091CF","#8CBA54","#A1C6E7","#CCDDAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#992F87","#C9A2C6","#A695BD","#EFAE42","#552E81","#F9DAA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["009","科研配色｜第8期. 审稿人爱的配色这里都有！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489656&idx=1&sn=ac4a68a222ba74696fdb339c5e7884db&chksm=c28e8a97f5f903819367b03595ff44f865a2cf9b635f86e71cfc82bb32320631afeb27cb0e26&scene=21#wechat_redirect","主系列","8",[["配色 01",["#B8DDBC","#F0A780"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#8FC9E2","#ECC97F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#F89FA8","#D6AFB9","#7E9BB7","#F9E9A4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#9392BE","#D5E4A8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#E79397","#F1C89A","#A797DA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#E1C855","#E07B54","#51B1B7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#A5C496","#C7988C","#8891DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 08",["#F1DBE7","#E0F1F7","#DEECD9","#DBD8E9","#D0D2D4","#9BC985","#F7D58B","#B595BF","#797BB7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#C6B3D3","#ED9F9B","#80BA8A","#9CD1C8","#6BB7CA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 10",["#9180AC","#E58579","#D9BDD8","#8AB1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#EEC79F","#F1DFA4","#A6CDE4","#74B69F","#E2C8D8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 12",["#CC88B0","#998DB7","#87B5B2","#F4CEB4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0],["配色 13",["#F2CCA0","#818181","#2A5522","#BF9895","#E07E35","#A9C4E6","#D1392B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 13.png",2,0]]],["010","科研配色 | 第9期. 如何利用配色让论文脱颖而出？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489897&idx=1&sn=2a37065be26a9d1dad7f3fdecbd59a25&chksm=c28e8b86f5f902900679ed2470f9da3f9c56f62816a6945896778f212e5a6f09f385844c6f51&scene=21#wechat_redirect","主系列","9",[["配色 01",["#999999","#E4E7A2","#99DAEE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 02",["#AF9BC9","#99A8B0","#A9C7C4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 03",["#9BB9B9","#AECBD9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 04",["#A5CFE3","#197AB7","#55759E","#CFD4D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 05",["#DFE7C4","#CEBCD4","#93B237","#551C6E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 06",["#EFD6D1","#E6BCB0","#C89C91","#A8817A","#F7EABB","#F2DB96","#E9CB95","#E8BE74"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 07",["#E6BCB0","#EFD6D1","#C89C91","#A8817A","#F7EABB","#F2DB96","#E9CB95","#E8BE74"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 08",["#F1A8C5","#F4DEB1","#DDB391","#D2C6DA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 09",["#8DD2C5","#BFBCDA","#F47F72","#7FB2D5","#FDD3A0","#FCE1EC","#D1E4A5","#EBEBEB","#FBB461","#F9CDE0","#B5D66B","#D9D9D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 10",["#999999","#F7D7B0","#E4E7A2","#99DAEE","#CFB4C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0]]],["011","科研配色 | 第10期. 配色需要提前收藏！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247489999&idx=1&sn=374285208a4e858f599218280b30106c&chksm=c28e8b20f5f90236cf87481f22ce06dc4b3b8303bf3b8d2b69dabc374010996f07795a7054b2&scene=21#wechat_redirect","主系列","10",[["配色 01",["#E9C2DA","#9B4692"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 02",["#AC6929","#7A52B5","#673D81","#EAA860"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 03",["#ACBEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 04",["#F4CE91","#6CBFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 05",["#FBEBBC","#A9BFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#CECCCB","#ACBEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#E68E70","#FBEBBC","#A9BFBF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["012","科研配色 | 第11期. 可以称之为神的配色大全这里找！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA==&mid=2247490206&idx=1&sn=a16f7a016c40588d12ddc594c98e8ad7&chksm=c28e8871f5f9016705754a19b57d39927c093278065d8f8d2954112a62596b820d7c3c15028f&scene=21#wechat_redirect","主系列","11",[["配色 01",["#8EBAD6","#A7AED2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#EB9184","#80ACF9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E99C93","#9FACD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#F6C6CB","#6CB4AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8FA2C3","#E0D6C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 06",["#899CCB","#F1C0C4","#FBE7C0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#E99C93","#80ACF9","#B4DAA8","#80AC95"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 08",["#F1BFB5","#E2D8C1","#EBEBEB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#E99C93","#9FACD3","#F1DBB9","#D9D1E3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 10",["#F1DEBB","#EBB9BF","#C7A3B5","#788AB6","#EECDBE","#9B9CBD","#5B679B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#90B2DF","#F0B2EF","#705F9F","#B6A0DF","#CCE2A2","#65A1BE","#C7AD8A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 12",["#E99C93","#9FACD3","#CAD4E7","#F1DBB9","#D9D1E3","#D0E2E8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["013","科研配色 | 第12期. 科研绘图达人必看：揭秘顶刊的高级配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247490330&idx=1&sn=60e6e43d6c28ac4b50295eb7aadd4834&chksm=c28e89f5f5f900e364c2a72aed96fb4939e596f2731f2700d801e27d6a5e574b4698d03cf4b4&scene=21","主系列","12",[["配色 01",["#9CC3E5","#AAD390"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 02",["#516770","#EDD6D7","#A24D56","#D5DEDD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 03",["#F9C8C4","#FCD179"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 04",["#9D201C","#B192B4","#EDD2D2","#F2EAF6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 05",["#B3BC95","#D5E4A6","#ADBED6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 06",["#3E5D70","#E57259","#FAAF78","#A0AFB7","#F2B9AC","#FCD8BB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 07",["#B4B6B6","#8FC2C7","#C7E2E4","#488B87","#BD514A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 08",["#B5C6E7","#BED8EF","#C6E1B8","#FEE69A","#F8CDAD","#4474C4","#589CD6","#6FAE45","#FFC101","#EF7E33"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0]]],["014","科研配色｜第13期. 顶刊的图也是顶配","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491087&idx=1&sn=57264e3cb22910c3cdc92b5dfee5c83c&chksm=c28e8ce0f5f905f629efa7deaf6cb0a4a0a512aa274469a79294a190b3d1f8e9fdfa22098195&scene=21","主系列","13",[["配色 01",["#C1DBF0","#E8E8E8","#4A7298","#F3C846"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#C1DBF0","#E8E8E8","#4A7298","#F3C846"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#F9F5F6","#DDDEDE","#D882AD","#EDF4F5","#C5E3E2","#9EC6DB","#EEC2C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#E1B6B5","#F9F2C1","#F8D793","#9EE092","#D2D2D2","#A8E092"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F4DEBB","#E1B6B5","#F9F2C1","#F8D793","#9EE092","#D2D2D2","#A8E092"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 06",["#F3C846","#F7EFAE","#4A7298","#8BB5D1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#1B450E","#85B243","#CEE55D","#FBE59E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#F5D9E6","#DFE1E2","#CEE2F5","#F7E5CA","#CBE0BB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#5E6C82","#899FB0","#81B3A9","#B3C6BB","#D6CDBE","#7F8A9B","#B7CBD5","#C1DDDB","#D1DED7","#EBE6DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#5E6C82","#899FB0","#81B3A9","#B3C6BB","#D6CDBE","#7F8A9B","#B7CBD5","#C1DDDB","#D1DED7","#EBE6DE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#551F33","#CBBBC1","#BD4146","#E4B7BC","#ECC68C","#F5E4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#551F33","#BD4146","#ECC68C","#CBBBC1","#E4B7BC","#F5E4C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0],["配色 13",["#BCBD46","#E8E8B9","#86D3DE","#A5DFE7","#959595"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["015","科研配色｜第14期. 科研绘图必备的顶刊配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491266&idx=1&sn=3efed308d28277b722e4fe909406d1d1&chksm=c28e8c2df5f9053b068c190df93e1e1a5b843ec5c4f922c7c97a9cf4b8af6800b36b844d8129&scene=21","主系列","14",[["配色 01",["#BEDADA","#E89B7E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#AFC2DC","#FDBFCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E38D8C","#F2B74D","#67B1D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#5DA0B6","#76DAB3","#DDD872"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#5F86C4","#A9C962","#D29CA6","#A473AE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#CB5C5B","#8DBA8F","#4581B2","#F5B47F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#7F0026","#DD181D","#FC913E","#FDD572","#FEFDCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D23B3E","#F16F45","#F9DF83","#80A5D6","#3E3991"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#7976A3","#4B5F66","#E39A56","#BA5B59","#4191C7","#87B6A2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["016","科研配色｜第15期. 绝美配色，自会说话！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247491838&idx=1&sn=4df4ddacbb06e00fa723614a1b0b686f&chksm=c28d7211f5fafb07a1ed7409e7e8f77f043126235c84940d10d4f6e74c08650972b93b1f1927&scene=21","主系列","15",[["配色 01",["#A9B6C1","#BDC9AF","#E4E45F","#AB84B6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 02",["#EF8A43","#4865A9","#854C98","#D9423C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 03",["#B2B2B2","#F4B9D9","#666697","#D69C9B","#74A0A1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 04",["#CFE2E6","#85A8D3","#EBACCA","#F3C0B4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 05",["#C2DCBF","#FBE5B8","#BAD8FB","#E7D8FA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 06",["#9A9AF8","#B1FCA3","#F19E9C","#CF90EC","#EF7F51","#9355B0","#78D3AC","#74C1F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 07",["#9A9AF8","#F19E9C","#B1FCA3","#CF90EC","#EF7F51","#78D3AC","#9355B0","#74C1F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 08",["#EDADC5","#9584C1","#6CBEC3","#AAD7C8","#619CD9","#CEAAD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 09",["#ADAFB1","#D8D9DA","#ECB884","#E4E45F","#4758A2","#E08D8B","#AF8CBB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["017","科研配色 | 第16期. 配色秘诀：善用不饱和色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492047&idx=1&sn=b57ea9ecae9a28c0ab71909c2b13b610&chksm=c28d7320f5fafa36133766f7f22b08ccc7bebb7500fd07840c41c0f0b9644233f026d90ec5fa&scene=21","主系列","16",[["配色 01",["#8CA5EA","#495373","#DCE4FA","#C9CBD6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#8CA5EA","#495373","#DCE4FA","#C9CBD6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#7BC4C5","#3F6561","#D9EEEE","#C5D1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#7BC4C5","#3F6561","#D9EEEE","#C5D1D2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#C17F9E","#8BACD1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E7C1D7","#F7D8B7","#AFB0D0","#F0B47C","#BE7A9A","#7985B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#A3A5A6","#F8B496","#B0B7DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BF83A5","#F7D08D","#989A9C","#8684B0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#BF83A5","#F7D08D","#989A9C","#8684B0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#9DB4CE","#F9C08A","#EDA1A4","#B3D8D5","#A4CB9E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#EF994B","#E7C1D7","#F8D8B9","#F1B37D","#DCA5C3","#893E81","#AFB2CF","#E17327","#CF8DB3","#4F104B","#7C87B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["018","科研配色 | 第17期. 五彩缤纷的红绿蓝配色，你值得拥有！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492409&idx=1&sn=8d31b328b2f7719257bf54bd5027b257&chksm=c28d71d6f5faf8c03e52bbadb86ecaed646b9ea3d594b4168a2cf7ca525829d5ea5691ac1390&scene=21","主系列","17",[["配色 01",["#69B1D6","#D1938A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#004697","#8D3256"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E09F87","#A3BAE2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#145390","#68B69F","#F08E59"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#4A8CC3","#E37939","#8FBC89"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#CD3800","#4F94CD","#6A8B21"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C9D895","#D98B73","#76AECB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#B6D7CE","#D3D6F5","#E8BBC5","#9FDDCA","#9EA3F1","#E17887"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#F37781","#FAAC90","#BB6B84","#83A388","#DCE0D1","#B3CAAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#4DBBD6","#00A088","#3C5487","#E64B34"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0]]],["019","科研配色 | 第18期. 配色难道真的能配出“花”？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492114&idx=1&sn=a0fc1852453fcaf0b6ff2414d748f154&chksm=c28d70fdf5faf9eba3536f0e219381b948a4d1f871e38f5711abbd91add940fe931593fd2d16&scene=21","主系列","18",[["配色 01",["#1A908C","#D59B3A","#3D4A78","#D17133"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#C381A8","#FFDD14","#AC592A","#407BAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#C381A8","#FFDD14","#AC592A","#407BAE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#2DABB2","#DAAB36","#F0552B","#CCD6BC","#EBC4B8","#CACDE8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8C96B8","#EC8360","#DB80AE","#54B097"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#6194C9","#FE8D00","#0E5FBD","#970030","#681A98"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#3C5488","#F39B7F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#BE7FBC","#FCB359","#FECBE3","#AB5326","#49B243","#87D5C6","#367DB8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#A85399","#E7481B","#D0A026","#A82324","#62BEB8","#5581C1","#664496","#098584"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#CBB2D8","#B2DF8C","#A8CEE5","#9FB2DA","#33A02D","#1E79B5","#A4771F","#623B88"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#FB8E41","#FDD0A2","#AD5F2C","#E31B1E","#F6E36D","#CAEAC2","#FAD1E0","#D3BAD9","#B982BC","#BBE173","#65C2A4","#A8CEE0","#89A6AF","#1B79AF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#9D77AC","#E4D1DD","#E1A3C6","#EE3E80","#DEC680","#E0A075","#F0BC81","#DFA15D","#C2A289","#D1E0AB","#DBDCDE","#44B0E2","#5A89C5","#37999C","#3781C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["020","科研配色｜第19期. 渐变色——虽似云中色，却非天上来","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247492634&idx=1&sn=4584e9ca92cbc1b5127b64ed84da0953&chksm=c28d76f5f5faffe31d6e0f2df945d44b7783a061970c63bd43bdff88a7ca9f06664dc53a2ed9&scene=21","主系列","19",[["配色 01",["#D0B9C5","#9CACA8","#E38D8C","#9AB8D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#364857","#859BA7","#C4D5AF","#A7A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#364857","#859BA7","#C4D5AF","#A7A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#FAE8D1","#E0C7BC","#D5E1D6","#D6E2E4","#E99945","#842421","#469562","#469393"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#439667","#A1A1A1","#C0DFD3","#5AB27C","#EFE095"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#A1A1A1","#C0DFD3","#5AB27C","#439667","#EFE095"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#DA635C","#6387BB","#F0C296","#717171","#5FB6B9","#999999","#C0CAD9","#EBBFBF","#F6DCC2","#BFDBDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D5A19C","#D1DBC5","#A4CBCC","#9999C9","#F7D1E6","#A0BADB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#9F9FA3","#E9A1A2","#C4CADE","#84C4CC","#D1E4C3","#F5EA87","#C0BEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#9F9FA3","#C4CADE","#E9A1A2","#84C4CC","#D1E4C3","#F5EA87","#C0BEDC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#D5A19C","#CFD3E3","#D9EBF2","#DBD8EA","#E1ECDA","#F1E4AE","#F9F2EF","#8D6278","#7C7896","#71919D","#628255","#E2C74B","#635C7E","#AF9392"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#F2D086","#C3BC6C","#43BC97","#E2CD89","#B1C07A","#95BE7E","#7CBC8A","#57B1A9","#4F8ED6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#73C2CD","#65B9D1","#57A8D4","#559BD4","#4F8ED6","#427FDB","#2A60D9","#5A6CCA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["021","科研配色｜第20期. 你的渐变标尺指南","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493196&idx=1&sn=e4d6acdd50c97126c2a5b99b7b5a9b5d&chksm=c28d74a3f5fafdb5d26327b0e8b34145137e1a547804861385aa9f115820fb2ad2e670aae613&scene=21","主系列","20",[["配色 01",["#D4383B","#CE3165","#644080","#414F93"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#DF553F","#E58065","#F8DDD3","#E4D9EB","#8B83BC","#3D54A1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#EA3326","#EA3356","#DD64D3","#B750F1","#8030F5","#EA3379","#5122F5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C0D6E4","#7BADD3","#3A70AF","#AED9F5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#BDDDD3","#F1CFB6","#E5EBED","#C2DCC6","#7AC7E0","#E3977F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#EDF4F1","#C2DCC6","#AFDAE0","#77C0C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0]]],["023","科研配色｜第22期. 顶刊也在过夏天？！——杀疯了的蓝绿配色","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493478&idx=1&sn=052ea48f9f5c05a405f28e025aac5d85&chksm=c28d7589f5fafc9fb39c8074e41c8fc701769edd4eb7d582b606632f51a6da23a1dde3ea8a0e&scene=21","主系列","22",[["配色 01",["#92C6A0","#53A6D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#92C6A0","#53A6D9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#428B69","#E4C671","#82B1D3","#D5A65B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#428B69","#E4C671","#82B1D3","#D5A65B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#CCC8DA","#9B8EB6","#4E3480","#DDD4E0","#9672A2","#4F1D61"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#479650","#345AA4","#919396"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#479650","#345AA4","#919396"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#6DBB86","#B8DFB9","#76BDE5","#E7E6D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#6DBB86","#B8DFB9","#76BDE5","#E7E6D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#D3D3D3","#9BB0BD","#859B97","#A8C7CE","#E0B48C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#F2F3E9","#D6E4D2","#C1D5BE","#9EC3AA","#76B5AF","#3B85B6","#2C67A7","#274B83"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["024","科研配色 | 第23期. 夏天 “味道”","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493668&idx=1&sn=1722bedd0afe6823c3dcd40099003eee&chksm=c28d7acbf5faf3ddfb87dd94326e455ddbaf9ca09f787aedc68073a53ca6bc87fd17fd75e301&scene=21","主系列","23",[["配色 01",["#FCEDE4","#F9DED6","#F3B3BC","#701474"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E6C964","#F4E3A6","#E6E4D5","#ECCBC9","#E3A7A7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F6EDEF","#E58C95","#E19987","#C69486","#995451"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#ABCF91","#F4ECA1","#CE7B66","#DEE8AD","#E8C282"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#D2D49C","#A679BE","#7FA4BB","#D79EB0","#ADA3C4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0]]],["025","科研配色｜第24期. 清凉解暑的暑期配色！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247493908&idx=1&sn=b0865b8a2fbc442468220e9e71105519&chksm=c28d7bfbf5faf2ed21fc82d157e839a385af65f0451e55244d7da25956520e886990a8dea2a4&scene=21","主系列","24",[["配色 01",["#131161","#91BFDB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F3CBBB","#67A6D3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E1E1E1","#99CDCE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D0D2D4","#BD9AAD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F5F4F8","#DDDDEA","#B9B3D7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#BFD6FE","#BCE0B6","#F6A899"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C9A4B6","#9C9CBE","#1B294E","#F1DFBB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#E5F1D4","#DEEBF2","#AECBE1","#BBD8B0","#F7D8D5","#EBAEAC","#FAE6CB","#F6CEAE","#E7E1EC","#C2B4D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["026","科研配色｜第25期. 嚯！Nature居然也有少女心——被我发现的甜甜糖果色系","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247494079&idx=1&sn=89762d46a66fa8dfe1c64d8653a487f1&chksm=c28d7b50f5faf24628bc4f57ee2c3ba6ef9e6ce4c095fae68ef522369347ff3b94747bb343b0&scene=21","主系列","25",[["配色 01",["#CBCBCB","#BED3E3","#F1E2AD","#AED0CE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E4DFE7","#7C6B8B","#C4EDE6","#70BAA8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E08985","#476BAB","#818181","#E7933D","#96CDE7","#CEA6C9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#F7CB65","#C1E1C4","#EFA39F","#A0D8EA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8AB0D0","#F2B76F","#F5CFE5","#BBDD78"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E58577","#FAF8BB","#BCBADA","#F0B770","#9CCFC6","#8AB0CF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#E89C9A","#F9F3A5","#F5D47D","#D17737","#BBD6B1","#427FDB","#3C76AF","#B4D7AE","#AECDE0","#F69898"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0]]],["027","科研配色｜第26期. 复古之美：顶刊精选配色指南","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247494715&idx=1&sn=b666d3001887dfd98617382262374a14&chksm=c28d7ed4f5faf7c2a571c6d3b6faa5e7888ca61929b1ce341e6c92db1aa36ead317b543e8921&scene=21","主系列","26",[["配色 01",["#F6C353","#E1933B","#C6B200","#795B34","#645600"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.jpg",2,0],["配色 02",["#AC2124","#ECB426","#416594"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#87C1AD","#F5E886","#F2A98B","#E7A9C5","#9FAED0","#F4806E","#F28BA9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#FCD924","#1CB3B0","#CBDFDF","#F1895E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#B04B43","#E1933B","#F6C353","#ADA041","#857733","#80C6D2","#A8D8B8","#57B1DB","#85BF67","#5EAB80"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E73235","#5CA788","#FA9171","#B96D93","#FA9ECB","#7D9681","#FE9015","#6F7CA6","#FDD363","#FFCAD4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#B9717D","#AD93B8","#F5C8B5","#7EB4C6","#98CA8B","#E06E6E","#6E86AC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D94E55","#9AB8C0","#FBDAA6","#F4B38D","#7DA7BF","#3288BD","#BBCEC0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#888B7A","#044F5F","#783B36","#AA8984","#EDC385","#DF785D","#C77D1C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["028","科研配色｜第27期. 听说紫色更有韵味，那么我拿出蓝色，阁下又该如何应对？","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495158&idx=1&sn=44d7fa9ddfa7fb1b18c53225eca4bc84&chksm=c28d7f19f5faf60f68f4557fef0c83ba30f9bbbbd704bd59b92eef709339aec7907a28c85a39&scene=21","主系列","27",[["配色 01",["#C9D8EB","#DECBE0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E2E1E0","#A892BF","#F1DBA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F5F4F8","#DDDCEB","#B8B3D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#C2989C","#D9ADA3","#A6B9D8","#CDD8E4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#2F2D51","#9193B1","#B79BAC","#E2D1B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#81AEAF","#E9ADA4","#B2D8EC","#DAB376","#82B181","#BBAACD","#BA98C0","#90AAD3","#ACAE76"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#40204D","#734C81","#AE84BE","#D7C3DF","#F4ECF4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#547DB1","#719DC9","#C6D6EA","#DEE7F3","#40204D","#734C81","#AE84BE","#D7C3DF","#F4ECF4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#CBE6E0","#FEF7CB","#C1BED7","#8AB0D1","#F2C896","#F6E1D4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#DECAE0","#B190B8","#8B5C9E","#C9D8EB","#9ACCE4","#52A5C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#C9D8EB","#97B4D9","#6A92C2","#448EA4","#37778D","#1E4C5C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#403D7E","#403E7F","#364381","#396C9A","#456398","#3C7584","#478084","#3A766B","#60A568","#5E997B","#62AD56","#4E963D","#636398"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#B3B2CF","#8086BB","#458DA3","#C1DCE5","#ADD4E5","#D4E8ED","#96CAE0","#80C1D7","#70BBD6","#65B6D3","#65BBD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0]]],["029","科研配色｜第28期. 同色系配色典范，还得是Nature！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495781&idx=1&sn=6b18190baba843e69c3b33a2a65ebd9e&chksm=c28d628af5faeb9c85ab129fc33ffb2c9a83aafae6012f98a5deba5d3379d68e31df5c143888&scene=21","主系列","28",[["配色 01",["#AABCDB","#C0D6EA","#6E6415","#C0D602"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.jpg",2,0],["配色 02",["#9AC4DB","#ACA1BE","#E1BD83","#CB8D8B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#C0D6EA","#A6C7E2","#86B7DB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#7698C3","#AABCDB","#487DB2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#B5A8CA","#9A8AB4","#826BA2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 06",["#D59EBE","#CA81A9","#E0BBD0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#D0908F","#BE6C6D","#AA3A49"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#EFC99B","#E8B574","#E19D49"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 09",["#DBDBA7","#CECE84","#C0C05A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.jpg",2,0],["配色 10",["#89AD9F","#79A091","#4E8872"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 11",["#FFE8C9","#FDCABF","#EBB3BE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#882E71","#AF76A2","#D2BBD5","#884C45","#DC5829","#F4A638"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0],["配色 13",["#B5C3D7","#F5D8B7","#F1D0C6","#DDAEAB","#E9CDDF","#C8BFD9","#B6C9C0","#E4E3BF","#E5A79A","#9F8DB8","#EAB67A","#D8A0C1","#6E8FB2","#7DA494","#C16E71","#ABC8E5","#D0D08A","#D0E0EF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.jpg",2,0]]],["030","科研配色 | 第29期. 天冷了，连我读的文献也要是暖暖的","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496339&idx=1&sn=b1e0b5510556dc975e0b72768e738f0f&chksm=c28d607cf5fae96af6286d4d23fe2897395aa692d58a967aff1e54e01d05479658b76569bf17&scene=21","主系列","29",[["配色 01",["#D9A982","#F2D364","#B2A260","#668C7E","#AE5254","#E8A566"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#D9A982","#F2D364","#B2A260","#668C7E","#AE5254","#E8A566"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#D97F59","#7D1B12","#3D7072","#8DC6C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D97F59","#7D1B12","#3D7072","#8DC6C7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#193F1F","#8B351F","#A2A47A","#89A78F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#193F1F","#8B351F","#A2A47A","#89A78F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 07",["#7B659D","#A1BA65","#B25752","#5B80B9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#7B659D","#A1BA65","#B25752","#5B80B9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 09",["#A56D36","#C69541","#408E94","#DACFA8","#7C241E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#B05096","#B3AA7B","#D5D5D5","#7496C7","#616161"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#7496C7","#B05096","#D5D5D5","#B3AA7B","#616161"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#F4C389","#6185BC","#BEE99C","#ACA44C","#BF733B","#DBCDEC","#D2458C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0],["配色 13",["#5D7CA0","#98AA67","#CE9359","#9D377C","#79678C","#679DAC","#A3B1C8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 12.png",2,0],["配色 14",["#7FA7C9","#B65C4B","#EEAF6E","#8B3539","#394693","#838383","#6680B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 13.png",2,0],["配色 15",["#7FA7C9","#8B3539","#B65C4B","#EEAF6E","#394693","#838383","#6680B3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 14.jpg",2,0],["配色 16",["#812B27","#306137","#468B4B","#A0332D","#6091C9","#426587","#ECA861","#BE8949","#96332D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 15.png",2,0]]],["031","科研配色 | 第30期. 柱状图配色？一文搞","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496734&idx=1&sn=0164dd6b90ae5a52e190417bed667383&chksm=c28d66f1f5faefe7e6db224b0ad62c1ff9181b26d943f63872f79c7c34cba9b2678aa97a4fd9&scene=21","主系列","30",[["配色 01",["#90BED5","#477978"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F0D490","#80B1D3","#99CCCC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#F7BF67","#8BA475","#93B4D6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#BAD540","#85A2D0","#FFC339"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#4D7CC5","#F58E38","#FFC339"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#D93526","#F7A902","#1A6196"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#FFBF8D","#6491C5","#89316C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#8FB1CF","#8AA173","#EEB969","#B9BAD7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#E71A11","#004B9A","#F7BEA0","#6CB328","#ABD9EA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#F0A946","#8C8C8C","#F9D4A0","#668AC4","#99AB3D","#C3CA9F","#A5BED0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#98C5B4","#384073","#B54030"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0]]],["032","科研配色｜第31期. 科研配色里的秋冬图景","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497576&idx=1&sn=2b2cee7bf1b3a20ad99a19898701bb9a&chksm=c28d6587f5faec9146bcdeb53b6803adf070c569da87845335d4c46cb6d7fa252ab16430497f&scene=21","主系列","31",[["配色 01",["#FBF3C4","#CCE9B5","#FFC9AF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#F93800","#007A8B","#FFB500"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#B85748","#A0BAA4","#3A7B9C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#FFC966","#7F94CA","#99B87D","#D8847A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#D35F00","#E69E00","#EFE341","#009C73","#7F7F7F","#0072B2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#4597B0","#467BA2","#50AFD1","#44AB72","#D3A95A","#C97F5F","#CB5765"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#2A496C","#F6EBBF","#ECD36E","#E6AC55","#E48440","#DE574B","#30505E","#A1BC96"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#D65D02","#0F7366","#E2CD93","#000000"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#4A76A9","#6EA4C4","#94C6D7","#E6A46A","#E17157","#9C1A3D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["059","科研配色『单细胞测序专栏』| 第1期. 当UMAP遇上巴黎奥运会，你说city不city！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495366&idx=1&sn=9b403faf78ee5eb1520c7069c188f4af&chksm=c28d7c29f5faf53f79d747b1f14abe8a9ee44daff9eca6840cc627dd5ecca6d0c3f8eb8e1975&scene=21","单细胞测序专栏","1",[["配色 01",["#8F5F95","#9BC6B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#8F5F95","#9BC6B5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.jpg",2,0],["配色 03",["#A65094","#D3D2D2","#8CA351"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.jpg",2,0],["配色 04",["#859645","#508798"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.jpg",2,0],["配色 05",["#DEB7B5","#B86763","#5A7F8F","#404040"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.jpg",2,0],["配色 06",["#9F4542","#C4A852","#3F9495","#ABACAF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 07",["#9F4542","#C4A852","#3F9495","#ABACAF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0],["配色 08",["#C47BB4","#ED9860","#F0B891","#DAB6D1","#B099C9","#549745","#75AC74","#847FB5","#D5D4D7","#C8D7C8","#C3DFE6","#7FBECA","#3099B1","#E8D585","#A4A494","#847F51"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 09",["#ED9860","#F0B891","#C47BB4","#DAB6D1","#B099C9","#847FB5","#D5D4D7","#549745","#75AC74","#C8D7C8","#C3DFE6","#7FBECA","#3099B1","#E8D585","#A4A494","#847F51"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.jpg",2,0],["配色 10",["#235702","#143C55","#386DAA","#86D1F8","#B185DC","#7051B1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 11",["#235702","#143C55","#386DAA","#86D1F8","#B185DC","#7051B1","#B185F0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.jpg",2,0]]],["060","科研配色『单细胞测序专栏』 | 第2期. 秋天的第一份科研配色！细胞比例图和秋天有个约","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247495565&idx=1&sn=3dbfda4a1b5c73fe3adbc532e6efb568&chksm=c28d7d62f5faf47447d2ebec0b5c30d38c418c3cb9c3ff33d6d8b85e040612c0b5b4a5169aea&scene=21","单细胞测序专栏","2",[["配色 01",["#EE7677","#539490"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#92278F","#FCB040","#00A652"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#E66102","#D1B48C","#5E3C9A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#E66102","#D1B48C","#5E3C9A"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.jpg",2,0],["配色 05",["#9ACEDB","#F5A9B6","#FFDE99","#737373","#C0C0BE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#BAA97E","#C88683","#F7887E","#F6AAA6","#FFBE7F","#F6DBA5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#BAA97E","#C88683","#FFBE7F","#F7887E","#F6AAA6","#F6DBA5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.jpg",2,0],["配色 08",["#FF9B9B","#FFDE95","#D9E7C9","#BDEFDE","#CF8997","#FFC99B","#C09F7D","#7FD8CF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#C2E599","#79C579","#016837","#959595","#636363","#BABCDB","#9C99C8","#7F7DB9","#6A51A2","#4A1386"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#FDBF6F","#FF7F00","#E31A1C","#FB9A99","#8C510A","#7F73AC","#542788","#2D004B","#A6CEE3","#1F78B4","#E17F00"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#FDBF6F","#FF7F00","#E31A1C","#FB9A99","#8C510A","#7F73AC","#542788","#2D004B","#A6CEE3","#1F78B4","#E17F00"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.jpg",2,0],["配色 12",["#CA261C","#D556A3","#E5A7B4","#EDD22D","#D87D22","#B0AEAF","#9EFA29","#6BC0C3","#5274F9","#13006B","#6F10C4","#CC6AE5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["061","科研配色『单细胞测序专栏』 | 第3期. 对比色or相邻色？跟着CNS学气泡图配色","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496126&idx=1&sn=c8ae15f4ed49415045b689b2b738fb14&chksm=c28d6351f5faea47af0592f1f94c8c0fc5bb672b084c0d1da250e2fb1a4a033ecd277ddb41a9&scene=21","单细胞测序专栏","3",[["配色 01",["#6B5382","#C1719C","#D9BAD0","#D0ECD7","#A3E0BB","#4FC3B0","#367FA4"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#6C3E96","#8965A5","#AD9ABA","#E4C1AB","#EFB58F","#F9A46B","#F58627"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#A4453F","#C4612A","#DE9429","#EDD280","#FCFFCA","#D1F1DC","#67CEB0","#3596A9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#B2182B","#DD6E57","#F09C7B","#FCD5BF","#D1E5F0","#A7CFE4","#4E99C7","#337AB7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#01491D","#077431","#38A154","#97D390","#C6E9C2"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#E31812","#E7614E","#E17463","#D0A197","#C5AFAB","#61AFAB","#BEBAC0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#542C89","#70499F","#765DA5","#928CC2","#B2B0DA","#E7E3EF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#1A264C","#223B8F","#21579D","#2682B1","#57B4B6","#BDDDAE","#E9F0BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["062","科研配色『单细胞测序专栏』| 第4期. 此图只应天上有！这样的热图才配得上顶刊","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496375&idx=1&sn=df22a926c3e8961ee31b5729ab5ac1e8&chksm=c28d6058f5fae94ed002dcbaadd30d1afad8dce495da22e6f7e79e047aed0d937309fb052260&scene=21","单细胞测序专栏","4",[["配色 01",["#08306C","#2E548C","#4778A9","#68AAD1","#9FC7E0","#C9DBEA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#006400","#328333","#8FBB91","#D9E6D9","#F1DFDC","#EBCCC9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#036862","#47A49B","#74C3B8","#B5E1D9","#F4E8C5","#D9B975"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#DA3C46","#E37F86","#EAB2B7","#F0E4E6","#D1DEE3","#93B5C1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#42603E","#2B3C2A","#5D8958","#79AE90","#B6D6C7","#D8E8E5"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#0C5B72","#596B6B","#767668","#A4895D","#E5A74A","#FBB242"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#094687","#1B7CB3","#79C9C7","#8DD5BF","#B3E0B7","#DBF2D8"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#C85320","#D7703E","#ED9B65","#F9E9B9","#CFCFAF","#88AF9B"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["063","科研配色『单细胞测序专栏』 | 第5期. 顶刊的小提琴图配色已经","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496540&idx=1&sn=a692208f98ef869b4f49eaa3edb60096&chksm=c28d61b3f5fae8a5175c9361e890c8ef0fea4c676554b548a6c90bf49b33f3ce79fd61d69244&scene=21","单细胞测序专栏","5",[["配色 01",["#D3A2C3","#4351A3","#95CDCF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#4351A3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#EAC16D","#DF894D","#33BFBD","#E77B8D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#DE9E4B","#6A3B6A","#B3B3B3","#D94943","#E06235"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#F1DACA","#CB8791","#7F9FD1"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#65205A","#4B3C97","#ADA4CB","#A84B9C"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#F1DEC4","#BC8080","#80253F","#649FBB","#015694"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#87638F","#204B75","#CAB2D6","#6083A0","#6ECDDC","#EDAED5","#EA86BA","#E9358B","#BD5E95","#A0DAE0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#58799C","#A9C9DE","#95C788","#538E8C","#77726E","#F2C18F","#D06869","#D88E42","#A8913D","#F0A9A7","#C87E99"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0]]],["064","科研配色『单细胞测序专栏』 | 第6期. 顶刊偏爱的弦图配色是这样的！当糖果配色与复古配色撞个满怀~","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247496826&idx=1&sn=a826aaabd82a0509009d6329eceebe92&chksm=c28d6695f5faef83c8a65da5e568d2081163a860b7c88f5f54b85bd9247686cdfba7e8fc5d98&scene=21","单细胞测序专栏","6",[["配色 01",["#90D8D4","#9899D1","#91C8FF"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#DBA2CF","#DFE14F","#D0926D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#A5DAEA","#F2B9A8","#B3ED65"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#D17CB5","#C3B2D6","#9368AD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#51475B","#F25E60","#8A7F94"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#F1BE74","#88AECF","#E57D7C","#C6997D","#F0B2D0"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#BC94C2","#F0B2D0","#F1BE74","#95C991","#8BAED0","#D5C2DC"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#87638F","#D3D477","#F9954C","#6DCDDD","#0090AB","#7AC894"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0],["配色 09",["#F4D791","#735241","#B5A399","#C74F3E","#EAB942","#DC9A8E"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 08.png",2,0],["配色 10",["#71AAC8","#383F73","#4D8F74","#D28D70","#B73F2F","#88665D"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 09.png",2,0],["配色 11",["#003959","#04598D","#3690C0","#A9BCE1","#D6CDE4","#EA4E38","#3FB175"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 10.png",2,0],["配色 12",["#EAF1C4","#D4E8B5","#B4DFB2","#8CCCA9","#7FB59B","#A7CAE6","#9294BA"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 11.png",2,0]]],["065","科研配色『单细胞测序专栏』 | 第7期. 火山图配色远不止红蓝！让审稿人眼前一亮的火山图都在这里！","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497135&idx=1&sn=82608f4164a595d6d39b84cdda834d2e&chksm=c28d6740f5faee56f0a78af5407ac86961eea6d94f228672e4eeb72bb3fcb006ed2ae398b90b&scene=21","单细胞测序专栏","7",[["配色 01",["#FDEAEE","#3C57A6","#A8AAA9"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E13122","#75AAD6","#D3CFD0","#E13103"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#FE0403","#1715FF","#BEBEBE"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#ED5718","#3A82BC","#787677","#ED0718"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#EAD093","#9E7823","#E71F18"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#6C5BCE","#008D8B","#747474"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#B1D2E7","#4387C0","#E8F0FB","#75D2E7"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#B1D7D8","#D6AED3","#CDCDCD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.png",2,0]]],["066","科研配色『单细胞测序专栏』 | 第8期. 顶刊配色方案让拟时序分析不再单调！快来抄作业~","https://mp.weixin.qq.com/s?__biz=MzkzNzQxMjQ4MA%3D%3D&mid=2247497510&idx=1&sn=20bde6032d3c0adf9d4176e2696fa38c&chksm=c28d65c9f5faecdf7563584e23b4147141ffc095595b5f931e938543f5d07afa27c971fdfcf2&scene=21","单细胞测序专栏","8",[["配色 01",["#183552","#3C7AAE","#55AEF2","#3C7A93"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 00.png",2,0],["配色 02",["#E26B51","#DADDF5","#7F7F7F"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 01.png",2,0],["配色 03",["#3BA064","#88C49F","#CEE9DD"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 02.png",2,0],["配色 04",["#793092","#BE7B84","#D39F76"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 03.png",2,0],["配色 05",["#8FC5B7","#A29A85","#C03A2F","#504DA6"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 04.png",2,0],["配色 06",["#1AB17C","#EA8BC3","#C5C1E2","#93A8D8","#F9B4AB"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 05.png",2,0],["配色 07",["#C8892B","#4863AA","#C44C52","#EBD374","#94C6D4","#A24C97"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 06.png",2,0],["配色 08",["#F99D50","#E04243","#80388A","#9485EA","#407AFA","#F8D7D8","#D3EAF2","#AFF19A","#FBEF9D","#54DAD3"],0,0,"本地 OCR 提取；HEX 为准，RGB 由 HEX 反算 · 07.jpg",2,0]]]]}</script>
 <script>
 (function () {
   'use strict';
@@ -684,251 +857,867 @@ footer a:hover { color: var(--accent); }
     return out;
   }
 
-  /* ── 图表注册表：每条只描述几何，颜色一律循环用满组内全部色 ─────── */
+  /* ── 科研绘图图谱 ────────────────────────────────────────────────
+     两层结构：GEO 是可复用的几何族，PLOTS 是 67 条「科研表达任务」。
+     同一几何可被多个编号复用——底层图形相同，承担的科研任务不同。
+     每条图的颜色一律循环用满组内全部色；数据均为模拟值。          */
   var CATS = [
-    { i: 'trend', n: '趋势' }, { i: 'compare', n: '比较' }, { i: 'part', n: '占比' },
-    { i: 'dist', n: '分布' }, { i: 'rel', n: '关系' }, { i: 'other', n: '其它' }
+    { i: 'A', n: 'A 基础对比' }, { i: 'B', n: 'B 分布统计' }, { i: 'C', n: 'C 时序动态' },
+    { i: 'D', n: 'D 机器学习' }, { i: 'E', n: 'E 关系结构' }, { i: 'F', n: 'F 空间优化' }
   ];
-  var CHARTS = [
-    { i: 'line', n: '折线', c: 'trend', d: '多组时间序列，看相邻曲线是否分得开', f: function (K) {
-      var s = K.frame(), d = K.series(K.n, 6, 11), k, i;
-      for (k = 0; k < K.n; k++) {
-        var p = []; for (i = 0; i < 6; i++) p.push([K.X(i / 5), K.Y(d[k][i])]);
-        s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 2.2);
-        if (!K.mini) for (i = 0; i < 6; i++) s += K.dot(p[i][0], p[i][1], 2.4, K.C(k));
-      }
-      return s;
-    } },
-    { i: 'smooth', n: '平滑曲线', c: 'trend', d: '拟合曲线与趋势，检查细线的可读性', f: function (K) {
-      var s = K.frame(), d = K.series(K.n, 7, 12), k, i;
-      for (k = 0; k < K.n; k++) {
-        var p = []; for (i = 0; i < 7; i++) p.push([K.X(i / 6), K.Y(d[k][i])]);
-        s += K.path(smoothPath(p), 'none', K.C(k), K.mini ? 1.4 : 2.2);
-        if (!K.mini) s += K.dot(p[3][0], p[3][1], 3, K.C(k));
-      }
-      return s;
-    } },
-    { i: 'area', n: '面积', c: 'trend', d: '半透明填充，检查浅色与白底的对比', f: function (K) {
-      var s = K.frame(), d = K.series(K.n, 6, 13), k, i;
-      for (k = 0; k < K.n; k++) {
-        var up = [], lo = [];
-        for (i = 0; i < 6; i++) { up.push([K.X(i / 5), K.Y(d[k][i])]); lo.push([K.X(i / 5), K.Y(0)]); }
-        s += K.path(areaPath(lo, up), K.C(k), 'none', 0, .16);
-        s += K.poly(up.map(ptsStr).join(' '), K.C(k), K.mini ? 1.3 : 2);
-      }
-      return s;
-    } },
-    { i: 'stack', n: '堆叠面积', c: 'trend', d: '逐层累积，检查相邻层边界是否清晰', f: function (K) {
-      var s = K.frame(), d = K.series(K.n, 6, 14), acc = [], k, i;
-      for (i = 0; i < 6; i++) acc.push(0);
-      for (k = 0; k < K.n; k++) {
-        var lo = [], up = [];
-        for (i = 0; i < 6; i++) {
-          var x = K.X(i / 5); lo.push([x, K.Y(acc[i])]);
-          acc[i] += d[k][i] / K.n * .9; up.push([x, K.Y(acc[i])]);
-        }
-        s += K.path(areaPath(lo, up), K.C(k), '#ffffff', .8, .85);
-      }
-      return s;
-    } },
-    { i: 'bar', n: '分组柱', c: 'compare', d: '每个 x 组内并列多系列，色差最易检验', f: function (K) {
-      var s = K.frame(), groups = K.mini ? 3 : 4, gw = K.iw / groups, gap = K.mini ? 1 : 2;
-      var bw = Math.min(K.mini ? 7 : 14, gw * .74 / Math.max(K.n, 1));
-      var v = K.vals(K.n * groups, 21), g, k;
-      for (g = 0; g < groups; g++) {
-        var total = K.n * bw + (K.n - 1) * gap, x0 = K.L + gw * g + (gw - total) / 2;
-        for (k = 0; k < K.n; k++) {
-          var hh = K.ih * (.2 + .72 * v[g * K.n + k]);
-          s += K.rect(x0 + k * (bw + gap), K.T + K.ih - hh, bw, hh, K.C(k));
-        }
-      }
-      return s;
-    } },
-    { i: 'stackBar', n: '堆叠柱', c: 'compare', d: '柱内分段占比，检查小段颜色是否认得出', f: function (K) {
-      var s = K.frame(), groups = K.mini ? 3 : 5, gw = K.iw / groups;
-      var bw = Math.min(K.mini ? 12 : 24, gw * .6), v = K.vals(K.n * groups, 22), g, k, tot, y;
-      for (g = 0; g < groups; g++) {
-        var arr = []; tot = 0;
-        for (k = 0; k < K.n; k++) { arr.push(.3 + v[g * K.n + k]); tot += arr[k]; }
-        y = K.T + K.ih;
-        for (k = 0; k < K.n; k++) {
-          var hh = K.ih * .85 * arr[k] / tot; y -= hh;
-          s += K.rect(K.L + gw * (g + .5) - bw / 2, y, bw, hh, K.C(k));
-        }
-      }
-      return s;
-    } },
-    { i: 'hbar', n: '水平条', c: 'compare', d: '类别多的排序图，颜色按条目逐一取用', f: function (K) {
-      var s = K.frame(true), n = K.n, gh = K.ih / n, v = K.vals(n, 23), k;
-      for (k = 0; k < n; k++) s += K.rect(K.L, K.T + gh * k + gh * .16,
-        K.iw * (.22 + .75 * v[k]), gh * .68, K.C(k));
-      return s;
-    } },
-    { i: 'waterfall', n: '瀑布', c: 'compare', d: '增减量依次累积，正负段用不同颜色', f: function (K) {
-      var s = K.frame(), n = Math.max(3, K.n), gw = K.iw / n;
-      var bw = Math.min(K.mini ? 9 : 18, gw * .62), v = K.vals(n, 24), cur = K.ih * .28, k;
-      for (k = 0; k < n; k++) {
-        var d = K.ih * .52 * (v[k] - .5);
-        var to = Math.max(K.ih * .06, Math.min(K.ih * .9, cur + d));
-        s += K.rect(K.L + gw * (k + .5) - bw / 2, K.Y(Math.max(cur, to) / K.ih), bw, Math.abs(to - cur), K.C(k));
-        s += K.line(K.L + gw * (k - .5), K.Y(cur / K.ih), K.L + gw * (k + .5) - bw / 2, K.Y(cur / K.ih), '#c9d1d9', 1);
-        cur = to;
-      }
-      return s;
-    } },
-    { i: 'radar', n: '雷达', c: 'compare', d: '多指标多边形叠放，检查半透明填充后的色相', f: function (K) {
-      var s = K.bg(), cx = K.w / 2, cy = K.h / 2, r = Math.min(K.w, K.h) * (K.mini ? .34 : .33);
-      var d = K.series(K.n, 6, 25), a, k, i;
-      function pt(ang, rr) { return [cx + rr * Math.cos(ang), cy + rr * Math.sin(ang)]; }
-      for (i = 1; i <= 3; i++) {
-        var ring = [];
-        for (a = 0; a < 6; a++) ring.push(ptsStr(pt(-Math.PI / 2 + 2 * Math.PI * a / 6, r * i / 3)));
-        s += K.shape(ring.join(' '), '#e9edf2', 1);
-      }
-      for (k = 0; k < K.n; k++) {
-        var pp = [];
-        for (a = 0; a < 6; a++) pp.push(ptsStr(pt(-Math.PI / 2 + 2 * Math.PI * a / 6,
-          r * (.18 + .72 * d[k][a]))));
-        s += K.shape(pp.join(' '), K.C(k), K.mini ? 1.1 : 1.7, K.C(k), .12);
-      }
-      return s;
-    } },
-    { i: 'pie', n: '饼图', c: 'part', d: '扇区占比，检查小块与相邻色的边界', f: function (K) {
-      var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34);
-      return wedges(K, K.vals(K.n, 31), K.w / 2, K.h / 2, 0, r, null);
-    } },
-    { i: 'donut', n: '环形', c: 'part', d: '中心留白的占比图，检查内圈细色带', f: function (K) {
-      var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34);
-      return wedges(K, K.vals(K.n, 32), K.w / 2, K.h / 2, r * .5, r, null);
-    } },
-    { i: 'rose', n: '玫瑰', c: 'part', d: '半径随数值变化的南丁格尔图', f: function (K) {
-      var r = Math.min(K.w, K.h) * (K.mini ? .4 : .38), v = K.vals(K.n, 33);
-      return wedges(K, v, K.w / 2, K.h / 2, r * .12, r, v.map(function (x) { return .45 + .55 * x; }));
-    } },
-    { i: 'treemap', n: '矩形树', c: 'part', d: '面积编码层级，检查相邻矩形颜色是否粘连', f: function (K) {
-      var v = K.vals(K.n, 34), L = K.mini ? 5 : 10, T = K.mini ? 5 : 10;
-      var W = K.w - 2 * L, H = K.h - 2 * T, s = K.bg();
-      var items = v.map(function (x, i) { return { v: x, i: i }; }).sort(function (a, b) { return b.v - a.v; });
-      var half = Math.ceil(items.length / 2), rows = [items.slice(0, half), items.slice(half)];
-      var totAll = v.reduce(function (a, b) { return a + b; }, 0) || 1, y = T;
-      rows.forEach(function (row) {
-        if (!row.length) return;
-        var tot = row.reduce(function (a, b) { return a + b.v; }, 0) || 1;
-        var rh = H * tot / totAll, x = L;
-        row.forEach(function (it) {
-          var rw = W * it.v / tot;
-          s += K.rect(x + 1, y + 1, Math.max(0, rw - 2), Math.max(0, rh - 2), K.C(it.i));
-          x += rw;
-        });
-        y += rh;
-      });
-      return s;
-    } },
-    { i: 'box', n: '箱线', c: 'dist', d: '箱体与须线，检查浅色填充配深色描边', f: function (K) {
-      var s = K.frame(), gw = K.iw / K.n, bw = Math.min(gw * .55, K.mini ? 7 : 16), v = K.vals(K.n, 51), k;
-      for (k = 0; k < K.n; k++) {
-        var cx = K.L + gw * (k + .5), h = K.ih * (.25 + .5 * v[k]), y = K.Y(v[k]);
-        s += K.rect(cx - bw / 2, y - h / 2, bw, h, K.lite(k),
-          { stroke: K.C(k), 'stroke-width': 1.3 });
-        s += K.line(cx - bw / 2, y, cx + bw / 2, y, K.dark(k), K.mini ? 1 : 2);
-        s += K.line(cx, y - h / 2 - K.ih * .07, cx, y - h / 2, K.C(k), 1);
-        s += K.line(cx, y + h / 2, cx, y + h / 2 + K.ih * .07, K.C(k), 1);
-        s += K.label(cx, K.h - 6, 'S' + (k + 1));
-      }
-      return s;
-    } },
-    { i: 'violin', n: '小提琴', c: 'dist', d: '分布轮廓叠放，检查轮廓色与填充色', f: function (K) {
-      var s = K.frame(), gw = K.iw / K.n, v = K.vals(K.n, 52), k, j;
-      for (k = 0; k < K.n; k++) {
-        var cx = K.L + gw * (k + .5), w = Math.min(gw * .5, K.mini ? 8 : 18);
-        var top = K.Y(.15 + .7 * v[k]), bot = K.Y(.1), m = 8, d = '';
-        for (j = 0; j <= m; j++) {
-          var t = j / m, y = top + (bot - top) * t, amp = w * (.35 + .65 * Math.sin(Math.PI * t));
-          d += (j ? ' L ' : 'M ') + (cx - amp).toFixed(1) + ' ' + y.toFixed(1);
-        }
-        for (j = m; j >= 0; j--) {
-          var t2 = j / m, y2 = top + (bot - top) * t2, amp2 = w * (.35 + .65 * Math.sin(Math.PI * t2));
-          d += ' L ' + (cx + amp2).toFixed(1) + ' ' + y2.toFixed(1);
-        }
-        s += K.path(d + ' Z', K.lite(k), K.C(k), 1.3, .9);
-        s += K.line(cx, top, cx, bot, K.dark(k), 1);
-      }
-      return s;
-    } },
-    { i: 'heat', n: '热力', c: 'dist', d: '矩阵色阶，检查同一色相派生出的深浅层次', f: function (K) {
-      var s = K.bg(), nx = Math.max(3, K.n), ny = K.mini ? 4 : 6;
-      var L = K.mini ? 6 : 30, T = K.mini ? 6 : 12;
-      var W = K.w - L - (K.mini ? 4 : 10), H = K.h - T - (K.mini ? 6 : 22);
-      var cw = W / nx, ch = H / ny, x, y;
-      for (y = 0; y < ny; y++) for (x = 0; x < nx; x++) {
-        var val = .2 + .75 * K.r(), col = K.C((x * ny + y) % K.n);
-        s += K.rect(L + x * cw + 1, T + y * ch + 1, cw - 2, ch - 2,
-          shade(col, .5 * (1 - val)),
-          { stroke: col, 'stroke-width': K.mini ? .5 : .8 });
-      }
-      return s;
-    } },
-    { i: 'scatter', n: '散点', c: 'rel', d: '多类簇，检查相近色相的点群能否分开', f: function (K) {
-      var s = K.frame(), cs = clusters(K, K.mini ? 5 : 9, 61), k, j;
-      for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
-        s += K.dot(cs[k][j][0], cs[k][j][1], K.mini ? 2.2 : 3.5, K.C(k), .85);
-      return s;
-    } },
-    { i: 'bubble', n: '气泡', c: 'rel', d: '点位加半径编码，检查半透明叠加后的颜色', f: function (K) {
-      var s = K.frame(), cs = clusters(K, K.mini ? 4 : 6, 62), r = rng(63), k, j;
-      for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
-        s += K.dot(cs[k][j][0], cs[k][j][1], (K.mini ? 2 : 3) + r() * (K.mini ? 3 : 5), K.C(k), .62);
-      return s;
-    } },
-    { i: 'slope', n: '斜率图', c: 'rel', d: '两时点连线，检查交叉处的颜色辨识度', f: function (K) {
-      var s = K.frame(), v1 = K.vals(K.n, 71), v2 = K.vals(K.n, 72);
-      var x1 = K.X(.12), x2 = K.X(.88), k;
-      for (k = 0; k < K.n; k++) {
-        s += K.line(x1, K.Y(v1[k]), x2, K.Y(v2[k]), K.C(k), K.mini ? 1.6 : 2.4);
-        s += K.dot(x1, K.Y(v1[k]), K.mini ? 1.8 : 3, K.C(k));
-        s += K.dot(x2, K.Y(v2[k]), K.mini ? 1.8 : 3, K.C(k));
-      }
-      return s;
-    } },
-    { i: 'polar', n: '极坐标柱', c: 'other', d: '扇形柱，检查小角度下的颜色区分', f: function (K) {
-      var s = K.bg(), cx = K.w / 2, cy = K.h / 2;
-      var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34), v = K.vals(K.n, 73);
-      var step = 2 * Math.PI / K.n, k;
-      for (k = 0; k < K.n; k++) s += sector(K, cx, cy, r * .2,
-        r * (.45 + .55 * v[k]), -Math.PI / 2 + step * k + .02,
-        -Math.PI / 2 + step * (k + 1) - .02, K.C(k));
-      return s;
-    } },
-    { i: 'lollipop', n: '棒棒糖', c: 'other', d: '细杆加端点，检查小面积色块是否醒目', f: function (K) {
-      var s = K.frame(), gw = K.iw / K.n, v = K.vals(K.n, 74), k;
-      for (k = 0; k < K.n; k++) {
-        var x = K.L + gw * (k + .5), y = K.Y(v[k]);
-        s += K.line(x, K.Y(0), x, y, K.lite(k), K.mini ? 2 : 3);
-        s += K.dot(x, y, K.mini ? 2.6 : 4.2, K.C(k));
-        s += K.label(x, K.h - 6, 'S' + (k + 1));
-      }
-      return s;
-    } }
-  ];
-  var BY_ID = {}, ORDER = [], CAT_FIRST = {};
-  CHARTS.forEach(function (c) {
-    BY_ID[c.i] = c; ORDER.push(c.i);
-    if (!CAT_FIRST[c.c]) CAT_FIRST[c.c] = c.i;
-  });
+  var GEO = {};
 
-  function chartSvg(cols, type, w, h, mini) {
+  /* 共用小工具：参数曲线、箭头、点阵 */
+  function curvePts(K, fn, n) {
+    var p = [], i;
+    for (i = 0; i <= n; i++) {
+      var t = i / n;
+      p.push([K.X(t), K.Y(Math.max(.02, Math.min(.98, fn(t))))]);
+    }
+    return p;
+  }
+  function arrow(K, a, b, color) {
+    var ang = Math.atan2(b[1] - a[1], b[0] - a[0]), r = K.mini ? 2.6 : 4;
+    return K.line(a[0], a[1], b[0], b[1], color, K.mini ? 1 : 1.4)
+      + K.shape([ptsStr(b),
+                 ptsStr([b[0] - r * Math.cos(ang - .45), b[1] - r * Math.sin(ang - .45)]),
+                 ptsStr([b[0] - r * Math.cos(ang + .45), b[1] - r * Math.sin(ang + .45)])].join(' '),
+                color, 0, color);
+  }
+  function clamp(v) { return Math.max(.02, Math.min(.98, v)); }
+
+  /* A · 基础数据与实验结果对比 */
+  GEO.line = function (K) {
+    var s = K.frame(), d = K.series(K.n, 6, 11), k, i;
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (i = 0; i < 6; i++) {
+        var v = K.v === 'loss' ? .85 * Math.exp(-i * .5 - k * .07) + .08 : d[k][i];
+        p.push([K.X(i / 5), K.Y(clamp(v))]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 2.2);
+      if (!K.mini) for (i = 0; i < 6; i++) s += K.dot(p[i][0], p[i][1], 2.4, K.C(k));
+    }
+    return s;
+  };
+  GEO.smooth = function (K) {
+    var s = K.frame(), d = K.series(K.n, 7, 12), k, i;
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (i = 0; i < 7; i++) p.push([K.X(i / 6), K.Y(d[k][i])]);
+      s += K.path(smoothPath(p), 'none', K.C(k), K.mini ? 1.4 : 2.2);
+      if (!K.mini) s += K.dot(p[3][0], p[3][1], 3, K.C(k));
+    }
+    return s;
+  };
+  GEO.area = function (K) {
+    var s = K.frame(), d = K.series(K.n, 6, 13), k, i;
+    for (k = 0; k < K.n; k++) {
+      var up = [], lo = [];
+      for (i = 0; i < 6; i++) { up.push([K.X(i / 5), K.Y(d[k][i])]); lo.push([K.X(i / 5), K.Y(0)]); }
+      s += K.path(areaPath(lo, up), K.C(k), 'none', 0, .16);
+      s += K.poly(up.map(ptsStr).join(' '), K.C(k), K.mini ? 1.3 : 2);
+    }
+    return s;
+  };
+  GEO.stack = function (K) {
+    var s = K.frame(), d = K.series(K.n, 6, 14), acc = [], k, i;
+    for (i = 0; i < 6; i++) acc.push(0);
+    for (k = 0; k < K.n; k++) {
+      var lo = [], up = [];
+      for (i = 0; i < 6; i++) {
+        var x = K.X(i / 5); lo.push([x, K.Y(acc[i])]);
+        acc[i] += d[k][i] / K.n * .9; up.push([x, K.Y(acc[i])]);
+      }
+      s += K.path(areaPath(lo, up), K.C(k), '#ffffff', .8, .85);
+    }
+    return s;
+  };
+  GEO.bar = function (K) {
+    var s = K.frame(), groups = K.mini ? 3 : 4, gw = K.iw / groups, gap = K.mini ? 1 : 2;
+    var bw = Math.min(K.mini ? 7 : 14, gw * .74 / Math.max(K.n, 1));
+    var v = K.vals(K.n * groups, 21), g, k;
+    for (g = 0; g < groups; g++) {
+      var total = K.n * bw + (K.n - 1) * gap, x0 = K.L + gw * g + (gw - total) / 2;
+      for (k = 0; k < K.n; k++) {
+        var hh = K.ih * (.2 + .72 * v[g * K.n + k]);
+        s += K.rect(x0 + k * (bw + gap), K.T + K.ih - hh, bw, hh, K.C(k));
+      }
+    }
+    return s;
+  };
+  GEO.stackBar = function (K) {
+    var s = K.frame(), groups = K.mini ? 3 : 5, gw = K.iw / groups;
+    var bw = Math.min(K.mini ? 12 : 24, gw * .6), v = K.vals(K.n * groups, 22), g, k, tot, y;
+    for (g = 0; g < groups; g++) {
+      var arr = []; tot = 0;
+      for (k = 0; k < K.n; k++) { arr.push(.3 + v[g * K.n + k]); tot += arr[k]; }
+      y = K.T + K.ih;
+      for (k = 0; k < K.n; k++) {
+        var hh = K.ih * .85 * arr[k] / tot; y -= hh;
+        s += K.rect(K.L + gw * (g + .5) - bw / 2, y, bw, hh, K.C(k));
+      }
+    }
+    return s;
+  };
+  GEO.hbar = function (K) {
+    var s = K.frame(true), n = K.n, gh = K.ih / n, v = K.vals(n, 23), k;
+    if (K.v === 'ablation') v = v.map(function (x, i) { return .9 - .52 * i / Math.max(1, n - 1) + .08 * x; });
+    for (k = 0; k < n; k++) s += K.rect(K.L, K.T + gh * k + gh * .16,
+      K.iw * (.16 + .8 * v[k]), gh * .68, K.C(k));
+    return s;
+  };
+  GEO.waterfall = function (K) {
+    var s = K.frame(), n = Math.max(3, K.n), gw = K.iw / n;
+    var bw = Math.min(K.mini ? 9 : 18, gw * .62), v = K.vals(n, 24), cur = K.ih * .28, k;
+    for (k = 0; k < n; k++) {
+      var dv = K.ih * .52 * (v[k] - .5);
+      var to = Math.max(K.ih * .06, Math.min(K.ih * .9, cur + dv));
+      s += K.rect(K.L + gw * (k + .5) - bw / 2, K.Y(Math.max(cur, to) / K.ih), bw, Math.abs(to - cur), K.C(k % K.n));
+      s += K.line(K.L + gw * (k - .5), K.Y(cur / K.ih), K.L + gw * (k + .5) - bw / 2, K.Y(cur / K.ih), '#c9d1d9', 1);
+      cur = to;
+    }
+    return s;
+  };
+  GEO.radar = function (K) {
+    var s = K.bg(), cx = K.w / 2, cy = K.h / 2, r = Math.min(K.w, K.h) * (K.mini ? .34 : .33);
+    var d = K.series(K.n, 6, 25), a, k, i;
+    function pt(ang, rr) { return [cx + rr * Math.cos(ang), cy + rr * Math.sin(ang)]; }
+    for (i = 1; i <= 3; i++) {
+      var ring = [];
+      for (a = 0; a < 6; a++) ring.push(ptsStr(pt(-Math.PI / 2 + 2 * Math.PI * a / 6, r * i / 3)));
+      s += K.shape(ring.join(' '), '#e9edf2', 1);
+    }
+    for (k = 0; k < K.n; k++) {
+      var pp = [];
+      for (a = 0; a < 6; a++) pp.push(ptsStr(pt(-Math.PI / 2 + 2 * Math.PI * a / 6,
+        r * (.18 + .72 * d[k][a]))));
+      s += K.shape(pp.join(' '), K.C(k), K.mini ? 1.1 : 1.7, K.C(k), .12);
+    }
+    return s;
+  };
+  GEO.pie = function (K) {
+    var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34);
+    return wedges(K, K.vals(K.n, 31), K.w / 2, K.h / 2, 0, r, null);
+  };
+  GEO.donut = function (K) {
+    var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34);
+    return wedges(K, K.vals(K.n, 32), K.w / 2, K.h / 2, r * .5, r, null);
+  };
+  GEO.rose = function (K) {
+    var r = Math.min(K.w, K.h) * (K.mini ? .4 : .38), v = K.vals(K.n, 33);
+    return wedges(K, v, K.w / 2, K.h / 2, r * .12, r, v.map(function (x) { return .45 + .55 * x; }));
+  };
+  GEO.treemap = function (K) {
+    var v = K.vals(K.n, 34), L = K.mini ? 5 : 10, T = K.mini ? 5 : 10;
+    var W = K.w - 2 * L, H = K.h - 2 * T, s = K.bg();
+    var items = v.map(function (x, i) { return { v: x, i: i }; }).sort(function (a, b) { return b.v - a.v; });
+    var half = Math.ceil(items.length / 2), rows = [items.slice(0, half), items.slice(half)];
+    var totAll = v.reduce(function (a, b) { return a + b; }, 0) || 1, y = T;
+    rows.forEach(function (row) {
+      if (!row.length) return;
+      var tot = row.reduce(function (a, b) { return a + b.v; }, 0) || 1;
+      var rh = H * tot / totAll, x = L;
+      row.forEach(function (it) {
+        var rw = W * it.v / tot;
+        s += K.rect(x + 1, y + 1, Math.max(0, rw - 2), Math.max(0, rh - 2), K.C(it.i));
+        x += rw;
+      });
+      y += rh;
+    });
+    return s;
+  };
+  GEO.box = function (K) {
+    var s = K.frame(), gw = K.iw / K.n, bw = Math.min(gw * .55, K.mini ? 7 : 16), v = K.vals(K.n, 51), k;
+    for (k = 0; k < K.n; k++) {
+      var cx = K.L + gw * (k + .5), h = K.ih * (.25 + .5 * v[k]), y = K.Y(v[k]);
+      s += K.rect(cx - bw / 2, y - h / 2, bw, h, K.lite(k), { stroke: K.C(k), 'stroke-width': 1.3 });
+      s += K.line(cx - bw / 2, y, cx + bw / 2, y, K.dark(k), K.mini ? 1 : 2);
+      s += K.line(cx, y - h / 2 - K.ih * .07, cx, y - h / 2, K.C(k), 1);
+      s += K.line(cx, y + h / 2, cx, y + h / 2 + K.ih * .07, K.C(k), 1);
+      s += K.label(cx, K.h - 6, 'S' + (k + 1));
+    }
+    return s;
+  };
+  GEO.violin = function (K) {
+    var s = K.frame(), gw = K.iw / K.n, v = K.vals(K.n, 52), k, j;
+    for (k = 0; k < K.n; k++) {
+      var cx = K.L + gw * (k + .5), w = Math.min(gw * .5, K.mini ? 8 : 18);
+      var top = K.Y(.15 + .7 * v[k]), bot = K.Y(.1), m = 8, d = '';
+      for (j = 0; j <= m; j++) {
+        var t = j / m, y = top + (bot - top) * t, amp = w * (.35 + .65 * Math.sin(Math.PI * t));
+        d += (j ? ' L ' : 'M ') + (cx - amp).toFixed(1) + ' ' + y.toFixed(1);
+      }
+      for (j = m; j >= 0; j--) {
+        var t2 = j / m, y2 = top + (bot - top) * t2, amp2 = w * (.35 + .65 * Math.sin(Math.PI * t2));
+        d += ' L ' + (cx + amp2).toFixed(1) + ' ' + y2.toFixed(1);
+      }
+      s += K.path(d + ' Z', K.lite(k), K.C(k), 1.3, .9);
+      s += K.line(cx, top, cx, bot, K.dark(k), 1);
+    }
+    return s;
+  };
+  GEO.heat = function (K) {
+    var s = K.bg(), nx = Math.max(3, K.n), ny = K.mini ? 4 : 6;
+    var L = K.mini ? 6 : 30, T = K.mini ? 6 : 12;
+    var W = K.w - L - (K.mini ? 4 : 10), H = K.h - T - (K.mini ? 6 : 22);
+    var cw = W / nx, ch = H / ny, x, y;
+    for (y = 0; y < ny; y++) for (x = 0; x < nx; x++) {
+      var val = .2 + .75 * K.r(), col = K.C((x * ny + y) % K.n);
+      if (K.v === 'cm') val = x === y ? .96 : .08 + .32 * K.r();
+      if (K.v === 'attn') val = y <= x ? .28 + .68 * K.r() : .04;
+      if (K.v === 'spectro') val = .2 + .75 * Math.abs(Math.sin(x * .85 + y * .62));
+      s += K.rect(L + x * cw + 1, T + y * ch + 1, cw - 2, ch - 2,
+        shade(col, .5 * (1 - val)), { stroke: col, 'stroke-width': K.mini ? .5 : .8 });
+    }
+    return s;
+  };
+  GEO.scatter = function (K) {
+    var s = K.frame(), cs = clusters(K, K.mini ? 5 : 9, 61), k, j;
+    if (K.v === '3d') {
+      s += K.line(K.L, K.T + K.ih, K.X(.42), K.T + K.ih * .28, '#e9edf2', 1);
+      s += K.line(K.X(.42), K.T + K.ih * .28, K.L + K.iw, K.T + K.ih * .28, '#e9edf2', 1);
+    }
+    var rad = K.v === 'tsne' ? (K.mini ? 2.6 : 4.2) : (K.v === 'umap' ? (K.mini ? 1.8 : 2.8) : (K.mini ? 2.2 : 3.5));
+    for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
+      s += K.dot(cs[k][j][0], cs[k][j][1], rad, K.C(k), .85);
+    return s;
+  };
+  GEO.bubble = function (K) {
+    var s = K.frame(), cs = clusters(K, K.mini ? 4 : 6, 62), r = rng(63), k, j;
+    for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
+      s += K.dot(cs[k][j][0], cs[k][j][1], (K.mini ? 2 : 3) + r() * (K.mini ? 3 : 5), K.C(k), .62);
+    return s;
+  };
+  GEO.slope = function (K) {
+    var s = K.frame(), v1 = K.vals(K.n, 71), v2 = K.vals(K.n, 72);
+    var x1 = K.X(.12), x2 = K.X(.88), k;
+    for (k = 0; k < K.n; k++) {
+      s += K.line(x1, K.Y(v1[k]), x2, K.Y(v2[k]), K.C(k), K.mini ? 1.6 : 2.4);
+      s += K.dot(x1, K.Y(v1[k]), K.mini ? 1.8 : 3, K.C(k));
+      s += K.dot(x2, K.Y(v2[k]), K.mini ? 1.8 : 3, K.C(k));
+    }
+    return s;
+  };
+  GEO.polar = function (K) {
+    var s = K.bg(), cx = K.w / 2, cy = K.h / 2;
+    var r = Math.min(K.w, K.h) * (K.mini ? .36 : .34), v = K.vals(K.n, 73);
+    var step = 2 * Math.PI / K.n, k;
+    for (k = 0; k < K.n; k++) s += sector(K, cx, cy, r * .2,
+      r * (.45 + .55 * v[k]), -Math.PI / 2 + step * k + .02,
+      -Math.PI / 2 + step * (k + 1) - .02, K.C(k));
+    return s;
+  };
+  GEO.lollipop = function (K) {
+    var s = K.frame(), gw = K.iw / K.n, v = K.vals(K.n, 74), k;
+    for (k = 0; k < K.n; k++) {
+      var x = K.L + gw * (k + .5), y = K.Y(v[k]);
+      s += K.line(x, K.Y(0), x, y, K.lite(k), K.mini ? 2 : 3);
+      s += K.dot(x, y, K.mini ? 2.6 : 4.2, K.C(k));
+      s += K.label(x, K.h - 6, 'S' + (k + 1));
+    }
+    return s;
+  };
+
+  /* A 新增几何 */
+  GEO.barOne = function (K) {
+    var s = K.frame(), v = K.vals(K.n, 101), gw = K.iw / K.n, bw = Math.min(gw * .62, K.mini ? 8 : 22), k;
+    for (k = 0; k < K.n; k++) {
+      var hh = K.ih * (.2 + .75 * v[k]);
+      s += K.rect(K.L + gw * (k + .5) - bw / 2, K.T + K.ih - hh, bw, hh, K.C(k));
+      s += K.label(K.L + gw * (k + .5), K.h - 6, 'M' + (k + 1));
+    }
+    return s;
+  };
+  GEO.dotplot = function (K) {
+    var s = K.frame(), gh = K.ih / K.n, v = K.vals(K.n, 102), k;
+    for (k = 0; k < K.n; k++) {
+      var y = K.T + gh * (k + .5), x = K.X(.1 + .8 * v[k]);
+      s += K.line(K.X(.06), y, K.X(.94), y, '#e9edf2', 1);
+      s += K.line(K.X(.06), y, x, y, K.lite(k), K.mini ? 1.5 : 2.5);
+      s += K.dot(x, y, K.mini ? 2.6 : 4, K.C(k));
+    }
+    return s;
+  };
+  GEO.errbar = function (K) {
+    var s = K.frame(), gw = K.iw / K.n, bw = Math.min(gw * .55, K.mini ? 8 : 18), v = K.vals(K.n, 103), k;
+    for (k = 0; k < K.n; k++) {
+      var x = K.L + gw * (k + .5), hh = K.ih * (.2 + .6 * v[k]), y = K.T + K.ih - hh, e = K.ih * (.05 + .06 * K.r());
+      s += K.rect(x - bw / 2, y, bw, hh, K.lite(k), { stroke: K.C(k), 'stroke-width': 1.2 });
+      s += K.line(x, y - e, x, y + e, K.dark(k), K.mini ? 1 : 1.5);
+      s += K.line(x - bw * .3, y - e, x + bw * .3, y - e, K.dark(k), 1);
+      s += K.line(x - bw * .3, y + e, x + bw * .3, y + e, K.dark(k), 1);
+      s += K.label(x, K.h - 6, 'M' + (k + 1));
+    }
+    return s;
+  };
+
+  /* B · 数据分布与统计分析 */
+  GEO.hist = function (K) {
+    var s = K.frame(), nb = K.mini ? 7 : 11, bw = K.iw / nb, sw = bw / K.n, k, j;
+    for (k = 0; k < K.n; k++) for (j = 0; j < nb; j++) {
+      var t = j / (nb - 1), mu = (k + .5) / K.n;
+      var g = Math.exp(-Math.pow((t - mu) * K.n * .85, 2)), hh = K.ih * .78 * g * (.62 + .38 * K.r());
+      s += K.rect(K.L + j * bw + k * sw, K.T + K.ih - hh, Math.max(1, sw - 1), hh, K.C(k), { 'fill-opacity': .78 });
+    }
+    return s;
+  };
+  GEO.kde = function (K) {
+    var s = K.frame(), k, i;
+    for (k = 0; k < K.n; k++) {
+      var mu = (k + .5) / K.n, sd = .055 + .045 * (k % 3), p = [];
+      for (i = 0; i <= 30; i++) {
+        var t = i / 30;
+        p.push([K.X(t), K.Y(.05 + .85 * Math.exp(-Math.pow((t - mu) / sd, 2) / 2))]);
+      }
+      s += K.path(smoothPath(p) + ' L ' + ptsStr([K.X(1), K.Y(0)]) + ' L ' + ptsStr([K.X(0), K.Y(0)]) + ' Z',
+        K.C(k), 'none', 0, .2);
+      s += K.path(smoothPath(p), 'none', K.C(k), K.mini ? 1.3 : 2);
+    }
+    return s;
+  };
+  GEO.ridge = function (K) {
+    var s = K.bg(), gh = K.h / (K.n + 1), k, i;
+    for (k = K.n - 1; k >= 0; k--) {
+      var base = K.T + gh * (K.n - k - .5), mu = .25 + .5 * ((k % 3) / 2), p = [];
+      for (i = 0; i <= 24; i++) {
+        var t = i / 24;
+        p.push([K.X(.05 + .9 * t),
+          base - gh * .72 * Math.exp(-Math.pow((t - mu) / .19, 2) / 2) * (.6 + .4 * Math.sin(t * 7 + k))]);
+      }
+      s += K.path(smoothPath(p) + ' L ' + ptsStr([K.X(.95), base]) + ' L ' + ptsStr([K.X(.05), base]) + ' Z',
+        K.C(k), 'none', 0, .85);
+      s += K.line(K.X(.05), base, K.X(.95), base, '#ffffff', 1);
+    }
+    return s;
+  };
+  GEO.raincloud = function (K) {
+    var s = K.frame(), gh = K.ih / K.n, k, j;
+    for (k = 0; k < K.n; k++) {
+      var cy = K.T + gh * (k + .5), x0 = K.X(.06), x1 = K.X(.52), h = gh * .3;
+      var d = 'M ' + ptsStr([x0, cy]) + ' C ' + ptsStr([x0, cy - h * 1.6]) + ' ' + ptsStr([x1, cy - h * 1.6])
+        + ' ' + ptsStr([x1, cy]) + ' C ' + ptsStr([x1, cy + h * .5]) + ' ' + ptsStr([x0, cy + h * .5])
+        + ' ' + ptsStr([x0, cy]) + ' Z';
+      s += K.path(d, K.lite(k), K.C(k), 1.1, .9);
+      for (j = 0; j < 6; j++) s += K.dot(K.X(.56 + .38 * K.r()), cy + (K.r() - .5) * h * .8,
+        K.mini ? 1.2 : 1.8, K.C(k), .8);
+      s += K.rect(K.X(.56), cy - 1, K.iw * .2, 2, K.dark(k));
+    }
+    return s;
+  };
+  GEO.swarm = function (K) {
+    var s = K.frame(), gh = K.ih / K.n, k, j;
+    for (k = 0; k < K.n; k++) {
+      var cy = K.T + gh * (k + .5);
+      for (j = 0; j < (K.mini ? 7 : 14); j++) {
+        var dy = (K.r() - .5) * gh * .72;
+        var x = K.X(.5) + (K.r() - .5) * K.iw * .5 * (1 - Math.abs(dy) / (gh * .45));
+        s += K.dot(x, cy + dy, K.mini ? 1.6 : 2.6, K.C(k), .85);
+      }
+    }
+    return s;
+  };
+  GEO.qq = function (K) {
+    var s = K.frame(), k, j, m = K.mini ? 4 : 7;
+    s += K.line(K.X(0), K.Y(0), K.X(1), K.Y(1), '#c9d1d9', 1);
+    for (k = 0; k < K.n; k++) for (j = 0; j < m; j++) {
+      var t = (j + .5) / m;
+      s += K.dot(K.X(t), K.Y(clamp(t + (K.r() - .5) * (.16 + .05 * k))), K.mini ? 2 : 3, K.C(k));
+    }
+    return s;
+  };
+  GEO.ecdf = function (K) {
+    var s = K.frame(), k, j, steps = K.mini ? 6 : 10;
+    for (k = 0; k < K.n; k++) {
+      var sh = (k - K.n / 2) * .03, d = '', prev = 0;
+      for (j = 0; j <= steps; j++) {
+        var t = j / steps;
+        var v = clamp((t < .5 ? 2 * t * t : 1 - 2 * (1 - t) * (1 - t)) + sh + (K.r() - .5) * .04);
+        d += (j ? ' L ' : 'M ') + ptsStr([K.X(t), K.Y(prev)]) + ' L ' + ptsStr([K.X(t), K.Y(v)]);
+        prev = v;
+      }
+      s += K.path(d, 'none', K.C(k), K.mini ? 1.3 : 2);
+    }
+    return s;
+  };
+
+  /* C · 时间序列与动态过程分析 */
+  GEO.ts = function (K) {
+    var s = K.frame(), n = K.mini ? Math.max(18, K.n) : Math.max(30, K.n), p = [], i, k;
+    for (i = 0; i <= n; i++) {
+      var t = i / n;
+      p.push([K.X(t), K.Y(clamp(.4 + .28 * Math.sin(t * 9) + .14 * Math.sin(t * 23) + .08 * (K.r() - .5)))]);
+    }
+    for (k = 0; k < K.n; k++) {
+      var a = Math.floor(k * n / K.n), b = Math.floor((k + 1) * n / K.n);
+      s += K.poly(p.slice(a, Math.min(n + 1, b + 1)).map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 2.2);
+    }
+    return s;
+  };
+  GEO.smallMulti = function (K) {
+    var s = K.bg(), cols = 2, rows = Math.ceil(K.n / cols), cw = K.w / cols, ch = K.h / rows, k, i;
+    for (k = 0; k < K.n; k++) {
+      var ox = (k % cols) * cw, oy = Math.floor(k / cols) * ch, p = [];
+      s += K.rect(ox + 1, oy + 1, cw - 2, ch - 2, '#ffffff', { stroke: '#e9edf2', 'stroke-width': 1 });
+      for (i = 0; i <= 12; i++) {
+        var t = i / 12;
+        p.push([ox + 4 + (cw - 8) * t,
+          oy + ch * .82 - ch * .62 * clamp(.45 + .3 * Math.sin(t * 7 + k * 1.3) + .15 * K.r())]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.band = function (K) {
+    var s = K.frame(), n = 12, k, i;
+    for (k = 0; k < K.n; k++) {
+      var up = [], lo = [], mid = [], base = .22 + .56 * (k / Math.max(1, K.n - 1));
+      for (i = 0; i <= n; i++) {
+        var t = i / n, v = base + .12 * Math.sin(t * 6 + k);
+        mid.push([K.X(t), K.Y(clamp(v))]);
+        up.push([K.X(t), K.Y(clamp(v + .12))]);
+        lo.push([K.X(t), K.Y(clamp(v - .12))]);
+      }
+      s += K.path(areaPath(lo, up), K.C(k), 'none', 0, .18);
+      s += K.poly(mid.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.step = function (K) {
+    var s = K.frame(), i, k;
+    s += K.poly([ptsStr([K.X(0), K.Y(.15)]), ptsStr([K.X(.2), K.Y(.15)]),
+      ptsStr([K.X(.2), K.Y(.85)]), ptsStr([K.X(1), K.Y(.85)])].join(' '), '#c9d1d9', 1.5);
+    for (k = 0; k < K.n; k++) {
+      var damp = .05 + .09 * k / Math.max(1, K.n - 1), p = [];
+      for (i = 0; i <= 24; i++) {
+        var t = i / 24, u = Math.max(0, t - .2);
+        p.push([K.X(t), K.Y(clamp(.15 + .72 * u / .8 * (1 + damp * Math.sin(u * 18 + k) * Math.exp(-u * 3))))]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.traj = function (K) {
+    var s = K.frame(), k, i;
+    s += K.line(K.X(.5), K.T, K.X(.5), K.T + K.ih, '#c9d1d9', K.mini ? 1 : 1.5);
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (i = 0; i <= 20; i++) {
+        var t = i / 20;
+        p.push([K.X(t), K.Y(clamp(.3 + .4 * Math.exp(-Math.pow((t - .5) / .22, 2))
+          + (k - K.n / 2) * .018 * Math.sin(t * 9)))]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.events = function (K) {
+    var s = K.frame(), gh = K.ih / Math.max(K.n, 3), k, j;
+    for (k = 0; k < K.n; k++) {
+      var y = K.T + gh * (k + .5);
+      s += K.line(K.L, y, K.L + K.iw, y, '#eef2f6', 1);
+      for (j = 0; j < 3; j++) {
+        var a = K.r() * .68, b = Math.min(.98, a + .08 + K.r() * .2);
+        s += K.rect(K.L + K.iw * a, y - gh * .28, K.iw * (b - a), gh * .56, K.C(k), { 'fill-opacity': .85 });
+      }
+    }
+    var d = '', prev = K.Y(.3);
+    for (j = 0; j <= 6; j++) {
+      var t = j / 6, v = K.Y(.3 + .4 * Math.floor(t * 3) / 3);
+      d += (j ? ' L ' : 'M ') + ptsStr([K.X(t), prev]) + ' L ' + ptsStr([K.X(t), v]);
+      prev = v;
+    }
+    s += K.path(d, 'none', K.C(0), K.mini ? 1.2 : 1.8);
+    return s;
+  };
+  GEO.phase = function (K) {
+    var s = K.frame(), k, i;
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (i = 0; i <= 36; i++) {
+        var t = i / 36, r = .42 - .32 * t, a = t * 7 + k * .5;
+        p.push([K.X(clamp(.5 + r * Math.cos(a) / 1.1)), K.Y(clamp(.5 + r * Math.sin(a)))]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.spectrum = function (K) {
+    var s = K.frame(), nb = K.mini ? 12 : 22, bw = K.iw / nb, j, k;
+    for (j = 0; j < nb; j++) {
+      var t = j / (nb - 1); k = Math.floor(t * K.n) % K.n;
+      var peak = Math.max(0, .85 - .85 * Math.abs(t - .22) * 4,
+        .65 - .65 * Math.abs(t - .63) * 4, .2 * K.r());
+      var hh = K.ih * .85 * peak;
+      s += K.rect(K.L + j * bw + bw * .2, K.T + K.ih - hh, Math.max(1, bw * .6), hh, K.C(k));
+    }
+    return s;
+  };
+  GEO.acf = function (K) {
+    var s = K.frame(), n = Math.max(K.n, 8), gw = K.iw / n, j;
+    s += K.line(K.L, K.Y(.5), K.L + K.iw, K.Y(.5), '#c9d1d9', 1);
+    s += K.line(K.L, K.Y(.68), K.L + K.iw, K.Y(.68), '#e9edf2', 1);
+    s += K.line(K.L, K.Y(.32), K.L + K.iw, K.Y(.32), '#e9edf2', 1);
+    for (j = 0; j < n; j++) {
+      var v = j ? .5 + .42 * Math.exp(-j * .32) * Math.cos(j * .9) : .95, x = K.L + gw * (j + .5), y = K.Y(v);
+      s += K.line(x, K.Y(.5), x, y, K.C(j % K.n), K.mini ? 1.5 : 2.5);
+      s += K.dot(x, y, K.mini ? 1.5 : 2.5, K.C(j % K.n));
+    }
+    return s;
+  };
+  GEO.bode = function (K) {
+    var s = K.bg(), mid = K.h / 2, k, i;
+    s += K.line(K.L, mid, K.L + K.iw, mid, '#e9edf2', 1);
+    for (k = 0; k < K.n; k++) {
+      var p1 = [], p2 = [];
+      for (i = 0; i <= 20; i++) {
+        var t = i / 20;
+        p1.push([K.X(t), K.T + 8 + (mid - K.T - 16) * (1 - t * .72 - .03 * k)]);
+        p2.push([K.X(t), mid + 8 + (K.h - mid - 16) * (.12 + .72 * t + .015 * k)]);
+      }
+      s += K.poly(p1.map(ptsStr).join(' '), K.C(k), K.mini ? 1 : 1.5);
+      s += K.poly(p2.map(ptsStr).join(' '), K.C(k), K.mini ? 1 : 1.5);
+    }
+    return s;
+  };
+  GEO.control = function (K) {
+    var s = K.frame(), n = Math.max(K.n, K.mini ? 10 : 20), j;
+    [.2, .5, .8].forEach(function (v, i) {
+      s += K.line(K.L, K.Y(v), K.L + K.iw, K.Y(v), i === 1 ? '#c9d1d9' : '#e9edf2', i === 1 ? 1.4 : 1);
+    });
+    for (j = 0; j < n; j++)
+      s += K.dot(K.L + K.iw * (j + .5) / n, K.Y(clamp(.5 + (K.r() - .5) * .5)),
+        K.mini ? 1.8 : 2.8, K.C(j % K.n));
+    return s;
+  };
+
+  /* D · 机器学习与人工智能实验 */
+  GEO.roc = function (K) {
+    var s = K.frame(), k, i;
+    if (K.v === 'roc' || K.v === 'cal') s += K.line(K.X(0), K.Y(0), K.X(1), K.Y(1), '#c9d1d9', 1);
+    if (K.v === 'pr') s += K.line(K.L, K.Y(.72), K.L + K.iw, K.Y(.72), '#c9d1d9', 1);
+    for (k = 0; k < K.n; k++) {
+      var p = [], pw = 1 + .5 * k / Math.max(1, K.n - 1);
+      for (i = 0; i <= 16; i++) {
+        var t = i / 16;
+        var v = K.v === 'cal' ? t + (1 - t) * t * .22 * (1 + k / K.n)
+          : (K.v === 'pr' ? .97 - .24 * Math.pow(t, pw) - .02 * k : .1 + .88 * Math.pow(t, 1 / pw));
+        p.push([K.X(t), K.Y(clamp(v))]);
+      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.3 : 2);
+    }
+    return s;
+  };
+  GEO.cd = function (K) {
+    var s = K.frame(), gh = K.ih / K.n, k;
+    for (k = 0; k < K.n; k++) {
+      var x = K.X(.16 + .68 * ((k + .5) / K.n)), y = K.T + gh * (k + .5);
+      s += K.line(K.X(.16), y, x, y, K.lite(k), 1);
+      s += K.dot(x, y, K.mini ? 2 : 3.2, K.C(k));
+      s += K.label(x, y - 5, 'M' + (k + 1));
+    }
+    s += K.line(K.X(.16), K.T + gh * .5, K.X(.16), K.T + K.ih - gh * .5, '#c9d1d9', 1.2);
+    return s;
+  };
+  GEO.pareto = function (K) {
+    var s = K.frame(), pf = [], k, j;
+    for (k = 0; k < K.n; k++) {
+      var cx = .18 + .64 * (k % 4) / 3, cy = .2 + .6 * (Math.floor(k / 4) % 2);
+      for (j = 0; j < (K.mini ? 4 : 8); j++)
+        s += K.dot(K.X(clamp(cx + (K.r() - .5) * .2)), K.Y(clamp(cy + (K.r() - .5) * .24)),
+          K.mini ? 2 : 3.2, K.C(k), .8);
+    }
+    for (k = 0; k <= 8; k++) { var t = k / 8; pf.push([K.X(.1 + .8 * t), K.Y(.88 - .68 * Math.sqrt(t))]); }
+    s += K.poly(pf.map(ptsStr).join(' '), K.dark(0), K.mini ? 1.4 : 2);
+    return s;
+  };
+
+  /* E · 关系、结构与方法框架 */
+  GEO.network = function (K) {
+    var s = K.bg(), pts = [], k, j;
+    var tree = K.v !== 'undirected';
+    for (k = 0; k < K.n; k++) {
+      var x, y;
+      if (K.v === 'flow' || K.v === 'pid' || K.v === 'arch') {
+        x = .12 + .76 * (k % 3) / 2;
+        y = .18 + .64 * Math.floor(k / 3) / Math.max(1, Math.ceil(K.n / 3) - 1);
+      } else if (K.v === 'tree' || K.v === 'dag') {
+        var lvl = Math.floor(Math.log(k + 1) / Math.LN2);
+        x = .12 + .76 * lvl / 3;
+        y = .15 + .7 * ((k + 1 - Math.pow(2, lvl)) / Math.pow(2, lvl));
+      } else {
+        var a = 2 * Math.PI * k / K.n;
+        x = .5 + .36 * Math.cos(a); y = .5 + .36 * Math.sin(a);
+      }
+      pts.push([K.X(clamp(x)), K.Y(clamp(y))]);
+    }
+    for (k = 0; k < K.n; k++) for (j = tree ? k + 1 : 0; j < K.n; j++) {
+      var link = tree ? (j === k + 1 || j === Math.min(K.n - 1, 2 * k + 1) || j === Math.min(K.n - 1, 2 * k + 2))
+        : (j > k && (j - k) % 3 === 0);
+      if (!link) continue;
+      s += tree ? arrow(K, pts[k], pts[j], K.lite(k))
+        : K.line(pts[k][0], pts[k][1], pts[j][0], pts[j][1], K.lite(k), 1);
+    }
+    for (k = 0; k < K.n; k++) {
+      var r = K.mini ? 3 : 5;
+      s += (K.v === 'flow' || K.v === 'pid' || K.v === 'arch')
+        ? K.rect(pts[k][0] - r * 1.6, pts[k][1] - r, r * 3.2, r * 2, K.lite(k),
+          { stroke: K.C(k), 'stroke-width': 1.2 })
+        : K.dot(pts[k][0], pts[k][1], r, K.C(k));
+    }
+    return s;
+  };
+  GEO.sankey = function (K) {
+    var s = K.bg(), k, j;
+    for (k = 0; k < K.n; k++) {
+      var y0 = K.T + K.ih * (k / K.n), y1 = K.T + K.ih * ((k + .7) / K.n);
+      for (j = 0; j < 2; j++) {
+        var x0 = K.X(.08 + j * .42), x1 = K.X(.08 + (j + 1) * .42);
+        var ty = K.T + K.ih * (((k * 2 + j) % K.n) / K.n);
+        var d = 'M ' + ptsStr([x0, y0]) + ' C ' + ptsStr([(x0 + x1) / 2, y0]) + ' '
+          + ptsStr([(x0 + x1) / 2, ty]) + ' ' + ptsStr([x1, ty])
+          + ' L ' + ptsStr([x1, ty + y1 - y0]) + ' C '
+          + ptsStr([(x0 + x1) / 2, ty + y1 - y0]) + ' ' + ptsStr([(x0 + x1) / 2, y1])
+          + ' ' + ptsStr([x0, y1]) + ' Z';
+        s += K.path(d, K.C(k), 'none', 0, .55);
+      }
+      s += K.rect(K.X(.05), y0, K.mini ? 3 : 5, y1 - y0, K.C(k));
+    }
+    return s;
+  };
+  GEO.nn = function (K) {
+    var s = K.bg(), layers = Math.max(2, Math.min(4, K.n)), per = Math.max(2, Math.ceil(K.n / layers));
+    var nodes = [], l, j, k;
+    for (l = 0; l < layers; l++) {
+      var col = [];
+      for (j = 0; j < per; j++) col.push([K.X(.08 + .84 * l / (layers - 1)), K.Y(.2 + .6 * j / Math.max(1, per - 1))]);
+      nodes.push(col);
+    }
+    for (l = 0; l < layers - 1; l++) for (j = 0; j < per; j++) for (k = 0; k < per; k++)
+      s += K.line(nodes[l][j][0], nodes[l][j][1], nodes[l + 1][k][0], nodes[l + 1][k][1],
+        K.lite((l * per + j) % K.n), .7);
+    for (l = 0; l < layers; l++) for (j = 0; j < per; j++)
+      s += K.dot(nodes[l][j][0], nodes[l][j][1], K.mini ? 2.5 : 4, K.C((l * per + j) % K.n));
+    return s;
+  };
+  GEO.dendro = function (K) {
+    var s = K.bg(), gh = K.ih / K.n, k;
+    for (k = 0; k < K.n; k++) {
+      var y = K.T + gh * (k + .5), x = K.X(.12 + .55 * (k % 3) / 2);
+      s += K.line(K.X(.08), y, x, y, K.C(k), K.mini ? 1.2 : 2);
+      s += K.dot(x, y, K.mini ? 2 : 3, K.C(k));
+      s += K.line(x, y, x, K.T + gh * (Math.floor(k / 3) + .5), K.lite(k), 1);
+    }
+    s += K.line(K.X(.08), K.T + gh * .5, K.X(.08), K.T + K.ih - gh * .5, '#c9d1d9', 1.2);
+    return s;
+  };
+  GEO.chord = function (K) {
+    var s = K.bg(), cx = K.w / 2, cy = K.h / 2, r = Math.min(K.w, K.h) * .38, k;
+    for (k = 0; k < K.n; k++) s += sector(K, cx, cy, r * .86, r,
+      -Math.PI / 2 + 2 * Math.PI * k / K.n + .02, -Math.PI / 2 + 2 * Math.PI * (k + .8) / K.n, K.C(k));
+    for (k = 0; k < K.n; k++) {
+      var a0 = -Math.PI / 2 + 2 * Math.PI * (k + .4) / K.n;
+      var a1 = -Math.PI / 2 + 2 * Math.PI * ((k * 3 + 2) % K.n + .4) / K.n;
+      var p0 = [cx + r * .86 * Math.cos(a0), cy + r * .86 * Math.sin(a0)];
+      var p1 = [cx + r * .86 * Math.cos(a1), cy + r * .86 * Math.sin(a1)];
+      s += K.path('M ' + ptsStr(p0) + ' Q ' + ptsStr([cx, cy]) + ' ' + ptsStr(p1),
+        'none', K.C(k), K.mini ? 1 : 1.5, .55);
+    }
+    return s;
+  };
+  GEO.upset = function (K) {
+    var s = K.bg(), rows = 3, cols = Math.max(4, K.n), cw = K.iw / cols, ch = K.h * .42 / rows, k, j;
+    for (k = 0; k < cols; k++) for (j = 0; j < rows; j++) {
+      var on = (k + j) % 3 !== 0;
+      s += K.dot(K.L + cw * (k + .5), K.T + ch * (j + .5), K.mini ? 2 : 3,
+        on ? K.C(k % K.n) : '#e9edf2');
+      if (on && j < rows - 1) s += K.line(K.L + cw * (k + .5), K.T + ch * (j + .5),
+        K.L + cw * (k + .5), K.T + ch * (j + 1.5), K.lite(k % K.n), 1);
+    }
+    for (k = 0; k < cols; k++) {
+      var hh = K.h * .3 * (.25 + .75 * K.r());
+      s += K.rect(K.L + cw * k + cw * .2, K.h * .82 - hh, cw * .6, hh, K.C(k % K.n));
+    }
+    return s;
+  };
+  GEO.venn = function (K) {
+    var s = K.bg(), cx = K.w / 2, cy = K.h / 2, r = Math.min(K.w, K.h) * .24, k;
+    var offs = [[-.55, -.3], [.55, -.3], [0, .55]];
+    for (k = 0; k < 3; k++) s += K.dot(cx + offs[k][0] * r, cy + offs[k][1] * r, r, K.C(k % K.n), .5);
+    for (k = 3; k < K.n; k++)
+      s += K.dot(K.X(.06 + .88 * (k - 3) / Math.max(1, K.n - 4)), K.h - 8, K.mini ? 2 : 3, K.C(k));
+    return s;
+  };
+
+  /* F · 空间、三维与优化分析 */
+  GEO.surface = function (K) {
+    var s = K.bg(), nx = K.mini ? 6 : 11, ny = K.mini ? 5 : 8, wire = K.v === 'wire', i, j;
+    function proj(u, v) {
+      var z = .35 + .45 * Math.sin(u * 4) * Math.cos(v * 3) + .12 * u;
+      return [K.X(.08 + .84 * (u + v * .28)), K.Y(.15 + .6 * (v * .5 + z * .5))];
+    }
+    for (j = 0; j < ny; j++) for (i = 0; i < nx; i++) {
+      var u = i / (nx - 1), v = j / (ny - 1);
+      var p0 = proj(u, v), p1 = proj(Math.min(1, u + 1 / (nx - 1)), v);
+      var p2 = proj(Math.min(1, u + 1 / (nx - 1)), Math.min(1, v + 1 / (ny - 1)));
+      var p3 = proj(u, Math.min(1, v + 1 / (ny - 1)));
+      var quad = [ptsStr(p0), ptsStr(p1), ptsStr(p2), ptsStr(p3)].join(' '), col = K.C((i + j) % K.n);
+      s += wire ? K.shape(quad, col, .8) : K.shape(quad, col, .6, shade(col, .2 * (1 - v)), .92);
+    }
+    return s;
+  };
+  GEO.contour = function (K) {
+    var s = K.frame(), fill = K.v === 'fill', levels = Math.max(K.n, 8);
+    var cx = K.X(.48), cy = K.Y(.5), k, i;
+    for (k = levels - 1; k >= 0; k--) {
+      var r = (k + 1) / levels, pts = [];
+      for (i = 0; i <= 40; i++) {
+        var a = 2 * Math.PI * i / 40, rr = r * (1 + .18 * Math.sin(a * 3));
+        pts.push([cx + Math.cos(a) * rr * K.iw * .42, cy + Math.sin(a) * rr * K.ih * .42]);
+      }
+      var col = K.C(k % K.n);
+      s += fill ? K.shape(pts.map(ptsStr).join(' '), col, .6, shade(col, .32), .9)
+        : K.path('M ' + pts.map(ptsStr).join(' L ') + ' Z', 'none', col, K.mini ? 1 : 1.4);
+    }
+    return s;
+  };
+  GEO.quiver = function (K) {
+    var s = K.frame(), nx = K.mini ? 5 : 8, ny = K.mini ? 4 : 6, i, j;
+    for (j = 0; j < ny; j++) for (i = 0; i < nx; i++) {
+      var x = K.L + K.iw * (i + .5) / nx, y = K.T + K.ih * (j + .5) / ny;
+      var a = Math.atan2(.5 - (j + .5) / ny, (i + .5) / nx - .5) + 1.2, len = K.mini ? 6 : 11;
+      var p0 = [x - len * Math.cos(a) / 2, y - len * Math.sin(a) / 2];
+      var p1 = [x + len * Math.cos(a) / 2, y + len * Math.sin(a) / 2];
+      s += arrow(K, p0, p1, K.C((i * ny + j) % K.n));
+    }
+    return s;
+  };
+  GEO.stream = function (K) {
+    var s = K.frame(), k, i;
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (i = 0; i <= 24; i++) {
+        var t = i / 24;
+        p.push([K.X(t), K.Y(clamp(.15 + .7 * (k + .5) / K.n + .12 * Math.sin(t * 6 + k)))]);
+      }
+      s += K.path(smoothPath(p), 'none', K.C(k), K.mini ? 1.2 : 1.8);
+    }
+    return s;
+  };
+  GEO.parallel = function (K) {
+    var s = K.bg(), dims = K.mini ? 4 : 5, k, j;
+    for (j = 0; j < dims; j++) s += K.line(K.X(j / (dims - 1)), K.T, K.X(j / (dims - 1)), K.T + K.ih, '#e9edf2', 1);
+    for (k = 0; k < K.n; k++) {
+      var p = [];
+      for (j = 0; j < dims; j++) p.push([K.X(j / (dims - 1)), K.Y(.1 + .8 * ((Math.sin(k * 1.7 + j * 2.3) + 1) / 2))]);
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1 : 1.5);
+    }
+    return s;
+  };
+
+  /* ── 67 条科研表达任务 ──────────────────────────────────────────
+     [编号, 中文名, 英文名, 类别, 主要用途, 推荐方法, 几何, 变体, 优先级, 规范提示]
+     优先级：0 = P0，1 = P1，2 = 其它。                                 */
+  var PLOTS = [
+    ['A01','柱状图','Bar Chart','A','模型性能比较','ax.bar()','barOne','',2,'基线统一从 0 起；柱宽与组间距保持一致'],
+    ['A02','分组柱状图','Grouped Bar Chart','A','多模型、多指标比较','ax.bar()','bar','',0,'组间留白大于组内；同一指标跨组用同一色'],
+    ['A03','堆叠柱状图','Stacked Bar Chart','A','组成比例、消耗构成','ax.bar(bottom=...)','stackBar','',2,'段数不宜超过 6；小段需直接标注数值'],
+    ['A04','折线图','Line Chart','A','参数变化、训练过程','ax.plot()','line','',2,'线宽 1.2–1.8 pt；多系列配合标记与线型区分'],
+    ['A05','雷达图','Radar Chart','A','多维性能比较','自定义多边形坐标','radar','',0,'指标需统一方向与尺度；推荐 4–8 维；面积易误导'],
+    ['A06','热力图','Heatmap','A','实验矩阵、相关性','sns.heatmap()','heat','matrix',0,'连续色阶需感知均匀；务必带 colorbar 与行列标签'],
+    ['A07','点图','Dot Plot','A','多方法精确数值对比','ax.scatter()','dotplot','',2,'按数值排序；与误差棒图例区分清楚'],
+    ['A08','棒棒糖图','Lollipop Chart','A','排名、性能差异','ax.stem()','lollipop','',2,'细杆不宜过淡；端点大小保持一致'],
+    ['A09','瀑布图','Waterfall Chart','A','性能增益分解','ax.bar()','waterfall','',2,'正负增量配色需保持语义一致，并标注累积终点'],
+    ['A10','带误差棒柱状图','Bar with Error Bars','A','重复实验结果比较','ax.bar(yerr=...)','errbar','',0,'注明 n、误差类型（SD/SE/CI）与显著性检验'],
+
+    ['B01','直方图','Histogram','B','数据频率分布','ax.hist()','hist','',2,'说明 bin 宽度；与 KDE 叠加时先归一化'],
+    ['B02','箱线图','Box Plot','B','中位数、四分位距、异常值','sns.boxplot()','box','',0,'注明须线定义与异常点判定规则'],
+    ['B03','小提琴图','Violin Plot','B','多组数据的概率密度','sns.violinplot()','violin','',1,'各组带宽一致；小样本慎用'],
+    ['B04','散点图','Scatter Plot','B','变量关联与样本分布','ax.scatter()','scatter','plain',1,'点需透明或抖动避免遮挡；注明回归/拟合方法'],
+    ['B05','核密度估计图','KDE Plot','B','连续变量概率密度','sns.kdeplot()','kde','',2,'带宽选择会影响结论，需在图注说明'],
+    ['B06','山脊图','Ridgeline Plot','B','多组分布演化比较','joypy','ridge','',2,'纵轴顺序需有语义；各层重叠比例保持一致'],
+    ['B07','雨云图','Raincloud Plot','B','原始样本、密度和统计量','ptitprince','raincloud','',1,'半小提琴、散点与箱线需对齐同一横轴'],
+    ['B08','蜂群图','Swarm Plot','B','样本分布与组间差异','sns.swarmplot()','swarm','',2,'样本量大时改用 violin / box 避免点重叠'],
+    ['B09','Q-Q 图','Quantile-Quantile Plot','B','分布假设检验','scipy.stats.probplot()','qq','',2,'参考线为 y=x；尾部偏离需单独讨论'],
+    ['B10','累积分布图','ECDF Plot','B','分位数及性能分布比较','sns.ecdfplot()','ecdf','',2,'阶梯步长随样本量变化，勿做平滑处理'],
+
+    ['C01','单变量时序图','Univariate Time Series','C','过程变量变化','ax.plot()','ts','single',2,'标注采样间隔、单位与时间戳基准'],
+    ['C02','多变量时序图','Multivariate Time Series','C','多变量动态耦合','plt.subplots()','smallMulti','',0,'共用时间轴；各子图独立 y 轴并标单位'],
+    ['C03','置信带曲线','Uncertainty Band','C','多次实验、不确定性','ax.fill_between()','band','',0,'注明置信水平、重复次数与聚合方式'],
+    ['C04','阶跃响应图','Step Response','C','控制系统动态性能','python-control','step','',0,'标出超调量、调节时间与稳态误差；含 DCS 阶梯设定值场景'],
+    ['C05','轨迹对齐图','Trajectory Alignment','C','不同操作过程比较','ax.plot()','traj','',0,'说明对齐基准（事件 / 相位 / DTW）'],
+    ['C06','事件时间轴','Event Timeline','C','操作行为、故障事件','ax.broken_barh()','events','',0,'事件类别配色需与全文一致；标注故障起止时刻'],
+    ['C07','相平面图','Phase Portrait','C','系统状态演化','ax.plot()','phase','',2,'标注平衡点、演化方向与初始条件'],
+    ['C08','频谱图','Spectrum Plot','C','周期性、振荡分析','scipy.signal','spectrum','',2,'注明窗函数、采样率与幅值单位'],
+    ['C09','时频谱图','Spectrogram','C','非平稳信号分析','scipy.signal.ShortTimeFFT','heat','spectro',2,'注明窗长、重叠率与频率分辨率'],
+    ['C10','自相关图','ACF Plot','C','时间依赖性','statsmodels','acf','',2,'画出置信区间并注明最大滞后阶数'],
+    ['C11','Bode 图','Bode Plot','C','频域响应分析','python-control','bode','',2,'幅频与相频共用对数频率轴，标出穿越频率'],
+    ['C12','控制图','Control Chart','C','过程异常监测','matplotlib','control','',2,'标出 UCL / LCL / CL 与所用判异准则'],
+
+    ['D01','ROC 曲线','ROC Curve','D','分类能力评价','sklearn.metrics.RocCurveDisplay','roc','roc',2,'标注 AUC 与随机基线；多模型置同一坐标系'],
+    ['D02','PR 曲线','Precision-Recall Curve','D','不平衡分类评价','PrecisionRecallDisplay','roc','pr',2,'随机基线为阳性率而非 0；注明 AP'],
+    ['D03','混淆矩阵','Confusion Matrix','D','分类错误分析','ConfusionMatrixDisplay','heat','cm',1,'归一化需注明按行 / 按列；格子内标数值'],
+    ['D04','PCA 投影图','PCA Projection','D','线性降维','sklearn.decomposition.PCA','scatter','pca',2,'坐标轴标注解释方差比；必要时画置信椭圆'],
+    ['D05','t-SNE 图','t-SNE Plot','D','高维特征分布','sklearn.manifold.TSNE','scatter','tsne',1,'注明 perplexity 与随机种子；坐标轴无物理意义'],
+    ['D06','UMAP 图','UMAP Plot','D','高维表征可视化','umap-learn','scatter','umap',2,'注明 n_neighbors / min_dist；勿过度解读簇间距（与 D05 合并计作 P1 的 t-SNE / UMAP 一项）'],
+    ['D07','训练收敛曲线','Learning Curve','D','训练稳定性与收敛性','ax.plot()','line','loss',2,'训练与验证同图需区分虚实线；标注早停点'],
+    ['D08','消融实验图','Ablation Study','D','模型组件贡献比较','ax.bar()','hbar','ablation',1,'与完整模型作差；注明指标方向（越大/越小越好）'],
+    ['D09','SHAP 蜂群图','SHAP Beeswarm','D','特征贡献及其分布','shap.plots.beeswarm()','swarm','shap',1,'特征值高低应使用连续色阶，不要用分类色板'],
+    ['D10','SHAP 瀑布图','SHAP Waterfall','D','单样本决策解释','shap.plots.waterfall()','waterfall','shap',2,'标出基准值与最终输出；注明样本编号'],
+    ['D11','注意力热力图','Attention Map','D','注意力权重可视化','sns.heatmap()','heat','attn',2,'行列标签需可读；注明 head / layer 与掩码规则'],
+    ['D12','校准曲线','Calibration Curve','D','预测概率可靠性','CalibrationDisplay','roc','cal',2,'注明分箱数与 Brier score；画完美校准对角线'],
+    ['D13','临界差异图','Critical Difference Diagram','D','多算法统计比较','CD Diagram','cd','',2,'注明检验方法、显著性水平与平均秩'],
+    ['D14','Pareto 前沿图','Pareto Frontier','D','多目标优化、性能权衡','ax.scatter()','pareto','',1,'坐标轴注明优化方向；标出非支配解'],
+
+    ['E01','网络关系图','Network Graph','E','知识图谱、变量关联','NetworkX / Graphviz','network','undirected',2,'节点大小与颜色需有图例；避免边交叉遮挡'],
+    ['E02','有向无环图','DAG','E','因果关系、依赖关系','Graphviz','network','dag',1,'箭头方向一致；层次布局避免交叉'],
+    ['E03','树状结构图','Tree Diagram','E','本体结构、故障树','Graphviz','network','tree',2,'层级间距一致；叶节点标签对齐'],
+    ['E04','桑基图','Sankey Diagram','E','状态转移、物料能量流','Plotly','sankey','',1,'流宽与量成正比并注明单位；守恒关系需核对'],
+    ['E05','算法流程图','Flowchart','E','方法执行流程','TikZ / Graphviz','network','flow',2,'判定节点用菱形；起点、终点与循环分支明确'],
+    ['E06','神经网络结构图','Network Architecture','E','模型架构','TikZ / SVG','nn','',2,'标注张量维度；全连接可简化为层间连线'],
+    ['E07','系统架构图','System Architecture','E','软件、智能体系统','Draw.io','network','arch',2,'模块边界与数据流方向需标注；配色区分层次'],
+    ['E08','层次聚类树','Dendrogram','E','样本分类及相似性','scipy.cluster.hierarchy','dendro','',2,'注明距离度量与连接方法；标出切割阈值'],
+    ['E09','弦图','Chord Diagram','E','多实体之间的关联','HoloViews','chord','',2,'连线设透明度避免遮挡；注明流量方向'],
+    ['E10','UpSet 图','UpSet Plot','E','多集合交集关系','UpSetPlot','upset','',2,'按交集大小排序；集合规模用独立条形标注'],
+    ['E11','维恩图','Venn Diagram','E','少量集合的交集','matplotlib-venn','venn','',2,'仅适用 ≤3 个集合；面积尽量与集合大小成比例'],
+    ['E12','工艺流程图','Process Flow Diagram','E','工业过程与装置机理','Draw.io / Visio / CAD','network','pid',2,'遵循 ISA 符号标准；标出设备位号与物流方向'],
+
+    ['F01','三维散点图','3D Scatter Plot','F','三维特征分布','mplot3d.scatter()','scatter','3d',2,'注明视角与坐标轴；必要时补二维投影'],
+    ['F02','三维曲面图','3D Surface','F','响应面、目标函数','ax.plot_surface()','surface','solid',2,'注明视角、色阶与 z 轴单位；避免遮挡关键区域'],
+    ['F03','三维线框图','3D Wireframe','F','模型响应曲面','ax.plot_wireframe()','surface','wire',2,'网格密度适中；可叠加等高线投影'],
+    ['F04','等高线图','Contour Plot','F','参数空间、损失函数','ax.contour()','contour','line',2,'标注等高线数值；线型区分正负或高低'],
+    ['F05','填充等高线图','Filled Contour','F','性能区域、可行域','ax.contourf()','contour','fill',2,'连续色阶需带 colorbar；标出可行域边界'],
+    ['F06','矢量场图','Quiver Plot','F','动态系统方向场','ax.quiver()','quiver','',2,'箭头长度需归一化并给参考尺度'],
+    ['F07','流线图','Streamline Plot','F','流体流动、状态场','ax.streamplot()','stream','',2,'注明起点密度与积分方向；避免流线过密'],
+    ['F08','平行坐标图','Parallel Coordinates','F','高维多目标比较','Plotly','parallel','',2,'各维需归一化，否则尺度差异会误导结论'],
+    ['F09','气泡图','Bubble Chart','F','三变量及多维比较','ax.scatter(s=...)','bubble','',2,'面积（而非半径）编码数值，并给尺寸图例']
+  ].map(function (x) {
+    return { id: x[0], cn: x[1], en: x[2], c: x[3], use: x[4], m: x[5], g: x[6], v: x[7], p: x[8], tip: x[9] };
+  });
+  var BY_ID = {}, ORDER = [], CAT_FIRST = {};
+  PLOTS.forEach(function (P) {
+    BY_ID[P.id] = P; ORDER.push(P.id);
+    if (!CAT_FIRST[P.c]) CAT_FIRST[P.c] = P.id;
+  });
+  var CAT_NAME = {};
+  CATS.forEach(function (c) { CAT_NAME[c.i] = c.n; });
+
+  function chartSvg(cols, id, w, h, mini) {
+    var P = BY_ID[id] || BY_ID[ORDER[0]];
     var K = ctx(w, h, mini, cols.length ? cols : ['#8b949e']);
+    K.v = P.v;
     return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="' + h
-      + '" role="img" aria-label="配色示例图表：' + esc(BY_ID[type].n)
-      + '" preserveAspectRatio="xMidYMid meet">'
+      + '" role="img" aria-label="' + esc(P.cn) + '（' + esc(P.en) + '）配色示意图"'
+      + ' preserveAspectRatio="xMidYMid meet">'
       + tag('rect', { x: 0, y: 0, width: w, height: h, fill: '#ffffff' })
       + '<g' + (VIEW.opacity < 100 ? ' opacity="' + (VIEW.opacity / 100).toFixed(2) + '"' : '') + '>'
-      + BY_ID[type].f(K) + '</g></svg>';
+      + GEO[P.g](K) + '</g></svg>';
   }
 
   /* ── 状态与通用 UI ─────────────────────────────────────────────── */
   var MAX_CMP = 4;
-  var S = { uid: null, cmp: [], type: 'line', cat: 'trend', all: false, open: {} };
+  var S = { uid: null, cmp: [], type: 'A01', cat: 'A', all: false, open: {},
+    galCat: 'all', galPri: 0 };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
   function showToast(msg) {
@@ -1033,9 +1822,9 @@ footer a:hover { color: var(--accent); }
   function codeFor(act, G) {
     var hs = G.cols, name = G.name.replace(/[^\w\u4e00-\u9fa5]/g, '');
     if (act === 'hex') return hs.join(', ');
-    if (act === 'py') return '# ' + G.name + '\ncolors = ['
+    if (act === 'py') return '# ' + G.name + '\nfrom cycler import cycler\ncolors = ['
       + hs.map(function (h) { return "'" + h + "'"; }).join(', ')
-      + ']\nplt.rcParams["axes.prop_cycle"] = plt.cycler(color=colors)';
+      + ']\nplt.rcParams["axes.prop_cycle"] = cycler(color=colors)';
     if (act === 'r') return '# ' + G.name + '\npal_' + (name || 'pal') + ' <- c('
       + hs.map(function (h) { return '"' + h + '"'; }).join(', ')
       + ')\nscale_color_manual(values = pal_' + (name || 'pal') + ')';
@@ -1050,22 +1839,26 @@ footer a:hover { color: var(--accent); }
       return '<button type="button" class="chip' + (c.i === S.cat ? ' is-on' : '')
         + '" data-cat="' + c.i + '">' + esc(c.n) + '</button>';
     }).join('');
-    $('pv-tabs').innerHTML = CHARTS.filter(function (c) { return c.c === S.cat; }).map(function (c) {
-      return '<button type="button" class="pv-tab' + (c.i === S.type ? ' is-on' : '')
-        + '" data-type="' + c.i + '">' + esc(c.n) + '</button>';
+    $('pv-tabs').innerHTML = PLOTS.filter(function (P) { return P.c === S.cat; }).map(function (P) {
+      return '<button type="button" class="pv-tab' + (P.id === S.type ? ' is-on' : '')
+        + '" data-type="' + P.id + '" title="' + esc(P.en) + '">' + esc(P.id) + ' ' + esc(P.cn) + '</button>';
     }).join('');
     $('pv-all').innerHTML = CATS.map(function (c) {
-      return '<optgroup label="' + esc(c.n) + '">' + CHARTS.filter(function (x) {
-        return x.c === c.i;
-      }).map(function (x) {
-        return '<option value="' + x.i + '"' + (x.i === S.type ? ' selected' : '') + '>' + esc(x.n) + '</option>';
+      return '<optgroup label="' + esc(c.n) + '">' + PLOTS.filter(function (P) {
+        return P.c === c.i;
+      }).map(function (P) {
+        return '<option value="' + P.id + '"' + (P.id === S.type ? ' selected' : '')
+          + '>' + esc(P.id) + ' ' + esc(P.cn) + '</option>';
       }).join('') + '</optgroup>';
     }).join('');
   }
   function setType(id) {
-    var c = BY_ID[id]; if (!c) return;
-    S.type = id; S.cat = c.c;
+    var P = BY_ID[id]; if (!P) return;
+    S.type = id; S.cat = P.c;
     renderTypeUI(); renderPreview();
+    Array.prototype.forEach.call($('gal-list').querySelectorAll('.gal-cell'), function (el) {
+      el.classList.toggle('is-on', el.getAttribute('data-type') === id);
+    });
   }
   function updateSelectionUI() {
     Array.prototype.forEach.call($('articles').querySelectorAll('.p-card'), function (el) {
@@ -1103,12 +1896,13 @@ footer a:hover { color: var(--accent); }
     if (!G) {
       $('pv-empty').hidden = false; $('pv-body').hidden = true;
       $('pv-chart').innerHTML = '<p class="pv-empty" style="padding:24px 14px">选中左侧任意一组配色，这里会画出 '
-        + CHARTS.length + ' 种示例图。</p>';
+        + PLOTS.length + ' 类科研图表示意图。</p>';
       $('pv-add').disabled = true; $('pv-desc').textContent = '';
+      $('pv-meta').innerHTML = '';
       $('pv-score').textContent = '选中配色后生成'; $('pv-report-body').innerHTML = '';
       renderCompare(); return;
     }
-    var cols = drawCols(G), c = BY_ID[S.type];
+    var cols = drawCols(G), P = BY_ID[S.type];
     $('pv-empty').hidden = true; $('pv-body').hidden = false;
     $('pv-name').textContent = G.name;
     $('pv-count').textContent = G.cols.length + ' 色'
@@ -1121,15 +1915,15 @@ footer a:hover { color: var(--accent); }
       return '<button type="button" class="hexcopy" data-hex="' + esc(h) + '">' + esc(h) + '</button>';
     }).join('');
     $('pv-chart').innerHTML = chartSvg(cols, S.type, 320, 200, false);
-    $('pv-desc').textContent = c.n + ' · ' + c.d + ' · 实际用色 ' + cols.length + ' 个';
+    $('pv-desc').textContent = P.id + ' ' + P.cn + ' · ' + P.use + ' · 实际用色 ' + cols.length + ' 个';
     $('pv-add').disabled = false;
-    renderCompare(); renderReport(G);
+    renderMeta(P); renderCompare(); renderReport(G);
   }
   function selectUid(uid) {
     if (!uid || !M.byUid[uid]) return;
     S.uid = uid;
     $('pv-classic').value = uid.indexOf('cl-') === 0 ? uid : '';
-    updateSelectionUI(); renderPreview();
+    updateSelectionUI(); renderPreview(); renderGallery();
   }
   function addCompare(uid) {
     if (!uid || !M.byUid[uid]) { showToast('先在左侧选中一组配色'); return; }
@@ -1137,6 +1931,122 @@ footer a:hover { color: var(--accent); }
     if (S.cmp.length >= MAX_CMP) { showToast('最多对比 ' + MAX_CMP + ' 组，先移除一组'); return; }
     S.cmp.push(uid); renderCompare();
     showToast('已加入对比（' + S.cmp.length + '/' + MAX_CMP + '）');
+  }
+
+  /* ── 图鉴总览 / 逐图元数据 / Python 模板 / 图谱导出 ──────────────── */
+  var GAL_DESC = {
+    A: '基础数据与实验结果对比', B: '数据分布与统计分析', C: '时间序列与动态过程分析',
+    D: '机器学习与人工智能实验', E: '关系、结构与方法框架', F: '空间、三维与优化分析'
+  };
+  function galleryCols() {
+    var G = S.uid && M.byUid[S.uid];
+    return G ? G.cols : CLASSICS[0][1];
+  }
+  function renderGalTools() {
+    var cats = [{ i: 'all', n: '全部 67 类' }].concat(CATS);
+    $('gal-tools').innerHTML = cats.map(function (c) {
+      return '<button type="button" class="chip' + (S.galCat === c.i ? ' is-on' : '')
+        + '" data-gcat="' + c.i + '">' + esc(c.n) + '</button>';
+    }).join('')
+      + '<button type="button" class="chip' + (S.galPri ? ' is-on' : '')
+      + '" data-gpri="1">仅 P0/P1 · 20 种</button>'
+      + '<button type="button" class="btn tiny" id="gal-export">导出图谱 JSON</button>'
+      + '<span class="gal-n" id="gal-n"></span>';
+  }
+  function renderGallery() {
+    renderGalTools();
+    var cols = galleryCols();
+    var list = PLOTS.filter(function (P) {
+      return (S.galCat === 'all' || P.c === S.galCat) && (!S.galPri || P.p < 2);
+    });
+    $('gal-list').innerHTML = CATS.filter(function (c) {
+      return S.galCat === 'all' || c.i === S.galCat;
+    }).map(function (c) {
+      var items = list.filter(function (P) { return P.c === c.i; });
+      if (!items.length) return '';
+      return '<div class="gal-group"><h3>' + esc(c.n)
+        + '<span>' + items.length + ' 类 · ' + esc(GAL_DESC[c.i]) + '</span></h3>'
+        + '<div class="gal-grid">' + items.map(function (P) {
+          return '<button type="button" class="gal-cell' + (P.id === S.type ? ' is-on' : '')
+            + '" data-type="' + P.id + '" title="' + esc(P.cn) + ' · ' + esc(P.use) + '">'
+            + '<span class="gal-fig">' + chartSvg(cols, P.id, 132, 84, true) + '</span>'
+            + '<span class="gal-cap"><span class="gal-id">' + P.id + '</span>'
+            + '<span class="gal-name">' + esc(P.cn) + '</span>'
+            + (P.p < 2 ? '<span class="gal-pri">P' + P.p + '</span>' : '') + '</span>'
+            + '<span class="gal-en">' + esc(P.en) + '</span></button>';
+        }).join('') + '</div></div>';
+    }).join('');
+    var G = S.uid && M.byUid[S.uid];
+    $('gal-n').textContent = '显示 ' + list.length + ' / ' + PLOTS.length + ' 类 · 用色 '
+      + (G ? G.name : 'Okabe-Ito（默认）');
+  }
+  function renderMeta(P) {
+    $('pv-meta').innerHTML = '<dl>'
+      + '<dt>编号</dt><dd>' + esc(P.id) + ' · ' + esc(P.cn) + '</dd>'
+      + '<dt>英文</dt><dd>' + esc(P.en) + '</dd>'
+      + '<dt>任务</dt><dd>' + esc(CAT_NAME[P.c]) + (P.p < 2 ? ' · <b>P' + P.p + ' 优先</b>' : '') + '</dd>'
+      + '<dt>用途</dt><dd>' + esc(P.use) + '</dd>'
+      + '<dt>方法</dt><dd><code>' + esc(P.m) + '</code></dd>'
+      + '<dd class="tip">规范提示：' + esc(P.tip) + '</dd></dl>';
+  }
+  function pyBody(P) {
+    var m = P.m.toLowerCase();
+    if (m.indexOf('heatmap') >= 0 || m.indexOf('shorttimefft') >= 0)
+      return 'data = rng.normal(size=(len(colors), len(colors)))\nim = ax.imshow(data, cmap="viridis", aspect="auto")\nfig.colorbar(im, ax=ax)';
+    if (m.indexOf('bar(') >= 0 || m.indexOf('stem') >= 0 || m.indexOf('broken_barh') >= 0)
+      return 'x = np.arange(len(colors))\nvalues = rng.uniform(.4, .95, len(colors))\nfor xi, v in zip(x, values):\n    ax.bar(xi, v, color=colors[xi % len(colors)], label=f"M{xi+1}")';
+    if (m.indexOf('scatter') >= 0 || m.indexOf('quiver') >= 0 || m.indexOf('streamplot') >= 0)
+      return 'for k in range(len(colors)):\n    ax.scatter(rng.normal(k * 1.4, .5, 30), rng.normal(k * .6, .5, 30),\n               color=colors[k], s=28, alpha=.8, label=f"cluster {k+1}")';
+    if (m.indexOf('contour') >= 0 || m.indexOf('plot_surface') >= 0 || m.indexOf('wireframe') >= 0)
+      return 'X, Y = np.meshgrid(np.linspace(-2, 2, 60), np.linspace(-2, 2, 60))\nZ = np.sin(X) * np.cos(Y)\ncs = ax.contourf(X, Y, Z, levels=len(colors), cmap="viridis")\nfig.colorbar(cs, ax=ax)';
+    if (m.indexOf('boxplot') >= 0 || m.indexOf('violinplot') >= 0 || m.indexOf('swarmplot') >= 0
+        || m.indexOf('ptitprince') >= 0 || m.indexOf('shap.plots') >= 0)
+      return 'data = [rng.normal(k, .8, 60) for k in range(len(colors))]\nbp = ax.boxplot(data, patch_artist=True)\nfor patch, c in zip(bp["boxes"], colors):\n    patch.set_facecolor(c)';
+    if (m.indexOf('kdeplot') >= 0 || m.indexOf('ecdfplot') >= 0 || m.indexOf('ax.hist') >= 0
+        || m.indexOf('joypy') >= 0 || m.indexOf('probplot') >= 0)
+      return 'for k in range(len(colors)):\n    ax.hist(rng.normal(k * .6, .7, 300), bins=24, density=True,\n            histtype="step", color=colors[k], label=f"group {k+1}")';
+    if (m.indexOf('networkx') >= 0 || m.indexOf('graphviz') >= 0 || m.indexOf('tikz') >= 0
+        || m.indexOf('plotly') >= 0 || m.indexOf('draw.io') >= 0 || m.indexOf('upsetplot') >= 0
+        || m.indexOf('matplotlib-venn') >= 0 || m.indexOf('cd diagram') >= 0
+        || m.indexOf('scipy.cluster') >= 0 || m.indexOf('holoviews') >= 0)
+      return '# 结构图建议用「推荐方法」里的专用工具绘制，这里给出配色导出\nfor k, c in enumerate(colors):\n    ax.scatter([k], [0], s=260, color=c)\nax.set_xticks(range(len(colors)))';
+    return 't = np.linspace(0, 1, 40)\nfor k in range(len(colors)):\n    y = .2 + .6 * (k + 1) / len(colors) + .08 * np.sin(t * 8 + k)\n    ax.plot(t, y, color=colors[k], lw=1.5, label=f"series {k+1}")';
+  }
+  function pyTemplate(P) {
+    var cols = galleryCols();
+    var head = '# ' + P.id + ' · ' + P.cn + ' (' + P.en + ')\n'
+      + '# 用途：' + P.use + '\n# 推荐：' + P.m + '\n# 规范：' + P.tip + '\n'
+      + 'import numpy as np\nimport matplotlib.pyplot as plt\nfrom cycler import cycler\n'
+      + 'plt.style.use("paper.mplstyle")   # 见本页「统一科研绘图规范」\n'
+      + 'colors = [' + cols.map(function (h) { return "'" + h + "'"; }).join(', ') + ']\n'
+      + 'plt.rcParams["axes.prop_cycle"] = cycler(color=colors)\n'
+      + 'rng = np.random.default_rng(20261125)\n'
+      + 'fig, ax = plt.subplots()\n\n';
+    var slug = P.en.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+    return head + pyBody(P) + '\n\n'
+      + 'ax.set_xlabel("x"); ax.set_ylabel("y")\n'
+      + 'ax.legend(frameon=False)\n'
+      + 'fig.savefig("' + P.id + '_' + slug + '.pdf")\n'
+      + 'plt.show()\n';
+  }
+  function exportGallery() {
+    var data = {
+      name: 'Scientific Plot Gallery · 科研绘图图谱', version: 1, generated_at: M.at,
+      categories: CATS.map(function (c) {
+        return { id: c.i, name: c.n, description: GAL_DESC[c.i] };
+      }),
+      plots: PLOTS.map(function (P) {
+        return { id: P.id, name_cn: P.cn, name: P.en, category: P.c, description: P.use,
+          method: P.m, geometry: P.g, variant: P.v,
+          priority: P.p < 2 ? 'P' + P.p : '', limitations: P.tip };
+      })
+    };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'scientific_plot_gallery.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    showToast('已导出 ' + PLOTS.length + ' 条图谱元数据');
   }
 
   /* ── 配色体检：CIEDE2000 + 色觉模拟 + 灰度 + 对比度 + 命名冲突 ───── */
@@ -1255,6 +2165,33 @@ footer a:hover { color: var(--accent); }
   }
 
   /* ── 事件 ─────────────────────────────────────────────────────── */
+  $('gal-tools').addEventListener('click', function (e) {
+    var c = near(e.target, '[data-gcat]');
+    if (c) { S.galCat = c.getAttribute('data-gcat'); renderGallery(); return; }
+    var p = near(e.target, '[data-gpri]');
+    if (p) { S.galPri = S.galPri ? 0 : 1; renderGallery(); return; }
+    if (near(e.target, '#gal-export')) exportGallery();
+  });
+  $('gal-list').addEventListener('click', function (e) {
+    var b = near(e.target, '.gal-cell');
+    if (!b) return;
+    setType(b.getAttribute('data-type'));
+    if ($('preview').scrollIntoView) $('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  $('pv-copy-py').addEventListener('click', function () {
+    copyText(pyTemplate(BY_ID[S.type]), function () {
+      showToast('已复制 ' + S.type + ' 的 Python 模板');
+    });
+  });
+  $('copy-style').addEventListener('click', function () {
+    copyText($('mplstyle').textContent, function () { showToast('已复制 paper.mplstyle'); });
+  });
+  $('standards').addEventListener('click', function (e) {
+    var b = near(e.target, '[data-classic]');
+    if (!b) return;
+    selectUid(b.getAttribute('data-classic'));
+    if ($('preview').scrollIntoView) $('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   $('articles').addEventListener('click', function (e) {
     var t = e.target, sum = near(t, 'summary');
     if (sum) {
@@ -1302,8 +2239,8 @@ footer a:hover { color: var(--accent); }
   $('pv-cvd').addEventListener('change', function () {
     VIEW.cvd = this.value;
     $('pv-fx-note').textContent = '当前：' + CVD_LABEL[this.value]
-      + ' 模拟 · Machado 2009 矩阵作用于全部 21 种图表；只影响预览，复制与导出仍是原文色值。';
-    renderPreview();
+      + ' 模拟 · Machado 2009 矩阵作用于全部 67 类图表；只影响预览，复制与导出仍是原文色值。';
+    renderPreview(); renderGallery();
   });
   $('pv-opacity').addEventListener('input', function () {
     VIEW.opacity = +this.value;
@@ -1362,7 +2299,8 @@ footer a:hover { color: var(--accent); }
   /* ── 启动 ─────────────────────────────────────────────────────── */
   $('stats').innerHTML = [
     ['文章', ST.articles, '篇已归档'], ['配色组', ST.groups, '组可直接套用'],
-    ['色值', ST.colors, '个 HEX / RGB'], ['人工核对', ST.verified, '色逐色比对']
+    ['色值', ST.colors, '个 HEX / RGB'], ['科研图表', PLOTS.length, '类 · A–F 六类任务'],
+    ['表达任务', CATS.length, '大类 · 20 种 P0/P1'], ['人工核对', ST.verified, '色逐色比对']
   ].map(function (x) {
     return '<div class="stat reveal"><b>' + x[1] + '</b><span>' + esc(x[0]) + ' · ' + esc(x[2]) + '</span></div>';
   }).join('');
@@ -1385,7 +2323,7 @@ footer a:hover { color: var(--accent); }
   $('pv-classic').innerHTML = '<option value="">选一组试色…</option>' + CLASSICS.map(function (c, i) {
     return '<option value="cl-' + i + '">' + esc(c[0]) + '</option>';
   }).join('');
-  renderTypeUI(); render(); renderPreview(); setupReveal(); onScroll();
+  renderTypeUI(); render(); renderPreview(); renderGallery(); setupReveal(); onScroll();
 })();
 </script>
 </body>
