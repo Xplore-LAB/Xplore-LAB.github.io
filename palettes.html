@@ -303,7 +303,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-stage-head b { font-size: 14px; }
 .bk-stage-head span { font-size: 11.5px; color: var(--ink-faint); }
 .bk-canvas { border: 1px solid var(--line); border-radius: 9px; background: #fff; overflow: hidden; }
-.bk-canvas svg { display: block; width: 100% !important; height: auto !important; }
+.bk-canvas > svg, .bk-fig > svg { display: block; width: 100% !important; height: auto !important; }
 .bk-canvas.multi { display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
   border: 0; border-radius: 0; background: transparent; overflow: visible; }
 .bk-fig { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
@@ -316,14 +316,8 @@ pre.code code { background: none; padding: 0; font: inherit; }
 /* 组合排版模式 */
 .bk-plot-item.is-picked { background: #eef7fd; border-color: #9fd6f2; }
 .bk-plot-item.is-picked i::before { content: "✓ "; color: #0284c7; }
-.bk-canvas.combo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  border: 1px solid var(--line); border-radius: 9px; background: #fff; padding: 12px; overflow: visible; }
-.bk-canvas.combo.one { grid-template-columns: 1fr; }
-.bk-fig.combo-fig { position: relative; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
-.bk-fig.combo-fig .bk-fig-h { border-bottom: 1px solid var(--line); }
-.bk-fig.combo-fig .bk-panel-tag { position: absolute; right: 7px; bottom: 5px; font: 600 11px var(--serif, Georgia, serif); color: #111; }
-.bk-combo-tip { font: 11px var(--mono); color: var(--ink-faint); margin: 6px 0 0; }
-@media (max-width: 820px) { .bk-canvas.combo { grid-template-columns: 1fr; } }
+.bk-canvas.combo { padding: 8px; }
+.bk-combo-tip { padding: 0 8px; margin: 4px 0; font-size: 11px; color: var(--ink-faint); }
 .bk-sw { margin: 11px 0 0; }
 .bk-sw-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 0 0 6px; }
 .bk-sw-head b { font-size: 12.5px; }
@@ -455,6 +449,9 @@ pre.code code { background: none; padding: 0; font: inherit; }
         <button type="button" class="btn" id="bk-mode">四图联看</button>
         <button type="button" class="btn" id="bk-combo" title="勾选 2–4 张图，拼成带编号的论文组合图">▦ 组合排版</button>
         <button type="button" class="btn" id="bk-fav">☆ 收藏搭配</button>
+        <label>期刊
+          <select id="bk-journal" aria-label="成图期刊"><option>Nature</option><option>Science</option><option>Cell</option></select>
+        </label>
         <button type="button" class="btn" id="bk-copy">复制 Python</button>
         <button type="button" class="btn" id="bk-svg">下载 SVG</button>
         <span class="bk-sep"></span>
@@ -634,17 +631,17 @@ pre.code code { background: none; padding: 0; font: inherit; }
     <p class="note">不要让每个图形各自设置字体、尺寸和配色：先固定一套全局样式与色板，再让每类图形只关心自己的几何。下面是建议的工程默认值，投稿前需按目标期刊或会议调整。</p>
     <div class="std-grid">
       <div>
-        <h3 class="sub-title">1 · 绘图参数（工程默认值）</h3>
+        <h3 class="sub-title">1 · Nature 成图尺寸与绘图参数</h3>
         <table class="std-table">
           <thead><tr><th>参数</th><th>推荐配置</th></tr></thead>
           <tbody>
-            <tr><td>单栏图宽度</td><td>85–90 mm（3.54 in）</td></tr>
-            <tr><td>双栏图宽度</td><td>170–180 mm</td></tr>
-            <tr><td>英文字体</td><td>Arial / Times New Roman</td></tr>
-            <tr><td>刊印字号</td><td>7–10 pt</td></tr>
-            <tr><td>主曲线线宽</td><td>1.2–1.8 pt</td></tr>
-            <tr><td>坐标轴 / 网格线宽</td><td>0.6–0.8 / 0.4–0.6 pt</td></tr>
-            <tr><td>刻度方向</td><td>in（向内）</td></tr>
+            <tr><td>单栏图宽度</td><td>89 mm（3.50 in）</td></tr>
+            <tr><td>双栏图宽度</td><td>183 mm</td></tr>
+            <tr><td>英文字体</td><td>Arial / Helvetica</td></tr>
+            <tr><td>刊印字号</td><td>图中文字 5–7 pt，子图编号 8 pt 加粗</td></tr>
+            <tr><td>主曲线线宽</td><td>0.8–1 pt</td></tr>
+            <tr><td>坐标轴 / 网格线宽</td><td>0.5–0.8 / 0.25–0.5 pt</td></tr>
+            <tr><td>刻度方向</td><td>out（向外）</td></tr>
             <tr><td>背景</td><td>白色</td></tr>
             <tr><td>矢量 / 位图格式</td><td>PDF、SVG / PNG、TIFF</td></tr>
             <tr><td>位图分辨率</td><td>默认 600 DPI，按期刊要求调整</td></tr>
@@ -674,44 +671,55 @@ references: [official_documentation, published_paper_examples]
 limitations: [需要统一指标尺度, 多边形面积受轴排列顺序影响]</code></pre>
       </div>
     </div>
+    <p class="note">工作台按期刊切换预览、SVG 和 Python 样式。Science 另有 121 mm 两栏尺寸，Cell 另有 114 mm 一栏半尺寸。工作台按单图／组合图选择常用宽度。</p>
+    <table class="std-table">
+      <thead><tr><th>期刊</th><th>官方成图字体与字号</th><th>官方线宽</th><th>工作台单图／组合图</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://www.nature.com/nature/for-authors/final-submission">Nature</a></td><td>Arial 或 Helvetica，5–7 pt；小写编号 8 pt 加粗</td><td>0.25–1 pt</td><td>89 / 183 mm</td></tr>
+        <tr><td><a href="https://web.archive.org/web/20250810105213/https://www.science.org/content/page/instructions-preparing-initial-manuscript">Science</a></td><td>首选 Helvetica，约 7 pt，最低 5 pt；大写编号 10 pt 加粗；符号至少 6 pt</td><td>至少 0.5 pt</td><td>57 / 184 mm</td></tr>
+        <tr><td><a href="https://web.archive.org/web/20250911134049/https://www.cell.com/information-for-authors/figure-guidelines">Cell</a></td><td>Arial，约 6–8 pt；大写编号</td><td>0.5–1.5 pt</td><td>85 / 174 mm</td></tr>
+      </tbody>
+    </table>
+    <p class="note">坐标轴和刻度采用约 0.6 pt。Cell 编号采用 8 pt 加粗作为工作台默认值。</p>
     <h3 class="sub-title">4 · 全局样式文件 <code>paper.mplstyle</code></h3>
     <p class="note">任何绘图脚本开头加载一次 <code>plt.style.use("paper.mplstyle")</code>；配色由本页色卡统一注入 <code>axes.prop_cycle</code>。</p>
     <pre class="code" id="mplstyle"><code># Figure
-figure.figsize: 3.54, 2.65
+figure.figsize: 3.50394, 2.29
 figure.dpi: 150
 figure.facecolor: white
 
 # Font
 font.family: sans-serif
 font.sans-serif: Arial, DejaVu Sans
-font.size: 8
+font.size: 6
 
 # Axes
-axes.labelsize: 8
-axes.titlesize: 9
-axes.linewidth: 0.8
+axes.labelsize: 6.5
+axes.titlesize: 7
+axes.linewidth: 0.6
 axes.spines.top: False
 axes.spines.right: False
 
 # Ticks
-xtick.labelsize: 7
-ytick.labelsize: 7
-xtick.direction: in
-ytick.direction: in
+xtick.labelsize: 6
+ytick.labelsize: 6
+xtick.direction: out
+ytick.direction: out
 xtick.major.width: 0.6
 ytick.major.width: 0.6
 
 # Line
-lines.linewidth: 1.5
-lines.markersize: 4
+lines.linewidth: 0.8
+lines.markersize: 3
 
 # Legend
-legend.fontsize: 7
+legend.fontsize: 6
+legend.handlelength: 1.5
 legend.frameon: False
 
 # Export
 savefig.dpi: 600
-savefig.bbox: tight
+savefig.bbox: standard
 savefig.pad_inches: 0.03
 
 pdf.fonttype: 42
@@ -750,7 +758,7 @@ svg.fonttype: none</code></pre>
       <li><b>综述插图 / 机制示意</b>：用全低饱和的奶油色组，观感柔和，不抢正文。</li>
       <li><b>按科研表达任务选图</b>：上方图谱把 79 类图形分成 A 基础对比 / B 分布统计 / C 时序动态 / D 机器学习 / E 关系结构 / F 空间优化 / G 论文组合，点缩略图即选中；右侧按类切换、用「下一个」依次轮看，看这组色画在该类图表里是否清晰。</li>
       <li><b>逐图元数据与代码模板</b>：每个图都标了编号、英文名、主要用途、推荐绘图方法和投稿规范提示；「复制该图 Python 模板」会带上当前配色生成可运行骨架，「导出图谱 JSON」可拿走全部 79 条元数据。</li>
-      <li><b>统一规范</b>：先用页面里的 <code>paper.mplstyle</code> 固定字号、线宽与导出格式，再注入色卡；单栏 85–90 mm、双栏 170–180 mm，默认 600 DPI，投稿前按期刊要求调整。</li>
+      <li><b>统一规范</b>：先用页面里的 <code>paper.mplstyle</code> 固定字号、线宽与导出格式，再注入色卡；单栏 89 mm、双栏 183 mm（Nature），默认 600 DPI，投稿前按期刊要求调整。</li>
       <li><b>色阶扩展</b>：色数少的组可派生浅色 / 明暗变体（×2 或 ×3）；线性模式是简单混合，OKLCH 模式在感知均匀空间里调亮度，中间段不发灰。图表默认用满组内全部颜色。</li>
       <li><b>色觉模拟</b>：切到红色盲 / 绿色盲 / 蓝黄色盲 / 灰度自查，避免红绿直接对比；还可拖透明度滑块模拟半透明填充叠放。</li>
       <li><b>配色体检</b>：展开右侧「配色体检」，看最小 CIEDE2000 色差、色盲模拟后的色差、灰度亮度差、白底对比度、命名冲突与建议类别数。</li>
@@ -967,17 +975,38 @@ svg.fonttype: none</code></pre>
   var VIEW = { cvd: 'none', opacity: 100 };
   function fx(h) { return simulate(h, VIEW.cvd); }
 
+  // One SVG design unit is approximately 0.5 pt at the exported width.
+  var JOURNALS = {
+    Nature: { singleMm: 89, comboMm: 183, family: 'Arial', text: 6, axis: 6.5, panel: 8,
+      lineMin: .27, lineMax: .97, marker: 3, upper: false },
+    Science: { singleMm: 57, comboMm: 184, family: 'Helvetica', text: 7, axis: 7, panel: 10,
+      lineMin: .51, lineMax: 1.2, marker: 6.06, upper: true },
+    Cell: { singleMm: 85, comboMm: 174, family: 'Arial', text: 7, axis: 7.5, panel: 8,
+      lineMin: .51, lineMax: 1.48, marker: 3, upper: true }
+  };
+  var PRINT = { height: 330 };
+  var journal = JOURNALS.Nature;
+
+  function printUnits(mm) { return Math.round(mm * 144 / 25.4); }
+  function journalFont() { return journal.family + ', Arial, Helvetica, sans-serif'; }
+  function panelLetter(i) { return String.fromCharCode((journal.upper ? 65 : 97) + i); }
+
   /* ── SVG 引擎：所有图表共用一个坐标系与一组绘制原语 ─────────────── */
   function tag(n, a) {
     var s = '<' + n, k;
-    for (k in a) if (a[k] != null) s += ' ' + k + '="' + a[k] + '"';
+    for (k in a) if (a[k] != null) {
+      var value = k === 'stroke-width' ? Math.max(2 * journal.lineMin, Math.min(2 * journal.lineMax, a[k])) : a[k];
+      s += ' ' + k + '="' + value + '"';
+    }
     return s + '/>';
   }
-  function ctx(w, h, mini, cols) {
+  function ctx(w, h, mini, cols, legendCount, inCombo) {
     // 论文图边距：给刻度值、轴标签、图题留出空间；缩略图保持紧凑
     var K = { w: w, h: h, mini: mini, n: cols.length,
-      L: mini ? 6 : 48, R: mini ? 4 : 16, T: mini ? 6 : 28, B: mini ? 6 : 40 };
-    K.iw = w - K.L - K.R; K.ih = h - K.T - K.B;
+      L: mini ? 6 : 56, R: mini ? 4 : 19, T: mini ? 6 : (inCombo && !legendCount ? 12 : 32), B: mini ? 6 : 49 };
+    K.iw = w - K.L - K.R;
+    if (!mini) K.T += 16 * (Math.max(0, Math.ceil(legendCount / Math.max(1, Math.floor(K.iw / 46))) - 1));
+    K.ih = h - K.T - K.B;
     K.r = rng(20261125);
     K.C = function (i) { return fx(cols[((i % cols.length) + cols.length) % cols.length]); };
     K.lite = function (i) { return shade(K.C(i), .3); };
@@ -986,9 +1015,10 @@ svg.fonttype: none</code></pre>
     K.Y = function (t) { return K.T + K.ih * (1 - t); };
     K.bg = function () { return ''; };   // 白底与透明度包裹统一由 chartSvg 负责
     K.grid = function (vertical) {
+      if (journal === JOURNALS.Science) return '';
       var s = '', i;
-      for (i = 0; i <= 3; i++) {
-        var v = vertical ? K.L + K.iw * i / 3 : K.T + K.ih * i / 3;
+      for (i = 1; i <= 4; i++) {
+        var v = vertical ? K.L + K.iw * i / 4 : K.T + K.ih * (1 - i / 4);
         s += vertical
           ? tag('line', { x1: v.toFixed(1), y1: K.T, x2: v.toFixed(1), y2: K.T + K.ih, stroke: '#eceff3', 'stroke-width': 1, 'stroke-dasharray': '3 3' })
           : tag('line', { x1: K.L, y1: v.toFixed(1), x2: K.L + K.iw, y2: v.toFixed(1), stroke: '#eceff3', 'stroke-width': 1, 'stroke-dasharray': '3 3' });
@@ -997,8 +1027,8 @@ svg.fonttype: none</code></pre>
     };
     K.frame = function (vertical) {
       return K.bg() + K.grid(vertical) + (mini ? '' :
-        tag('line', { x1: K.L, y1: K.T, x2: K.L, y2: K.T + K.ih, stroke: '#57606a', 'stroke-width': 1 }) +
-        tag('line', { x1: K.L, y1: K.T + K.ih, x2: K.L + K.iw, y2: K.T + K.ih, stroke: '#57606a', 'stroke-width': 1 }));
+        tag('line', { x1: K.L, y1: K.T, x2: K.L, y2: K.T + K.ih, stroke: '#57606a', 'stroke-width': 1.2 }) +
+        tag('line', { x1: K.L, y1: K.T + K.ih, x2: K.L + K.iw, y2: K.T + K.ih, stroke: '#57606a', 'stroke-width': 1.2 }));
     };
     K.rect = function (x, y, ww, hh, fill, extra) {
       var a = { x: (+x).toFixed(1), y: (+y).toFixed(1), width: Math.max(0, +ww).toFixed(1),
@@ -1007,7 +1037,7 @@ svg.fonttype: none</code></pre>
       return tag('rect', a);
     };
     K.dot = function (x, y, r, fill, op) {
-      return tag('circle', { cx: (+x).toFixed(1), cy: (+y).toFixed(1), r: r, fill: fill,
+      return tag('circle', { cx: (+x).toFixed(1), cy: (+y).toFixed(1), r: mini ? r : Math.max(r, journal.marker), fill: fill,
         'fill-opacity': op == null ? 1 : op });
     };
     K.line = function (x1, y1, x2, y2, stroke, sw, dash) {
@@ -1030,14 +1060,14 @@ svg.fonttype: none</code></pre>
       return tag('path', { d: d, fill: fill || 'none', stroke: stroke || 'none',
         'stroke-width': sw || 1, 'fill-opacity': op == null ? 1 : op, 'stroke-linejoin': 'round' });
     };
-    K.label = function (x, y, t) {
+    K.label = function (x, y, t, stagger) {
       if (mini) return '';
       // 底部类别标签统一落在轴线下方，避免与 X 轴标题重叠
-      if (+y > K.T + K.ih + 4) y = K.T + K.ih + 14;
+      if (+y > K.T + K.ih + 4) y = K.T + K.ih + 14 + (stagger ? 15 : 0);
       return '<text x="' + (+x).toFixed(1) + '" y="' + (+y).toFixed(1)
-        + '" fill="#404140" font-size="9" font-family="' + SERIF + '" text-anchor="middle">' + esc(t) + '</text>';
+        + '" fill="#404140" font-size="' + journal.text * 2 + '" font-family="' + journalFont() + '" text-anchor="middle">' + esc(t) + '</text>';
     };
-    /* 论文要素：轴向内刻度线 + 刻度值（0..1 归一化） */
+    /* 论文要素：轴向外刻度线 + 刻度值（0..1 归一化） */
     K.ticks = function (axis, labels) {
       if (mini) return '';
       var s = '', i, t, v, lab, n = labels.length;
@@ -1045,12 +1075,12 @@ svg.fonttype: none</code></pre>
         t = labels[i][0]; lab = labels[i][1];
         if (axis === 'x') {
           v = K.X(t);
-          s += tag('line', { x1: v.toFixed(1), y1: K.T + K.ih, x2: v.toFixed(1), y2: K.T + K.ih + 4, stroke: '#57606a', 'stroke-width': 1 });
-          s += '<text x="' + v.toFixed(1) + '" y="' + (K.T + K.ih + 14) + '" fill="#404140" font-size="8.5" font-family="' + SERIF + '" text-anchor="middle">' + esc(lab) + '</text>';
+          s += tag('line', { x1: v.toFixed(1), y1: K.T + K.ih, x2: v.toFixed(1), y2: K.T + K.ih + 4, stroke: '#57606a', 'stroke-width': 1.2 });
+          s += '<text x="' + v.toFixed(1) + '" y="' + (K.T + K.ih + 14) + '" fill="#404140" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" font-family="' + journalFont() + '" text-anchor="middle">' + esc(lab) + '</text>';
         } else {
           v = K.Y(t);
-          s += tag('line', { x1: K.L - 4, y1: v.toFixed(1), x2: K.L, y2: v.toFixed(1), stroke: '#57606a', 'stroke-width': 1 });
-          s += '<text x="' + (K.L - 7) + '" y="' + (v + 3).toFixed(1) + '" fill="#404140" font-size="8.5" font-family="' + SERIF + '" text-anchor="end">' + esc(lab) + '</text>';
+          s += tag('line', { x1: K.L - 4, y1: v.toFixed(1), x2: K.L, y2: v.toFixed(1), stroke: '#57606a', 'stroke-width': 1.2 });
+          s += '<text x="' + (K.L - 7) + '" y="' + (v + 3).toFixed(1) + '" fill="#404140" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" font-family="' + journalFont() + '" text-anchor="end">' + esc(lab) + '</text>';
         }
       }
       return s;
@@ -1187,7 +1217,8 @@ svg.fonttype: none</code></pre>
   };
   GEO.bar = function (K) {
     var s = K.frame(), groups = K.mini ? 3 : 4, gw = K.iw / groups, gap = K.mini ? 1 : 2;
-    var bw = Math.min(K.mini ? 7 : 14, gw * .74 / Math.max(K.n, 1));
+    gap = Math.min(gap, gw * .20 / Math.max(1, K.n - 1));
+    var bw = Math.min(K.mini ? 7 : 14, (gw * .86 - (K.n - 1) * gap) / K.n);
     var v = K.vals(K.n * groups, 21), er = rng(211), g, k;
     for (g = 0; g < groups; g++) {
       var total = K.n * bw + (K.n - 1) * gap, x0 = K.L + gw * g + (gw - total) / 2;
@@ -1213,7 +1244,7 @@ svg.fonttype: none</code></pre>
       for (k = 0; k < K.n; k++) { arr.push(.3 + v[g * K.n + k]); tot += arr[k]; }
       y = K.T + K.ih;
       for (k = 0; k < K.n; k++) {
-        var hh = K.ih * .85 * arr[k] / tot; y -= hh;
+        var hh = K.ih * arr[k] / tot; y -= hh;
         s += K.rect(K.L + gw * (g + .5) - bw / 2, y, bw, hh, K.C(k));
       }
     }
@@ -1318,15 +1349,13 @@ svg.fonttype: none</code></pre>
   };
   GEO.heat = function (K) {
     var s = K.bg(), nx = Math.max(3, K.n), ny = K.mini ? 4 : 6;
-    var L = K.mini ? 6 : 30, T = K.mini ? 6 : 12;
-    var W = K.w - L - (K.mini ? 4 : 10), H = K.h - T - (K.mini ? 6 : 22);
-    var cw = W / nx, ch = H / ny, x, y;
+    var cw = K.iw / nx, ch = K.ih / ny, x, y;
     for (y = 0; y < ny; y++) for (x = 0; x < nx; x++) {
       var val = .2 + .75 * K.r(), col = K.C((x * ny + y) % K.n);
       if (K.v === 'cm') val = x === y ? .96 : .08 + .32 * K.r();
       if (K.v === 'attn') val = y <= x ? .28 + .68 * K.r() : .04;
       if (K.v === 'spectro') val = .2 + .75 * Math.abs(Math.sin(x * .85 + y * .62));
-      s += K.rect(L + x * cw + 1, T + y * ch + 1, cw - 2, ch - 2,
+      s += K.rect(K.L + x * cw + 1, K.T + y * ch + 1, cw - 2, ch - 2,
         shade(col, .5 * (1 - val)), { stroke: col, 'stroke-width': K.mini ? .5 : .8 });
     }
     return s;
@@ -1381,29 +1410,18 @@ svg.fonttype: none</code></pre>
   /* A 新增几何 */
   GEO.barOne = function (K) {
     var s = K.frame(), v = K.vals(K.n, 101), gw = K.iw / K.n, bw = Math.min(gw * .62, K.mini ? 8 : 22), k;
-    var er = rng(9101), top = 0, ti = 0;
-    for (k = 0; k < K.n; k++) if (v[k] > top) { top = v[k]; ti = k; }
+    var er = rng(9101);
     for (k = 0; k < K.n; k++) {
       var x = K.L + gw * (k + .5), hh = K.ih * (.2 + .72 * v[k]), y = K.T + K.ih - hh;
       s += K.rect(x - bw / 2, y, bw, hh, K.C(k));
       if (!K.mini) {
-        // 误差棒：柱顶 ±SD，确定性数据
+        // 模拟误差棒，用于演示线宽和颜色搭配
         var e = K.ih * (.02 + .03 * er());
         s += K.line(x, y - e, x, y + e, '#222', 1);
         s += K.line(x - bw * .28, y - e, x + bw * .28, y - e, '#222', 1);
         s += K.line(x - bw * .28, y + e, x + bw * .28, y + e, '#222', 1);
       }
-      s += K.label(x, K.h - 6, 'M' + (k + 1));
-    }
-    // 显著性：最高柱 vs 首柱，横跨连线 + 星号（论文常见标注）
-    if (!K.mini && ti !== 0 && K.n > 1) {
-      var xa = K.L + gw * .5, xb = K.L + gw * (ti + .5);
-      var ybar = K.T + 6;
-      s += K.line(xa, ybar, xb, ybar, '#222', 1);
-      s += K.line(xa, ybar - 3, xa, ybar + 3, '#222', 1);
-      s += K.line(xb, ybar - 3, xb, ybar + 3, '#222', 1);
-      s += '<text x="' + ((xa + xb) / 2).toFixed(1) + '" y="' + (ybar - 3).toFixed(1)
-        + '" font-family="' + SERIF + '" font-size="11" fill="#222" text-anchor="middle">*</text>';
+      s += K.label(x, K.h - 6, 'M' + (k + 1), gw < 25 && k % 2);
     }
     return s;
   };
@@ -1425,7 +1443,7 @@ svg.fonttype: none</code></pre>
       s += K.line(x, y - e, x, y + e, K.dark(k), K.mini ? 1 : 1.5);
       s += K.line(x - bw * .3, y - e, x + bw * .3, y - e, K.dark(k), 1);
       s += K.line(x - bw * .3, y + e, x + bw * .3, y + e, K.dark(k), 1);
-      s += K.label(x, K.h - 6, 'M' + (k + 1));
+      s += K.label(x, K.h - 6, 'M' + (k + 1), gw < 25 && k % 2);
     }
     return s;
   };
@@ -1670,21 +1688,30 @@ svg.fonttype: none</code></pre>
   };
 
   /* D · 机器学习与人工智能实验 */
+  function rocDash(i) {
+    return ['', '6 3', '2 2', '6 2 2 2'][i % 4];
+  }
   GEO.roc = function (K) {
     var s = K.frame(), k, i;
     if (K.v === 'roc' || K.v === 'cal') s += K.line(K.X(0), K.Y(0), K.X(1), K.Y(1), '#c9d1d9', 1, '4 3');
     if (K.v === 'pr') s += K.line(K.L, K.Y(.72), K.L + K.iw, K.Y(.72), '#c9d1d9', 1, '4 3');
     for (k = 0; k < K.n; k++) {
-      var p = [], pw = 1 + .5 * k / Math.max(1, K.n - 1), jit = rng(1700 + k);
+      var p = [], exponent = 1.2 + 2.8 * k / Math.max(1, K.n - 1), jit = rng(1700 + k);
+      var previous = 0;
       for (i = 0; i <= 16; i++) {
         var t = i / 16;
         var v = K.v === 'cal' ? t + (1 - t) * t * .22 * (1 + k / K.n)
-          : (K.v === 'pr' ? .97 - .24 * Math.pow(t, pw) - .02 * k : .1 + .88 * Math.pow(t, 1 / pw));
-        // 确定性小抖动：真实实验曲线不会完全光滑，且端点固定在 (0,0)/(1,1)
-        if (!K.mini && i > 0 && i < 16) v += (jit() - .5) * .028;
-        p.push([K.X(t), K.Y(clamp(v))]);
+          : (K.v === 'pr' ? .72 + .28 * Math.pow(1 - t, exponent) : 1 - Math.pow(1 - t, exponent));
+        if (i > 0 && i < 16) v += (jit() - .5) * .024;
+        v = Math.max(0, Math.min(1, v));
+        if (K.v === 'roc') {
+          v = Math.max(previous, v);
+          if (i) p.push([K.X(t), K.Y(previous)]);
+          previous = v;
+        }
+        p.push([K.X(t), K.Y(v)]);
       }
-      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.3 : 1.9);
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.3 : 1.9, rocDash(k));
     }
     return s;
   };
@@ -1899,7 +1926,7 @@ svg.fonttype: none</code></pre>
      这些几何自绘子图布局与子图编号，属示意型（不调用 K.frame），由内部
      自行画坐标框；paperDecor 只给顶部图例。所有子图颜色循环用满 K.n。 */
   /* 通用：在一个矩形面板里画迷你坐标轴 + 迷你折线/柱/热力 */
-  function miniAx(K, x, y, ww, hh, color, kind, idx, seed) {
+  function miniAx(K, x, y, ww, hh, color, kind, idx, seed, sharedScale) {
     var s = '', pad = 3, iw = ww - pad * 2, ih = hh - pad * 2, r = rng(seed || 700), i;
     s += K.rect(x, y, ww, hh, '#fff', { stroke: '#c9d1d9', 'stroke-width': .8, rx: 0 });
     var X = function (t) { return x + pad + iw * t; }, Y = function (t) { return y + pad + ih * (1 - t); };
@@ -1907,7 +1934,7 @@ svg.fonttype: none</code></pre>
       var cells = 5, cw = iw / cells, ch = ih / cells, a, b;
       for (a = 0; a < cells; a++) for (b = 0; b < cells; b++) {
         var v = r(); s += K.rect(x + pad + b * cw, y + pad + a * ch, cw, ch,
-          v > .35 ? shade(color, (1 - v) * .55) : '#fafbfc', { rx: 0 });
+          sharedScale ? shade(color, (1 - v) * .75) : (v > .35 ? shade(color, (1 - v) * .55) : '#fafbfc'), { rx: 0 });
       }
     } else if (kind === 'bar') {
       var bars = 4, bw = iw / (bars * 1.6), base = y + pad + ih;
@@ -1923,9 +1950,9 @@ svg.fonttype: none</code></pre>
       }
       s += K.poly(p.map(ptsStr).join(' '), color, 1.3);
     }
-    if (idx != null && !K.mini) {
-      s += '<text x="' + (x - 2) + '" y="' + (y + 8) + '" font-family="' + SERIF
-        + '" font-size="9" font-weight="600" fill="#111">(' + String.fromCharCode(97 + idx) + ')</text>';
+    if (idx != null && !K.mini && !K.inCombo) {
+      s += '<text x="' + (x + 4) + '" y="' + (y + 15) + '" font-family="' + journalFont()
+        + '" font-size="' + journal.panel * 2 + '" font-weight="700" fill="#111">' + panelLetter(idx) + '</text>';
     }
     return s;
   }
@@ -1949,8 +1976,8 @@ svg.fonttype: none</code></pre>
     for (t = 0; t < 3; t++) {
       var x = K.L + t * (bw + gap);
       s += miniAx(K, x, y, bw, hh, K.C([0, 1, 2][t] % K.n), t === 2 ? 'heat' : 'heat', null, 900 + t);
-      if (!K.mini) s += '<text x="' + (x + bw / 2) + '" y="' + (y - 5) + '" font-family="' + SERIF
-        + '" font-size="8.5" fill="#404140" text-anchor="middle">' + titles[t] + '</text>';
+      if (!K.mini) s += '<text x="' + (x + bw / 2) + '" y="' + (y - 5) + '" font-family="' + journalFont()
+        + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#404140" text-anchor="middle">' + titles[t] + '</text>';
     }
     return s;
   };
@@ -1964,10 +1991,10 @@ svg.fonttype: none</code></pre>
       if (v > 0) s += K.rect(x + b * cw, y + a * cw, cw, cw, shade(K.C(a % K.n), (1 - v) * .35), { rx: 0 });
     }
     for (a = 0; a < cells; a++) {
-      s += '<text x="' + (x - 4) + '" y="' + (y + (a + .6) * cw) + '" font-family="' + SERIF
-        + '" font-size="7.5" fill="#8b949e" text-anchor="end">x' + (a + 1) + '</text>';
-      s += '<text x="' + (x + (a + .5) * cw) + '" y="' + (y + side + 10) + '" font-family="' + SERIF
-        + '" font-size="7.5" fill="#8b949e" text-anchor="middle">x' + (a + 1) + '</text>';
+      s += '<text x="' + (x - 4) + '" y="' + (y + (a + .6) * cw) + '" font-family="' + journalFont()
+        + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#8b949e" text-anchor="end">x' + (a + 1) + '</text>';
+      s += '<text x="' + (x + (a + .5) * cw) + '" y="' + (y + side + 10) + '" font-family="' + journalFont()
+        + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#8b949e" text-anchor="middle">x' + (a + 1) + '</text>';
     }
     return s;
   };
@@ -2027,22 +2054,27 @@ svg.fonttype: none</code></pre>
     }
     return s;
   };
-  /* G07 多模型标记折线：不同 marker + 线型 */
+  function seriesMark(K, x, y, i) {
+    var r = journal.marker, color = K.C(i);
+    switch (i % 4) {
+      case 0: return K.dot(x, y, r, color);
+      case 1: return K.rect(x - r, y - r, r * 2, r * 2, color, { rx: 0 });
+      case 2: return K.shape(ptsStr([x, y - r - 1]) + ' ' + ptsStr([x - r - 1, y + r])
+        + ' ' + ptsStr([x + r + 1, y + r]), 'none', 0, color);
+      default: return K.shape([[x, y-r-1], [x+r+1, y], [x, y+r+1], [x-r-1, y]].map(ptsStr).join(' '), 'none', 0, color);
+    }
+  }
+  /* G07 多模型标记折线：数据和图例共用符号与线型。 */
   GEO.markLine = function (K) {
     var s = K.frame(), d = K.series(K.n, 7, 3200), k, i;
-    var marks = ['circle', 'square', 'triangle', 'diamond'];
     for (k = 0; k < K.n; k++) {
-      var p = [], dash = k % 2 ? '4 2' : null;
+      var p = [];
       for (i = 0; i < 7; i++) p.push([K.X(i / 6), K.Y(clamp(d[k][i]))]);
-      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.7, dash);
-      if (!K.mini) for (i = 0; i < 7; i++) {
-        var v = marks[k % marks.length], rr = v === 'square' || v === 'diamond' ? 3 : 3.2;
-        s += K.dot(p[i][0], p[i][1], rr, v === 'triangle' ? 'none' : K.C(k));
-      }
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.2 : 1.7, rocDash(k));
+      if (!K.mini) for (i = 0; i < 7; i++) s += seriesMark(K, p[i][0], p[i][1], k);
     }
     return s;
   };
-  /* K.poly 支持可选 dash：给上面 markLine 用的包装已通过第 4 参数传入 */
   /* G08 非等列多子图：两行，上行 3、下行 2 且宽度不等 */
   GEO.irregular = function (K) {
     var s = K.bg(), idx = 0, y0 = K.T + 4, r1 = K.ih * .46, r2 = K.ih * .46;
@@ -2068,12 +2100,12 @@ svg.fonttype: none</code></pre>
       idx++;
     }
     if (!K.mini) {
-      var ly = K.T + K.ih - 12, n = Math.min(K.n, 8), cw = (K.iw - 20) / n;
+      var ly = K.T + K.ih - 12, n = Math.min(K.n, idx), cw = (K.iw - 20) / n;
       for (var k = 0; k < n; k++) {
         var xx = K.L + 10 + k * cw;
         s += K.rect(xx, ly - 4, 9, 6, K.C(k), { rx: 0 });
-        s += '<text x="' + (xx + 12) + '" y="' + ly + 3 + '" font-family="' + SERIF
-          + '" font-size="8" fill="#404140">M' + (k + 1) + '</text>';
+        s += '<text x="' + (xx + 12) + '" y="' + (ly + 3) + '" font-family="' + journalFont()
+          + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#404140">M' + (k + 1) + '</text>';
       }
     }
     return s;
@@ -2081,16 +2113,16 @@ svg.fonttype: none</code></pre>
   /* G10 多子图共享颜色条：3 个热面板 + 右侧统一 colorbar */
   GEO.sharedBar = function (K) {
     var s = K.bg(), n = 3, bw = (K.iw - 54) / n, y = K.T + 12, hh = K.ih - 30, t;
-    for (t = 0; t < n; t++) s += miniAx(K, K.L + t * (bw + 6), y, bw, hh, K.C(t % K.n), 'heat', t, 6000 + t);
+    for (t = 0; t < n; t++) s += miniAx(K, K.L + t * (bw + 6), y, bw, hh, K.C(0), 'heat', null, 6000 + t, true);
     // colorbar
     var cx = K.L + K.iw - 30, cw = 12;
     for (var i = 0; i < 20; i++) s += K.rect(cx, y + i * hh / 20, cw, hh / 20 + .5,
-      shade(K.C(0), .75 - .75 * i / 19), { rx: 0 });
+      shade(K.C(0), .75 * i / 19), { rx: 0 });
     if (!K.mini) {
-      s += '<text x="' + (cx + cw + 4) + '" y="' + (y + 8) + '" font-family="' + SERIF
-        + '" font-size="8" fill="#404140">1.0</text>';
-      s += '<text x="' + (cx + cw + 4) + '" y="' + (y + hh) + '" font-family="' + SERIF
-        + '" font-size="8" fill="#404140">0.0</text>';
+      s += '<text x="' + (cx + cw + 4) + '" y="' + (y + 8) + '" font-family="' + journalFont()
+        + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#404140">1.0</text>';
+      s += '<text x="' + (cx + cw + 4) + '" y="' + (y + hh) + '" font-family="' + journalFont()
+        + '" font-size="' + (journal.text * 2 - (journal.upper ? 0 : 1)) + '" fill="#404140">0.0</text>';
     }
     return s;
   };
@@ -2135,7 +2167,7 @@ svg.fonttype: none</code></pre>
     ['A01','柱状图','Bar Chart','A','模型性能比较','ax.bar()','barOne','',2,'基线统一从 0 起；柱宽与组间距保持一致'],
     ['A02','分组柱状图','Grouped Bar Chart','A','多模型、多指标比较','ax.bar()','bar','',0,'组间留白大于组内；同一指标跨组用同一色'],
     ['A03','堆叠柱状图','Stacked Bar Chart','A','组成比例、消耗构成','ax.bar(bottom=...)','stackBar','',2,'段数不宜超过 6；小段需直接标注数值'],
-    ['A04','折线图','Line Chart','A','参数变化、训练过程','ax.plot()','line','',2,'线宽 1.2–1.8 pt；多系列配合标记与线型区分'],
+    ['A04','折线图','Line Chart','A','参数变化、训练过程','ax.plot()','line','',2,'线宽 0.8–1 pt；多系列配合标记与线型区分'],
     ['A05','雷达图','Radar Chart','A','多维性能比较','自定义多边形坐标','radar','',0,'指标需统一方向与尺度；推荐 4–8 维；面积易误导'],
     ['A06','热力图','Heatmap','A','实验矩阵、相关性','sns.heatmap()','heat','matrix',0,'连续色阶需感知均匀；务必带 colorbar 与行列标签'],
     ['A07','点图','Dot Plot','A','多方法精确数值对比','ax.scatter()','dotplot','',2,'按数值排序；与误差棒图例区分清楚'],
@@ -2215,7 +2247,7 @@ svg.fonttype: none</code></pre>
     ['G08','非等列多子图排版','Irregular Subplot Layout','G','异构子图组合排版','GridSpec','irregular','',0,'用 width_ratios 表达主次；子图间距统一、编号连续'],
     ['G09','多子图共享图例','Shared Legend Layout','G','多面板统一图例','fig.legend()','sharedLegend','',0,'去掉各子图重复图例，用 fig.legend 统一放置；留出图例空间'],
     ['G10','多子图共享颜色条','Shared Colorbar Layout','G','多热图同一色标','fig.colorbar()','sharedBar','',0,'所有面板共用 vmin/vmax；单一 colorbar 标注单位与含义'],
-    ['G11','带编号的论文组合图','Multi-panel Figure','G','正式论文插图排版','ax.text()','panelFig','',0,'子图编号 (a)(b)… 统一左上；各面板字号、线宽一致'],
+    ['G11','带编号的论文组合图','Multi-panel Figure','G','正式论文插图排版','ax.text()','panelFig','',0,'子图编号 a、b… 统一左上；各面板字号、线宽一致'],
     ['G12','断轴图','Broken Axis Plot','G','量级差异大的数据','brokenaxes','brokenAxis','',1,'断轴处画双斜线标记；两段比例需在图注说明']
   ].map(function (x) {
     return { id: x[0], cn: x[1], en: x[2], c: x[3], use: x[4], m: x[5], g: x[6], v: x[7], p: x[8], tip: x[9] };
@@ -2232,11 +2264,14 @@ svg.fonttype: none</code></pre>
      同一几何族可能被多种任务复用，轴标签按编号覆盖，回退到用途关键词。 */
   var AXIS_BY_ID = {
     A04: ['Epoch / Step', 'Loss'], C01: ['Time', 'Value'], C02: ['Time', 'Value'],
-    C03: ['Time', 'Response ± CI'], C04: ['Time', 'Response'], C05: ['Phase / Index', 'Trajectory'],
+    C03: ['Time', 'Normalized response'], C04: ['Time', 'Normalized response'], C05: ['Phase / Index', 'Trajectory'],
     C07: ['State x₁', 'State x₂'], C08: ['Frequency (Hz)', 'Amplitude'], C10: ['Lag', 'ACF'],
     C11: ['Frequency (Hz)', 'Magnitude (dB)'], D01: ['False Positive Rate', 'True Positive Rate'],
-    D05: ['False Positive Rate', 'True Positive Rate'], D08: ['Epoch', 'Loss / Accuracy'],
+    D02: ['Recall', 'Precision'], D04: ['PC 1', 'PC 2'],
+    D05: ['t-SNE 1', 't-SNE 2'], D06: ['UMAP 1', 'UMAP 2'],
+    D07: ['Normalized epoch', 'Loss'], D08: ['Score', 'Variant'],
     E06: ['Component 1', 'Component 2'], E07: ['Component 1', 'Component 2'],
+    D12: ['Mean predicted probability', 'Observed positive fraction'], G07: ['Normalized step', 'Score'],
     B04: ['Feature x', 'Feature y'], B09: ['Theoretical Quantile', 'Sample Quantile'],
     A06: ['Variable', 'Variable'], F01: ['x', 'y'], F02: ['x', 'y']
   };
@@ -2263,42 +2298,62 @@ svg.fonttype: none</code></pre>
   /* 有内建类别标签的几何，X 轴不重复画 0..1 刻度值 */
   var CATX = { bar: 1, barOne: 1, stackBar: 1, lollipop: 1, errbar: 1, box: 1,
     violin: 1, swarm: 1, hist: 1, dotplot: 1, events: 1, acf: 1 };
-  var YPCT = { waterfall: 1, stack: 1, stackBar: 1 };
+  var YPCT = { stackBar: 1 };
 
-  /* 论文图惯例：衬线字体；图题写在正文图注里，图内只留轴/刻度/图例。
-     图例无边框无底色，色条 + 标签；超过 6 项排两列，不出现悬浮 "+N"。 */
-  var SERIF = "'Times New Roman', Times, 'DejaVu Serif', serif";
-  function paperDecor(K, P, cols, w, h) {
-    if (K.mini) return '';
-    var s = '', ax = axisLabels(P), n = cols.length;
-    var shown = Math.min(n, 12), colW = 46;
+  /* 图例无边框，按绘图区宽度换行。图题留在正文图注。 */
+  function seriesLegend(K, P, n, left, top, width) {
+    var s = '';
+    var colW = 46, perRow = Math.max(1, Math.floor(width / colW));
     /* 图例：横排放在绘图区上方空白带（论文常见顶部图例），绝不压数据 */
-    var span = shown * colW, sx = Math.max(K.L, K.L + K.iw - span), ly = 14, k;
-    for (k = 0; k < shown; k++) {
-      var xx = sx + k * colW;
-      s += K.rect(xx, ly - 5, 11, 6, K.C(k), { rx: 0 });
-      s += '<text x="' + (xx + 15) + '" y="' + ly + '" font-family="' + SERIF
-        + '" font-size="9" fill="#111">M' + (k + 1) + '</text>';
+    for (var k = 0; k < n; k++) {
+      var xx = left + (k % perRow) * colW, ly = top + 16 * Math.floor(k / perRow);
+      if (P.g === 'roc' || P.g === 'markLine') {
+        s += K.line(xx, ly - 4, xx + 13, ly - 4, K.C(k), 1.7, rocDash(k));
+        if (P.g === 'markLine') s += seriesMark(K, xx + 6.5, ly - 4, k);
+      }
+      else if (P.g === 'scatter') s += K.dot(xx + 6, ly - 4, 3, K.C(k));
+      else s += K.rect(xx, ly - 9, 11, 7, K.C(k), { rx: 0 });
+      s += '<text x="' + (xx + 17) + '" y="' + ly + '" font-family="' + journalFont()
+        + '" font-size="' + journal.text * 2 + '" fill="#111">M' + (k + 1) + '</text>';
     }
+    return s;
+  }
+  function paperDecor(K, P, h, layout) {
+    if (K.mini) return '';
+    var s = seriesLegend(K, P, K.legendCount, K.L, 16, K.iw), ax = axisLabels(P);
     if (!CARTESIAN[P.g]) return s;   // 示意型几何：只给图例
     /* 坐标轴刻度：X 用离散类别或 0–1，Y 用 0–1 / 百分比 */
     var labsX = CATX[P.g] ? [] : [[0, '0'], [.25, '0.25'], [.5, '0.50'], [.75, '0.75'], [1, '1.0']];
     var labsY = YPCT[P.g]
       ? [[0, '0%'], [.25, '25%'], [.5, '50%'], [.75, '75%'], [1, '100%']]
       : [[0, '0'], [.25, '0.25'], [.5, '0.50'], [.75, '0.75'], [1, '1.0']];
-    s += K.ticks('y', labsY);
-    if (labsX.length) s += K.ticks('x', labsX);
-    /* 轴标题：衬线 10pt */
-    s += '<text x="' + (K.L + K.iw / 2).toFixed(1) + '" y="' + (h - 3)
-      + '" font-family="' + SERIF + '" font-size="10" fill="#111" text-anchor="middle">' + esc(ax[0]) + '</text>';
-    s += '<text transform="translate(13 ' + (K.T + K.ih / 2).toFixed(1)
-      + ') rotate(-90)" font-family="' + SERIF + '" font-size="10" fill="#111" text-anchor="middle">' + esc(ax[1]) + '</text>';
+    if (P.v === 'pca' || P.v === 'tsne' || P.v === 'umap') labsX = labsY = [];
+    if (P.g === 'hbar') {
+      labsY = [];
+      for (var i = 0; i < K.n; i++) labsY.push([1 - (i + .5) / K.n, 'M' + (i + 1)]);
+    }
+    if (!layout.hideY) s += K.ticks('y', labsY);
+    if (!layout.hideX) s += K.ticks('x', labsX);
+    /* 轴标题：成图约 6.5 pt。 */
+    if (!layout.hideX) s += '<text x="' + (K.L + K.iw / 2).toFixed(1) + '" y="' + (h - 7)
+      + '" font-family="' + journalFont() + '" font-size="' + journal.axis * 2 + '" fill="#111" text-anchor="middle">' + esc(ax[0]) + '</text>';
+    if (!layout.hideY) s += '<text transform="translate(15 ' + (K.T + K.ih / 2).toFixed(1)
+      + ') rotate(-90)" font-family="' + journalFont() + '" font-size="' + journal.axis * 2 + '" fill="#111" text-anchor="middle">' + esc(ax[1]) + '</text>';
     return s;
   }
 
-  function chartSvg(cols, id, w, h, mini) {
+  function countLegend(P, cols) {
+    return /^(barOne|hbar|sharedLegend|sharedBar|panelFig)$/.test(P.g) ? 0 : cols.length;
+  }
+
+  function chartSvg(cols, id, w, h, mini, layout) {
     var P = BY_ID[id] || BY_ID[ORDER[0]];
-    var K = ctx(w, h, mini, cols.length ? cols : ['#8b949e']);
+    layout = layout || {};
+    var legendCount = layout.sharedLegend ? 0 : countLegend(P, cols);
+    var K = ctx(w, h, mini, cols.length ? cols : ['#8b949e'],
+      layout.rowLegendCount == null ? legendCount : layout.rowLegendCount, layout.inCombo);
+    K.legendCount = legendCount;
+    K.inCombo = layout.inCombo;
     K.v = P.v;
     return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="' + h
       + '" role="img" aria-label="' + esc(P.cn) + '（' + esc(P.en) + '）配色示意图"'
@@ -2306,7 +2361,7 @@ svg.fonttype: none</code></pre>
       + tag('rect', { x: 0, y: 0, width: w, height: h, fill: '#ffffff' })
       + '<g' + (VIEW.opacity < 100 ? ' opacity="' + (VIEW.opacity / 100).toFixed(2) + '"' : '') + '>'
       + GEO[P.g](K) + '</g>'
-      + paperDecor(K, P, cols, w, h) + '</svg>';
+      + paperDecor(K, P, h, layout) + '</svg>';
   }
 
   /* ── 状态与通用 UI ─────────────────────────────────────────────── */
@@ -2511,7 +2566,7 @@ svg.fonttype: none</code></pre>
     $('pv-hex').innerHTML = G.cols.map(function (h) {
       return '<button type="button" class="hexcopy" data-hex="' + esc(h) + '">' + esc(h) + '</button>';
     }).join('');
-    $('pv-chart').innerHTML = chartSvg(cols, S.type, 320, 200, false);
+    $('pv-chart').innerHTML = chartSvg(cols, S.type, printUnits(journal.singleMm), PRINT.height, false);
     $('pv-desc').textContent = P.id + ' ' + P.cn + ' · ' + P.use + ' · 实际用色 ' + cols.length + ' 个';
     $('pv-add').disabled = false;
     renderMeta(P); renderCompare(); renderReport(G);
@@ -2593,7 +2648,7 @@ svg.fonttype: none</code></pre>
     if (m.indexOf('bar(') >= 0 || m.indexOf('stem') >= 0 || m.indexOf('broken_barh') >= 0)
       return 'x = np.arange(len(colors))\nvalues = rng.uniform(.4, .95, len(colors))\nfor xi, v in zip(x, values):\n    ax.bar(xi, v, color=colors[xi % len(colors)], label=f"M{xi+1}")';
     if (m.indexOf('scatter') >= 0 || m.indexOf('quiver') >= 0 || m.indexOf('streamplot') >= 0)
-      return 'for k in range(len(colors)):\n    ax.scatter(rng.normal(k * 1.4, .5, 30), rng.normal(k * .6, .5, 30),\n               color=colors[k], s=28, alpha=.8, label=f"cluster {k+1}")';
+      return 'for k in range(len(colors)):\n    ax.scatter(rng.normal(k * 1.4, .5, 30), rng.normal(k * .6, .5, 30),\n               color=colors[k], s=' + (journal.marker * journal.marker).toFixed(2) + ', alpha=.8, label=f"cluster {k+1}")';
     if (m.indexOf('contour') >= 0 || m.indexOf('plot_surface') >= 0 || m.indexOf('wireframe') >= 0)
       return 'X, Y = np.meshgrid(np.linspace(-2, 2, 60), np.linspace(-2, 2, 60))\nZ = np.sin(X) * np.cos(Y)\ncs = ax.contourf(X, Y, Z, levels=len(colors), cmap="viridis")\nfig.colorbar(cs, ax=ax)';
     if (m.indexOf('boxplot') >= 0 || m.indexOf('violinplot') >= 0 || m.indexOf('swarmplot') >= 0
@@ -2607,18 +2662,36 @@ svg.fonttype: none</code></pre>
         || m.indexOf('matplotlib-venn') >= 0 || m.indexOf('cd diagram') >= 0
         || m.indexOf('scipy.cluster') >= 0 || m.indexOf('holoviews') >= 0)
       return '# 结构图建议用「推荐方法」里的专用工具绘制，这里给出配色导出\nfor k, c in enumerate(colors):\n    ax.scatter([k], [0], s=260, color=c)\nax.set_xticks(range(len(colors)))';
-    return 't = np.linspace(0, 1, 40)\nfor k in range(len(colors)):\n    y = .2 + .6 * (k + 1) / len(colors) + .08 * np.sin(t * 8 + k)\n    ax.plot(t, y, color=colors[k], lw=1.5, label=f"series {k+1}")';
+    return 't = np.linspace(0, 1, 40)\nfor k in range(len(colors)):\n    y = .2 + .6 * (k + 1) / len(colors) + .08 * np.sin(t * 8 + k)\n    ax.plot(t, y, color=colors[k], lw=0.8, label=f"series {k+1}")';
   }
-  function pyTemplate(P) {
-    var cols = galleryCols();
+  var natureMplstyle = $('mplstyle').textContent;
+  function journalMplstyle() {
+    return natureMplstyle
+      .replace(/^figure.figsize:.*$/m, 'figure.figsize: ' + (journal.singleMm / 25.4).toFixed(5) + ', 2.29')
+      .replace(/^font.sans-serif:.*$/m, 'font.sans-serif: ' + journal.family + ', Arial, DejaVu Sans')
+      .replace(/^(font.size|xtick.labelsize|ytick.labelsize|legend.fontsize):.*$/gm, '$1: ' + journal.text)
+      .replace(/^(axes.labelsize|axes.titlesize):.*$/gm, '$1: ' + journal.axis)
+      .replace(/^lines.markersize:.*$/m, 'lines.markersize: ' + journal.marker);
+  }
+  function pythonJournalStyle() {
+    // Inline settings keep the copied script independent from the current page selection.
+    var values = { 'font.sans-serif': [journal.family, 'Arial', 'DejaVu Sans'], 'font.size': journal.text,
+      'axes.labelsize': journal.axis, 'axes.titlesize': journal.axis, 'axes.linewidth': .6,
+      'xtick.labelsize': journal.text, 'ytick.labelsize': journal.text, 'xtick.major.width': .6, 'ytick.major.width': .6,
+      'legend.fontsize': journal.text, 'lines.linewidth': .8, 'lines.markersize': journal.marker };
+    return 'plt.rcParams.update(' + JSON.stringify(values) + ')\n';
+  }
+  function pyTemplate(P, selectedCols) {
+    var cols = selectedCols || galleryCols();
     var head = '# ' + P.id + ' · ' + P.cn + ' (' + P.en + ')\n'
       + '# 用途：' + P.use + '\n# 推荐：' + P.m + '\n# 规范：' + P.tip + '\n'
       + 'import numpy as np\nimport matplotlib.pyplot as plt\nfrom cycler import cycler\n'
       + 'plt.style.use("paper.mplstyle")   # 见本页「统一科研绘图规范」\n'
+      + pythonJournalStyle()
       + 'colors = [' + cols.map(function (h) { return "'" + h + "'"; }).join(', ') + ']\n'
       + 'plt.rcParams["axes.prop_cycle"] = cycler(color=colors)\n'
       + 'rng = np.random.default_rng(20261125)\n'
-      + 'fig, ax = plt.subplots()\n\n';
+      + 'fig, ax = plt.subplots(figsize=(' + (journal.singleMm / 25.4).toFixed(5) + ', 2.29), layout="constrained")\n\n';
     var slug = P.en.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
     return head + pyBody(P) + '\n\n'
       + 'ax.set_xlabel("x"); ax.set_ylabel("y")\n'
@@ -2631,23 +2704,25 @@ svg.fonttype: none</code></pre>
     var n = ids.length, cols2 = n <= 1 ? 1 : 2, rows = Math.ceil(n / cols2);
     var head = '# 论文组合图 Multi-panel Figure\n'
       + '# 子图：' + ids.map(function (id) { return id + ' ' + BY_ID[id].cn; }).join(' / ') + '\n'
-      + '# 规范：子图编号 (a)(b)… 统一左上；全图共享颜色循环、字号与线宽\n'
+      + '# 规范：子图编号 a、b… 统一左上；全图共享颜色循环、字号与线宽\n'
       + 'import numpy as np\nimport matplotlib.pyplot as plt\nfrom cycler import cycler\n'
       + 'plt.style.use("paper.mplstyle")\n'
+      + pythonJournalStyle()
       + 'colors = [' + cols.map(function (h) { return "'" + h + "'"; }).join(', ') + ']\n'
       + 'plt.rcParams["axes.prop_cycle"] = cycler(color=colors)\n'
       + 'rng = np.random.default_rng(20261125)\n'
-      + 'fig = plt.figure(figsize=(10, ' + (3.4 * rows).toFixed(1) + '))\n'
+      + 'fig = plt.figure(figsize=(' + ((cols2 === 1 ? journal.singleMm : journal.comboMm) / 25.4).toFixed(5)
+      + ', ' + (2.1 * rows).toFixed(1) + '), layout="constrained")\n'
       + 'gs = fig.add_gridspec(' + rows + ', ' + cols2 + ', hspace=0.38, wspace=0.28)\n\n';
     var body = ids.map(function (id, i) {
       var P = BY_ID[id], r = Math.floor(i / cols2), c = i % cols2;
-      return '# ---- (' + String.fromCharCode(97 + i) + ') ' + id + ' ' + P.cn + ' / ' + P.m + ' ----\n'
+      return '# ---- (' + panelLetter(i) + ') ' + id + ' ' + P.cn + ' / ' + P.m + ' ----\n'
         + 'ax = ax' + i + ' = fig.add_subplot(gs[' + r + ', ' + c + '])\n'
         + pyBody(P)
-        + '\nax.set_title("(' + String.fromCharCode(97 + i) + ') ' + P.cn + '", loc="left", fontsize=10)\n'
-        + 'ax.legend(frameon=False, fontsize=8)\n';
+        + '\nax.set_title("' + panelLetter(i) + '", loc="left", fontsize=' + journal.panel + ', fontweight="bold")\n'
+        + 'if ax.get_legend_handles_labels()[0]:\n    ax.legend()\n';
     }).join('\n');
-    return head + body + '\nfig.savefig("combo_figure.pdf", bbox_inches="tight")\nplt.show()\n';
+    return head + body + '\nfig.savefig("combo_figure.pdf")\nplt.show()\n';
   }
   function exportGallery() {
     var data = {
@@ -2891,19 +2966,15 @@ svg.fonttype: none</code></pre>
     $('bk-combo').textContent = S.comboMode ? '✓ 退出组合' : '▦ 组合排版';
 
     var G = benchGroup(), cols = benchCols(), ids = benchIds(), P = BY_ID[S.type];
+    var columns = S.comboMode && S.combo.length > 1 ? 2 : 1;
+    var panelWidth = printUnits(journal.singleMm);
     if (S.comboMode) {
       var panelIds = S.combo.filter(function (id) { return BY_ID[id]; });
       $('bk-title').textContent = '论文组合排版 · ' + panelIds.length + ' 图';
       $('bk-sub').textContent = (G ? G.name : 'Okabe-Ito 默认色板') + ' · ' + cols.length + ' 色 · 共享同一色卡';
-      $('bk-canvas').className = 'bk-canvas combo' + (panelIds.length < 2 ? ' one' : '');
-      $('bk-canvas').innerHTML = panelIds.map(function (id, i) {
-        var Q = BY_ID[id];
-        return '<div class="bk-fig combo-fig"><div class="bk-fig-h"><span>'
-          + Q.id + ' ' + esc(Q.cn) + '</span><span>' + esc(Q.use) + '</span></div>'
-          + chartSvg(cols, id, panelIds.length <= 2 ? 620 : 330, panelIds.length <= 2 ? 360 : 250, false)
-          + '<span class="bk-panel-tag">(' + String.fromCharCode(97 + i) + ')</span></div>';
-      }).join('') + '<p class="bk-combo-tip" style="grid-column:1/-1">在左栏点图表即可加入 / 移出组合（2–4 张）；'
-        + '每张子图共享当前色卡与色觉设置，点击「下载组合 SVG」导出整图。</p>';
+      $('bk-canvas').className = 'bk-canvas combo';
+      $('bk-canvas').innerHTML = comboFigureSvg(cols, panelIds)
+        + '<p class="bk-combo-tip">在左栏增减子图。下载的 SVG 与此处排版一致。</p>';
     } else {
       $('bk-title').textContent = S.benchMulti ? '四图联看 · ' + CAT_NAME[P.c]
         : P.id + ' · ' + P.cn + ' / ' + P.en;
@@ -2915,7 +2986,7 @@ svg.fonttype: none</code></pre>
         return '<div class="bk-fig' + (S.benchMulti && id === S.type ? ' is-on' : '')
           + '"><div class="bk-fig-h"><span>'
           + Q.id + ' ' + esc(Q.cn) + '</span><span>' + esc(Q.use) + '</span></div>'
-          + chartSvg(cols, id, S.benchMulti ? 320 : 640, S.benchMulti ? 200 : 380, false) + '</div>';
+          + chartSvg(cols, id, panelWidth, PRINT.height, false) + '</div>';
       }).join('');
     }
     $('bk-swatch').innerHTML = '<div class="bk-sw-head"><b>'
@@ -2931,13 +3002,14 @@ svg.fonttype: none</code></pre>
       var chosen = S.combo.map(function (id) { return BY_ID[id] ? BY_ID[id].id + ' ' + BY_ID[id].cn : ''; }).filter(Boolean);
       $('bk-meta').innerHTML = '<dl>'
         + '<dt>组合</dt><dd>' + esc(chosen.join(' / ') || '在左栏点选图表') + '</dd>'
-        + '<dt>排版</dt><dd>多面板 figure · 子图编号 (a)(b)… · 共享图例与颜色映射 · 统一字号线宽</dd>'
+        + '<dt>成图</dt><dd>' + $('bk-journal').value + ' · ' + (columns === 2 ? journal.comboMm : journal.singleMm) + ' mm · 共享色卡</dd>'
         + '<dt>色卡</dt><dd>' + esc(G ? G.a.series + ' ' + G.a.no + ' · ' + G.a.title : '内置默认色板，右栏可换')
         + (G && G.style ? ' · ' + esc(G.style) : '') + '</dd>'
         + '<dt>用色</dt><dd>' + cols.length + ' 色 · 全子图共用 · 模拟数据示意</dd></dl>';
     } else {
       $('bk-meta').innerHTML = '<dl>'
         + '<dt>图表</dt><dd>' + esc(P.cn + ' · ' + P.use) + '（' + esc(P.m) + '）</dd>'
+        + '<dt>成图</dt><dd>' + $('bk-journal').value + ' · ' + journal.singleMm + ' mm</dd>'
         + '<dt>规范</dt><dd>' + esc(P.tip) + '</dd>'
         + '<dt>色卡</dt><dd>' + esc(G ? G.a.series + ' ' + G.a.no + ' · ' + G.a.title : '内置默认色板，右栏可换')
         + (G && G.style ? ' · ' + esc(G.style) : '') + '</dd>'
@@ -2954,37 +3026,81 @@ svg.fonttype: none</code></pre>
       selectUid(pool[Math.floor(Math.random() * pool.length)].uid);
     }
   }
-  /* 组合 figure：把 N 张子图 SVG 内嵌到一个总 SVG 里，带 (a)(b) 编号 */
-  function comboFigureSvg(cols, ids, W, H) {
-    var n = ids.length, cols2 = n <= 1 ? 1 : 2;
-    var rows = Math.ceil(n / cols2), pad = 16, gap = 12;
-    var cw = (W - pad * 2 - gap * (cols2 - 1)) / cols2;
-    var ch = (H - pad * 2 - gap * (rows - 1)) / rows;
-    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H
-      + '" width="' + W + '" height="' + H + '"><rect width="' + W + '" height="' + H + '" fill="#fff"/>';
-    ids.forEach(function (id, i) {
-      var gx = pad + (i % cols2) * (cw + gap), gy = pad + Math.floor(i / cols2) * (ch + gap);
-      var sub = chartSvg(cols, id, Math.round(cw), Math.round(ch - 14), false);
-      sub = sub.replace(/^<svg[^>]*>/, '<svg x="' + gx.toFixed(1) + '" y="' + (gy + 14).toFixed(1)
-        + '" width="' + cw.toFixed(1) + '" height="' + (ch - 14).toFixed(1) + '" '
-        + 'preserveAspectRatio="xMidYMid meet">');
-      s += sub;
-      s += '<text x="' + gx + '" y="' + (gy + 11) + '" font-family="Georgia,serif" font-size="13"'
-        + ' font-weight="600" fill="#111">(' + String.fromCharCode(97 + i) + ')</text>';
+  function printSvgAttrs(w, h, widthMm) {
+    return 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + w + ' ' + h
+      + '" width="' + widthMm + 'mm" height="' + (widthMm * h / w).toFixed(3) + 'mm"';
+  }
+
+  // These groups share the same ordered simulated model or cluster identities.
+  // The same palette alone does not establish compatible legends or scales.
+  var COMBO_SERIES_GROUPS = [['D01', 'D02', 'D12'], ['D04', 'D05', 'D06']];
+  var COMBO_TIME = ['C01', 'C03', 'C04'];
+  var COMBO_RESPONSE = ['C03', 'C04'];
+
+  function comboFigureSvg(cols, ids) {
+    var columns = ids.length > 1 ? 2 : 1;
+    if (ids.length === 3 && COMBO_SERIES_GROUPS.some(function (group) {
+      return ids.every(function (id) { return group.indexOf(id) >= 0; });
+    })) columns = 3;
+    var rows = Math.ceil(ids.length / columns);
+    var widthMm = columns > 1 ? journal.comboMm : journal.singleMm;
+    var w = printUnits(widthMm), pad = 12, gap = 12, labelSpace = journal.panel * 2 + 6;
+    var cw = (w - pad * 2 - gap * (columns - 1)) / columns;
+    var panelHeight = rows > 1 || columns === 3 ? 265 : PRINT.height;
+    var ch = panelHeight + labelSpace;
+    var panels = ids.map(function (id) { return { id: id, inCombo: true }; });
+    var shared = '', legendHeight = 0;
+    var legendLeft = pad + 56, legendWidth = w - legendLeft - pad;
+    var legendRows = Math.ceil(cols.length / Math.max(1, Math.floor(legendWidth / 46)));
+    var legendContext = ctx(w, 48, false, cols, 0);
+    COMBO_SERIES_GROUPS.forEach(function (group) {
+      var members = panels.filter(function (panel) { return group.indexOf(panel.id) >= 0; });
+      if (members.length < 2) return;
+      members.forEach(function (panel) { panel.sharedLegend = true; });
+      var labels = members.map(function (panel) { return panelLetter(panels.indexOf(panel)); }).join(', ');
+      if (members.length < panels.length) {
+        shared += '<text x="' + legendLeft + '" y="' + (legendHeight + 16) + '" font-family="' + journalFont()
+          + '" font-size="' + journal.text * 2 + '" font-weight="700">(' + labels + ')</text>';
+        legendHeight += 16;
+      }
+      shared += seriesLegend(legendContext, BY_ID[members[0].id], cols.length, legendLeft, legendHeight + 16, legendWidth);
+      legendHeight += legendRows * 16 + 8;
+    });
+    panels.forEach(function (panel, i) {
+      var below = panels[i + columns];
+      if (below && COMBO_TIME.indexOf(panel.id) >= 0 && COMBO_TIME.indexOf(below.id) >= 0) panel.hideX = true;
+      var first = Math.floor(i / columns) * columns;
+      if (i > first && COMBO_RESPONSE.indexOf(panels[i - 1].id) >= 0
+        && COMBO_RESPONSE.indexOf(panel.id) >= 0) panel.hideY = true;
+      panel.rowLegendCount = Math.max.apply(null, panels.slice(first, first + columns).map(function (other) {
+        return other.sharedLegend ? 0 : countLegend(BY_ID[other.id], cols);
+      }));
+    });
+    var h = pad * 2 + legendHeight + ch * rows + gap * Math.max(0, rows - 1);
+    var s = '<svg ' + printSvgAttrs(w, h, widthMm) + ' role="img" aria-label="'
+      + esc(ids.map(function (id) { return BY_ID[id].cn; }).join(' / ')) + '">'
+      + '<rect width="' + w + '" height="' + h + '" fill="#fff"/>';
+    s += shared;
+    panels.forEach(function (panel, i) {
+      var x = pad + (i % columns) * (cw + gap), y = pad + legendHeight + Math.floor(i / columns) * (ch + gap);
+      s += chartSvg(cols, panel.id, cw, panelHeight, false, panel).replace(/^<svg[^>]*>/,
+        '<svg x="' + x + '" y="' + (y + labelSpace) + '" width="' + cw + '" height="' + panelHeight
+        + '" viewBox="0 0 ' + cw + ' ' + panelHeight + '">');
+      s += '<text x="' + (x + 6) + '" y="' + (y + journal.panel * 2) + '" font-family="' + journalFont()
+        + '" font-size="' + journal.panel * 2 + '" font-weight="700" fill="#111">' + panelLetter(i) + '</text>';
     });
     return s + '</svg>';
   }
   function downloadSvg() {
     var P = BY_ID[S.type], cols = benchCols();
-    var svg, name;
+    var svg, name, width = printUnits(journal.singleMm);
     if (S.comboMode) {
       var ids = S.combo.filter(function (id) { return BY_ID[id]; });
-      svg = comboFigureSvg(cols, ids, 1320, ids.length <= 2 ? 760 : 1000);
+      svg = comboFigureSvg(cols, ids);
       name = 'palette_combo_' + ids.join('-') + '.svg';
     } else {
-      svg = chartSvg(cols, S.type, 640, 380, false)
-        .replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ')
-        .replace('width="100%"', 'width="640"');
+      svg = chartSvg(cols, S.type, width, PRINT.height, false)
+        .replace(/^<svg[^>]*>/, '<svg ' + printSvgAttrs(width, PRINT.height, journal.singleMm) + '>');
       name = 'palette_' + P.id + '.svg';
     }
     var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
@@ -3010,7 +3126,7 @@ svg.fonttype: none</code></pre>
     if ($('preview').scrollIntoView) $('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   $('pv-copy-py').addEventListener('click', function () {
-    copyText(pyTemplate(BY_ID[S.type]), function () {
+    copyText(pyTemplate(BY_ID[S.type], benchCols()), function () {
       showToast('已复制 ' + S.type + ' 的 Python 模板');
     });
   });
@@ -3176,11 +3292,17 @@ svg.fonttype: none</code></pre>
       copyText(comboPyTemplate(ids, benchCols()), function () {
         showToast('已复制 ' + ids.length + ' 图组合的 Python 模板');
       });
-    } else copyText(pyTemplate(BY_ID[S.type]), function () {
+    } else copyText(pyTemplate(BY_ID[S.type], benchCols()), function () {
       showToast('已复制 ' + S.type + ' 的 Python 模板');
     });
   });
   $('bk-svg').addEventListener('click', downloadSvg);
+  $('bk-journal').addEventListener('change', function () {
+    journal = JOURNALS[this.value];
+    $('mplstyle').textContent = journalMplstyle();
+    renderPreview();
+    renderBench();
+  });
   $('bk-fav').addEventListener('click', function () {
     var a = favs(), t = S.type, u = S.uid || '';
     if (a.some(function (x) { return x.t === t && x.u === u; })) {
