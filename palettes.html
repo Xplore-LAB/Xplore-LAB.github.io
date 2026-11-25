@@ -298,6 +298,21 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-pal-strip i { height: 7px; border-radius: 1px; flex: 1 1 0; min-width: 3px; }
 .bk-pal-strip i.more { background: var(--line) !important; flex: 0 0 8px; }
 .bk-empty { font-size: 11px; color: var(--ink-faint); line-height: 1.6; padding: 12px 4px; }
+.bk-references { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.bk-references h3 { margin: 0 0 8px; font-size: 14px; }
+.bk-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bk-reference { display: grid; min-width: 0; grid-template-rows: auto auto 1fr auto;
+  margin: 0; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.bk-reference-image { display: block; height: clamp(100px, 12vw, 175px); }
+.bk-reference-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.bk-reference figcaption { margin-top: 5px; font-size: 12px; }
+.bk-reference figcaption b { display: block; }
+.bk-reference small { color: var(--ink-soft); font-size: 10.5px; }
+.bk-reference-actions { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; margin-top: 5px; font-size: 11px; }
+@media (max-width: 600px) {
+  .bk-reference-grid { display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
+  .bk-reference { flex: 0 0 min(76%, 250px); scroll-snap-align: start; }
+}
 .bk-stage { min-width: 0; padding: 12px 14px 14px; }
 .bk-stage-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 0 0 9px; }
 .bk-stage-head b { font-size: 14px; }
@@ -438,6 +453,38 @@ pre.code code { background: none; padding: 0; font: inherit; }
           <a href="#gallery">图谱 79 类 ↓</a><a href="#library">色卡库 ↓</a><a href="#standards">绘图规范 ↓</a>
         </div>
       </div>
+      <section class="bk-references" id="bk-references" aria-labelledby="bk-references-title">
+        <h3 id="bk-references-title">顶刊参考图</h3>
+        <div class="bk-reference-grid">
+          <figure class="bk-reference">
+            <a class="bk-reference-image" href="/img/palettes/references/nature-tabpfn.webp" aria-label="放大 Nature 参考图">
+              <img src="/img/palettes/references/nature-tabpfn.webp" alt="不同方法与测试函数的矩阵式比较">
+            </a>
+            <figcaption><b>Nature · 方法与函数对照</b></figcaption>
+            <small>Hollmann 等，2025，Fig. 3a · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+            <div class="bk-reference-actions"><a href="https://www.nature.com/articles/s41586-024-08328-6/figures/3">看原刊</a>
+              <button type="button" class="btn tiny" data-reference-journal="Nature" data-reference-plots="A04">试色折线图</button></div>
+          </figure>
+          <figure class="bk-reference">
+            <a class="bk-reference-image" href="/img/palettes/references/science-composition.webp" aria-label="放大 Science 结构重画">
+              <img src="/img/palettes/references/science-composition.webp" alt="百分比堆叠柱、右侧图例和柱下分组条">
+            </a>
+            <figcaption><b>Science · 组成比例与分组</b></figcaption>
+            <small>参考 Tabula Sapiens Consortium，2022，Fig. 2B · 模拟数据重画</small>
+            <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9812260/#F2">看原刊</a>
+              <button type="button" class="btn tiny" data-reference-journal="Science" data-reference-plots="A03">试色堆叠柱</button></div>
+          </figure>
+          <figure class="bk-reference">
+            <a class="bk-reference-image" href="/img/palettes/references/cell-wnn.webp" aria-label="放大 Cell 参考图">
+              <img src="/img/palettes/references/cell-wnn.webp" alt="三个嵌入散点面板并列，右侧共用一份分类图例">
+            </a>
+            <figcaption><b>Cell · 多面板嵌入对比</b></figcaption>
+            <small>Hao 等，2021，Fig. 2A · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+            <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8238499/figure/fig2/">看原刊</a>
+              <button type="button" class="btn tiny" data-reference-journal="Cell" data-reference-plots="D04 D05 D06">试色三面板</button></div>
+          </figure>
+        </div>
+      </section>
       <div class="bench-bar">
         <label>图表 <select id="bk-plot" aria-label="选择图表类型"></select></label>
         <button type="button" class="btn" id="bk-prev" title="上一个图表">‹</button>
@@ -3297,11 +3344,25 @@ svg.fonttype: none</code></pre>
     });
   });
   $('bk-svg').addEventListener('click', downloadSvg);
-  $('bk-journal').addEventListener('change', function () {
-    journal = JOURNALS[this.value];
+  function applyBenchJournal(name) {
+    $('bk-journal').value = name;
+    journal = JOURNALS[name];
     $('mplstyle').textContent = journalMplstyle();
+  }
+  $('bk-journal').addEventListener('change', function () {
+    applyBenchJournal(this.value);
     renderPreview();
-    renderBench();
+  });
+  $('bk-references').addEventListener('click', function (event) {
+    var button = near(event.target, '[data-reference-plots]');
+    if (!button) return;
+    var ids = button.getAttribute('data-reference-plots').split(' ');
+    applyBenchJournal(button.getAttribute('data-reference-journal'));
+    S.comboMode = ids.length > 1;
+    S.benchMulti = false;
+    if (S.comboMode) S.combo = ids;
+    setType(ids[0]);
+    $('bk-canvas').scrollIntoView({ block: 'nearest' });
   });
   $('bk-fav').addEventListener('click', function () {
     var a = favs(), t = S.type, u = S.uid || '';
