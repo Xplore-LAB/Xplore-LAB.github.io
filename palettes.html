@@ -298,15 +298,16 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-pal-strip i { height: 7px; border-radius: 1px; flex: 1 1 0; min-width: 3px; }
 .bk-pal-strip i.more { background: var(--line) !important; flex: 0 0 8px; }
 .bk-empty { font-size: 11px; color: var(--ink-faint); line-height: 1.6; padding: 12px 4px; }
-.bk-references { padding: 12px 16px; border-bottom: 1px solid var(--line); }
-.bk-references h3 { margin: 0 0 8px; font-size: 14px; }
+.bk-references { padding: 8px; }
+#bk-reference-toggle { margin-inline-start: auto; }
 .bk-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .bk-reference { display: grid; min-width: 0; grid-template-rows: auto auto 1fr auto;
   margin: 0; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
-.bk-reference-image { display: block; height: clamp(100px, 12vw, 175px); }
+.bk-reference-image { display: block; height: clamp(88px, 10vw, 158px); }
 .bk-reference-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .bk-reference figcaption { margin-top: 5px; font-size: 12px; }
 .bk-reference figcaption b { display: block; }
+@media (max-width: 900px) { .bk-references { padding: 5px; } }
 .bk-reference small { color: var(--ink-soft); font-size: 10.5px; }
 .bk-reference-actions { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; margin-top: 5px; font-size: 11px; }
 @media (max-width: 600px) {
@@ -453,38 +454,6 @@ pre.code code { background: none; padding: 0; font: inherit; }
           <a href="#gallery">图谱 79 类 ↓</a><a href="#library">色卡库 ↓</a><a href="#standards">绘图规范 ↓</a>
         </div>
       </div>
-      <section class="bk-references" id="bk-references" aria-labelledby="bk-references-title">
-        <h3 id="bk-references-title">顶刊参考图</h3>
-        <div class="bk-reference-grid">
-          <figure class="bk-reference">
-            <a class="bk-reference-image" href="/img/palettes/references/nature-tabpfn.webp" aria-label="放大 Nature 参考图">
-              <img src="/img/palettes/references/nature-tabpfn.webp" alt="不同方法与测试函数的矩阵式比较">
-            </a>
-            <figcaption><b>Nature · 方法与函数对照</b></figcaption>
-            <small>Hollmann 等，2025，Fig. 3a · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
-            <div class="bk-reference-actions"><a href="https://www.nature.com/articles/s41586-024-08328-6/figures/3">看原刊</a>
-              <button type="button" class="btn tiny" data-reference-journal="Nature" data-reference-plots="A04">试色折线图</button></div>
-          </figure>
-          <figure class="bk-reference">
-            <a class="bk-reference-image" href="/img/palettes/references/science-composition.webp" aria-label="放大 Science 结构重画">
-              <img src="/img/palettes/references/science-composition.webp" alt="百分比堆叠柱、右侧图例和柱下分组条">
-            </a>
-            <figcaption><b>Science · 组成比例与分组</b></figcaption>
-            <small>参考 Tabula Sapiens Consortium，2022，Fig. 2B · 模拟数据重画</small>
-            <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9812260/#F2">看原刊</a>
-              <button type="button" class="btn tiny" data-reference-journal="Science" data-reference-plots="A03">试色堆叠柱</button></div>
-          </figure>
-          <figure class="bk-reference">
-            <a class="bk-reference-image" href="/img/palettes/references/cell-wnn.webp" aria-label="放大 Cell 参考图">
-              <img src="/img/palettes/references/cell-wnn.webp" alt="三个嵌入散点面板并列，右侧共用一份分类图例">
-            </a>
-            <figcaption><b>Cell · 多面板嵌入对比</b></figcaption>
-            <small>Hao 等，2021，Fig. 2A · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
-            <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8238499/figure/fig2/">看原刊</a>
-              <button type="button" class="btn tiny" data-reference-journal="Cell" data-reference-plots="D04 D05 D06">试色三面板</button></div>
-          </figure>
-        </div>
-      </section>
       <div class="bench-bar">
         <label>图表 <select id="bk-plot" aria-label="选择图表类型"></select></label>
         <button type="button" class="btn" id="bk-prev" title="上一个图表">‹</button>
@@ -525,8 +494,43 @@ pre.code code { background: none; padding: 0; font: inherit; }
           <div class="bk-scroll" id="bk-plot-list"></div>
         </div>
         <div class="bench-stage">
-          <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span></div>
+          <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span>
+            <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">进入试色图</button>
+          </div>
           <div class="bk-canvas" id="bk-canvas"></div>
+          <template id="bk-reference-template">
+            <section class="bk-references" id="bk-references" aria-label="顶刊参考图">
+              <div class="bk-reference-grid">
+                <figure class="bk-reference">
+                  <a class="bk-reference-image" href="/img/palettes/references/nature-tabpfn.webp" aria-label="放大 Nature 参考图">
+                    <img src="/img/palettes/references/nature-tabpfn.webp" alt="不同方法与测试函数的矩阵式比较">
+                  </a>
+                  <figcaption><b>Nature · 方法与函数对照</b></figcaption>
+                  <small>Hollmann 等，2025，Fig. 3a · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+                  <div class="bk-reference-actions"><a href="https://www.nature.com/articles/s41586-024-08328-6/figures/3">看原刊</a>
+                    <button type="button" class="btn tiny" data-reference-journal="Nature" data-reference-plots="A04">试色折线图</button></div>
+                </figure>
+                <figure class="bk-reference">
+                  <a class="bk-reference-image" href="/img/palettes/references/science-composition.webp" aria-label="放大 Science 结构重画">
+                    <img src="/img/palettes/references/science-composition.webp" alt="百分比堆叠柱、右侧图例和柱下分组条">
+                  </a>
+                  <figcaption><b>Science · 组成比例与分组</b></figcaption>
+                  <small>参考 Tabula Sapiens Consortium，2022，Fig. 2B · 模拟数据重画</small>
+                  <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9812260/#F2">看原刊</a>
+                    <button type="button" class="btn tiny" data-reference-journal="Science" data-reference-plots="A03">试色堆叠柱</button></div>
+                </figure>
+                <figure class="bk-reference">
+                  <a class="bk-reference-image" href="/img/palettes/references/cell-wnn.webp" aria-label="放大 Cell 参考图">
+                    <img src="/img/palettes/references/cell-wnn.webp" alt="三个嵌入散点面板并列，右侧共用一份分类图例">
+                  </a>
+                  <figcaption><b>Cell · 多面板嵌入对比</b></figcaption>
+                  <small>Hao 等，2021，Fig. 2A · 原图裁切 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></small>
+                  <div class="bk-reference-actions"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8238499/figure/fig2/">看原刊</a>
+                    <button type="button" class="btn tiny" data-reference-journal="Cell" data-reference-plots="D04 D05 D06">试色三面板</button></div>
+                </figure>
+              </div>
+            </section>
+          </template>
           <div class="bk-sw" id="bk-swatch"></div>
           <div class="bk-meta" id="bk-meta"></div>
           <div class="bk-favs" id="bk-favs"></div>
@@ -2415,7 +2419,7 @@ svg.fonttype: none</code></pre>
   var MAX_CMP = 4;
   var S = { uid: null, cmp: [], type: 'A01', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
-    comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
+    showReferences: true, comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
   function showToast(msg) {
@@ -2552,6 +2556,7 @@ svg.fonttype: none</code></pre>
   }
   function setType(id) {
     var P = BY_ID[id]; if (!P) return;
+    S.showReferences = false;
     S.type = id; S.cat = P.c;
     renderTypeUI(); renderPreview();
     Array.prototype.forEach.call($('gal-list').querySelectorAll('.gal-cell'), function (el) {
@@ -2620,6 +2625,7 @@ svg.fonttype: none</code></pre>
   }
   function selectUid(uid) {
     if (!uid || !M.byUid[uid]) return;
+    S.showReferences = false;
     S.uid = uid;
     $('pv-classic').value = uid.indexOf('cl-') === 0 ? uid : '';
     updateSelectionUI(); renderPreview(); renderGallery();
@@ -3012,6 +3018,21 @@ svg.fonttype: none</code></pre>
     $('bk-combo').classList.toggle('primary', S.comboMode);
     $('bk-combo').textContent = S.comboMode ? '✓ 退出组合' : '▦ 组合排版';
 
+    var canvas = $('bk-canvas');
+    $('bk-reference-toggle').textContent = S.showReferences ? '进入试色图' : '看顶刊参考';
+    $('bk-swatch').hidden = S.showReferences;
+    $('bk-meta').hidden = S.showReferences;
+    $('bk-copy').disabled = S.showReferences;
+    $('bk-svg').disabled = S.showReferences;
+    if (S.showReferences) {
+      $('bk-title').textContent = '顶刊参考图';
+      $('bk-sub').textContent = '点图放大，或在此处切换为可换色示例';
+      canvas.className = 'bk-canvas';
+      if (!$('bk-references')) canvas.replaceChildren($('bk-reference-template').content.cloneNode(true));
+      renderBenchPlots(); renderBenchPals(); renderBenchFavs();
+      return;
+    }
+
     var G = benchGroup(), cols = benchCols(), ids = benchIds(), P = BY_ID[S.type];
     var columns = S.comboMode && S.combo.length > 1 ? 2 : 1;
     var panelWidth = printUnits(journal.singleMm);
@@ -3308,6 +3329,7 @@ svg.fonttype: none</code></pre>
     } else setType(id);
   });
   $('bk-combo').addEventListener('click', function () {
+    S.showReferences = false;
     S.comboMode = !S.comboMode;
     if (S.combo.indexOf(S.type) < 0 && S.combo.length < 4) S.combo.push(S.type);
     plotSig = ''; renderBench();
@@ -3331,6 +3353,7 @@ svg.fonttype: none</code></pre>
   $('bk-shuffle').addEventListener('click', function () { benchRandom(false, true); });
   $('bk-rand').addEventListener('click', function () { benchRandom(true, true); });
   $('bk-mode').addEventListener('click', function () {
+    S.showReferences = false;
     S.benchMulti = !S.benchMulti; renderBench();
   });
   $('bk-copy').addEventListener('click', function () {
@@ -3353,7 +3376,11 @@ svg.fonttype: none</code></pre>
     applyBenchJournal(this.value);
     renderPreview();
   });
-  $('bk-references').addEventListener('click', function (event) {
+  $('bk-reference-toggle').addEventListener('click', function () {
+    S.showReferences = !S.showReferences;
+    renderBench();
+  });
+  $('bk-canvas').addEventListener('click', function (event) {
     var button = near(event.target, '[data-reference-plots]');
     if (!button) return;
     var ids = button.getAttribute('data-reference-plots').split(' ');
@@ -3393,6 +3420,7 @@ svg.fonttype: none</code></pre>
     copyText(h, function () { showToast('已复制 ' + h); });
   });
   $('bk-cvd').addEventListener('change', function () {
+    S.showReferences = false;
     var v = this.value;
     $('pv-cvd').value = v; VIEW.cvd = v;
     $('pv-fx-note').textContent = '当前：' + CVD_LABEL[v]
@@ -3400,9 +3428,11 @@ svg.fonttype: none</code></pre>
     renderPreview(); renderGallery();
   });
   $('bk-scale').addEventListener('change', function () {
+    S.showReferences = false;
     $('pv-scale').value = this.value; renderPreview();
   });
   $('bk-opacity').addEventListener('input', function () {
+    S.showReferences = false;
     var v = +this.value;
     $('pv-opacity').value = v; VIEW.opacity = v;
     $('pv-opacity-val').textContent = v + '%';
