@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-11-25T01:12:31.064274+00:00",
+    "generated_at": "2026-11-25T09:53:59.291789+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -247,6 +247,16 @@
             "emoji": "🐙",
             "title": "GitHub 主页",
             "group": "外部链接"
+        },
+        {
+            "desc": "67 类科研图表按科研表达任务分类 · 可运行代码模板 · 面向人与智能体的科研绘图图谱",
+            "badge": "Python",
+            "stars": 0,
+            "featured": false,
+            "path": "https://github.com/Xplore-LAB/Scientific-Plot-Gallery",
+            "emoji": "🐍",
+            "title": "Scientific-Plot-Gallery",
+            "group": "开源项目"
         },
         {
             "desc": "暂无描述，点击查看仓库详情",
