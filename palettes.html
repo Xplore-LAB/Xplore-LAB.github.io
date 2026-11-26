@@ -3997,7 +3997,7 @@ SOFTWARE.
   function paperSourceSeries(K, w, data) {
     var columns = data.grid, vllm = data === PAPER_DATA.vllm_latency;
     var llama = data === PAPER_DATA.llama_isoflops, gpt = data === PAPER_DATA.gpt4_scaling;
-    var left = 59, gap = vllm ? 44 : 64, right = llama ? 115 : 18;
+    var left = 59, gap = vllm ? 44 : 64, right = llama ? 141 : 18;
     var width = (w - left - right - (columns - 1) * gap) / columns;
     var height = vllm ? 104 : 232, top = vllm ? 57 : 46;
     var out = '';
@@ -4010,7 +4010,7 @@ SOFTWARE.
         + referenceLabel(x + width / 2, y + height + 37, panel.xLabel, journal.axis, 'middle')
         + referenceAxes(K, x, y, width, height);
       if (panel.yLabel) {
-        var lx = x - (index && !vllm ? 34 : 41), ly = y + height / 2;
+        var lx = x - (index && !vllm ? 55 : 41), ly = y + height / 2;
         out += referenceLabel(lx, ly, panel.yLabel, journal.axis, 'middle', 'rotate(-90 ' + lx + ' ' + ly + ')');
       }
       panel.xTicks.forEach(function (tick) {
