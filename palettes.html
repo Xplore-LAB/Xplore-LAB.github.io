@@ -404,7 +404,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
   .bk-inspector .bk-scroll { max-height: 240px; }
   .bk-canvas.multi { grid-template-columns: 1fr; }
   .bk-quick-charts { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-  .bk-quick-charts > label { display: flex; flex: 1; min-width: 0; gap: 5px; font-size: 11.5px; }
+  .bk-quick-charts > label { display: flex; flex: 1; min-width: 0; gap: 5px; font-size: 11.5px; white-space: nowrap; }
   #bk-plot { width: 100%; min-width: 0; }
   #bk-source-panel, #bk-inspector { scroll-margin-top: 72px; }
 }
@@ -3297,7 +3297,7 @@ SOFTWARE.
         + (c.i === 'all' ? '全部' : esc(c.n.slice(2))) + '</button>';
     }).join('');
     var list = PLOTS.filter(function (P) {
-      return (query || S.benchCat === 'all' || P.c === S.benchCat)
+      return (S.benchCat === 'all' || P.c === S.benchCat)
         && (!query || [P.id, P.cn, P.en, P.use].join(' ').toLowerCase().indexOf(query) >= 0);
     });
     var glyph = {barOne:'▥',bar:'▥',stackBar:'▥',hbar:'☰',line:'⌁',markLine:'⌁',ts:'⌁',
