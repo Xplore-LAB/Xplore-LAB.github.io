@@ -334,6 +334,12 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-plot-item.is-picked i::before { content: "✓ "; color: #0284c7; }
 .bk-canvas.combo { padding: 8px; }
 .bk-combo-tip { padding: 0 8px; margin: 4px 0; font-size: 11px; color: var(--ink-faint); }
+.bk-colors { margin: 9px 0; border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; font-size: 12px; }
+.bk-colors summary { cursor: pointer; }
+.bk-color-controls, #bk-color-assign { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 10px; margin-top: 8px; }
+#bk-color-assign label { display: inline-flex; min-width: 110px; align-items: center; gap: 5px; }
+#bk-color-assign input[type=color] { width: 30px; height: 27px; padding: 1px; border: 1px solid var(--line); background: #fff; }
+#bk-color-note { margin: 6px 0 0; color: var(--ink-soft); }
 .bk-sw { margin: 11px 0 0; }
 .bk-sw-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 0 0 6px; }
 .bk-sw-head b { font-size: 12.5px; }
@@ -451,7 +457,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
         <h2>配色工作台</h2>
         <p>左边选图表类型、右边选色卡，中间立刻看这组色画在这类图上的效果；点「组合排版」可勾选 2–4 张图拼成带编号的论文多面板 figure；与下方图谱、色卡库实时联动</p>
         <div class="bench-links">
-          <a href="#gallery">图谱 79 类 ↓</a><a href="#library">色卡库 ↓</a><a href="#standards">绘图规范 ↓</a>
+          <a href="#gallery">图谱 79 类 ↓</a><a href="#library">色卡库 ↓</a><a href="/palettes/guide/">绘图标准</a>
         </div>
       </div>
       <div class="bench-bar">
@@ -501,6 +507,17 @@ pre.code code { background: none; padding: 0; font: inherit; }
             <button type="button" class="btn tiny" id="bk-reference-colors" hidden>用案例原色</button>
             <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看顶刊参考</button>
           </div>
+          <details class="bk-colors" id="bk-colors">
+            <summary>调整系列颜色</summary>
+            <div class="bk-color-controls">
+              <label>分配方式 <select id="bk-color-mode"><option value="auto">自动分配</option>
+                <option value="single">统一色</option><option value="highlight">突出一个系列</option></select></label>
+              <label id="bk-highlight-control" hidden>强调 <select id="bk-highlight"></select></label>
+              <button type="button" class="btn tiny" id="bk-color-reset">恢复自动</button>
+            </div>
+            <div id="bk-color-assign"></div>
+            <p id="bk-color-note"></p>
+          </details>
           <div class="bk-canvas" id="bk-canvas"></div>
           <template id="bk-reference-template">
             <section class="bk-references" id="bk-references" aria-label="顶刊参考图">
@@ -1129,7 +1146,7 @@ SOFTWARE.
     K.Y = function (t) { return K.T + K.ih * (1 - t); };
     K.bg = function () { return ''; };   // 白底与透明度包裹统一由 chartSvg 负责
     K.grid = function (vertical) {
-      if (journal === JOURNALS.Science) return '';
+      if (journal === JOURNALS.Science || journal === JOURNALS.Nature) return '';
       var s = '', i;
       for (i = 1; i <= 4; i++) {
         var v = vertical ? K.L + K.iw * i / 4 : K.T + K.ih * (1 - i / 4);
@@ -1291,7 +1308,7 @@ SOFTWARE.
         lo.push([K.X(i / 5), K.Y(clamp(v - band))]);
       }
       if (!K.mini) s += K.path(areaPath(lo, up), K.C(k), 'none', 0, .12);
-      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 1.9);
+      s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 1.9, demoLineDash(k));
       if (!K.mini) for (i = 0; i < 6; i++) s += K.dot(p[i][0], p[i][1], 2.2, K.C(k));
     }
     return s;
@@ -1462,15 +1479,29 @@ SOFTWARE.
     return s;
   };
   GEO.heat = function (K) {
-    var s = K.bg(), nx = Math.max(3, K.n), ny = K.mini ? 4 : 6;
-    var cw = K.iw / nx, ch = K.ih / ny, x, y;
-    for (y = 0; y < ny; y++) for (x = 0; x < nx; x++) {
-      var val = .2 + .75 * K.r(), col = K.C((x * ny + y) % K.n);
+    var s = '', nx = K.n, ny = K.mini ? 4 : 6;
+    var width = K.iw - (K.mini ? 0 : 52), cw = width / nx, ch = K.ih / ny;
+    var colors = K.valueColors;
+    function colorAt(value) {
+      var u = Math.max(0, Math.min(1, value)) * (colors.length - 1);
+      var i = Math.min(colors.length - 2, Math.floor(u));
+      return fx(blend(colors[i], colors[i + 1], u - i));
+    }
+    for (var y = 0; y < ny; y++) for (var x = 0; x < nx; x++) {
+      var val = .2 + .75 * K.r();
       if (K.v === 'cm') val = x === y ? .96 : .08 + .32 * K.r();
       if (K.v === 'attn') val = y <= x ? .28 + .68 * K.r() : .04;
       if (K.v === 'spectro') val = .2 + .75 * Math.abs(Math.sin(x * .85 + y * .62));
-      s += K.rect(K.L + x * cw + 1, K.T + y * ch + 1, cw - 2, ch - 2,
-        shade(col, .5 * (1 - val)), { stroke: col, 'stroke-width': K.mini ? .5 : .8 });
+      s += K.rect(K.L + x * cw, K.T + y * ch, cw + .05, ch + .05, colorAt(val), {rx:0});
+    }
+    if (!K.mini) {
+      var right = K.L + width + 13;
+      for (var i = 0; i < 48; i++) {
+        s += K.rect(right, K.T + i * K.ih / 48, 11, K.ih / 48 + .1, colorAt(1 - i / 47), {rx:0});
+      }
+      [0, .5, 1].forEach(function (t) {
+        s += referenceLabel(right + 16, K.Y(t) + 4, String(t), journal.text);
+      });
     }
     return s;
   };
@@ -1802,6 +1833,9 @@ SOFTWARE.
   };
 
   /* D · 机器学习与人工智能实验 */
+  function demoLineDash(i) {
+    return ['', '7 4', '2 3', '6 2 2 3', '9 4', '4 3', '7 2 2 2 2 3', '2 5'][i % 8];
+  }
   function rocDash(i) {
     return ['', '6 3', '2 2', '6 2 2 2'][i % 4];
   }
@@ -2421,8 +2455,8 @@ SOFTWARE.
     /* 图例：横排放在绘图区上方空白带（论文常见顶部图例），绝不压数据 */
     for (var k = 0; k < n; k++) {
       var xx = left + (k % perRow) * colW, ly = top + 16 * Math.floor(k / perRow);
-      if (P.g === 'roc' || P.g === 'markLine') {
-        s += K.line(xx, ly - 4, xx + 13, ly - 4, K.C(k), 1.7, rocDash(k));
+      if (P.g === 'roc' || P.g === 'markLine' || P.g === 'line') {
+        s += K.line(xx, ly - 4, xx + 13, ly - 4, K.C(k), 1.7, P.g === 'line' ? demoLineDash(k) : rocDash(k));
         if (P.g === 'markLine') s += seriesMark(K, xx + 6.5, ly - 4, k);
       }
       else if (P.g === 'scatter') s += K.dot(xx + 6, ly - 4, 3, K.C(k));
@@ -2456,16 +2490,18 @@ SOFTWARE.
     return s;
   }
 
-  function countLegend(P, cols) {
-    return /^(barOne|hbar|sharedLegend|sharedBar|panelFig)$/.test(P.g) ? 0 : cols.length;
+  function countLegend(P) {
+    return /^(barOne|hbar|heat|sharedLegend|sharedBar|panelFig)$/.test(P.g) ? 0 : DEMO_SERIES_COUNT;
   }
 
   function chartSvg(cols, id, w, h, mini, layout) {
     var P = BY_ID[id] || BY_ID[ORDER[0]];
     layout = layout || {};
-    var legendCount = layout.sharedLegend ? 0 : countLegend(P, cols);
+    var legendCount = layout.sharedLegend ? 0 : countLegend(P);
     var K = ctx(w, h, mini, cols.length ? cols : ['#8b949e'],
       layout.rowLegendCount == null ? legendCount : layout.rowLegendCount, layout.inCombo);
+    K.n = DEMO_SERIES_COUNT;
+    K.valueColors = layout.valueColors || [shade(cols[0] || '#4477AA', .92), cols[0] || '#4477AA'];
     K.legendCount = legendCount;
     K.inCombo = layout.inCombo;
     K.v = P.v;
@@ -2479,9 +2515,10 @@ SOFTWARE.
   }
 
   /* ── 状态与通用 UI ─────────────────────────────────────────────── */
-  var MAX_CMP = 4;
+  var MAX_CMP = 4, DEMO_SERIES_COUNT = 8;
   var S = { uid: DEFAULT_PALETTE, cmp: [], type: 'A04', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
+    colorMode: 'auto', highlight: 0, colorOverrides: {},
     showReferences: false, referencePlot: 'Nature', comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
@@ -2651,7 +2688,7 @@ SOFTWARE.
       return '<div class="cmp-item' + (uid === S.uid ? ' is-on' : '') + '" data-uid="' + esc(uid) + '">'
         + '<div class="cmp-head"><span class="cmp-name" title="' + esc(G.name) + '">' + esc(G.name) + '</span>'
         + '<button type="button" class="cmp-del" data-cmp="del" data-uid="' + esc(uid) + '" aria-label="移除">×</button></div>'
-        + '<div class="cmp-chart">' + chartSvg(drawCols(G), S.type, 150, 92, true) + '</div>'
+        + '<div class="cmp-chart">' + chartSvg(drawCols(G), S.type, 150, 92, true, {valueColors:valueColors(G, drawCols(G))}) + '</div>'
         + '<div class="cmp-strip">' + G.cols.map(function (h) {
           return '<i class="mini" style="background:' + esc(h) + '"></i>';
         }).join('') + '</div></div>';
@@ -2682,7 +2719,7 @@ SOFTWARE.
     $('pv-hex').innerHTML = G.cols.map(function (h) {
       return '<button type="button" class="hexcopy" data-hex="' + esc(h) + '">' + esc(h) + '</button>';
     }).join('');
-    $('pv-chart').innerHTML = chartSvg(cols, S.type, printUnits(journal.singleMm), PRINT.height, false);
+    $('pv-chart').innerHTML = chartSvg(cols, S.type, printUnits(journal.singleMm), PRINT.height, false, {valueColors:valueColors(G, cols)});
     $('pv-desc').textContent = P.id + ' ' + P.cn + ' · ' + P.use + ' · 实际用色 ' + cols.length + ' 个';
     $('pv-add').disabled = false;
     renderMeta(P); renderCompare(); renderReport(G);
@@ -2738,7 +2775,7 @@ SOFTWARE.
         + '<div class="gal-grid">' + items.map(function (P) {
           return '<button type="button" class="gal-cell' + (P.id === S.type ? ' is-on' : '')
             + '" data-type="' + P.id + '" title="' + esc(P.cn) + ' · ' + esc(P.use) + '">'
-            + '<span class="gal-fig">' + chartSvg(cols, P.id, 132, 84, true) + '</span>'
+            + '<span class="gal-fig">' + chartSvg(cols, P.id, 132, 84, true, {valueColors:valueColors(M.byUid[S.uid], cols)}) + '</span>'
             + '<span class="gal-cap"><span class="gal-id">' + P.id + '</span>'
             + '<span class="gal-name">' + esc(P.cn) + '</span>'
             + (P.p < 2 ? '<span class="gal-pri">P' + P.p + '</span>' : '') + '</span>'
@@ -2779,7 +2816,7 @@ SOFTWARE.
         || m.indexOf('matplotlib-venn') >= 0 || m.indexOf('cd diagram') >= 0
         || m.indexOf('scipy.cluster') >= 0 || m.indexOf('holoviews') >= 0)
       return '# 结构图建议用「推荐方法」里的专用工具绘制，这里给出配色导出\nfor k, c in enumerate(colors):\n    ax.scatter([k], [0], s=260, color=c)\nax.set_xticks(range(len(colors)))';
-    return 't = np.linspace(0, 1, 40)\nfor k in range(len(colors)):\n    y = .2 + .6 * (k + 1) / len(colors) + .08 * np.sin(t * 8 + k)\n    ax.plot(t, y, color=colors[k], lw=0.8, label=f"series {k+1}")';
+    return 't = np.linspace(0, 1, 40)\nfor k in range(len(colors)):\n    y = .2 + .6 * (k + 1) / len(colors) + .08 * np.sin(t * 8 + k)\n    ax.plot(t, y, color=colors[k], lw=0.8, linestyle=["-", "--", ":", "-."][k % 4], label=f"series {k+1}")';
   }
   var natureMplstyle = $('mplstyle').textContent;
   function journalMplstyle() {
@@ -2799,7 +2836,7 @@ SOFTWARE.
     return 'plt.rcParams.update(' + JSON.stringify(values) + ')\n';
   }
   function pyTemplate(P, selectedCols) {
-    var cols = selectedCols || galleryCols();
+    var cols = selectedCols || fitSeriesColors(galleryCols(), DEMO_SERIES_COUNT);
     var head = '# ' + P.id + ' · ' + P.cn + ' (' + P.en + ')\n'
       + '# 用途：' + P.use + '\n# 推荐：' + P.m + '\n# 规范：' + P.tip + '\n'
       + 'import numpy as np\nimport matplotlib.pyplot as plt\nfrom cycler import cycler\n'
@@ -2988,7 +3025,84 @@ SOFTWARE.
   }
   function saveFavs(a) { try { localStorage.setItem(FAV_KEY, JSON.stringify(a)); } catch (e) {} }
   function benchGroup() { return S.uid ? M.byUid[S.uid] : null; }
-  function benchCols() { var G = benchGroup(); return G ? drawCols(G) : M.byUid[DEFAULT_PALETTE].cols; }
+  function benchPalette() { return benchGroup() || M.byUid[DEFAULT_PALETTE]; }
+  function benchPaletteColors() { return drawCols(benchPalette()); }
+  var CASE_COLOR_ROLES = {
+    Nature: ['目标点', '拟合线'],
+    Science: ['组成 1', '组成 2', '组成 3', '组成 4', '组成 5'],
+    Cell: ['群组 1', '群组 2', '群组 3', '群组 4', '群组 5', '群组 6']
+  };
+
+  function benchRoles() {
+    if (S.referencePlot) return CASE_COLOR_ROLES[S.referencePlot];
+    return Array.from({length: DEMO_SERIES_COUNT}, function (_, i) { return 'M' + (i + 1); });
+  }
+
+  function fitSeriesColors(colors, count) {
+    return Array.from({length: count}, function (_, i) { return colors[i % colors.length]; });
+  }
+
+  function distinctColors(colors, count) {
+    var pool = colors.slice(1).map(function (hex) { return {hex:hex, lab:labOf(hex)}; });
+    var selected = [{hex:colors[0], lab:labOf(colors[0])}];
+    while (selected.length < count) {
+      var best = 0, bestGap = -1;
+      pool.forEach(function (candidate, i) {
+        var gap = Math.min.apply(null, selected.map(function (other) { return de00(candidate.lab, other.lab); }));
+        if (gap > bestGap) { best = i; bestGap = gap; }
+      });
+      selected.push(pool.splice(best, 1)[0]);
+    }
+    return selected.map(function (item) { return item.hex; });
+  }
+
+  function benchCols() {
+    var group = benchPalette(), colors = benchPaletteColors(), roles = benchRoles();
+    var key = S.referencePlot || 'demo', overrides = S.colorOverrides[key] || {};
+    var ordered = group.scaleType === '顺序' || group.scaleType === '发散';
+    var spare = colors.length > roles.length;
+    if (S.colorMode === 'auto' && spare && !ordered && group.src.k !== 'reference') {
+      colors = distinctColors(colors, roles.length);
+    }
+    return roles.map(function (_, i) {
+      if (overrides[i]) return overrides[i];
+      if (S.colorMode === 'single') return colors[0];
+      if (S.colorMode === 'highlight') return i === Math.min(S.highlight, roles.length - 1) ? colors[0] : '#A0A5AD';
+      var index = ordered && spare ? Math.round(i * (colors.length - 1) / (roles.length - 1)) : i % colors.length;
+      return colors[index];
+    });
+  }
+
+  function valueColors(G, colors) {
+    return G && (G.scaleType === '顺序' || G.scaleType === '发散')
+      ? G.cols : [shade(colors[0], .92), colors[0]];
+  }
+
+  function benchLayout(cols) { return { valueColors: valueColors(benchPalette(), cols) }; }
+
+  function renderBenchColorControls(cols) {
+    var scalar = !S.referencePlot && !S.comboMode && !S.benchMulti && BY_ID[S.type].g === 'heat';
+    $('bk-colors').hidden = scalar;
+    if (scalar) return;
+    var roles = benchRoles(), palette = benchPaletteColors();
+    $('bk-color-mode').value = S.colorMode;
+    $('bk-highlight-control').hidden = S.colorMode !== 'highlight';
+    $('bk-highlight').innerHTML = roles.map(function (role, i) {
+      return '<option value="' + i + '">' + esc(role) + '</option>';
+    }).join('');
+    $('bk-highlight').value = Math.min(S.highlight, roles.length - 1);
+    var options = Array.from(new Set(palette.concat(cols, ['#A0A5AD'])));
+    $('bk-color-assign').innerHTML = roles.map(function (role, i) {
+      return '<label><span>' + esc(role) + '</span><select data-series-color="' + i + '" aria-label="'
+        + esc(role) + ' 色卡候选">' + options.map(function (value) {
+          return '<option' + (value.toLowerCase() === cols[i].toLowerCase() ? ' selected' : '') + '>' + esc(value) + '</option>';
+        }).join('') + '</select><input type="color" data-series-color="' + i + '" aria-label="'
+        + esc(role) + ' 自定义颜色" title="' + esc(cols[i]) + '" value="' + esc(cols[i]) + '"></label>';
+    }).join('');
+    $('bk-color-note').textContent = S.colorMode === 'auto' && new Set(cols.map(function (h) { return h.toUpperCase(); })).size < roles.length
+      ? '当前有系列共用同色。可改用统一色、强调色，或逐项选色。'
+      : '每个角色可选色卡中的任意颜色，也可自定义 HEX。';
+  }
   function benchIds() {
     if (!S.benchMulti) return [S.type];
     var c = BY_ID[S.type].c;
@@ -3097,6 +3211,7 @@ SOFTWARE.
     $('bk-reference-colors').hidden = S.showReferences || !S.referencePlot;
     if (S.referencePlot) $('bk-reference-picker').value = S.referencePlot;
     $('bk-swatch').hidden = S.showReferences;
+    $('bk-colors').hidden = S.showReferences;
     $('bk-meta').hidden = S.showReferences;
     $('bk-copy').disabled = S.showReferences || Boolean(S.referencePlot);
     $('bk-svg').disabled = S.showReferences;
@@ -3109,7 +3224,8 @@ SOFTWARE.
       return;
     }
 
-    var G = benchGroup(), cols = benchCols(), ids = benchIds(), P = BY_ID[S.type];
+    var G = benchGroup(), cols = benchCols(), raw = benchPaletteColors(), ids = benchIds(), P = BY_ID[S.type];
+    var layout = benchLayout(cols);
     var columns = S.comboMode && S.combo.length > 1 ? 2 : 1;
     var panelWidth = printUnits(journal.singleMm);
     if (S.referencePlot) {
@@ -3122,7 +3238,7 @@ SOFTWARE.
       $('bk-title').textContent = '论文组合排版 · ' + panelIds.length + ' 图';
       $('bk-sub').textContent = (G ? G.name : 'Paul Tol bright 默认色板') + ' · ' + cols.length + ' 色 · 共享同一色卡';
       $('bk-canvas').className = 'bk-canvas combo';
-      $('bk-canvas').innerHTML = comboFigureSvg(cols, panelIds)
+      $('bk-canvas').innerHTML = comboFigureSvg(cols, panelIds, layout)
         + '<p class="bk-combo-tip">在左栏增减子图。下载的 SVG 与此处排版一致。</p>';
     } else {
       $('bk-title').textContent = S.benchMulti ? '四图联看 · ' + CAT_NAME[P.c]
@@ -3135,20 +3251,21 @@ SOFTWARE.
         return '<div class="bk-fig' + (S.benchMulti && id === S.type ? ' is-on' : '')
           + '"><div class="bk-fig-h"><span>'
           + Q.id + ' ' + esc(Q.cn) + '</span><span>' + esc(Q.use) + '</span></div>'
-          + chartSvg(cols, id, panelWidth, PRINT.height, false) + '</div>';
+          + chartSvg(cols, id, panelWidth, PRINT.height, false, layout) + '</div>';
       }).join('');
     }
     $('bk-swatch').innerHTML = '<div class="bk-sw-head"><b>'
-      + esc(G ? G.name : 'Paul Tol · bright 默认色板') + '</b><span>' + cols.length + ' 色 · '
+      + esc(G ? G.name : 'Paul Tol · bright 默认色板') + '</b><span>' + raw.length + ' 个候选色 · '
       + esc(G ? G.src.n : '色盲友好')
       + (G && G.src.k === 'classic' && G.a.url ? ' · <a href="' + esc(G.a.url) + '">来源</a>' : '')
       + (G && G.scaleType ? ' · ' + G.scaleType : '') + ' · 点色块复制 HEX</span></div>'
-      + '<div class="bk-sw-strip">' + cols.map(function (h) {
+      + '<div class="bk-sw-strip">' + raw.map(function (h) {
         return '<button type="button" data-bhex="' + esc(h) + '" style="background:' + esc(h)
           + '" title="' + esc(h) + ' · RGB(' + esc(rgb(h)) + ')"></button>';
-      }).join('') + '</div><div class="bk-sw-hex">' + cols.map(function (h) {
+      }).join('') + '</div><div class="bk-sw-hex">' + raw.map(function (h) {
         return '<button type="button" class="hexcopy" data-bhex="' + esc(h) + '">' + esc(h) + '</button>';
       }).join('') + '</div>';
+    renderBenchColorControls(cols);
     if (S.referencePlot) {
       $('bk-meta').innerHTML = '<dl><dt>成图</dt><dd>' + $('bk-journal').value + ' · '
         + journal.comboMm + ' mm · 可编辑 SVG</dd><dt>图例</dt><dd>'
@@ -3169,9 +3286,8 @@ SOFTWARE.
         + '<dt>规范</dt><dd>' + esc(P.tip) + '</dd>'
         + '<dt>色卡</dt><dd>' + esc(G ? G.a.series + ' ' + G.a.no + ' · ' + G.a.title : '内置默认色板，右栏可换')
         + (G && G.style ? ' · ' + esc(G.style) : '') + '</dd>'
-        + '<dt>用色</dt><dd>' + cols.length + ' 色 · '
-        + (cols.length === (G ? G.cols.length : M.byUid[DEFAULT_PALETTE].cols.length) ? '原文原色' : '已派生色阶')
-        + ' · 模拟数据示意</dd></dl>';
+        + '<dt>用色</dt><dd>' + (P.g === 'heat' ? '色条表示 0–1 的归一化标量' :
+          new Set(cols).size + ' 个分配色') + ' · 模拟数据示意</dd></dl>';
     }
     renderBenchPlots(); renderBenchPals(); renderBenchFavs();
   }
@@ -3193,7 +3309,8 @@ SOFTWARE.
   var COMBO_TIME = ['C01', 'C03', 'C04'];
   var COMBO_RESPONSE = ['C03', 'C04'];
 
-  function comboFigureSvg(cols, ids) {
+  function comboFigureSvg(cols, ids, layout) {
+    layout = layout || {};
     var columns = ids.length > 1 ? 2 : 1;
     if (ids.length === 3 && COMBO_SERIES_GROUPS.some(function (group) {
       return ids.every(function (id) { return group.indexOf(id) >= 0; });
@@ -3204,10 +3321,10 @@ SOFTWARE.
     var cw = (w - pad * 2 - gap * (columns - 1)) / columns;
     var panelHeight = rows > 1 || columns === 3 ? 265 : PRINT.height;
     var ch = panelHeight + labelSpace;
-    var panels = ids.map(function (id) { return { id: id, inCombo: true }; });
+    var panels = ids.map(function (id) { return { id: id, inCombo: true, valueColors: layout.valueColors }; });
     var shared = '', legendHeight = 0;
     var legendLeft = pad + 56, legendWidth = w - legendLeft - pad;
-    var legendRows = Math.ceil(cols.length / Math.max(1, Math.floor(legendWidth / 46)));
+    var legendRows = Math.ceil(DEMO_SERIES_COUNT / Math.max(1, Math.floor(legendWidth / 46)));
     var legendContext = ctx(w, 48, false, cols, 0);
     COMBO_SERIES_GROUPS.forEach(function (group) {
       var members = panels.filter(function (panel) { return group.indexOf(panel.id) >= 0; });
@@ -3219,7 +3336,7 @@ SOFTWARE.
           + '" font-size="' + journal.text * 2 + '" font-weight="700">(' + labels + ')</text>';
         legendHeight += 16;
       }
-      shared += seriesLegend(legendContext, BY_ID[members[0].id], cols.length, legendLeft, legendHeight + 16, legendWidth);
+      shared += seriesLegend(legendContext, BY_ID[members[0].id], DEMO_SERIES_COUNT, legendLeft, legendHeight + 16, legendWidth);
       legendHeight += legendRows * 16 + 8;
     });
     panels.forEach(function (panel, i) {
@@ -3229,7 +3346,7 @@ SOFTWARE.
       if (i > first && COMBO_RESPONSE.indexOf(panels[i - 1].id) >= 0
         && COMBO_RESPONSE.indexOf(panel.id) >= 0) panel.hideY = true;
       panel.rowLegendCount = Math.max.apply(null, panels.slice(first, first + columns).map(function (other) {
-        return other.sharedLegend ? 0 : countLegend(BY_ID[other.id], cols);
+        return other.sharedLegend ? 0 : countLegend(BY_ID[other.id]);
       }));
     });
     var h = pad * 2 + legendHeight + ch * rows + gap * Math.max(0, rows - 1);
@@ -3428,10 +3545,10 @@ SOFTWARE.
       name = 'palette_reference_' + S.referencePlot.toLowerCase() + '.svg';
     } else if (S.comboMode) {
       var ids = S.combo.filter(function (id) { return BY_ID[id]; });
-      svg = comboFigureSvg(cols, ids);
+      svg = comboFigureSvg(cols, ids, benchLayout(cols));
       name = 'palette_combo_' + ids.join('-') + '.svg';
     } else {
-      svg = chartSvg(cols, S.type, width, PRINT.height, false)
+      svg = chartSvg(cols, S.type, width, PRINT.height, false, benchLayout(cols))
         .replace(/^<svg[^>]*>/, '<svg ' + printSvgAttrs(width, PRINT.height, journal.singleMm) + '>');
       name = 'palette_' + P.id + '.svg';
     }
@@ -3660,6 +3777,8 @@ SOFTWARE.
   }
   $('bk-reference-colors').addEventListener('click', function () {
     $('pv-scale').value = '0';
+    S.colorMode = 'auto';
+    delete S.colorOverrides[S.referencePlot];
     selectUid('ref-' + S.referencePlot);
   });
   $('bk-reference-picker').addEventListener('change', function () { openReferencePlot(this.value); });
@@ -3691,6 +3810,22 @@ SOFTWARE.
     else { S.uid = null; updateSelectionUI(); }
     setType(x.t);
     showToast('已恢复 ' + x.t + ' 的搭配');
+  });
+  $('bk-color-mode').addEventListener('change', function () { S.colorMode = this.value; renderBench(); });
+  $('bk-highlight').addEventListener('change', function () { S.highlight = Number(this.value); renderBench(); });
+  $('bk-color-reset').addEventListener('click', function () {
+    S.colorMode = 'auto';
+    delete S.colorOverrides[S.referencePlot || 'demo'];
+    renderBench();
+  });
+  $('bk-color-assign').addEventListener('change', function (event) {
+    var field = event.target, slot = field.getAttribute('data-series-color');
+    if (slot == null || !/^#[A-Fa-f0-9]{6}$/.test(field.value)) return;
+    var key = S.referencePlot || 'demo';
+    var overrides = S.colorOverrides[key] || (S.colorOverrides[key] = {});
+    overrides[slot] = field.value.toUpperCase();
+    renderBench();
+    $('bk-color-assign').querySelector(field.tagName + '[data-series-color="' + slot + '"]').focus({preventScroll:true});
   });
   $('bk-swatch').addEventListener('click', function (e) {
     var b = near(e.target, '[data-bhex]'); if (!b) return;
