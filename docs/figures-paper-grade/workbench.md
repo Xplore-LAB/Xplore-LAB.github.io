@@ -37,6 +37,10 @@ permalink: /palettes/guide/
 3. **缩到论文宽度依然能读。** 坐标与刻度清楚，图例靠近数据，图例文字使用深色，颜色相近的折线辅以线型。共享图例和外沿轴标用于含义一致的面板。检查灰度、常见色觉模拟、文字重叠和裁切。 [Nature 图形规范](https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/)
 4. **导出保留编辑能力。** 预览与 SVG 的数据位置、文字、图例和颜色一致。按目标宽度查看导出，文字应可选中。Nature 主刊普通图文使用 5–7 pt，子图编号 8 pt 加粗，线宽 0.25–1 pt。Science 和 Cell 使用各自的期刊设置。 [Nature 最终投稿](https://www.nature.com/nature/for-authors/final-submission) · [Science 官方指南存档](https://web.archive.org/web/20250810105213/https://www.science.org/content/page/instructions-preparing-initial-manuscript) · [Cell Press 官方指南存档](https://web.archive.org/web/20250911134049/https://www.cell.com/information-for-authors/figure-guidelines)
 
+## 工作台操作
+
+在「换图」里选论文案例，或按名称、编号搜索图表。点击「配色」里的色卡，画布会立即更新。需要单独调色或为支持的图设置圆点、方块、三角形、菱形时，打开「系列」。「排版」用于切换期刊版式和图内字体。「下载 SVG」会保留当前图形设置。「更多」里的 Python 代码是独立绘图模板。
+
 ## 工作台验收规则
 
 | 检查 | 通过条件 |

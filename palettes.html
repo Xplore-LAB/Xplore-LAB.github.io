@@ -237,39 +237,58 @@ pre.code code { background: none; padding: 0; font: inherit; }
 
 /* 顶部工作台：图表类型 × 色卡 的集中搭配台 */
 #bench { padding-top: 4px; }
-.bench { border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-  background: linear-gradient(180deg, #f9fcff, #fff 150px);
-  box-shadow: 0 12px 34px rgba(36,41,47,.06); }
-.bench-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 9px;
-  padding: 13px 17px 11px; border-bottom: 1px solid var(--line); }
-.bench-head h2 { font-family: var(--serif); font-size: 19px; margin: 0; }
-.bench-tag { font: 10px/1.5 var(--mono); letter-spacing: .08em; color: #fff;
-  background: var(--ink); border-radius: 4px; padding: 2px 7px; }
-.bench-head p { margin: 0; font-size: 12px; color: var(--ink-faint); }
-.bench-links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 11px; font-size: 12px; }
+.bench { border: 1px solid var(--line); border-radius: 12px; overflow: clip;
+  background: #fff; box-shadow: 0 10px 26px rgba(36,41,47,.05); }
+.bench-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  padding: 13px 17px; border-bottom: 1px solid var(--line); }
+.bench-head h2 { font: 650 17px/1.2 var(--sans); margin: 0; }
+.bench-links { margin-inline-start: auto; display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; }
 .bench-links a { color: var(--ink-soft); }
 .bench-links a:hover { color: var(--accent); }
-.bench-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
-  padding: 9px 13px; background: var(--wash); border-bottom: 1px solid var(--line); }
-.bench-bar label { display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11.5px; color: var(--ink-soft); }
-.bench-bar select, .bench-bar input[type=search] { font: inherit; font-size: 12px;
-  padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px;
-  background: #fff; color: var(--ink); }
-.bench-bar input[type=search] { width: 138px; }
-.bench-bar .btn { font-size: 11.5px; padding: 5px 10px; }
-.bench-bar .bk-sep { width: 1px; height: 20px; background: var(--line); margin: 0 2px; }
-.bench-bar input[type=range] { width: 62px; accent-color: var(--accent); }
-.bench-bar .val { font: 10.5px var(--mono); color: var(--ink-faint); min-width: 28px; }
-/* 三栏随视口展开：宽屏给画布更多空间，左右列表也不再挤成窄条 */
-.bench-body { display: grid;
-  grid-template-columns: clamp(210px,17vw,330px) minmax(0,1fr) clamp(250px,20vw,390px);
-  align-items: stretch; }
-.bench-side { min-width: 0; padding: 11px 10px; border-right: 1px solid var(--line); }
-.bench-side.right { border-right: 0; border-left: 1px solid var(--line); }
+.bench-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 8px 13px; background: #f7f9fb; border-bottom: 1px solid var(--line); }
+.bk-view-actions, .bk-output-actions, .bk-half-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.bench-bar .btn, .bench-side .btn { font-size: 11.5px; padding: 5px 9px; }
+.bk-output-actions { margin-inline-start: auto; }
+.bk-mobile-jump, .bk-back-preview { display: none; }
+.bk-export { position: relative; }
+.bk-export summary, .bk-tool-details summary { cursor: pointer; }
+.bk-export-menu { position: absolute; z-index: 3; top: calc(100% + 5px); right: 0;
+  display: grid; gap: 5px; width: max-content; padding: 6px; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 20px rgba(36,41,47,.09); }
+.bench-body { display: grid; grid-template-columns: clamp(182px,15vw,258px) minmax(0,1fr) clamp(235px,19vw,320px);
+  align-items: start; background: #f7f9fb; }
+.bench-side { min-width: 0; padding: 12px 10px; }
+.bk-source-panel { align-self: stretch; border-right: 1px solid var(--line); }
+.bk-inspector { align-self: stretch; padding: 0; border-left: 1px solid var(--line); background: #fbfcfd; }
 .bk-side-h { display: flex; align-items: baseline; justify-content: space-between; gap: 6px;
   font-size: 12px; font-weight: 650; margin: 0 0 8px; }
-.bk-side-h span { font: 10.5px var(--mono); color: var(--ink-faint); font-weight: 400; }
+.bk-side-h span { font: 10.5px var(--mono); color: var(--ink-soft); font-weight: 400; }
+.bk-field { display: grid; gap: 4px; color: var(--ink-soft); font-size: 11.5px; min-width: 0; }
+.bk-field input[type=search], .bk-field select, .bk-form-stack select, .bk-color-controls select, #bk-color-assign select {
+  width: 100%; min-width: 0; font: inherit; padding: 5px 7px;
+  color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 5px; }
+.bk-source-panel .bk-field { margin-bottom: 8px; }
+.bk-source-divider { margin: 11px 0; border-bottom: 1px solid var(--line); }
+.bk-quick-charts { display: none; }
+.bk-inspector-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0; border-bottom: 1px solid var(--line); background: #f1f4f7; }
+.bk-inspector-tabs button { font: inherit; font-size: 12px; color: var(--ink-soft);
+  cursor: pointer; border: 0; border-bottom: 2px solid transparent; padding: 10px 4px; background: transparent; }
+.bk-inspector-tabs button[aria-selected=true] { color: #124d72; background: #fff; font-weight: 650; border-bottom-color: #2275a4; }
+.bk-inspector [role=tabpanel] { padding: 0; }
+.bk-panel-content { min-width: 0; padding: 10px; }
+.bk-panel-content > .bk-field { margin-bottom: 7px; }
+.bk-panel-content #bk-reference-colors { margin-bottom: 7px; }
+.bk-inspector .bk-scroll { max-height: clamp(220px, 40vh, 410px); }
+.bk-form-stack { display: grid; gap: 9px; }
+.bk-form-stack label { display: grid; gap: 4px; font-size: 11.5px; color: var(--ink-soft); }
+.bk-form-stack input[type=range] { width: 100%; accent-color: var(--accent); }
+.bk-form-stack .val { color: var(--ink-soft); }
+.bk-tool-details { margin-top: 10px; padding-top: 6px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--ink-soft); }
+.bk-tool-details > div { margin-top: 8px; }
+.bk-setting-note { margin: 0; color: var(--ink-soft); font-size: 11.5px; }
+#bench [hidden] { display: none !important; }
 .bk-cats { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 8px; }
 .bk-cats .chip { font-size: 10px; padding: 2px 5px; }
 .bk-cats select { font: inherit; font-size: 11px; padding: 3px 6px; width: 100%;
@@ -283,7 +302,8 @@ pre.code code { background: none; padding: 0; font: inherit; }
   border: 1px solid transparent; border-radius: 5px; background: transparent; padding: 3px 6px; }
 .bk-plot-item:hover { background: var(--wash); color: var(--accent); }
 .bk-plot-item.is-on { background: #eaf6fd; border-color: #b9e2f7; color: #0369a1; font-weight: 650; }
-.bk-plot-item i { font: 10px var(--mono); color: var(--accent); flex: none; font-style: normal; }
+.bk-plot-item i { margin-inline-start: auto; font: 10px var(--mono); color: var(--ink-soft); flex: none; font-style: normal; }
+.bk-chart-glyph { flex: 0 0 17px; text-align: center; font-size: 13px; color: #276184; }
 .bk-pal-item { display: block; width: 100%; text-align: left; font: inherit; cursor: pointer;
   border: 1px solid transparent; border-radius: 6px; background: transparent;
   padding: 3px 6px; margin: 0 0 2px; }
@@ -299,7 +319,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-pal-strip i.more { background: var(--line) !important; flex: 0 0 8px; }
 .bk-empty { font-size: 11px; color: var(--ink-faint); line-height: 1.6; padding: 12px 4px; }
 .bk-references { padding: 8px; }
-#bk-reference-toggle { margin-inline-start: auto; }
+#bk-reference-toggle { width: 100%; }
 .bk-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .bk-reference { display: grid; min-width: 0; grid-template-rows: auto auto 1fr auto;
   margin: 0; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
@@ -314,7 +334,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
   .bk-reference-grid { display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
   .bk-reference { flex: 0 0 min(76%, 250px); scroll-snap-align: start; }
 }
-.bk-stage { min-width: 0; padding: 12px 14px 14px; }
+.bench-stage { min-width: 0; padding: 12px 14px 14px; }
 .bk-stage-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 0 0 9px; }
 .bk-stage-head b { font-size: 14px; }
 .bk-stage-head span { font-size: 11.5px; color: var(--ink-faint); }
@@ -336,8 +356,11 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-combo-tip { padding: 0 8px; margin: 4px 0; font-size: 11px; color: var(--ink-faint); }
 .bk-colors { margin: 9px 0; border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; font-size: 12px; }
 .bk-colors summary { cursor: pointer; }
-.bk-color-controls, #bk-color-assign { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 10px; margin-top: 8px; }
-#bk-color-assign label { display: inline-flex; min-width: 110px; align-items: center; gap: 5px; }
+.bk-color-controls, #bk-color-assign { display: grid; gap: 7px; margin-top: 8px; }
+.bk-color-controls { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.bk-color-controls label { font-size: 11px; }
+#bk-color-assign label { display: grid; grid-template-columns: minmax(58px,1fr) minmax(76px,auto) 30px; align-items: center; gap: 5px; }
+#bk-color-assign label span { overflow: hidden; text-overflow: ellipsis; }
 #bk-color-assign input[type=color] { width: 30px; height: 27px; padding: 1px; border: 1px solid var(--line); background: #fff; }
 #bk-color-note { margin: 6px 0 0; color: var(--ink-soft); }
 .bk-sw { margin: 11px 0 0; }
@@ -362,17 +385,28 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-fav-del { border: 0; background: none; cursor: pointer; color: var(--ink-faint); padding: 0 0 0 3px; }
 .bk-fav-del:hover { color: #b45309; }
 .bk-fav-empty { font-size: 11px; color: var(--ink-faint); }
-@media (max-width: 1000px) {
-  .bench-body { grid-template-columns: 1fr; }
-  .bench-side, .bench-side.right { border: 0; border-bottom: 1px solid var(--line); }
-  .bench-stage { order: -1; }
-  .bk-scroll { max-height: 176px; }
-}
-@media (max-width: 820px) {
-  .bk-canvas.multi { grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+  .bench-body { grid-template-columns: minmax(0, 1fr) minmax(218px, 30%); }
+  .bench-stage { grid-column: 1; grid-row: 1; }
+  .bk-inspector { grid-column: 2; grid-row: 1 / span 2; }
+  .bk-source-panel { grid-column: 1; border: 0; border-top: 1px solid var(--line); }
+  .bk-scroll { max-height: 190px; }
+  .bk-mobile-jump { display: flex; flex-wrap: wrap; gap: 8px; font-size: 11.5px; }
+  .bk-mobile-jump a, .bk-back-preview { color: #175779; }
+  .bk-back-preview { display: block; font-size: 11.5px; padding: 6px 10px; text-align: right; }
+  #bk-stage { scroll-margin-top: 72px; }
 }
 @media (max-width: 640px) {
-  .bench-bar input[type=search] { width: 100%; }
+  .bench-body { grid-template-columns: minmax(0, 1fr); }
+  .bench-stage, .bk-inspector, .bk-source-panel { grid-column: 1; grid-row: auto; }
+  .bench-stage { order: -2; padding: 9px; }
+  .bk-inspector { order: -1; border-left: 0; border-top: 1px solid var(--line); }
+  .bk-inspector .bk-scroll { max-height: 240px; }
+  .bk-canvas.multi { grid-template-columns: 1fr; }
+  .bk-quick-charts { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+  .bk-quick-charts > label { display: flex; flex: 1; min-width: 0; gap: 5px; font-size: 11.5px; }
+  #bk-plot { width: 100%; min-width: 0; }
+  #bk-source-panel, #bk-inspector { scroll-margin-top: 72px; }
 }
 
 /* 工具集成：色觉模拟 / 色阶 / 体检 / 提色 */
@@ -453,60 +487,34 @@ pre.code code { background: none; padding: 0; font: inherit; }
   <section id="bench" aria-label="配色工作台">
     <div class="bench">
       <div class="bench-head">
-        <span class="bench-tag">WORKBENCH</span>
         <h2>配色工作台</h2>
-        <p>左边选图表类型、右边选色卡，中间立刻看这组色画在这类图上的效果；点「组合排版」可勾选 2–4 张图拼成带编号的论文多面板 figure；与下方图谱、色卡库实时联动</p>
+
         <div class="bench-links">
           <a href="#gallery">图谱 79 类 ↓</a><a href="#library">色卡库 ↓</a><a href="/palettes/guide/">绘图标准</a>
         </div>
       </div>
       <div class="bench-bar">
-        <label>图表 <select id="bk-plot" aria-label="选择图表类型"></select></label>
-        <button type="button" class="btn" id="bk-prev" title="上一个图表">‹</button>
-        <button type="button" class="btn" id="bk-next" title="下一个图表">›</button>
-        <label>色卡 <input type="search" id="bk-q" placeholder="组名 / HEX / 期号" aria-label="搜索色卡"></label>
-        <button type="button" class="btn" id="bk-shuffle">换一组色卡</button>
-        <button type="button" class="btn primary" id="bk-rand">随机搭配</button>
-        <span class="bk-sep"></span>
+        <nav class="bk-mobile-jump" aria-label="工作台快捷入口">
+          <a href="#bk-source-panel">换图</a><a href="#bk-inspector" data-bk-jump="palette">配色</a><a href="#bk-inspector" data-bk-jump="series">系列</a><a href="#bk-inspector" data-bk-jump="layout">排版</a>
+        </nav>
+        <div class="bk-view-actions">
         <button type="button" class="btn" id="bk-mode">四图联看</button>
         <button type="button" class="btn" id="bk-combo" title="勾选 2–4 张图，拼成带编号的论文组合图">▦ 组合排版</button>
+        </div>
+        <div class="bk-output-actions">
+          <details class="bk-export"><summary class="btn">更多</summary>
+            <div class="bk-export-menu">
         <button type="button" class="btn" id="bk-fav">☆ 收藏搭配</button>
-        <label>期刊
-          <select id="bk-journal" aria-label="成图期刊"><option>Nature</option><option>Science</option><option>Cell</option></select>
-        </label>
-        <label>图内字体
-          <select id="bk-font" aria-label="图内字体">
-            <option value="journal">随期刊</option><option>Arial</option><option>Helvetica</option>
-            <option>DejaVu Sans</option><option>Times New Roman</option>
-          </select>
-        </label>
         <button type="button" class="btn" id="bk-copy">复制 Python</button>
-        <button type="button" class="btn" id="bk-svg">下载 SVG</button>
-        <span class="bk-sep"></span>
-        <label>色觉
-          <select id="bk-cvd" aria-label="色觉模拟">
-            <option value="none">正常视觉</option><option value="protan">红色盲</option>
-            <option value="deutan">绿色盲</option><option value="tritan">蓝黄色盲</option>
-            <option value="gray">灰度</option>
-          </select>
-        </label>
-        <label>色阶
-          <select id="bk-scale" aria-label="色阶扩展">
-            <option value="0">仅原色</option><option value="2">线性 · 浅色 ×2</option>
-            <option value="3">线性 · 明暗 ×3</option><option value="o2">OKLCH · 浅色 ×2</option>
-            <option value="o3">OKLCH · 明暗 ×3</option>
-          </select>
-        </label>
-        <label>透明度 <input type="range" id="bk-opacity" min="30" max="100" value="100" aria-label="填充透明度"><span class="val" id="bk-opacity-val">100%</span></label>
+            </div>
+          </details>
+        <button type="button" class="btn primary" id="bk-svg">下载 SVG</button>
+        </div>
       </div>
       <div class="bench-body">
-        <div class="bench-side">
-          <div class="bk-side-h">图表类型 <span id="bk-plot-n"></span></div>
-          <div class="bk-cats" id="bk-cats"></div>
-          <div class="bk-scroll" id="bk-plot-list"></div>
-        </div>
-        <div class="bench-stage">
-          <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span>
+        <aside class="bench-side bk-source-panel" id="bk-source-panel" aria-label="换图">
+          <h3 class="bk-side-h">换图 <a class="bk-back-preview" href="#bk-stage">回到预览 ↑</a></h3>
+          <label class="bk-field"><span>论文数据与案例</span>
             <select id="bk-reference-picker" aria-label="优秀案例">
               <option value="">选择案例</option>
               <optgroup label="真实论文数据">
@@ -517,20 +525,23 @@ pre.code code { background: none; padding: 0; font: inherit; }
                 <option value="Nature">Nature · 方法对照</option><option value="Science">Science · 组成比例</option><option value="Cell">Cell · 三面板嵌入</option>
               </optgroup>
             </select>
-            <button type="button" class="btn tiny" id="bk-reference-colors" hidden>用案例原色</button>
+          </label>
+          <div class="bk-half-row">
             <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看顶刊参考</button>
           </div>
-          <details class="bk-colors" id="bk-colors">
-            <summary>调整系列颜色</summary>
-            <div class="bk-color-controls">
-              <label>分配方式 <select id="bk-color-mode"><option value="auto">自动分配</option>
-                <option value="single">统一色</option><option value="highlight">突出一个系列</option></select></label>
-              <label id="bk-highlight-control" hidden>强调 <select id="bk-highlight"></select></label>
-              <button type="button" class="btn tiny" id="bk-color-reset">恢复自动</button>
-            </div>
-            <div id="bk-color-assign"></div>
-            <p id="bk-color-note"></p>
-          </details>
+          <div class="bk-source-divider"></div>
+          <div class="bk-side-h">图表类型 <span id="bk-plot-n"></span></div>
+          <div class="bk-quick-charts">
+        <label>图表 <select id="bk-plot" aria-label="选择图表类型"></select></label>
+        <button type="button" class="btn" id="bk-prev" title="上一个图表">‹</button>
+        <button type="button" class="btn" id="bk-next" title="下一个图表">›</button>
+          </div>
+          <label class="bk-field"><span>搜索图表</span><input id="bk-plot-search" type="search" placeholder="折线、柱状或 A04"></label>
+          <div class="bk-cats" id="bk-cats"></div>
+          <div class="bk-scroll" id="bk-plot-list"></div>
+        </aside>
+        <div class="bench-stage" id="bk-stage">
+          <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span></div>
           <div class="bk-canvas" id="bk-canvas"></div>
           <template id="bk-reference-template">
             <section class="bk-references" id="bk-references" aria-label="顶刊参考图">
@@ -565,11 +576,17 @@ pre.code code { background: none; padding: 0; font: inherit; }
               </div>
             </section>
           </template>
-          <div class="bk-sw" id="bk-swatch"></div>
           <div class="bk-meta" id="bk-meta"></div>
-          <div class="bk-favs" id="bk-favs"></div>
         </div>
-        <div class="bench-side right">
+        <aside class="bench-side bk-inspector" id="bk-inspector" aria-label="图表设置">
+          <div class="bk-inspector-tabs" id="bk-inspector-tabs" role="tablist" aria-label="图表设置">
+            <button type="button" id="bk-tab-palette" role="tab" aria-controls="bk-panel-palette" aria-selected="true" data-bk-panel="palette">配色</button>
+            <button type="button" id="bk-tab-series" role="tab" aria-controls="bk-panel-series" aria-selected="false" tabindex="-1" data-bk-panel="series">系列</button>
+            <button type="button" id="bk-tab-layout" role="tab" aria-controls="bk-panel-layout" aria-selected="false" tabindex="-1" data-bk-panel="layout">排版</button>
+          </div>
+          <a class="bk-back-preview" href="#bk-stage">回到预览 ↑</a>
+          <section id="bk-panel-palette" role="tabpanel" aria-labelledby="bk-tab-palette">
+            <div class="bk-panel-content">
           <div class="bk-side-h">色卡 <span id="bk-pal-n"></span></div>
           <div class="bk-cats" style="margin-bottom:7px">
             <select id="bk-pal-by" aria-label="筛选色卡">
@@ -586,8 +603,77 @@ pre.code code { background: none; padding: 0; font: inherit; }
               <option value="l">8 色以上 · 多分类</option>
             </select>
           </div>
+        <label class="bk-field"><span>搜索</span><input type="search" id="bk-q" placeholder="组名 / HEX / 期号" aria-label="搜索色卡"></label>
+            <button type="button" class="btn tiny" id="bk-reference-colors" hidden>用案例原色</button>
           <div class="bk-scroll" id="bk-pal-list"></div>
-        </div>
+          <div class="bk-sw" id="bk-swatch"></div>
+
+              <details class="bk-tool-details"><summary>色觉与色阶</summary>
+                <div class="bk-form-stack">
+        <label>色觉
+          <select id="bk-cvd" aria-label="色觉模拟">
+            <option value="none">正常视觉</option><option value="protan">红色盲</option>
+            <option value="deutan">绿色盲</option><option value="tritan">蓝黄色盲</option>
+            <option value="gray">灰度</option>
+          </select>
+        </label>
+        <label>色阶
+          <select id="bk-scale" aria-label="色阶扩展">
+            <option value="0">仅原色</option><option value="2">线性 · 浅色 ×2</option>
+            <option value="3">线性 · 明暗 ×3</option><option value="o2">OKLCH · 浅色 ×2</option>
+            <option value="o3">OKLCH · 明暗 ×3</option>
+          </select>
+        </label>
+        <label>透明度 <input type="range" id="bk-opacity" min="30" max="100" value="100" aria-label="填充透明度"><span class="val" id="bk-opacity-val">100%</span></label>
+                </div>
+              </details>
+              <details class="bk-tool-details"><summary>其他配色操作</summary>
+                <div class="bk-half-row">
+        <button type="button" class="btn" id="bk-shuffle">换一组色卡</button>
+        <button type="button" class="btn" id="bk-rand">随机搭配</button>
+                </div>
+          <div class="bk-favs" id="bk-favs"></div>
+              </details>
+            </div>
+          </section>
+          <section id="bk-panel-series" role="tabpanel" aria-labelledby="bk-tab-series" hidden>
+            <div class="bk-panel-content">
+              <div id="bk-marker-control" class="bk-form-stack" hidden>
+                <label class="bk-field"><span>点形</span><select id="bk-marker" aria-label="点形">
+                  <option value="auto">图表默认</option><option value="circle">● 圆点</option>
+                  <option value="square">■ 方块</option><option value="triangle">▲ 三角</option><option value="diamond">◆ 菱形</option>
+                </select></label>
+              </div>
+              <p id="bk-series-empty" class="bk-setting-note" hidden>这个图的颜色由数值色条控制。可在「配色」里更换色阶。</p>
+          <details class="bk-colors" id="bk-colors" open>
+            <summary>调整系列颜色</summary>
+            <div class="bk-color-controls">
+              <label>分配方式 <select id="bk-color-mode"><option value="auto">自动分配</option>
+                <option value="single">统一色</option><option value="highlight">突出一个系列</option></select></label>
+              <label id="bk-highlight-control" hidden>强调 <select id="bk-highlight"></select></label>
+              <button type="button" class="btn tiny" id="bk-color-reset">恢复自动</button>
+            </div>
+            <div id="bk-color-assign"></div>
+            <p id="bk-color-note"></p>
+          </details>
+
+            </div>
+          </section>
+          <section id="bk-panel-layout" role="tabpanel" aria-labelledby="bk-tab-layout" hidden>
+            <div class="bk-panel-content bk-form-stack">
+        <label>期刊
+          <select id="bk-journal" aria-label="成图期刊"><option>Nature</option><option>Science</option><option>Cell</option></select>
+        </label>
+        <label>图内字体
+          <select id="bk-font" aria-label="图内字体">
+            <option value="journal">随期刊</option><option>Arial</option><option>Helvetica</option>
+            <option>DejaVu Sans</option><option>Times New Roman</option>
+          </select>
+        </label>
+              <p class="bk-setting-note">期刊控制导出尺寸、字号和线宽。图内字体可以单独选择。</p>
+            </div>
+          </section>
+        </aside>
       </div>
     </div>
   </section>
@@ -1336,7 +1422,7 @@ SOFTWARE.
       }
       if (!K.mini) s += K.path(areaPath(lo, up), K.C(k), 'none', 0, .12);
       s += K.poly(p.map(ptsStr).join(' '), K.C(k), K.mini ? 1.5 : 1.9, demoLineDash(k));
-      if (!K.mini) for (i = 0; i < 6; i++) s += K.dot(p[i][0], p[i][1], 2.2, K.C(k));
+      if (!K.mini) for (i = 0; i < 6; i++) s += plotMarker(K, p[i][0], p[i][1], 2.2, K.C(k));
     }
     return s;
   };
@@ -1540,13 +1626,13 @@ SOFTWARE.
     }
     var rad = K.v === 'tsne' ? (K.mini ? 2.6 : 4.2) : (K.v === 'umap' ? (K.mini ? 1.8 : 2.8) : (K.mini ? 2.2 : 3.5));
     for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
-      s += K.dot(cs[k][j][0], cs[k][j][1], rad, K.C(k), .85);
+      s += plotMarker(K, cs[k][j][0], cs[k][j][1], rad, K.C(k), .85);
     return s;
   };
   GEO.bubble = function (K) {
     var s = K.frame(), cs = clusters(K, K.mini ? 4 : 6, 62), r = rng(63), k, j;
     for (k = 0; k < cs.length; k++) for (j = 0; j < cs[k].length; j++)
-      s += K.dot(cs[k][j][0], cs[k][j][1], (K.mini ? 2 : 3) + r() * (K.mini ? 3 : 5), K.C(k), .62);
+      s += plotMarker(K, cs[k][j][0], cs[k][j][1], (K.mini ? 2 : 3) + r() * (K.mini ? 3 : 5), K.C(k), .62);
     return s;
   };
   GEO.slope = function (K) {
@@ -2229,15 +2315,31 @@ SOFTWARE.
     }
     return s;
   };
-  function seriesMark(K, x, y, i) {
-    var r = journal.marker, color = K.C(i);
-    switch (i % 4) {
-      case 0: return K.dot(x, y, r, color);
-      case 1: return K.rect(x - r, y - r, r * 2, r * 2, color, { rx: 0 });
-      case 2: return K.shape(ptsStr([x, y - r - 1]) + ' ' + ptsStr([x - r - 1, y + r])
-        + ' ' + ptsStr([x + r + 1, y + r]), 'none', 0, color);
-      default: return K.shape([[x, y-r-1], [x+r+1, y], [x, y+r+1], [x-r-1, y]].map(ptsStr).join(' '), 'none', 0, color);
+  function pointSymbol(shape, x, y, r, color, opacity) {
+    var attrs = { fill: color, 'fill-opacity': opacity, 'data-point-shape': shape };
+    if (shape === 'square') {
+      return tag('rect', Object.assign(attrs, { x: x - r, y: y - r, width: r * 2, height: r * 2 }));
     }
+    if (shape === 'triangle' || shape === 'diamond') {
+      var points = shape === 'triangle'
+        ? [[x, y - r], [x - r, y + r], [x + r, y + r]]
+        : [[x, y - r], [x + r, y], [x, y + r], [x - r, y]];
+      return tag('polygon', Object.assign(attrs, {points: points.map(ptsStr).join(' ')}));
+    }
+    return tag('circle', Object.assign(attrs, { cx: x, cy: y, r: r }));
+  }
+  function plotMarker(K, x, y, radius, color, opacity) {
+    if (!K.markerShape || K.markerShape === 'auto') return K.dot(x, y, radius, color, opacity);
+    return pointSymbol(K.markerShape, x, y, K.mini ? radius : Math.max(radius, journal.marker), color, opacity);
+  }
+  function seriesMark(K, x, y, i) {
+    var shape = K.markerShape;
+    var r = journal.marker;
+    if (!shape || shape === 'auto') {
+      shape = ['circle', 'square', 'triangle', 'diamond'][i % 4];
+      if (shape === 'diamond') r += 1;
+    }
+    return pointSymbol(shape, x, y, r, K.C(i));
   }
   /* G07 多模型标记折线：数据和图例共用符号与线型。 */
   GEO.markLine = function (K) {
@@ -2486,7 +2588,7 @@ SOFTWARE.
         s += K.line(xx, ly - 4, xx + 13, ly - 4, K.C(k), 1.7, P.g === 'line' ? demoLineDash(k) : rocDash(k));
         if (P.g === 'markLine') s += seriesMark(K, xx + 6.5, ly - 4, k);
       }
-      else if (P.g === 'scatter') s += K.dot(xx + 6, ly - 4, 3, K.C(k));
+      else if (P.g === 'scatter') s += plotMarker(K, xx + 6, ly - 4, 3, K.C(k));
       else s += K.rect(xx, ly - 9, 11, 7, K.C(k), { rx: 0 });
       s += '<text x="' + (xx + 17) + '" y="' + ly + '" font-family="' + journalFont()
         + '" font-size="' + journal.text * 2 + '" fill="#111">M' + (k + 1) + '</text>';
@@ -2529,6 +2631,7 @@ SOFTWARE.
       layout.rowLegendCount == null ? legendCount : layout.rowLegendCount, layout.inCombo);
     K.n = DEMO_SERIES_COUNT;
     K.valueColors = layout.valueColors || [shade(cols[0] || '#4477AA', .92), cols[0] || '#4477AA'];
+    K.markerShape = layout.markerShape;
     K.legendCount = legendCount;
     K.inCombo = layout.inCombo;
     K.v = P.v;
@@ -2555,7 +2658,7 @@ SOFTWARE.
   var PENGUIN_SPECIES = ['Adelie', 'Chinstrap', 'Gentoo'];
   var S = { uid: DEFAULT_PALETTE, cmp: [], type: 'A04', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
-    colorMode: 'auto', highlight: 0, colorOverrides: {},
+    markerShape: 'auto', colorMode: 'auto', highlight: 0, colorOverrides: {},
     showReferences: false, referencePlot: PAPER_DATA.who ? 'WHO' : 'Nature', comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
@@ -3121,11 +3224,12 @@ SOFTWARE.
       ? G.cols : [shade(colors[0], .92), colors[0]];
   }
 
-  function benchLayout(cols) { return { valueColors: valueColors(benchPalette(), cols) }; }
+  function benchLayout(cols) { return { valueColors: valueColors(benchPalette(), cols), markerShape: S.markerShape }; }
 
   function renderBenchColorControls(cols) {
     var scalar = !S.referencePlot && !S.comboMode && !S.benchMulti && BY_ID[S.type].g === 'heat';
     $('bk-colors').hidden = scalar;
+    $('bk-series-empty').hidden = !scalar || !$('bk-marker-control').hidden;
     if (scalar) return;
     var roles = benchRoles(), palette = benchPaletteColors();
     $('bk-color-mode').value = S.colorMode;
@@ -3183,22 +3287,29 @@ SOFTWARE.
     }).join('') + (cols.length > 10 ? '<i class="more"></i>' : '') + '</span>';
   }
   function renderBenchPlots() {
-    var sig = [S.type, S.benchCat, S.comboMode ? 1 : 0, S.combo.join(',')].join('|');
+    var query = $('bk-plot-search').value.trim().toLowerCase();
+    var sig = [S.type, S.benchCat, S.comboMode ? 1 : 0, S.combo.join(','), query, S.referencePlot].join('|');
     if (sig === plotSig) return;               // 只有图 / 分类变化才重建列表
     plotSig = sig;
     $('bk-cats').innerHTML = [{ i: 'all', n: '全部 79 类' }].concat(CATS).map(function (c) {
       return '<button type="button" class="chip' + (S.benchCat === c.i ? ' is-on' : '')
         + '" data-bcat="' + c.i + '" title="' + esc(c.n) + '">'
-        + (c.i === 'all' ? '全部' : c.i) + '</button>';
+        + (c.i === 'all' ? '全部' : esc(c.n.slice(2))) + '</button>';
     }).join('');
-    var list = PLOTS.filter(function (P) { return S.benchCat === 'all' || P.c === S.benchCat; });
+    var list = PLOTS.filter(function (P) {
+      return (query || S.benchCat === 'all' || P.c === S.benchCat)
+        && (!query || [P.id, P.cn, P.en, P.use].join(' ').toLowerCase().indexOf(query) >= 0);
+    });
+    var glyph = {barOne:'▥',bar:'▥',stackBar:'▥',hbar:'☰',line:'⌁',markLine:'⌁',ts:'⌁',
+      scatter:'⠿',bubble:'◌',heat:'▦',box:'⊞',violin:'◈',hist:'▥'};
     $('bk-plot-list').innerHTML = list.map(function (P) {
       var cls = S.comboMode ? (S.combo.indexOf(P.id) >= 0 ? ' is-on is-picked' : '')
-        : (P.id === S.type ? ' is-on' : '');
+        : (!S.referencePlot && P.id === S.type ? ' is-on' : '');
       return '<button type="button" class="bk-plot-item' + cls + '" data-btype="' + P.id
         + '" title="' + esc(P.cn + ' · ' + P.use) + '">'
-        + '<i>' + P.id + '</i><span>' + esc(P.cn) + '</span></button>';
-    }).join('') || '<p class="bk-empty">这一类暂时没有图表。</p>';
+        + '<span class="bk-chart-glyph" aria-hidden="true">' + (glyph[P.g] || '◇') + '</span>'
+        + '<span>' + esc(P.cn) + '</span><i>' + P.id + '</i></button>';
+    }).join('') || '<p class="bk-empty">未找到匹配图表。</p>';
     $('bk-plot-n').textContent = list.length + ' / ' + PLOTS.length + ' 类';
     $('bk-plot').innerHTML = CATS.map(function (c) {
       return '<optgroup label="' + esc(c.n) + '">' + PLOTS.filter(function (P) {
@@ -3250,11 +3361,12 @@ SOFTWARE.
 
     var canvas = $('bk-canvas');
     $('bk-reference-toggle').textContent = S.showReferences ? '进入试色图' : '看顶刊参考';
-    $('bk-reference-picker').hidden = S.showReferences;
     $('bk-reference-colors').hidden = S.showReferences || !REFERENCE_PALETTES[S.referencePlot];
     $('bk-reference-picker').value = S.referencePlot || '';
     $('bk-swatch').hidden = S.showReferences;
     $('bk-colors').hidden = S.showReferences;
+    $('bk-marker-control').hidden = true;
+    $('bk-series-empty').hidden = true;
     $('bk-meta').hidden = S.showReferences;
     $('bk-copy').disabled = S.showReferences || Boolean(S.referencePlot);
     $('bk-svg').disabled = S.showReferences;
@@ -3269,6 +3381,14 @@ SOFTWARE.
 
     var G = benchGroup(), cols = benchCols(), raw = benchPaletteColors(), ids = benchIds(), P = BY_ID[S.type];
     var layout = benchLayout(cols);
+    var markerCharts = S.comboMode ? S.combo : ids;
+    var canChangeMarker = S.referencePlot
+      ? ['Nature', 'Cell', 'Penguins'].indexOf(S.referencePlot) >= 0
+      : markerCharts.some(function (id) {
+        return ['line', 'scatter', 'bubble', 'markLine'].indexOf(BY_ID[id].g) >= 0;
+      });
+    $('bk-marker-control').hidden = !canChangeMarker;
+    $('bk-marker').value = S.markerShape;
     var columns = S.comboMode && S.combo.length > 1 ? 2 : 1;
     var panelWidth = printUnits(journal.singleMm);
     if (S.referencePlot) {
@@ -3371,11 +3491,12 @@ SOFTWARE.
     var cw = (w - pad * 2 - gap * (columns - 1)) / columns;
     var panelHeight = rows > 1 || columns === 3 ? 265 : PRINT.height;
     var ch = panelHeight + labelSpace;
-    var panels = ids.map(function (id) { return { id: id, inCombo: true, valueColors: layout.valueColors }; });
+    var panels = ids.map(function (id) { return { id: id, inCombo: true, valueColors: layout.valueColors, markerShape: layout.markerShape }; });
     var shared = '', legendHeight = 0;
     var legendLeft = pad + 56, legendWidth = w - legendLeft - pad;
     var legendRows = Math.ceil(DEMO_SERIES_COUNT / Math.max(1, Math.floor(legendWidth / 46)));
     var legendContext = ctx(w, 48, false, cols, 0);
+    legendContext.markerShape = layout.markerShape;
     COMBO_SERIES_GROUPS.forEach(function (group) {
       var members = panels.filter(function (panel) { return group.indexOf(panel.id) >= 0; });
       if (members.length < 2) return;
@@ -3421,7 +3542,7 @@ SOFTWARE.
   }
 
   function referencePoint(x, y, r, fill, opacity) {
-    return tag('circle', {cx:x.toFixed(1), cy:y.toFixed(1), r:r, fill:fill, 'fill-opacity':opacity});
+    return pointSymbol(S.markerShape === 'auto' ? 'circle' : S.markerShape, Number(x.toFixed(1)), Number(y.toFixed(1)), r, fill, opacity);
   }
 
   function referenceAxes(K, x, y, w, h) {
@@ -3873,6 +3994,40 @@ SOFTWARE.
     });
   });
   $('bk-svg').addEventListener('click', downloadSvg);
+  var inspectorTabs = Array.from($('bk-inspector-tabs').querySelectorAll('[role=tab]'));
+  function activateInspector(panel, focus) {
+    inspectorTabs.forEach(function (tab) {
+      var selected = tab.dataset.bkPanel === panel;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      $(tab.getAttribute('aria-controls')).hidden = !selected;
+      if (selected && focus) tab.focus();
+    });
+  }
+  $('bk-inspector-tabs').addEventListener('click', function (event) {
+    var tab = near(event.target, '[data-bk-panel]');
+    if (tab) activateInspector(tab.dataset.bkPanel);
+  });
+  $('bk-inspector-tabs').addEventListener('keydown', function (event) {
+    var index = inspectorTabs.indexOf(event.target);
+    if (index < 0) return;
+    if (event.key === 'ArrowRight') index = (index + 1) % inspectorTabs.length;
+    else if (event.key === 'ArrowLeft') index = (index + inspectorTabs.length - 1) % inspectorTabs.length;
+    else if (event.key === 'Home') index = 0;
+    else if (event.key === 'End') index = inspectorTabs.length - 1;
+    else return;
+    event.preventDefault();
+    activateInspector(inspectorTabs[index].dataset.bkPanel, true);
+  });
+  document.querySelector('.bk-mobile-jump').addEventListener('click', function (event) {
+    var link = near(event.target, '[data-bk-jump]');
+    if (link) activateInspector(link.dataset.bkJump);
+  });
+  $('bk-plot-search').addEventListener('input', renderBenchPlots);
+  $('bk-marker').addEventListener('change', function () {
+    S.markerShape = this.value;
+    renderBench();
+  });
   function applyBenchJournal(name) {
     $('bk-journal').value = name;
     journal = JOURNALS[name];
