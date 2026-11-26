@@ -495,9 +495,10 @@ pre.code code { background: none; padding: 0; font: inherit; }
         </div>
         <div class="bench-stage">
           <div class="bk-stage-head"><b id="bk-title"></b><span id="bk-sub"></span>
-            <select id="bk-reference-picker" aria-label="顶刊换色图" hidden>
+            <select id="bk-reference-picker" aria-label="优秀案例" hidden>
               <option value="Nature">Nature · 方法对照</option><option value="Science">Science · 组成比例</option><option value="Cell">Cell · 三面板嵌入</option>
             </select>
+            <button type="button" class="btn tiny" id="bk-reference-colors" hidden>用案例原色</button>
             <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看顶刊参考</button>
           </div>
           <div class="bk-canvas" id="bk-canvas"></div>
@@ -547,6 +548,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
               <option value="ocr">本地 OCR</option>
               <option value="text">正文文字</option>
               <option value="classic">开源经典色板</option>
+              <option value="reference">优秀案例配色</option>
               <option value="upload">图片提色</option>
               <option value="s">2–4 色 · 少分组</option>
               <option value="m">5–7 色 · 常规</option>
@@ -595,6 +597,7 @@ pre.code code { background: none; padding: 0; font: inherit; }
       </select>
       <select id="source" aria-label="按来源筛选">
         <option value="">全部来源</option>
+        <option value="reference">优秀案例配色</option>
         <option value="verified">人工核对</option>
         <option value="ocr">本地 OCR</option>
         <option value="text">正文文字</option>
@@ -1001,7 +1004,8 @@ svg.fonttype: none</code></pre>
   var ST = { articles: M.stats[0], groups: M.stats[1], colors: M.stats[2], verified: M.stats[3] };
 
   /* ── 附加工具组：与归档数据共用同一个 G 模型，自动获得选中/对比/导出 ── */
-  var EXTRA_SRC = { classic: { k: 'classic', n: '开源经典' }, upload: { k: 'upload', n: '图片提色' } };
+  var EXTRA_SRC = { classic: { k: 'classic', n: '开源经典' }, upload: { k: 'upload', n: '图片提色' },
+    reference: { k: 'reference', n: '原刊图取色' } };
   var CLASSICS = [
     ['Okabe-Ito · 色盲友好 8 色', ['#000000','#E69F00','#56B4E9','#009E73','#F0E442','#0072B2','#D55E00','#CC79A7'], '色盲友好', 'Okabe & Ito 2008 · colorblindr / khroma / paletteer'],
     ['Paul Tol · bright 7 色', ['#4477AA','#EE6677','#228833','#CCBB44','#66CCEE','#AA3377','#BBBBBB'], '高饱和分类', 'Paul Tol colourschemes · khroma'],
@@ -1025,6 +1029,23 @@ svg.fonttype: none</code></pre>
   var TOOL_A = { id: 'tools', title: '内置工具与开源经典方案', url: '', series: '内置工具', no: '附' };
   CLASSICS.forEach(function (c, i) {
     addGroup('cl-' + i, TOOL_A, c[0], c[1], c[2], c[3], EXTRA_SRC.classic);
+  });
+  var REFERENCE_PALETTES = {
+    Nature: { url: 'https://www.nature.com/articles/s41586-024-08328-6/figures/3', panel: 'Fig. 3a',
+      colors: ['#FF7F0E', '#1F77B4'], note: '从原图 PNG 的数据标记取色，依次对应目标点和预测曲线。' },
+    Science: { url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9812260/#F2', panel: 'Fig. 2B',
+      colors: ['#A45187', '#62ADCC', '#E8B250', '#658C55', '#807FAB'],
+      note: '按原刊图例顺序从 JPEG 色块中心采样。色值可能受压缩影响。' },
+    Cell: { url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8238499/figure/fig2/', panel: 'Fig. 2A',
+      colors: ['#FAB461', '#7FB0D7', '#F37D72', '#BC7FB6', '#FCED74', '#B6D566',
+        '#D8D9DA', '#CEE5C1', '#BDB9D5', '#8BCFC2', '#F8CCDD'],
+      note: '从原刊 PDF 图例标记中心取样，保留 11 种不同色系；重画使用前六色。' }
+  };
+  Object.keys(REFERENCE_PALETTES).forEach(function (name) {
+    var item = REFERENCE_PALETTES[name];
+    var title = name + ' · ' + item.panel;
+    addGroup('ref-' + name, {id:'ref-' + name, title:title, url:item.url, series:'优秀案例', no:item.panel},
+      title + ' 原图取色', item.colors, '优秀案例', item.note, EXTRA_SRC.reference);
   });
   var VIEW = { cvd: 'none', opacity: 100 };
   function fx(h) { return simulate(h, VIEW.cvd); }
@@ -2420,7 +2441,7 @@ svg.fonttype: none</code></pre>
 
   /* ── 状态与通用 UI ─────────────────────────────────────────────── */
   var MAX_CMP = 4;
-  var S = { uid: null, cmp: [], type: 'A04', cat: 'A', all: false, open: {},
+  var S = { uid: 'ref-Nature', cmp: [], type: 'A04', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
     showReferences: false, referencePlot: 'Nature', comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
@@ -2944,7 +2965,7 @@ svg.fonttype: none</code></pre>
       if (by === 's' && nSize(G.cols.length) !== 0) return false;
       if (by === 'm' && nSize(G.cols.length) !== 1) return false;
       if (by === 'l' && nSize(G.cols.length) !== 2) return false;
-      if (['verified', 'ocr', 'text', 'classic', 'upload'].indexOf(by) >= 0 && G.src.k !== by) return false;
+      if (['verified', 'ocr', 'text', 'classic', 'upload', 'reference'].indexOf(by) >= 0 && G.src.k !== by) return false;
       if (q && [G.name, G.style, G.note, G.a.title, G.a.no, G.a.series,
                 (G.charts || []).join(' '), G.src.n, G.cols.join(' ')]
                 .join(' ').toLowerCase().indexOf(q) < 0) return false;
@@ -3025,13 +3046,14 @@ svg.fonttype: none</code></pre>
     var canvas = $('bk-canvas');
     $('bk-reference-toggle').textContent = S.showReferences ? '进入试色图' : '看顶刊参考';
     $('bk-reference-picker').hidden = S.showReferences || !S.referencePlot;
+    $('bk-reference-colors').hidden = S.showReferences || !S.referencePlot;
     if (S.referencePlot) $('bk-reference-picker').value = S.referencePlot;
     $('bk-swatch').hidden = S.showReferences;
     $('bk-meta').hidden = S.showReferences;
     $('bk-copy').disabled = S.showReferences || Boolean(S.referencePlot);
     $('bk-svg').disabled = S.showReferences;
     if (S.showReferences) {
-      $('bk-title').textContent = '顶刊参考图';
+      $('bk-title').textContent = '优秀案例 · 原刊参考';
       $('bk-sub').textContent = '点图放大，或在此处切换为可换色示例';
       canvas.className = 'bk-canvas';
       if (!$('bk-references')) canvas.replaceChildren($('bk-reference-template').content.cloneNode(true));
@@ -3080,7 +3102,8 @@ svg.fonttype: none</code></pre>
     if (S.referencePlot) {
       $('bk-meta').innerHTML = '<dl><dt>成图</dt><dd>' + $('bk-journal').value + ' · '
         + journal.comboMm + ' mm · 可编辑 SVG</dd><dt>图例</dt><dd>'
-        + REFERENCE_PLOTS[S.referencePlot].legend + '</dd></dl>';
+        + REFERENCE_PLOTS[S.referencePlot].legend + '</dd>'
+        + '<dt>案例取色</dt><dd>' + esc(REFERENCE_PALETTES[S.referencePlot].note) + '</dd></dl>';
     } else if (S.comboMode) {
       var chosen = S.combo.map(function (id) { return BY_ID[id] ? BY_ID[id].id + ' ' + BY_ID[id].cn : ''; }).filter(Boolean);
       $('bk-meta').innerHTML = '<dl>'
@@ -3582,8 +3605,13 @@ svg.fonttype: none</code></pre>
     S.cat = BY_ID[S.type].c;
     S.referencePlot = name;
     renderTypeUI();
-    renderPreview();
+    if (S.uid && S.uid.indexOf('ref-') === 0) selectUid('ref-' + name);
+    else renderPreview();
   }
+  $('bk-reference-colors').addEventListener('click', function () {
+    $('pv-scale').value = '0';
+    selectUid('ref-' + S.referencePlot);
+  });
   $('bk-reference-picker').addEventListener('change', function () { openReferencePlot(this.value); });
   $('bk-canvas').addEventListener('click', function (event) {
     var button = near(event.target, '[data-reference-journal]');
@@ -3666,7 +3694,7 @@ svg.fonttype: none</code></pre>
   $('pv-classic').innerHTML = '<option value="">选一组试色…</option>' + CLASSICS.map(function (c, i) {
     return '<option value="cl-' + i + '">' + esc(c[0]) + '</option>';
   }).join('');
-  renderTypeUI(); render(); renderPreview(); renderGallery(); setupReveal(); onScroll();
+  renderTypeUI(); render(); updateSelectionUI(); renderPreview(); renderGallery(); setupReveal(); onScroll();
 })();
 </script>
 </body>
