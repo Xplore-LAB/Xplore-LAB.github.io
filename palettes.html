@@ -474,6 +474,12 @@ pre.code code { background: none; padding: 0; font: inherit; }
         <label>期刊
           <select id="bk-journal" aria-label="成图期刊"><option>Nature</option><option>Science</option><option>Cell</option></select>
         </label>
+        <label>图内字体
+          <select id="bk-font" aria-label="图内字体">
+            <option value="journal">随期刊</option><option>Arial</option><option>Helvetica</option>
+            <option>DejaVu Sans</option><option>Times New Roman</option>
+          </select>
+        </label>
         <button type="button" class="btn" id="bk-copy">复制 Python</button>
         <button type="button" class="btn" id="bk-svg">下载 SVG</button>
         <span class="bk-sep"></span>
@@ -1124,10 +1130,23 @@ SOFTWARE.
       lineMin: .51, lineMax: 1.48, marker: 3, upper: true }
   };
   var PRINT = { height: 330 };
-  var journal = JOURNALS.Nature;
+  var journal = JOURNALS.Nature, figureFont = 'journal';
+  var FONT_STACKS = {
+    Arial: ['Arial', 'Helvetica', 'DejaVu Sans'],
+    Helvetica: ['Helvetica', 'Arial', 'DejaVu Sans'],
+    'DejaVu Sans': ['DejaVu Sans', 'Arial', 'Helvetica'],
+    'Times New Roman': ['Times New Roman', 'Times', 'Liberation Serif', 'DejaVu Serif']
+  };
 
   function printUnits(mm) { return Math.round(mm * 144 / 25.4); }
-  function journalFont() { return journal.family + ', Arial, Helvetica, sans-serif'; }
+  function fontSettings() {
+    var primary = figureFont === 'journal' ? journal.family : figureFont;
+    return { family: primary === 'Times New Roman' ? 'serif' : 'sans-serif', stack: FONT_STACKS[primary] };
+  }
+  function journalFont() {
+    var font = fontSettings();
+    return font.stack.concat(font.family).join(', ');
+  }
   function panelLetter(i) { return String.fromCharCode((journal.upper ? 65 : 97) + i); }
 
   /* ── SVG 引擎：所有图表共用一个坐标系与一组绘制原语 ─────────────── */
@@ -2838,19 +2857,23 @@ SOFTWARE.
   }
   var natureMplstyle = $('mplstyle').textContent;
   function journalMplstyle() {
+    var font = fontSettings();
     return natureMplstyle
       .replace(/^figure.figsize:.*$/m, 'figure.figsize: ' + (journal.singleMm / 25.4).toFixed(5) + ', 2.29')
-      .replace(/^font.sans-serif:.*$/m, 'font.sans-serif: ' + journal.family + ', Arial, DejaVu Sans')
+      .replace(/^font.family:.*$/m, 'font.family: ' + font.family)
+      .replace(/^font.sans-serif:.*$/m, 'font.' + font.family + ': ' + font.stack.join(', '))
       .replace(/^(font.size|xtick.labelsize|ytick.labelsize|legend.fontsize):.*$/gm, '$1: ' + journal.text)
       .replace(/^(axes.labelsize|axes.titlesize):.*$/gm, '$1: ' + journal.axis)
       .replace(/^lines.markersize:.*$/m, 'lines.markersize: ' + journal.marker);
   }
   function pythonJournalStyle() {
     // Inline settings keep the copied script independent from the current page selection.
-    var values = { 'font.sans-serif': [journal.family, 'Arial', 'DejaVu Sans'], 'font.size': journal.text,
+    var font = fontSettings();
+    var values = { 'font.family': font.family, 'font.size': journal.text,
       'axes.labelsize': journal.axis, 'axes.titlesize': journal.axis, 'axes.linewidth': .6,
       'xtick.labelsize': journal.text, 'ytick.labelsize': journal.text, 'xtick.major.width': .6, 'ytick.major.width': .6,
       'legend.fontsize': journal.text, 'lines.linewidth': .8, 'lines.markersize': journal.marker };
+    values['font.' + font.family] = font.stack;
     return 'plt.rcParams.update(' + JSON.stringify(values) + ')\n';
   }
   function pyTemplate(P, selectedCols) {
@@ -3857,6 +3880,11 @@ SOFTWARE.
   }
   $('bk-journal').addEventListener('change', function () {
     applyBenchJournal(this.value);
+    renderPreview();
+  });
+  $('bk-font').addEventListener('change', function () {
+    figureFont = this.value;
+    $('mplstyle').textContent = journalMplstyle();
     renderPreview();
   });
   $('bk-reference-toggle').addEventListener('click', function () {
