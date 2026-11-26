@@ -61,3 +61,33 @@ permalink: /palettes/guide/
 两张图均可独立换色，下载的 CSV 保留源单位。企鹅 CSV 中的两条缺失体重保留为空白，便于复核排除规则。
 
 [返回配色工作台](/palettes/#bench)
+
+## 大模型论文原图索引 {#llm-figures}
+
+左侧「大模型与智能体」选择下列案例。「打开本例原图」用于对照作者的图。用案例原色或挑其他色卡，右侧「系列」可单独调整各曲线、点或色块。绘图数据和 SVG 均可下载。
+
+| 案例 | 原图 | 重绘数据 |
+| --- | --- | --- |
+| [Lost in the Middle · Fig. 1](/palettes/?case=Lost#bench) | [Liu 等，TACL](https://aclanthology.org/2024.tacl-1.9.pdf#page=2) | 从原图读取 20 个近似值，闭卷基线取自正文 |
+| [Chinchilla · Fig. 2](/palettes/?case=Chinchilla#bench) | [DeepMind 官方图](https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/#caption-7fd27af7-6558-4674-aa0e-eed4343a8f6d) | 从论文表 6–9 记录七项基准值 |
+| [METR · 50% time horizon](/palettes/?case=METR#bench) | [v1.1 官方图与下载](https://metr.org/time-horizons/) | 从公开 YAML 读取点与上下界，用前沿点重拟合趋势 |
+| [DeepSeek-R1-Zero · Fig. 1](/palettes/?case=DeepSeek#bench) | [arXiv v2](https://arxiv.org/html/2501.12948v2#S2.F1) | 从作者 SVG 提取两面板曲线坐标 |
+| [Gemini 1.5 · Fig. 9](/palettes/?case=Gemini#bench) | [arXiv v5](https://arxiv.org/html/2403.05530v5#S5.F9) | 从作者 SVG 提取 1,100 格的检索与 API 状态 |
+| [vLLM · Fig. 12](/palettes/?case=VLLM#bench) | [SOSP 论文](https://arxiv.org/html/2309.06180v1#S5.F12) | 从作者 SVG 提取六个面板的曲线与标记 |
+| [Llama 3 · Fig. 2](/palettes/?case=Llama#bench) | [arXiv v3](https://arxiv.org/html/2407.21783v3#S3.F3.fig1) | 从作者 SVG 提取拟合线、测量点和最小值标记 |
+| [GPT-4 · Fig. 1](/palettes/?case=GPT4#bench) | [OpenAI 技术报告](https://cdn.openai.com/papers/gpt-4.pdf#page=3) | 从报告 PDF 提取数据点和拟合线的矢量坐标 |
+
+矢量坐标换算所得数值用于复刻已发表的图形。提取脚本保存在项目的 `scripts/extract_workbench_llm_coordinates.py`。源文件的线上轨迹可能经过作者简化。工作台使用统一期刊排版，可切换图内字体、点形和颜色。
+
+### 用自己的 CSV 作图
+
+展开左侧「用自己的 CSV 作图」。第一行是表头，第一列是类别，后续列是 1–8 个数值系列。支持 1–40 行，缺失值留空。比如：
+
+```csv
+Dataset,Model A,Model B
+Task 1,74.2,79.9
+Task 2,81.0,83.6
+Task 3,75.4,80.2
+```
+
+同一份数据可在分组柱图和多系列折线图间切换，设定轴名和单位，再用配色面板搭配。折线按 CSV 行顺序绘制，缺失值处断开。文件在当前浏览器本地读取，作图后可导出 SVG。

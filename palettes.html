@@ -320,6 +320,9 @@ pre.code code { background: none; padding: 0; font: inherit; }
 .bk-empty { font-size: 11px; color: var(--ink-faint); line-height: 1.6; padding: 12px 4px; }
 .bk-references { padding: 8px; }
 #bk-reference-toggle { width: 100%; }
+.bk-source-index { display: block; margin-top: 6px; font-size: 11.5px; }
+#bk-custom-file { width: 100%; min-width: 0; font-size: 11px; }
+.bk-form-stack input[type=text] { width: 100%; min-width: 0; border: 1px solid var(--line); border-radius: 5px; padding: 4px 6px; font: inherit; }
 .bk-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .bk-reference { display: grid; min-width: 0; grid-template-rows: auto auto 1fr auto;
   margin: 0; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
@@ -517,6 +520,16 @@ pre.code code { background: none; padding: 0; font: inherit; }
           <label class="bk-field"><span>论文数据与案例</span>
             <select id="bk-reference-picker" aria-label="优秀案例">
               <option value="">选择案例</option>
+              <optgroup label="大模型与智能体">
+                <option value="Lost">Lost in the Middle · 长上下文</option>
+                <option value="Chinchilla">Chinchilla · 多基准比较</option>
+                <option value="METR">METR · 智能体任务时长</option>
+                <option value="DeepSeek">DeepSeek-R1-Zero · 训练曲线</option>
+                <option value="Gemini">Gemini 1.5 · 视频检索热图</option>
+                <option value="VLLM">vLLM · 负载与时延</option>
+                <option value="Llama">Llama 3 · IsoFLOPs</option>
+                <option value="GPT4">GPT-4 · 预测损失</option>
+              </optgroup>
               <optgroup label="真实论文数据">
                 <option value="WHO">Nature · WHO 月度趋势</option>
                 <option value="Penguins">PLOS ONE · 企鹅体重</option>
@@ -527,7 +540,19 @@ pre.code code { background: none; padding: 0; font: inherit; }
             </select>
           </label>
           <div class="bk-half-row">
-            <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看顶刊参考</button>
+            <button type="button" class="btn tiny" id="bk-reference-toggle" aria-controls="bk-canvas">看论文原图</button>
+            <a class="bk-source-index" href="/palettes/guide/#llm-figures">大模型原图索引</a>
+            <details class="bk-tool-details">
+              <summary>用自己的 CSV 作图</summary>
+              <div class="bk-form-stack">
+                <label>首列为类别，后续列为数值系列<input id="bk-custom-file" type="file" accept=".csv,text/csv" aria-describedby="bk-custom-status"></label>
+                <label>图表类型<select id="bk-custom-type"><option value="bar">分组柱状图</option><option value="line">多系列折线图</option></select></label>
+                <label>横轴名称<input id="bk-custom-x" type="text" maxlength="48" placeholder="默认使用首列表头"></label>
+                <label>纵轴名称与单位<input id="bk-custom-y" type="text" maxlength="48" placeholder="例如 Accuracy (%)"></label>
+                <button type="button" class="btn tiny" id="bk-custom-show" hidden>打开我的数据图</button>
+                <div id="bk-custom-status" role="status">例如第一行可写 category,Model A,Model B</div>
+              </div>
+            </details>
           </div>
           <div class="bk-source-divider"></div>
           <div class="bk-side-h">图表类型 <span id="bk-plot-n"></span></div>
@@ -2650,6 +2675,15 @@ SOFTWARE.
   try { PAPER_DATA = JSON.parse($('paper-case-data').textContent) || {}; } catch (error) {
     // The demo catalogue is still available when the published data cannot be loaded.
   }
+  var LLM_DATA_KEYS = {Lost:'lost_in_middle', Chinchilla:'chinchilla', METR:'metr_horizon',
+    DeepSeek:'deepseek_r1', Gemini:'gemini_video', VLLM:'vllm_latency', Llama:'llama_isoflops', GPT4:'gpt4_scaling'};
+  Object.keys(LLM_DATA_KEYS).forEach(function (name) {
+    var data = PAPER_DATA[LLM_DATA_KEYS[name]];
+    if (!data) return;
+    var title = name + ' · 案例取色';
+    addGroup('ref-' + name, {id:'ref-' + name, title:title, url:data.original, series:'优秀案例', no:'LLM'},
+      title, data.originalColors, '优秀案例', '原图色系，按系列顺序排列。', EXTRA_SRC.reference);
+  });
   var WHO_REGIONS = [
     ['Global','Global'], ['African Region','Africa'], ['Region of the Americas','Americas'],
     ['Eastern Mediterranean Region','Eastern Mediterranean'], ['European Region','Europe'],
@@ -2658,7 +2692,7 @@ SOFTWARE.
   var PENGUIN_SPECIES = ['Adelie', 'Chinstrap', 'Gentoo'];
   var S = { uid: DEFAULT_PALETTE, cmp: [], type: 'A04', cat: 'A', all: false, open: {},
     galCat: 'all', galPri: 0, benchCat: 'all', benchMulti: false,
-    markerShape: 'auto', colorMode: 'auto', highlight: 0, colorOverrides: {},
+    markerShape: 'auto', customType: 'bar', colorMode: 'auto', highlight: 0, colorOverrides: {},
     showReferences: false, referencePlot: PAPER_DATA.who ? 'WHO' : 'Nature', comboMode: false, combo: ['A01', 'A06', 'D01', 'G11'] };
   var SIZE_LABELS = ['2–4 色 · 少分组', '5–7 色 · 常规', '8 色以上 · 多分类'];
   var toastTimer = null;
@@ -3180,7 +3214,10 @@ SOFTWARE.
   };
 
   function benchRoles() {
-    if (S.referencePlot) return CASE_COLOR_ROLES[S.referencePlot];
+    if (S.referencePlot) {
+      var spec = REFERENCE_PLOTS[S.referencePlot], paper = PAPER_DATA[spec.dataset];
+      return (paper && paper.roles) || CASE_COLOR_ROLES[S.referencePlot];
+    }
     return Array.from({length: DEMO_SERIES_COUNT}, function (_, i) { return 'M' + (i + 1); });
   }
 
@@ -3360,9 +3397,12 @@ SOFTWARE.
     $('bk-combo').textContent = S.comboMode ? '✓ 退出组合' : '▦ 组合排版';
 
     var canvas = $('bk-canvas');
-    $('bk-reference-toggle').textContent = S.showReferences ? '进入试色图' : '看顶刊参考';
-    $('bk-reference-colors').hidden = S.showReferences || !REFERENCE_PALETTES[S.referencePlot];
-    $('bk-reference-picker').value = S.referencePlot || '';
+    var activeCase = REFERENCE_PLOTS[S.referencePlot];
+    var caseData = activeCase && PAPER_DATA[activeCase.dataset];
+    $('bk-reference-toggle').textContent = S.showReferences ? '返回试色图'
+      : caseData && caseData.original ? '打开本例原图 ↗' : '看顶刊参考';
+    $('bk-reference-colors').hidden = S.showReferences || !(REFERENCE_PALETTES[S.referencePlot] || (caseData && caseData.originalColors));
+    $('bk-reference-picker').value = S.referencePlot === 'Custom' ? '' : S.referencePlot || '';
     $('bk-swatch').hidden = S.showReferences;
     $('bk-colors').hidden = S.showReferences;
     $('bk-marker-control').hidden = true;
@@ -3383,7 +3423,7 @@ SOFTWARE.
     var layout = benchLayout(cols);
     var markerCharts = S.comboMode ? S.combo : ids;
     var canChangeMarker = S.referencePlot
-      ? ['Nature', 'Cell', 'Penguins'].indexOf(S.referencePlot) >= 0
+      ? (S.referencePlot === 'Custom' && S.customType === 'line') || ['Nature', 'Cell', 'Penguins', 'Lost', 'METR', 'DeepSeek', 'VLLM', 'Llama', 'GPT4'].indexOf(S.referencePlot) >= 0
       : markerCharts.some(function (id) {
         return ['line', 'scatter', 'bubble', 'markLine'].indexOf(BY_ID[id].g) >= 0;
       });
@@ -3394,7 +3434,7 @@ SOFTWARE.
     if (S.referencePlot) {
       var spec = REFERENCE_PLOTS[S.referencePlot];
       $('bk-title').textContent = spec.title;
-      $('bk-sub').textContent = (spec.dataset ? '真实论文数据' : '模拟数据重画') + ' · 选右侧色卡直接换色';
+      $('bk-sub').textContent = paperCaseLabel(caseData) + ' · 选右侧色卡直接换色';
       canvas.className = 'bk-canvas combo';
       canvas.innerHTML = referencePlotSvg(cols, S.referencePlot);
     } else if (S.comboMode) {
@@ -3434,9 +3474,11 @@ SOFTWARE.
       var paper = spec.dataset && PAPER_DATA[spec.dataset];
       $('bk-meta').innerHTML = '<dl><dt>成图</dt><dd>' + $('bk-journal').value + ' · '
         + referenceWidth(spec) + ' mm · 可编辑 SVG</dd>'
-        + (paper ? '<dt>论文</dt><dd><a href="' + esc(paper.paper) + '">' + esc(paper.citation) + '</a></dd>'
+        + (S.referencePlot === 'Custom' ? '<dt>数据</dt><dd>' + esc(paper.filename) + ' · ' + paper.rows.length + ' 行 · 本地 CSV</dd>'
+          : paper ? '<dt>论文</dt><dd><a href="' + esc(paper.paper) + '">' + esc(paper.citation) + '</a>'
+          + (paper.original ? ' · <a href="' + esc(paper.original) + '" target="_blank" rel="noopener">查看原图 ↗</a>' : '') + '</dd>'
           + '<dt>数据</dt><dd>' + esc(paper.note) + ' <a href="' + esc(paper.source) + '">数据来源</a>'
-          + ' · <a href="' + esc(paper.licenseUrl) + '">' + esc(paper.license) + '</a>'
+          + (paper.license ? ' · <a href="' + esc(paper.licenseUrl) + '">' + esc(paper.license) + '</a>' : '')
           + ' · <button type="button" class="btn tiny" id="bk-paper-csv">下载绘图数据 CSV</button></dd>'
           : '<dt>图例</dt><dd>' + esc(spec.legend) + '</dd><dt>案例取色</dt><dd>'
             + esc(REFERENCE_PALETTES[S.referencePlot].note) + '</dd>')
@@ -3751,7 +3793,325 @@ SOFTWARE.
     return out + referenceLabel(17, 144, 'Body mass (g)', journal.axis, 'middle', 'rotate(-90 17 144)');
   }
 
+  function paperMark(x, y, radius, color) {
+    return pointSymbol(S.markerShape === 'auto' ? 'circle' : S.markerShape, x, y, radius, color);
+  }
+
+  function paperLost(K, w, data) {
+    var left = 60, top = 31, width = w - 80, height = 245;
+    var X = function (n) { return left + width * (n - .1) / 20.8; };
+    var Y = function (v) { return top + height * (77 - v) / 24.2; };
+    var out = K.rect(left, top, width, height, '#EAEAF2')
+      + referenceLabel(w / 2, 20, '20 Total Retrieved Documents (~4K tokens)', journal.axis, 'middle');
+    [55,60,65,70,75].forEach(function (v) {
+      out += K.line(left, Y(v), left + width, Y(v), '#fff', 1)
+        + referenceLabel(left - 9, Y(v) + 4, v, journal.text, 'end');
+    });
+    [[1,'1st'],[5,'5th'],[10,'10th'],[15,'15th'],[20,'20th']].forEach(function (tick) {
+      out += K.line(X(tick[0]), top, X(tick[0]), top + height, '#fff', 1)
+        + referenceLabel(X(tick[0]), top + height + 17, tick[1], journal.text, 'middle');
+    });
+    var baseline = Y(data.rows[0][2]);
+    out += K.poly([[left,baseline],[left + width,baseline]].map(ptsStr).join(' '), K.C(1), 1.6, '6 3');
+    var points = data.rows.map(function (row) { return [X(row[0]), Y(row[1])]; });
+    out += K.poly(points.map(ptsStr).join(' '), K.C(0), 2);
+    points.forEach(function (pt) { out += paperMark(pt[0], pt[1], 3.4, K.C(0)); });
+    out += referenceLabel(22, 150, 'Accuracy (%)', journal.axis, 'middle', 'rotate(-90 22 150)')
+      + referenceLabel(w / 2, 318, 'Position of Document with the Answer', journal.axis, 'middle');
+    ['gpt-3.5-turbo-0613','gpt-3.5-turbo-0613 (closed-book)'].forEach(function (label, i) {
+      var y = 339 + i * 16;
+      out += K.poly([[left,y],[left + 20,y]].map(ptsStr).join(' '), K.C(i), 1.7, i ? '6 3' : null)
+        + (i ? '' : paperMark(left + 10, y, 3.1, K.C(i)))
+        + referenceLabel(left + 26, y + 4, label, journal.text);
+    });
+    return out;
+  }
+
+  function paperChinchilla(K, w, data) {
+    var left = 54, top = 60, width = w - left - 15, height = 236, floor = 38;
+    var Y = function (v) { return top + height * (92 - v) / (92 - floor); };
+    var out = referenceAxes(K, left, top, width, height);
+    for (var v = 40; v <= 90; v += 10) {
+      out += K.line(left - 4, Y(v), left, Y(v), '#26313a', 1)
+        + referenceLabel(left - 8, Y(v) + 4, v, journal.text, 'end');
+    }
+    var groupWidth = width / data.rows.length, bar = groupWidth * .175;
+    data.rows.forEach(function (row, index) {
+      var x = left + groupWidth * (index + .5), y = top + height + 12;
+      row.slice(1).forEach(function (value, series) {
+        if (value !== null) out += K.rect(x + (1 - series) * bar, Y(value), bar - .8, Y(floor) - Y(value), K.C(series), {rx:0});
+      });
+      out += referenceLabel(x, y, row[0], journal.text, 'end', 'rotate(-55 ' + x + ' ' + y + ')');
+    });
+    data.roles.forEach(function (label, i) {
+      var x = left + Math.floor(i / 2) * width * .44, y = 21 + (i % 2) * 19;
+      out += K.rect(x, y - 7, 18, 7, K.C(i), {rx:0})
+        + referenceLabel(x + 24, y, label, journal.text);
+    });
+    return out + referenceLabel(18, 178, 'Accuracy (%)', journal.axis, 'middle', 'rotate(-90 18 178)');
+  }
+
+  function paperMetr(K, w, data) {
+    var left = 63, top = 34, height = 275, width = w - left - 26;
+    var year = function (value) { return Date.parse(value) / 86400000 / 365.25; };
+    var start = year('2019-01-01'), end = year('2026-07-01');
+    var X = function (value) { return left + width * (value - start) / (end - start); };
+    var lower = Math.log(1 / 60), upper = Math.log(4000);
+    var Y = function (minutes) { return top + height * (upper - Math.log(minutes)) / (upper - lower); };
+    var out = referenceAxes(K, left, top, width, height);
+    [[1/60,'1 s'],[1/6,'10 s'],[1,'1 min'],[10,'10 min'],[60,'1 h'],[600,'10 h']].forEach(function (tick) {
+      out += K.line(left, Y(tick[0]), left + width, Y(tick[0]), '#dbe3e9', .7)
+        + referenceLabel(left - 8, Y(tick[0]) + 4, tick[1], journal.text, 'end');
+    });
+    for (var i = 2019; i <= 2026; i++) {
+      var tickX = X(year(i + '-01-01'));
+      out += referenceLabel(tickX, top + height + 17, i, journal.text, 'middle');
+    }
+    out += K.poly([[left,Y(960)],[left + width,Y(960)]].map(ptsStr).join(' '), '#79828b', 1, '5 4')
+      + referenceLabel(left + 4, Y(960) - 5, '16 h reliability limit', journal.text);
+    var frontier = data.rows.filter(function (row) { return row[5] && row[2] <= 960; });
+    var avgX = frontier.reduce(function (sum, row) { return sum + year(row[1]); }, 0) / frontier.length;
+    var avgY = frontier.reduce(function (sum, row) { return sum + Math.log(row[2]); }, 0) / frontier.length;
+    var covariance = 0, variance = 0;
+    frontier.forEach(function (row) {
+      var distance = year(row[1]) - avgX;
+      covariance += distance * (Math.log(row[2]) - avgY);
+      variance += distance * distance;
+    });
+    var slope = covariance / variance, first = year(frontier[0][1]), last = year(frontier[frontier.length - 1][1]);
+    var trend = function (t) { return Y(Math.exp(avgY + slope * (t - avgX))); };
+    out += K.poly([[X(first),trend(first)],[X(last),trend(last)]].map(ptsStr).join(' '), K.C(2), 1.6, '5 3');
+    data.rows.forEach(function (row) {
+      var x = X(year(row[1])), color = K.C(row[5] ? 0 : 1);
+      out += '<g><title>' + esc(row[0] + ' · ' + (row[2] / 60).toFixed(2) + ' h') + '</title>'
+        + K.line(x, Y(row[3]), x, Y(row[4]), color, 1)
+        + paperMark(x, Y(row[2]), row[5] ? 4 : 3, color) + '</g>';
+    });
+    data.roles.forEach(function (_, i) {
+      var x = left + i * width / 3;
+      out += (i === 2 ? K.poly([[x,14],[x + 12,14]].map(ptsStr).join(' '),K.C(i),1.6,'5 3') : paperMark(x + 5, 14, 3, K.C(i)))
+        + referenceLabel(x + 17, 18, ['Frontier model','Other model','Frontier trend'][i], journal.text);
+    });
+    return out + referenceLabel(w / 2, 352, 'Model release date', journal.axis, 'middle')
+      + referenceLabel(20, 172, '50% time horizon (hours, log scale)', journal.axis, 'middle', 'rotate(-90 20 172)');
+  }
+
+  function parseBenchCsv(text) {
+    var rows = [], row = [], field = '', quoted = false;
+    text = text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
+    for (var i = 0; i <= text.length; i++) {
+      var ch = i === text.length ? '\n' : text[i];
+      if (ch === '"') {
+        if (quoted && text[i + 1] === '"') { field += '"'; i++; }
+        else if (quoted || !field) quoted = !quoted;
+        else throw new Error('请检查 CSV 中的引号。');
+      } else if (!quoted && (ch === ',' || ch === '\n')) {
+        row.push(field.trim());
+        field = '';
+        if (ch === '\n') {
+          if (row.some(Boolean)) rows.push(row);
+          row = [];
+        }
+      } else field += ch;
+    }
+    if (quoted) throw new Error('CSV 中有未闭合的引号。');
+    var columns = rows.shift();
+    if (!columns || columns.length < 2 || columns.length > 9 || columns.some(function (name) { return !name || name.length > 48; })
+      || new Set(columns).size !== columns.length || !rows.length || rows.length > 40) {
+      throw new Error('请提供 1–40 行数据，表头为类别列和 1–8 个数值系列。');
+    }
+    rows = rows.map(function (cells) {
+      if (cells.length !== columns.length || !cells[0] || cells[0].length > 48) throw new Error('请检查行列数或类别名称。');
+      return [cells[0]].concat(cells.slice(1).map(function (value) {
+        if (!value) return null;
+        if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(value) || !Number.isFinite(+value) || Math.abs(+value) > 1e100) {
+          throw new Error('数值列只能填写数字，缺失值留空。');
+        }
+        return +value;
+      }));
+    });
+    if (new Set(rows.map(function (cells) { return cells[0]; })).size !== rows.length ||
+      columns.slice(1).some(function (_, i) { return !rows.some(function (cells) { return cells[i + 1] !== null; }); })) {
+      throw new Error('类别名称须唯一，每个系列至少有一个数值。');
+    }
+    return {columns:columns, rows:rows, roles:columns.slice(1)};
+  }
+
+  function paperCustom(K, w, data) {
+    var left = 78, top = 70, width = w - 100, height = 235;
+    var values = data.rows.flatMap(function (row) { return row.slice(1).filter(function (v) { return v !== null; }); });
+    var min = Math.min(0, Math.min.apply(null, values)), max = Math.max(0, Math.max.apply(null, values));
+    if (min === max) max = 1;
+    var Y = function (v) { return top + height * (max - v) / (max - min); };
+    var step = width / data.rows.length, bar = step * .78 / data.roles.length;
+    var xAt = function (i) { return left + step * (i + .5); };
+    var labelStep = Math.max(1, Math.ceil(data.rows.length / 10));
+    var out = referenceAxes(K, left, top, width, height);
+    for (var tick = 0; tick <= 5; tick++) {
+      var value = tick === 5 ? max : min + (max - min) * tick / 5;
+      var label = Number(value.toPrecision(4)).toString();
+      out += K.line(left, Y(value), left + width, Y(value), '#dbe3e9', .65)
+        + referenceLabel(left - 7, Y(value) + 4, label, journal.text, 'end');
+    }
+    out += K.line(left, Y(0), left + width, Y(0), '#79828b', 1);
+    data.rows.forEach(function (row, index) {
+      var x = xAt(index), y = top + height + 14;
+      if (index % labelStep === 0) {
+        var label = Array.from(row[0]);
+        out += '<g><title>' + esc(row[0]) + '</title>'
+          + referenceLabel(x, y, label.length > 15 ? label.slice(0, 14).join('') + '…' : row[0],
+            journal.text, 'end', 'rotate(-38 ' + x + ' ' + y + ')') + '</g>';
+      }
+    });
+    data.roles.forEach(function (name, i) {
+      var group = '';
+      var color = K.C(i), points = [];
+      data.rows.forEach(function (row, j) {
+        var value = row[i + 1];
+        if (S.customType === 'line') {
+          if (value === null) {
+            if (points.length > 1) group += K.poly(points.map(ptsStr).join(' '), color, 1.8);
+            points = [];
+          } else {
+            points.push([xAt(j),Y(value)]);
+            group += paperMark(xAt(j), Y(value), 3.1, color);
+          }
+        } else if (value !== null) {
+          var x = xAt(j) - data.roles.length * bar / 2 + i * bar;
+          group += K.rect(x, Math.min(Y(value), Y(0)), bar * .9, Math.abs(Y(value) - Y(0)), color, {rx:0});
+        }
+      });
+      if (points.length > 1) group += K.poly(points.map(ptsStr).join(' '), color, 1.8);
+      var lx = left + (i % 4) * width / 4, ly = 24 + Math.floor(i / 4) * 22;
+      var short = Array.from(name);
+      out += '<g><title>' + esc(name) + '</title>' + group + K.rect(lx, ly - 7, 12, 7, color, {rx:0})
+        + referenceLabel(lx + 16, ly, short.length > 15 ? short.slice(0, 14).join('') + '…' : name, journal.text) + '</g>';
+    });
+    var axisX = $('bk-custom-x').value.trim() || data.columns[0];
+    var axisY = $('bk-custom-y').value.trim();
+    return out + referenceLabel(left + width / 2, 410, axisX, journal.axis, 'middle')
+      + (axisY ? referenceLabel(22, top + height / 2, axisY, journal.axis, 'middle',
+        'rotate(-90 22 ' + (top + height / 2) + ')') : '');
+  }
+
+  function paperSourceSeries(K, w, data) {
+    var columns = data.grid, vllm = data === PAPER_DATA.vllm_latency;
+    var llama = data === PAPER_DATA.llama_isoflops, gpt = data === PAPER_DATA.gpt4_scaling;
+    var left = 59, gap = vllm ? 44 : 64, right = llama ? 115 : 18;
+    var width = (w - left - right - (columns - 1) * gap) / columns;
+    var height = vllm ? 104 : 232, top = vllm ? 57 : 46;
+    var out = '';
+    data.panels.forEach(function (panel, index) {
+      var x = left + index % columns * (width + gap);
+      var y = top + Math.floor(index / columns) * (height + 73);
+      var X = function (v) { return x + width * (v - panel.xRange[0]) / (panel.xRange[1] - panel.xRange[0]); };
+      var Y = function (v) { return y + height * (panel.yRange[1] - v) / (panel.yRange[1] - panel.yRange[0]); };
+      out += referenceLabel(x + width / 2, vllm ? y + height + 56 : y - 15, panel.title, journal.axis, 'middle')
+        + referenceLabel(x + width / 2, y + height + 37, panel.xLabel, journal.axis, 'middle')
+        + referenceAxes(K, x, y, width, height);
+      if (panel.yLabel) {
+        var lx = x - (index && !vllm ? 34 : 41), ly = y + height / 2;
+        out += referenceLabel(lx, ly, panel.yLabel, journal.axis, 'middle', 'rotate(-90 ' + lx + ' ' + ly + ')');
+      }
+      panel.xTicks.forEach(function (tick) {
+        var vx = Array.isArray(tick) ? X(tick[0]) : X(tick), value = Array.isArray(tick) ? tick[1] : tick;
+        out += K.line(vx, y, vx, y + height, '#e3e7eb', .65)
+          + referenceLabel(vx, y + height + 16, value, journal.text, 'middle');
+      });
+      panel.yTicks.forEach(function (tick) {
+        out += K.line(x, Y(tick), x + width, Y(tick), '#e3e7eb', .65)
+          + referenceLabel(x - 6, Y(tick) + 4, tick, journal.text, 'end');
+      });
+      var clip = 'llm-axes-' + index;
+      out += '<clipPath id="' + clip + '">' + tag('rect', {x:x,y:y,width:width,height:height}) + '</clipPath>'
+        + '<g clip-path="url(#' + clip + ')">';
+      var grouped = new Map();
+      data.rows.forEach(function (row) {
+        if (row[0] !== index) return;
+        var key = row[1] + '/' + row[2];
+        if (!grouped.has(key)) grouped.set(key, {role:row[1], style:row[2], points:[]});
+        grouped.get(key).points.push([X(row[3]), Y(row[4])]);
+      });
+      var order = {faint:0, dashed:1, line:2, 'line+point':2, point:3, diamond:4};
+      Array.from(grouped.values()).sort(function (a,b) { return order[a.style] - order[b.style]; }).forEach(function (item) {
+        var pts = item.points, color = K.C(item.role), style = item.style;
+        if (style !== 'point' && style !== 'diamond') {
+          out += '<g' + (style === 'faint' ? ' opacity=".24"' : '') + '>'
+            + K.poly(pts.map(ptsStr).join(' '), color, style === 'faint' ? .75 : 1.4, style === 'dashed' ? '5 4' : null) + '</g>';
+        }
+        if (style === 'point' || style === 'line+point' || style === 'diamond') {
+          pts.forEach(function (pt) {
+            out += style === 'diamond' && S.markerShape === 'auto'
+              ? pointSymbol('diamond', pt[0], pt[1], 4, color)
+              : paperMark(pt[0], pt[1], vllm ? 2.3 : 3.1, color);
+          });
+        }
+      });
+      out += '</g>';
+    });
+    data.roles.forEach(function (name, i) {
+      if (data === PAPER_DATA.deepseek_r1 && i === 3) return;
+      var x = llama ? w - right + 14 : gpt ? w - 123 : vllm ? left + i * (w - left - 15) / data.roles.length : left + 11;
+      var y = llama || gpt ? 66 + i * 17 : vllm ? 23 : 63 + i * 17;
+      var dashed = gpt ? i === 1 : data === PAPER_DATA.deepseek_r1 && i === 2;
+      var points = gpt && !dashed || llama && i === 10;
+      if (!points) out += K.poly([[x,y - 4],[x + 12,y - 4]].map(ptsStr).join(' '),K.C(i),1.5,dashed ? '4 3' : null);
+      else out += llama && S.markerShape === 'auto' ? pointSymbol('diamond', x + 6, y - 4, 3.1, K.C(i))
+        : paperMark(x + 6, y - 4, 3.1, K.C(i));
+      out += referenceLabel(x + 16, y, name, journal.text);
+    });
+    return out;
+  }
+
+  function paperGemini(K, w, data) {
+    var left = 54, right = 11, gap = 46, short = (w - left - right - gap) / 6;
+    var panels = [[left,39,short * 5,50],[left + short * 5 + gap,39,short,10],[left,222,short * 5,50]];
+    var height = 92, out = '';
+    panels.forEach(function (panel, i) {
+      var x = panel[0], y = panel[1], width = panel[2], columns = panel[3];
+      var unit = i === 1 ? 1 : 1.2, step = width / columns;
+      out += referenceLabel(x + width / 2, y - 12, i === 1 ? 'Up to 10 hours' : data.panels[i], journal.axis, 'middle');
+      data.rows.forEach(function (row) {
+        if (row[0] !== i) return;
+        var cx = x + (Math.round(row[1] / unit) - 1) * step;
+        var cy = y + (row[2] - 5) * height / 100;
+        out += tag('rect', {x:cx,y:cy,width:step,height:height / 10,fill:K.C(row[3] === 'success' ? 0 : 1),
+          stroke:'#fff','stroke-width':.50});
+      });
+      for (var t = 1; t <= columns; t++) {
+        if (t % (i === 1 ? 2 : 5)) continue;
+        out += referenceLabel(x + step * (t - .5), y + height + 16, Math.round(t * unit), journal.text, 'middle');
+      }
+      if (i !== 1) {
+        [10,30,50,70,90].forEach(function (depth) {
+          out += referenceLabel(x - 6, y + height * depth / 100 + 4, depth, journal.text, 'end');
+        });
+        out += referenceLabel(15, y + height / 2, 'Depth (%)', journal.axis, 'middle', 'rotate(-90 15 ' + (y + height / 2) + ')');
+      }
+      out += referenceLabel(x + width / 2, y + height + 32, i === 1 ? 'Hours' : 'Minutes', journal.axis, 'middle');
+    });
+    ['Retrieved','API error'].forEach(function (label, i) {
+      var x = w - 180 + i * 86;
+      out += tag('rect', {x:x,y:386,width:10,height:8,fill:K.C(i)})
+        + referenceLabel(x + 14,394,label,journal.text);
+    });
+    return out;
+  }
+
+  function paperCaseLabel(paper) {
+    return paper ? paper.precision || '真实论文数据' : '模拟数据重画';
+  }
+
   var REFERENCE_PLOTS = {
+    Custom: {title:'我的数据图', dataset:'custom', plot:'A02', height:423, draw:paperCustom},
+    DeepSeek: {title:'DeepSeek-R1-Zero · 训练曲线', dataset:'deepseek_r1', plot:'A04', height:340, draw:paperSourceSeries},
+    Gemini: {title:'Gemini 1.5 · 视频长上下文检索', dataset:'gemini_video', plot:'A06', height:405, draw:paperGemini},
+    VLLM: {title:'vLLM · 请求负载与时延', dataset:'vllm_latency', plot:'A04', height:406, draw:paperSourceSeries},
+    Llama: {title:'Llama 3 · IsoFLOPs 缩放曲线', dataset:'llama_isoflops', plot:'A04', height:338, draw:paperSourceSeries},
+    GPT4: {title:'GPT-4 · 算力与代码预测损失', dataset:'gpt4_scaling', plot:'A04', height:338, draw:paperSourceSeries},
+    Lost: {title:'Lost in the Middle · 文档位置与准确率', dataset:'lost_in_middle', plot:'A04', single:true, height:370, draw:paperLost},
+    Chinchilla: {title:'Chinchilla · 七项基准准确率', dataset:'chinchilla', plot:'A02', height:393, draw:paperChinchilla},
+    METR: {title:'METR · 智能体任务时长', dataset:'metr_horizon', plot:'B04', height:365, draw:paperMetr},
     WHO: {title:'Nature · WHO 超额死亡月度趋势', dataset:'who', plot:'A04', height:463, draw:paperWho},
     Penguins: {title:'PLOS ONE · 三种企鹅体重', dataset:'penguins', plot:'A01', single:true, height:307, draw:paperPenguins},
     Nature: {title:'Nature · 五行六列方法对照', height:535, legend:'前两色分别表示模拟目标与拟合曲线', draw:referenceNature},
@@ -3770,8 +4130,8 @@ SOFTWARE.
     }
     var paper = spec.dataset && PAPER_DATA[spec.dataset];
     return '<svg ' + printSvgAttrs(w, h, width) + ' role="img" aria-label="' + esc(spec.title)
-      + (paper ? ' · 真实论文数据' : ' · 模拟数据') + '"><rect width="' + w + '" height="' + h + '" fill="#fff"/>'
-      + (paper ? '<desc>' + esc(paper.citation + '。' + paper.note + ' ' + paper.paper + ' · ' + paper.license) + '</desc>'
+      + ' · ' + paperCaseLabel(paper) + '"><rect width="' + w + '" height="' + h + '" fill="#fff"/>'
+      + (name === 'Custom' ? '<desc>Local CSV data</desc>' : paper ? '<desc>' + esc(paper.citation + '。' + paper.note + ' ' + paper.paper + (paper.license ? ' · ' + paper.license : '')) + '</desc>'
         : '<text x="12" y="21" font-family="' + journalFont() + '" font-size="' + journal.panel * 2
           + '" font-weight="700" fill="#18202a">' + panelLetter(name === 'Science' ? 1 : 0) + '</text>')
       + spec.draw(K, w, paper) + '</svg>';
@@ -3782,7 +4142,7 @@ SOFTWARE.
     var svg, name, width = printUnits(journal.singleMm);
     if (S.referencePlot) {
       svg = referencePlotSvg(cols, S.referencePlot);
-      name = 'palette_reference_' + S.referencePlot.toLowerCase() + '.svg';
+      name = S.referencePlot === 'Custom' ? 'my-figure.svg' : 'palette_reference_' + S.referencePlot.toLowerCase() + '.svg';
     } else if (S.comboMode) {
       var ids = S.combo.filter(function (id) { return BY_ID[id]; });
       svg = comboFigureSvg(cols, ids, benchLayout(cols));
@@ -4043,6 +4403,11 @@ SOFTWARE.
     renderPreview();
   });
   $('bk-reference-toggle').addEventListener('click', function () {
+    var spec = REFERENCE_PLOTS[S.referencePlot], data = spec && PAPER_DATA[spec.dataset];
+    if (!S.showReferences && data && data.original) {
+      window.open(data.original, '_blank', 'noopener');
+      return;
+    }
     S.showReferences = !S.showReferences;
     renderBench();
   });
@@ -4058,8 +4423,9 @@ SOFTWARE.
     S.comboMode = false;
     S.benchMulti = false;
     S.showReferences = false;
-    S.type = spec.plot || {Nature:'A04', Science:'A03', Cell:'D04'}[name];
+    S.type = name === 'Custom' && S.customType === 'line' ? 'A04' : spec.plot || {Nature:'A04', Science:'A03', Cell:'D04'}[name];
     S.cat = BY_ID[S.type].c;
+    if (name === 'Custom') $('bk-custom-show').hidden = false;
     S.referencePlot = name;
     renderTypeUI();
     if (S.uid && S.uid.indexOf('ref-') === 0) selectUid(spec.dataset ? DEFAULT_PALETTE : 'ref-' + name);
@@ -4072,6 +4438,33 @@ SOFTWARE.
     selectUid('ref-' + S.referencePlot);
   });
   $('bk-reference-picker').addEventListener('change', function () { openReferencePlot(this.value); });
+  $('bk-custom-file').addEventListener('change', async function () {
+    var file = this.files[0], status = $('bk-custom-status');
+    if (!file) return;
+    try {
+      if (file.size > 100000) throw new Error('请上传 100 KB 以内的 CSV。');
+      var data = parseBenchCsv(await file.text());
+      data.precision = '我的 CSV';
+      data.filename = file.name;
+      PAPER_DATA.custom = data;
+      delete S.colorOverrides.Custom;
+      status.textContent = '已读取 ' + data.rows.length + ' 行 · 文件留在当前浏览器';
+      openReferencePlot('Custom');
+      $('bk-stage').scrollIntoView({block:'nearest'});
+    } catch (error) {
+      status.textContent = error.message;
+    } finally {
+      this.value = '';
+    }
+  });
+  ['bk-custom-x', 'bk-custom-y'].forEach(function (id) {
+    $(id).addEventListener('input', function () { if (S.referencePlot === 'Custom') renderBench(); });
+  });
+  $('bk-custom-show').addEventListener('click', function () { openReferencePlot('Custom'); });
+  $('bk-custom-type').addEventListener('change', function () {
+    S.customType = this.value;
+    if (PAPER_DATA.custom) openReferencePlot('Custom');
+  });
   $('bk-meta').addEventListener('click', function (event) {
     if (!near(event.target, '#bk-paper-csv')) return;
     var spec = REFERENCE_PLOTS[S.referencePlot], paper = PAPER_DATA[spec.dataset];
@@ -4181,6 +4574,13 @@ SOFTWARE.
     return '<option value="cl-' + i + '">' + esc(c[0]) + '</option>';
   }).join('');
   $('pv-classic').value = DEFAULT_PALETTE;
+  var linkedCase = new URLSearchParams(window.location.search).get('case');
+  if (Object.prototype.hasOwnProperty.call(LLM_DATA_KEYS, linkedCase) && PAPER_DATA[LLM_DATA_KEYS[linkedCase]]) {
+    var linkedSpec = REFERENCE_PLOTS[linkedCase];
+    S.referencePlot = linkedCase;
+    S.type = linkedSpec.plot;
+    S.cat = BY_ID[S.type].c;
+  }
   renderTypeUI(); render(); updateSelectionUI(); renderPreview(); renderGallery(); setupReveal(); onScroll();
 })();
 </script>
