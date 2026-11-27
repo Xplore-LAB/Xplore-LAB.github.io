@@ -12,8 +12,14 @@
   };
   const setExpanded = (expanded) => {
     toggle.setAttribute('aria-expanded', String(expanded));
-    toggle.setAttribute('aria-label', expanded ? '收起导航' : '展开导航');
-    label.textContent = expanded ? '收起' : '菜单';
+    const english = root.dataset.navLanguage === 'en';
+    if (english) {
+      toggle.setAttribute('aria-label', expanded ? 'Collapse navigation' : 'Expand navigation');
+      label.textContent = expanded ? 'Close' : 'Menu';
+    } else {
+      toggle.setAttribute('aria-label', expanded ? '收起导航' : '展开导航');
+      label.textContent = expanded ? '收起' : '菜单';
+    }
     links.hidden = mobile.matches && !expanded;
     if (!expanded) closeGroups();
   };

@@ -1,61 +1,94 @@
 - title: 首页
+  title_en: Home
   url: /
 - title: 文章
+  title_en: Articles
   id: writing
   sections:
     - links:
         - title: 全部文章
+          title_en: All Articles
           url: /tags/
           description: 按类型浏览所有文章
+          description_en: Browse articles by category
         - title: 论文拆解
+          title_en: Paper Breakdowns
           url: /tags/#papers
           description: 方法、实验与证据
+          description_en: Methods, experiments, and evidence
         - title: 好文拆解
+          title_en: Technical Essays
           url: /tags/#essays
           description: 技术长文与研究者观点
+          description_en: Long-form technical writing and researcher perspectives
         - title: 实践复盘
+          title_en: Project Retrospectives
           url: /tags/#practice
           description: 工具、设备与应用实践
+          description_en: Hands-on notes on tools, devices, and applications
 - title: 科研绘图
+  title_en: Scientific Figures
   id: figures
   wide: true
   sections:
     - title: 开始绘图
+      title_en: Getting Started
       links:
         - title: 绘图总览
+          title_en: Figure Overview
           url: /figures/
           description: 图例、模板与可编辑素材
+          description_en: Examples, templates, and editable assets
         - title: 科研配色专题
+          title_en: Scientific Color Palettes
           url: /palettes/
           description: 顶刊级 SCI 色卡库 · 点击复制 HEX
+          description_en: Journal-inspired palettes with copyable HEX values
         - title: 绘图方法与工具
+          title_en: Figure Methods and Tools
           url: /figures/#methods
           description: 排版、配色与制作方法
+          description_en: Layout, color, and production techniques
         - title: 论文原图案例
+          title_en: Figures from Published Papers
           url: /pipeline/
           description: 从真实论文学习构图
+          description_en: Learn composition from published research
     - title: 示例与对照
+      title_en: Examples and Comparisons
       links:
         - title: 方法与流程模板
+          title_en: Methods and Workflow Templates
           url: /figures/#fig-method
           description: 架构图和技术流程
+          description_en: Architecture and workflow diagrams
         - title: 工业智能体方法图
+          title_en: Industrial Agent Diagrams
           url: /figures/#fig-paper-grade
           description: 方法总览与机制对照
+          description_en: Method overviews and mechanism comparisons
         - title: 原图与重绘对照
+          title_en: Original and Redrawn Figures
           url: /figures/#fig-original-comparison
           description: 对照阅读原图与教学重绘
+          description_en: Compare published figures with annotated redraws
 - title: 项目演示
+  title_en: Project Demos
   id: demos
   sections:
     - links:
         - title: Postbird 信鸽
+          title_en: Postbird
           url: /demo-postbird/
           description: 邮件与材料整理
+          description_en: Organize emails and materials
         - title: 秋招填表助手
+          title_en: Job Application Autofill
           url: /demo-autofill/
           description: 网申填写与自检
+          description_en: Fill and review online applications
 - title: 关于
+  title_en: About
   url: /about/
 - title: GitHub
   url: https://github.com/Xplore-LAB

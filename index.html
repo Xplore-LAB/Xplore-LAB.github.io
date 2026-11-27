@@ -1,13 +1,14 @@
 ---
+lang: en
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Xplore-LAB | Kevin 主理的个人 AI 实验室</title>
-<meta name="description" content="Xplore-LAB 是 Kevin 主理的个人 AI 实验室，把大语言模型从论文读到落地。论文拆解、llm-tracker 情报站、NL2SQL、OKC-SFT。">
-<meta property="og:title" content="Xplore-LAB | Kevin 主理的个人 AI 实验室">
+<title>Xplore-LAB | Kevin’s Personal AI Lab</title>
+<meta name="description" content="Kevin’s personal AI lab brings large language models from research to practice through paper breakdowns, LLM Papers Tracker, NL2SQL, and OKC-SFT.">
+<meta property="og:title" content="Xplore-LAB | Kevin’s Personal AI Lab">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://xplore-lab.github.io/">
 <script>document.documentElement.classList.add('js');</script>
@@ -134,7 +135,7 @@ h2.section-title .count { font-family: var(--sans); font-size: 13px; font-weight
   .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 
-/* 精选项目 */
+/* Featured Projects */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 14px; }
 .cards .project { margin-bottom: 0; display: flex; flex-direction: column; }
 .cards .project .tags { margin-top: auto; padding-top: 10px; }
@@ -179,7 +180,7 @@ h2.section-title .count { font-family: var(--sans); font-size: 13px; font-weight
 .writing-group h3.group-head .count { font-weight: 400; margin-left: 8px; }
 .muted { color: var(--ink-faint); font-size: 15px; }
 
-/* 全部入口 */
+/* Site Directory */
 .entry-group { margin-bottom: 14px; }
 .entry-group h3 {
   font-size: 13px; font-weight: 600; letter-spacing: .12em;
@@ -269,7 +270,7 @@ footer a:hover { color: var(--accent); }
 .project .logo-row img { width: 40px; height: 40px; flex: none; }
 .project .logo-row h3 { margin: 0; }
 
-/* 常读链接区 */
+/* Reading list */
 .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 2px 20px; }
 .link-item {
   display: flex; gap: 10px; align-items: baseline;
@@ -309,7 +310,7 @@ footer a:hover { color: var(--accent); }
 .gh-star-ico { fill: #e3b341; flex: none; }
 .project a.gh-star:hover .gh-star-ico { fill: #d29922; }
 .gh-star-num { color: #1f2328; }
-/* 精选项目分类 */
+/* Featured project groups */
 #projects .writing-group { margin-bottom: 22px; }
 #projects .writing-group:last-child { margin-bottom: 0; }
 .project .logo-row h3 { flex: 1; min-width: 0; overflow-wrap: anywhere; }
@@ -339,135 +340,135 @@ footer a:hover { color: var(--accent); }
 
   <header class="hero">
     <div class="hero-head">
-      <img class="avatar" src="/img/avatar.svg" alt="Xplore-LAB 字母标识">
+      <img class="avatar" src="/img/avatar.svg" alt="Xplore-LAB wordmark">
       <div>
         <h1>Xplore-LAB</h1>
-        <p class="role">主理人 Kevin · AI 应用开发 · 工业数据智能</p>
+        <p class="role">Run by Kevin · AI Applications · Industrial Data Intelligence</p>
       </div>
     </div>
-    <p class="intro reveal">Xplore-LAB 是 Kevin 主理的个人 AI 实验室，做一件事：把大语言模型从论文读到落地。产出过 90 万行工业数据库上的 NL2SQL 查询引擎（98% 可执行率），一作论文 OKC-SFT 投稿 CAC 2026 在审（幻觉率 34.4% → 15.6%）。</p>
-    <p class="intro reveal">实验室的产出都沉淀在这里：开源项目、论文拆解，以及几个每天自动更新的小站，例如 <a href="https://xplore-lab.github.io/llm-tracker/">LLM Papers Tracker</a>。</p>
-    <p class="meta reveal"><span>主理人 Kevin</span><span>LLM 算法研究</span><span>论文拆解 · 科研绘图</span></p>
+    <p class="intro reveal">Xplore-LAB is Kevin’s personal AI lab, focused on putting large language model research into practice. Projects include an NL2SQL engine with a 98% execution rate on a 900,000-row industrial database and OKC-SFT, a first-author paper under review at CAC 2026 that reduced the hallucination rate from 34.4% to 15.6%.</p>
+    <p class="intro reveal">Explore open-source projects, paper breakdowns, and sites updated daily, including <a href="https://xplore-lab.github.io/llm-tracker/">LLM Papers Tracker</a>.</p>
+    <p class="meta reveal"><span>Run by Kevin</span><span>LLM Research</span><span>Paper Breakdowns · Scientific Figures</span></p>
     <div class="stats reveal">
-      <div class="stat"><span class="num" data-count="13" data-suffix="k+">13k+</span><span class="label">arXiv 论文日更追踪</span></div>
-      <div class="stat"><span class="num" data-count="34" data-suffix="">34</span><span class="label">覆盖 AI 实验室</span></div>
-      <div class="stat"><span class="num" data-count="98" data-suffix="%">98%</span><span class="label">NL2SQL 可执行率</span></div>
-      <div class="stat"><span class="num" data-count="55" data-suffix="%">55%</span><span class="label">幻觉率降幅</span></div>
+      <div class="stat"><span class="num" data-count="13" data-suffix="k+">13k+</span><span class="label">arXiv Papers Tracked Daily</span></div>
+      <div class="stat"><span class="num" data-count="34" data-suffix="">34</span><span class="label">AI Labs Covered</span></div>
+      <div class="stat"><span class="num" data-count="98" data-suffix="%">98%</span><span class="label">NL2SQL Execution Rate</span></div>
+      <div class="stat"><span class="num" data-count="55" data-suffix="%">55%</span><span class="label">Reduction in Hallucination Rate</span></div>
     </div>
   </header>
 
   <section id="projects">
-    <h2 class="section-title">精选项目<span class="count">11</span></h2>
+    <h2 class="section-title">Featured Projects<span class="count">11</span></h2>
     <div class="writing-group">
-      <h3 class="group-head">AI 研究与论文情报<span class="count">4</span></h3>
+      <h3 class="group-head">AI Research and Paper Tracking<span class="count">4</span></h3>
       <div class="cards">
         <div class="project reveal">
           <div class="logo-row">
-            <img src="/img/nl2sql-icon.svg" alt="NL2SQL 图标：数据库与对话气泡">
-            <h3>NL2SQL 工业查询引擎<span class="metric">98% 可执行率</span></h3>
+            <img src="/img/nl2sql-icon.svg" alt="NL2SQL icon showing a database and a speech bubble">
+            <h3>NL2SQL Industrial Query Engine<span class="metric">98% Execution Rate</span></h3>
           </div>
-          <p>面向气体运营数据的端到端自然语言查询 Agent，覆盖 10 表 / 307 字段 / 90 万行。</p>
-          <div class="tags"><span>LLM Agent</span><span>Schema Linking</span><span>工业数据</span></div>
+          <p>An end-to-end natural-language query agent for industrial gas operations, covering 10 tables, 307 fields, and 900,000 rows.</p>
+          <div class="tags"><span>LLM Agent</span><span>Schema Linking</span><span>Industrial Data</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
-            <img src="/img/okc-sft-icon.svg" alt="OKC-SFT 图标：空分塔与诊断对勾">
-            <h3><a href="https://github.com/Xplore-LAB/OKC-SFT-Dataset">OKC-SFT</a><span class="metric">幻觉率 34.4% → 15.6%</span></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/OKC-SFT-Dataset" target="_blank" rel="noopener" data-repo="OKC-SFT-Dataset" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
+            <img src="/img/okc-sft-icon.svg" alt="OKC-SFT icon showing an air separation tower and a check mark">
+            <h3><a href="https://github.com/Xplore-LAB/OKC-SFT-Dataset">OKC-SFT</a><span class="metric">Hallucination Rate 34.4% → 15.6%</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/OKC-SFT-Dataset" target="_blank" rel="noopener" data-repo="OKC-SFT-Dataset" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
           </div>
-          <p>空分装置异常工况诊断的 LLM 微调方法与数据集，一作论文在审，含完整评测循环。</p>
-          <div class="tags"><span>SFT</span><span>工业诊断</span><span>CAC 2026 在审</span></div>
+          <p>An LLM fine-tuning method and dataset for diagnosing abnormal conditions in air separation units, with a full evaluation pipeline. The first-author paper is under review.</p>
+          <div class="tags"><span>SFT</span><span>Industrial Diagnostics</span><span>Under Review at CAC 2026</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
-            <img src="/img/datalens-icon.svg" alt="DataLens 图标：放大镜与柱状图">
-            <h3><a href="https://github.com/Xplore-LAB/DataLens">DataLens</a><span class="metric">单文件离线运行</span></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/DataLens" target="_blank" rel="noopener" data-repo="DataLens" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
+            <img src="/img/datalens-icon.svg" alt="DataLens icon showing a magnifying glass and a bar chart">
+            <h3><a href="https://github.com/Xplore-LAB/DataLens">DataLens</a><span class="metric">Single-File Offline Tool</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/DataLens" target="_blank" rel="noopener" data-repo="DataLens" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">0</span></a>
           </div>
-          <p>工业控制性能分析工具，CSV 导入即分析，服务脱硝优化场景。</p>
-          <div class="tags"><span>数据可视化</span><span>HTML</span><span>工业控制</span></div>
+          <p>Analyze industrial control performance from a CSV file to support denitrification optimization.</p>
+          <div class="tags"><span>Data Visualization</span><span>HTML</span><span>Industrial Control</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🌐</span>
             <h3><a href="https://github.com/Xplore-LAB/llm-tracker">llm-tracker</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/llm-tracker" target="_blank" rel="noopener" data-repo="llm-tracker" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">5</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/llm-tracker" target="_blank" rel="noopener" data-repo="llm-tracker" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">5</span></a>
           </div>
-          <p>大模型情报局：13k+ arXiv 论文日更追踪、模型时间线与学习路径。</p>
-          <div class="tags"><span>HTML</span><span>论文追踪</span><span>站点</span></div>
+          <p>Tracks 13,000+ arXiv papers with daily updates, model timelines, and learning paths.</p>
+          <div class="tags"><span>HTML</span><span>Paper Tracking</span><span>Website</span></div>
         </div>
       </div>
     </div>
     <div class="writing-group">
-      <h3 class="group-head">LLM 工程与 Agent 应用<span class="count">4</span></h3>
+      <h3 class="group-head">LLM Engineering and Agent Applications<span class="count">4</span></h3>
       <div class="cards">
         <div class="project reveal">
           <div class="logo-row">
-            <img src="/img/postbird-logo.png" alt="Postbird 信鸽 Logo：蓝色信鸽衔信封">
-            <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird 信鸽</a><span class="metric">22 工具 · 4 技能 · DSH 原生插件</span></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/postbird" target="_blank" rel="noopener" data-repo="postbird" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
+            <img src="/img/postbird-logo.png" alt="Postbird logo showing a blue pigeon carrying an envelope">
+            <h3><a href="https://github.com/Xplore-LAB/postbird">Postbird</a><span class="metric">22 Tools · 4 Skills · Native DSH Plugin</span></h3>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/postbird" target="_blank" rel="noopener" data-repo="postbird" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
-          <p>DSH 原生插件：把只读收件、带原文出处的判断、两阶段确认发信，和真实的 Word / Excel / PPT 交付串成一条闭环。无删除工具，数据不出本机。<a href="https://xplore-lab.github.io/postbird/demo/">在线 Demo</a> 免登录体验。</p>
-          <div class="tags"><span>DSH 原生插件</span><span>证据出处</span><span>两阶段确认</span><span>Local-first</span></div>
+          <p>A native DSH plugin for read-only inbox access, source-linked analysis, sending with two-step confirmation, and exporting Word, Excel, and PowerPoint files. Data stays on your device.<a href="https://xplore-lab.github.io/postbird/demo/">Online Demo</a> with no sign-in required.</p>
+          <div class="tags"><span>Native DSH Plugin</span><span>Source Citations</span><span>Two-Step Confirmation</span><span>Local-first</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐚</span>
             <h3><a href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark">minimax-h3-dgx-spark</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark" target="_blank" rel="noopener" data-repo="minimax-h3-dgx-spark" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">11</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/minimax-h3-dgx-spark" target="_blank" rel="noopener" data-repo="minimax-h3-dgx-spark" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">11</span></a>
           </div>
-          <p>在 DGX Spark / GB10 上跑 MiniMax H3 文/图生视频：ComfyUI + NGC PyTorch 全容器化，含 HTTP API 工作流。</p>
-          <div class="tags"><span>Shell</span><span>DGX Spark</span><span>视频生成</span></div>
+          <p>Run MiniMax H3 text-to-video and image-to-video on DGX Spark / GB10 with containerized ComfyUI and NGC PyTorch and an HTTP API workflow.</p>
+          <div class="tags"><span>Shell</span><span>DGX Spark</span><span>Video Generation</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐍</span>
             <h3><a href="https://github.com/Xplore-LAB/openai-compatible-proxy">openai-compatible-proxy</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/openai-compatible-proxy" target="_blank" rel="noopener" data-repo="openai-compatible-proxy" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/openai-compatible-proxy" target="_blank" rel="noopener" data-repo="openai-compatible-proxy" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
-          <p>几分钟内把任意 LLM API 转成 OpenAI 兼容端点。</p>
-          <div class="tags"><span>Python</span><span>LLM 网关</span></div>
+          <p>Turn an LLM API into an OpenAI-compatible endpoint in minutes.</p>
+          <div class="tags"><span>Python</span><span>LLM Gateway</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🟨</span>
             <h3><a href="https://github.com/Xplore-LAB/Xplore-LAB-skills">Xplore-LAB-skills</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/Xplore-LAB-skills" target="_blank" rel="noopener" data-repo="Xplore-LAB-skills" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/Xplore-LAB-skills" target="_blank" rel="noopener" data-repo="Xplore-LAB-skills" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
-          <p>个人 Agent Skills 工具箱，WorkBuddy / Claude Code 可复用技能合集。</p>
+          <p>A personal collection of reusable agent skills for WorkBuddy and Claude Code.</p>
           <div class="tags"><span>JavaScript</span><span>Agent Skills</span></div>
         </div>
       </div>
     </div>
     <div class="writing-group">
-      <h3 class="group-head">效率与自动化工具<span class="count">3</span></h3>
+      <h3 class="group-head">Productivity and Automation Tools<span class="count">3</span></h3>
       <div class="cards">
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🟨</span>
             <h3><a href="https://github.com/Xplore-LAB/qiuzhao-autofill">qiuzhao-autofill</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/qiuzhao-autofill" target="_blank" rel="noopener" data-repo="qiuzhao-autofill" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">3</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/qiuzhao-autofill" target="_blank" rel="noopener" data-repo="qiuzhao-autofill" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">3</span></a>
           </div>
-          <p>秋招网申自动填充助手：本地资料管理、可选 AI 提取与填写自检。</p>
-          <div class="tags"><span>JavaScript</span><span>求职</span><span>浏览器工具</span></div>
+          <p>Autofill online job applications with locally stored profiles, optional AI extraction, and field validation.</p>
+          <div class="tags"><span>JavaScript</span><span>Job Search</span><span>Browser Tool</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">🐍</span>
             <h3><a href="https://github.com/Xplore-LAB/paper-tool">paper-tool</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/paper-tool" target="_blank" rel="noopener" data-repo="paper-tool" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/paper-tool" target="_blank" rel="noopener" data-repo="paper-tool" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
-          <p>CiteCargo 文献直达：参考文献批量转 PDF、断点续跑、按需归档 Zotero。</p>
-          <div class="tags"><span>Python</span><span>科研工具</span><span>Zotero</span></div>
+          <p>CiteCargo downloads PDFs from reference lists in batches, resumes interrupted runs, and optionally archives papers to Zotero.</p>
+          <div class="tags"><span>Python</span><span>Research Tool</span><span>Zotero</span></div>
         </div>
         <div class="project reveal">
           <div class="logo-row">
             <span class="repo-ico">📧</span>
             <h3><a href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender">word-mail-merge-batch-sender</a></h3>
-            <a class="gh-star" href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender" target="_blank" rel="noopener" data-repo="word-mail-merge-batch-sender" title="去 GitHub 帮我点个 Star（打开仓库页后点右上角 Star）"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
+            <a class="gh-star" href="https://github.com/Xplore-LAB/word-mail-merge-batch-sender" target="_blank" rel="noopener" data-repo="word-mail-merge-batch-sender" title="Star this repository on GitHub"><svg class="gh-star-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg><span class="gh-star-num">1</span></a>
           </div>
-          <p>Word + Outlook VBA 批量邮件工具，按 Excel 每行生成邮件并附对应附件。</p>
-          <div class="tags"><span>VBA</span><span>办公自动化</span></div>
+          <p>A Word and Outlook VBA tool that generates an email with its corresponding attachments for each Excel row.</p>
+          <div class="tags"><span>VBA</span><span>Office Automation</span></div>
         </div>
       </div>
     </div>
@@ -477,71 +478,72 @@ footer a:hover { color: var(--accent); }
     <h2 class="section-title">Writing</h2>
     {% if site.posts.size > 0 %}
     {% assign section_order = "论文拆解,好文拆解,实践复盘" | split: "," %}
+    {% assign section_titles = "Paper Breakdowns,Technical Essays,Project Retrospectives" | split: "," %}
     {% for sec in section_order %}
     {% assign group_posts = site.posts | where: "section", sec %}
     {% if group_posts.size > 0 %}
     <div class="writing-group">
-      <h3 class="group-head">{{ sec }}<span class="count">{{ group_posts.size }}</span></h3>
+      <h3 class="group-head">{{ section_titles[forloop.index0] }}<span class="count">{{ group_posts.size }}</span></h3>
       <ul class="post-list">
         {% for post in group_posts limit:5 %}
         <li class="reveal">
           <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}" lang="{{ post.lang | default: 'zh-CN' }}">{{ post.title }}</a>
         </li>
         {% endfor %}
       </ul>
     </div>
     {% endif %}
     {% endfor %}
-    <a class="more-link" href="/tags/">全部文章 →</a>
+    <a class="more-link" href="/tags/">All Articles →</a>
     {% else %}
-    <p class="muted">文章筹备中，先看看下面的全部入口。</p>
+    <p class="muted">Articles are in preparation. Browse the directory below.</p>
     {% endif %}
   </section>
 
   <section id="reading">
-    <h2 class="section-title">常读<span class="count">13</span></h2>
+    <h2 class="section-title">Reading List<span class="count">13</span></h2>
     <div class="writing-group">
-      <h3 class="group-head">研究者博客<span class="count">8</span></h3>
+      <h3 class="group-head">Researcher Blogs<span class="count">8</span></h3>
       <div class="link-grid">
-        <a class="link-item reveal" href="https://lilianweng.github.io" target="_blank" rel="noopener"><span class="lk-name">Lil'Log</span><span class="lk-desc">Lilian Weng · Agent 与安全长文标杆</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://karpathy.github.io" target="_blank" rel="noopener"><span class="lk-name">Andrej Karpathy</span><span class="lk-desc">极简文字讲透神经网络</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://jalammar.github.io" target="_blank" rel="noopener"><span class="lk-name">Jay Alammar</span><span class="lk-desc">The Illustrated Transformer 图解派</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://colah.github.io" target="_blank" rel="noopener"><span class="lk-name">colah's blog</span><span class="lk-desc">Chris Olah · 可解释性开山</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://sebastianraschka.com" target="_blank" rel="noopener"><span class="lk-name">Sebastian Raschka</span><span class="lk-desc">LLM 工程与论文精读</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://huyenchip.com" target="_blank" rel="noopener"><span class="lk-name">Chip Huyen</span><span class="lk-desc">ML 系统设计与落地</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://hamel.dev" target="_blank" rel="noopener"><span class="lk-name">Hamel Husain</span><span class="lk-desc">LLM 评测与工程实操</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://simonwillison.net" target="_blank" rel="noopener"><span class="lk-name">Simon Willison</span><span class="lk-desc">LLM 工具链日更</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://lilianweng.github.io" target="_blank" rel="noopener"><span class="lk-name">Lil'Log</span><span class="lk-desc">Lilian Weng’s deep dives into agents and safety</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://karpathy.github.io" target="_blank" rel="noopener"><span class="lk-name">Andrej Karpathy</span><span class="lk-desc">Clear explanations of neural networks</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://jalammar.github.io" target="_blank" rel="noopener"><span class="lk-name">Jay Alammar</span><span class="lk-desc">The Illustrated Transformer and other visual guides</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://colah.github.io" target="_blank" rel="noopener"><span class="lk-name">colah's blog</span><span class="lk-desc">Chris Olah’s foundational work on interpretability</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://sebastianraschka.com" target="_blank" rel="noopener"><span class="lk-name">Sebastian Raschka</span><span class="lk-desc">LLM engineering and paper walkthroughs</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://huyenchip.com" target="_blank" rel="noopener"><span class="lk-name">Chip Huyen</span><span class="lk-desc">ML system design and deployment</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://hamel.dev" target="_blank" rel="noopener"><span class="lk-name">Hamel Husain</span><span class="lk-desc">Hands-on LLM evaluation and engineering</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://simonwillison.net" target="_blank" rel="noopener"><span class="lk-name">Simon Willison</span><span class="lk-desc">Daily notes on LLM tooling</span><span class="lk-arrow">↗</span></a>
       </div>
     </div>
     <div class="writing-group">
-      <h3 class="group-head">工具与资讯<span class="count">5</span></h3>
+      <h3 class="group-head">Tools and News<span class="count">5</span></h3>
       <div class="link-grid">
-        <a class="link-item reveal" href="https://huggingface.co/papers" target="_blank" rel="noopener"><span class="lk-name">HuggingFace Papers</span><span class="lk-desc">每日热榜论文</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://alphaxiv.org" target="_blank" rel="noopener"><span class="lk-name">AlphaXiv</span><span class="lk-desc">arXiv 论文讨论层</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://arxiv.org/list/cs.CL/recent" target="_blank" rel="noopener"><span class="lk-name">arXiv cs.CL</span><span class="lk-desc">计算语言学新稿列表</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://labuladong.online" target="_blank" rel="noopener"><span class="lk-name">labuladong</span><span class="lk-desc">算法笔记与刷题框架</span><span class="lk-arrow">↗</span></a>
-        <a class="link-item reveal" href="https://aihot.virxact.com" target="_blank" rel="noopener"><span class="lk-name">AIHOT</span><span class="lk-desc">中文 AI 资讯日报</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://huggingface.co/papers" target="_blank" rel="noopener"><span class="lk-name">HuggingFace Papers</span><span class="lk-desc">Trending papers, updated daily</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://alphaxiv.org" target="_blank" rel="noopener"><span class="lk-name">AlphaXiv</span><span class="lk-desc">Discussion forum for arXiv papers</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://arxiv.org/list/cs.CL/recent" target="_blank" rel="noopener"><span class="lk-name">arXiv cs.CL</span><span class="lk-desc">Recent computational linguistics submissions</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://labuladong.online" target="_blank" rel="noopener"><span class="lk-name">labuladong</span><span class="lk-desc">Algorithm notes and coding practice</span><span class="lk-arrow">↗</span></a>
+        <a class="link-item reveal" href="https://aihot.virxact.com" target="_blank" rel="noopener"><span class="lk-name">AIHOT</span><span class="lk-desc">Daily AI news in Chinese</span><span class="lk-arrow">↗</span></a>
       </div>
     </div>
   </section>
 
   <section id="friends">
-    <h2 class="section-title">友情链接<span class="count">2</span></h2>
+    <h2 class="section-title">Related Resources<span class="count">2</span></h2>
     <div class="link-grid">
-      <a class="link-item reveal" href="https://keepkeen.github.io/series/reinforcement-learning-paper-reading/" target="_blank" rel="noopener"><span class="lk-name">Liuliming</span><span class="lk-desc">强化学习论文精读 · 51 篇 RL 论文中文解读（2016–2026）</span><span class="lk-arrow">↗</span></a>
-      <a class="link-item reveal" href="https://github.com/garrettj403/SciencePlots" target="_blank" rel="noopener"><span class="lk-name">SciencePlots</span><span class="lk-desc">科研绘图 Matplotlib 样式库 · 一行 style.use('science') 获得 Nature / IEEE 等期刊风格与科学 colormap</span><span class="lk-arrow">↗</span></a>
+      <a class="link-item reveal" href="https://keepkeen.github.io/series/reinforcement-learning-paper-reading/" target="_blank" rel="noopener"><span class="lk-name">Liuliming</span><span class="lk-desc">In-depth Chinese walkthroughs of 51 reinforcement learning papers (2016–2026)</span><span class="lk-arrow">↗</span></a>
+      <a class="link-item reveal" href="https://github.com/garrettj403/SciencePlots" target="_blank" rel="noopener"><span class="lk-name">SciencePlots</span><span class="lk-desc">Matplotlib styles and scientific color maps, including Nature and IEEE styles</span><span class="lk-arrow">↗</span></a>
     </div>
   </section>
 
   <section id="all-entries">
-    <h2 class="section-title">全部入口<span class="count" id="entries-count"></span></h2>
-    <p id="entries-meta">加载中…</p>
+    <h2 class="section-title">Site Directory<span class="count" id="entries-count"></span></h2>
+    <p id="entries-meta">Loading…</p>
     <div id="entries"></div>
   </section>
 
   <footer>
-    <span>© 2026 Xplore-LAB · 入口数据每日自动同步</span>
+    <span>© 2026 Xplore-LAB · Directory updated daily</span>
     <span><a href="https://github.com/Xplore-LAB">GitHub</a> · <a href="/about/">About</a></span>
   </footer>
 </div>
@@ -694,7 +696,7 @@ footer a:hover { color: var(--accent); }
     counters.forEach(function (el) { cio.observe(el); });
   }
 
-  /* 全部入口：读取每日自动同步的 routes.json */
+  /* Site directory */
   var esc = function (s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -704,7 +706,7 @@ footer a:hover { color: var(--accent); }
     .then(function (r) { if (!r.ok) throw new Error('load failed'); return r.json(); })
     .then(function (data) {
       var items = Array.isArray(data.items) ? data.items : [];
-      /* 精选项目 star 数：取自每日同步的仓库字段 */
+      /* Featured Projects star 数：取自每日同步的仓库字段 */
       var repoStars = {};
       items.forEach(function (it) {
         if (it && typeof it.stars === 'number') repoStars[it.title] = it.stars;
@@ -722,19 +724,52 @@ footer a:hover { color: var(--accent); }
       document.querySelectorAll('.project [data-repo]').forEach(function (el) {
         el.addEventListener('click', function () {
           if (!toast) return;
-          toast.textContent = '已在 GitHub 打开仓库，点右上角 ★ Star 就帮我一下啦';
+          toast.textContent = 'The repository is open on GitHub. Click Star to support the project.';
           toast.classList.add('show');
           clearTimeout(toastTimer);
           toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
         });
       });
       var meta = document.getElementById('entries-meta');
-      var gen = data.generated_at ? new Date(data.generated_at).toLocaleString('zh-CN') : '-';
-      meta.textContent = '共 ' + items.length + ' 个入口 · 最近生成 ' + gen + ' · 悬停条目查看详情';
-      document.getElementById('entries-count').textContent = items.length ? items.length + ' 个' : '';
+      var gen = data.generated_at ? new Date(data.generated_at).toLocaleString('en') : '-';
+      meta.textContent = items.length + ' links · Last updated ' + gen;
+      document.getElementById('entries-count').textContent = items.length ? items.length : '';
+      var groupLabels = {
+        '站点': 'Websites',
+        '大项目': 'Major Projects',
+        '开源项目': 'Open Source',
+        '小工具': 'Utilities',
+        'Agent 技能': 'Agent Skills',
+        '推荐网站': 'Recommended Sites',
+        '外部链接': 'External Links'
+      };
+      var badgeLabels = {
+        '私有': 'Private',
+        '论文': 'Papers',
+        '博客': 'Blog',
+        '社区': 'Community',
+        'AI 资讯': 'AI News',
+        '开源': 'Open Source',
+        '算法': 'Algorithms'
+      };
+      var directoryCopy = {
+        "https://xplore-lab.github.io/llm-tracker/": ["LLM Papers Tracker", "Track LLM papers, AI lab research, and paper summaries"],
+        "https://xplore-lab.github.io/tech-news/": ["Daily Tech Digest", "Daily technology news, popular articles, and industry updates"],
+        "https://xplore-lab.github.io/figures/": ["Scientific Figures", "Publication-ready examples, Matplotlib templates, and palettes"],
+        "https://xplore-lab.github.io/palettes/": ["Scientific Color Palettes", "Color palettes from published papers with copyable HEX values"],
+        "https://github.com/Xplore-LAB": ["GitHub Profile", "Browse repositories and open-source activity"],
+        "https://labuladong.online": ["labuladong Algorithm Notes", "Tutorials on algorithms and data structures for coding interviews"],
+        "https://aihot.virxact.com/": ["AIHOT", "Daily digest of trending AI news"],
+        "https://huggingface.co": ["Hugging Face", "A community for models and datasets"],
+        "https://lilianweng.github.io/": ["Lil’Log", "Long-form technical writing by Lilian Weng"],
+        "https://www.ruanyifeng.com/blog/": ["Ruan Yifeng’s Blog", "Technology weekly and tutorials"],
+        "https://arxiv.org": ["arXiv", "Preprint repository and upstream source for LLM Papers Tracker"],
+        "https://oi-wiki.org": ["OI Wiki", "Competitive programming knowledge base"],
+        "https://github.com/trending": ["GitHub Trending", "Discover trending open-source projects"]
+      };
       var groups = {};
       items.forEach(function (it) {
-        var g = it.group || '其他';
+        var g = it.group || 'Other';
         (groups[g] = groups[g] || []).push(it);
       });
       var DEFAULT_OPEN = ['站点', '大项目'];
@@ -742,20 +777,23 @@ footer a:hover { color: var(--accent); }
       Object.keys(groups).forEach(function (g) {
         var openCls = DEFAULT_OPEN.indexOf(g) >= 0 ? ' open' : '';
         html += '<div class="entry-group reveal' + openCls + '">'
-          + '<h3 class="group-head">' + esc(g)
-          + '<span class="gcount">' + groups[g].length + ' 个</span>'
+          + '<h3 class="group-head">' + esc(groupLabels[g] || g)
+          + '<span class="gcount">' + groups[g].length + '</span>'
           + '<span class="gchev">›</span></h3>'
           + '<div class="group-items"><div class="group-inner">';
         groups[g].forEach(function (it) {
+          var copy = directoryCopy[it.path];
+          var title = copy ? copy[0] : it.title;
+          var description = copy ? copy[1] : it.desc;
           html += '<div class="entry">'
             + '<span class="ico">' + esc(it.emoji || '·') + '</span>'
             + '<div class="entry-body">'
             + '<span class="entry-main">'
-            + '<a href="' + esc(it.path) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a>'
-            + (it.badge ? '<span class="badge' + (it.badge === '私有' ? ' badge-private' : '') + '">' + esc(it.badge) + '</span>' : '')
+            + '<a href="' + esc(it.path) + '" target="_blank" rel="noopener">' + esc(title) + '</a>'
+            + (it.badge ? '<span class="badge' + (it.badge === '私有' ? ' badge-private' : '') + '">' + esc(badgeLabels[it.badge] || it.badge) + '</span>' : '')
             + '<span class="chev">›</span>'
             + '</span>'
-            + (it.desc ? '<div class="entry-detail"><span class="desc">' + esc(it.desc) + '</span></div>' : '')
+            + (description ? '<div class="entry-detail"><span class="desc">' + esc(description) + '</span></div>' : '')
             + '</div></div>';
         });
         html += '</div></div></div>';
@@ -780,7 +818,7 @@ footer a:hover { color: var(--accent); }
       });
     })
     .catch(function () {
-      document.getElementById('entries-meta').textContent = '入口数据加载失败，请稍后刷新。';
+      document.getElementById('entries-meta').textContent = 'Could not load the directory. Please refresh to try again.';
     });
 })();
 </script>

@@ -1,9 +1,11 @@
-<header class="site-nav" data-site-nav data-page-layout="{{ page.layout | escape }}">
-  <nav class="site-nav__inner" aria-label="站点主导航">
-    <a class="site-nav__brand" href="{{ site.baseurl }}/" aria-label="{{ site.title | escape }} 首页">{{ site.title }}</a>
-    <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" aria-label="展开导航">
+{% assign nav_english = false %}
+{% if page.lang == "en" %}{% assign nav_english = true %}{% endif %}
+<header class="site-nav" data-site-nav{% if nav_english %} data-nav-language="en"{% endif %} data-page-layout="{{ page.layout | escape }}">
+  <nav class="site-nav__inner" aria-label="{% if nav_english %}Main navigation{% else %}站点主导航{% endif %}">
+    <a class="site-nav__brand" href="{{ site.baseurl }}/" aria-label="{{ site.title | escape }} {% if nav_english %}Home{% else %}首页{% endif %}">{{ site.title }}</a>
+    <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" aria-label="{% if nav_english %}Expand navigation{% else %}展开导航{% endif %}">
       <span class="site-nav__burger" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span data-nav-toggle-label>菜单</span>
+      <span data-nav-toggle-label>{% if nav_english %}Menu{% else %}菜单{% endif %}</span>
     </button>
     <ul class="site-nav__links" id="site-nav-links">
       {% for item in site.data.navigation %}
@@ -11,18 +13,18 @@
         {% if item.sections %}
         <details class="site-nav__group" data-nav-group="{{ item.id }}">
           <summary class="site-nav__label" aria-controls="site-nav-panel-{{ item.id }}">
-            {{ item.title }}
+            {% if nav_english %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}
             <svg class="site-nav__chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="site-nav__panel{% if item.wide %} site-nav__panel--wide{% endif %}" id="site-nav-panel-{{ item.id }}">
             {% for section in item.sections %}
             <div class="site-nav__section">
-              {% if section.title %}<p class="site-nav__section-label">{{ section.title }}</p>{% endif %}
+              {% if section.title %}<p class="site-nav__section-label">{% if nav_english %}{{ section.title_en | default: section.title }}{% else %}{{ section.title }}{% endif %}</p>{% endif %}
               <ul class="site-nav__entries">
                 {% for link in section.links %}
                 <li><a class="site-nav__entry" href="{{ link.url | prepend: site.baseurl }}">
-                  <span class="site-nav__entry-title">{{ link.title }}</span>
-                  {% if link.description %}<span class="site-nav__description">{{ link.description }}</span>{% endif %}
+                  <span class="site-nav__entry-title">{% if nav_english %}{{ link.title_en | default: link.title }}{% else %}{{ link.title }}{% endif %}</span>
+                  {% if link.description %}<span class="site-nav__description">{% if nav_english %}{{ link.description_en | default: link.description }}{% else %}{{ link.description }}{% endif %}</span>{% endif %}
                 </a></li>
                 {% endfor %}
               </ul>
@@ -32,7 +34,7 @@
         </details>
         {% else %}
         <a class="site-nav__label{% if item.external %} site-nav__label--external{% endif %}" href="{% if item.external %}{{ item.url }}{% else %}{{ item.url | prepend: site.baseurl }}{% endif %}">
-          {{ item.title }}{% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
+          {% if nav_english %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}{% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
         </a>
         {% endif %}
       </li>
