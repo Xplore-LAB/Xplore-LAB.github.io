@@ -1,4 +1,5 @@
 """Generate cached English versions of Jekyll posts."""
+import argparse
 import concurrent.futures
 import hashlib
 import json
@@ -11,7 +12,6 @@ import urllib.request
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "_data" / "blog_en"
 CHINESE = re.compile(r"[\u3400-\u9fff]")
 MARKDOWN_PREFIX = re.compile(r"^\s*(?:#{1,6} |[-*+] |\d+\. |> |\|)?")
 PROTECTED = re.compile(
@@ -19,7 +19,7 @@ PROTECTED = re.compile(
     r"|<(?P<block>svg|style|script|pre|code)\b[^>]*>[\s\S]*?</(?P=block)\s*>"
     r"|<!--[\s\S]*?-->|</?[A-Za-z][^>\n]*>|\{%.*?%\}|\{\{.*?\}\}"
     r"|`+[^`\n]+`+|\]\([^\n]*?\)|https?://[^\s<>\])]+"
-    r"|\$\$[\s\S]*?\$\$|\$(?=[^\s$])[^\n$]+\$",
+    r"|\$\$[\s\S]*?\$\$|\$(?=[^\s$])[^\n$]+\$|<",
     re.MULTILINE | re.IGNORECASE,
 )
 PROMPT = (
@@ -58,7 +58,7 @@ def request_translation(items):
             result = json.loads(raw)
             if not isinstance(result, list) or len(result) != len(items):
                 raise ValueError("translation response has the wrong number of items")
-            for source, translated in zip(items, result, strict=True):
+            for index, (source, translated) in enumerate(zip(items, result, strict=True)):
                 if not isinstance(translated, str) or not translated.strip():
                     raise ValueError("empty translation")
                 if re.findall(r"ZZX\d+XZZ", source) != re.findall(r"ZZX\d+XZZ", translated):
@@ -69,8 +69,9 @@ def request_translation(items):
                     raise ValueError("translation changed a Markdown block marker")
                 if source.lstrip().startswith("|") and source.count("|") != translated.count("|"):
                     raise ValueError("translation changed a table row")
-                if translated.count("<") > source.count("<") or translated.count("](") > source.count("]("):
-                    raise ValueError("translation introduced HTML or a link")
+                if translated.count("](") > source.count("]("):
+                    raise ValueError("translation introduced a link")
+                result[index] = translated.replace("<", "&lt;")
                 if CHINESE.search(translated):
                     raise ValueError("translation left untranslated Chinese text")
             return result
@@ -110,10 +111,10 @@ def translate_fields(fields):
     return [re.sub(r"ZZX(\d+)XZZ", unmask, "\n".join(field)) for field in lines]
 
 
-def translate_post(path):
+def translate_post(path, output):
     source = path.read_bytes()
     digest = hashlib.sha256(source).hexdigest()
-    target = OUTPUT / f"{path.stem}.json"
+    target = output / f"{path.stem}.json"
     if target.exists() and json.loads(target.read_text())["source_sha256"] == digest:
         return
     _, header, body = re.split(r"(?m)^---[ \t]*$", source.decode(), maxsplit=2)
@@ -137,15 +138,19 @@ def translate_post(path):
 
 
 def main():
-    OUTPUT.mkdir(exist_ok=True)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    root = parser.parse_args().root
+    output = root / "_data" / "blog_en"
+    output.mkdir(exist_ok=True)
     posts = sorted(
-        path for path in (ROOT / "_posts").rglob("*")
+        path for path in (root / "_posts").rglob("*")
         if path.suffix.lower() in {".md", ".markdown"}
     )
     if len({path.stem for path in posts}) != len(posts):
         raise SystemExit("Post filenames must be unique to index their translations.")
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        jobs = {pool.submit(translate_post, path): path for path in posts}
+        jobs = {pool.submit(translate_post, path, output): path for path in posts}
         failed = False
         for job in concurrent.futures.as_completed(jobs):
             try:
@@ -156,7 +161,7 @@ def main():
     if failed:
         raise SystemExit(1)
     post_keys = {path.stem for path in posts}
-    for translation in OUTPUT.glob("*.json"):
+    for translation in output.glob("*.json"):
         if translation.stem not in post_keys:
             translation.unlink()
 

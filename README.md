@@ -71,7 +71,7 @@ Jekyll官方网站还有很多的参数可以调，比如设置文章的链接�
 
 要发表的文章一般以 **Markdown** 的格式放在这里`_posts/`，你只要看看这篇模板里的文章你就立刻明白该如何设置。
 
-中文 Markdown 原稿提交到 `master` 后，`Translate blog posts` 工作流会自动生成或更新 `_data/blog_en/` 中的英文译文。首页、文章目录和正文优先显示译文，读者可在文章页切换到中文原文。发布原生英文文章时，在 front matter 中设置 `lang: en`。
+中文 Markdown 原稿提交到 `master` 后，部署主机上的 `xplore-blog-translation.timer` 每 10 分钟检查一次，自动生成和发布 `_data/blog_en/` 中的英文译文。首页、文章目录和正文优先显示译文，读者可在文章页切换到中文原文。发布原生英文文章时，在 front matter 中设置 `lang: en`。部署主机上可运行 `systemctl --user start xplore-blog-translation.service` 立即处理。
 
 yaml 头文件长这样:
 
