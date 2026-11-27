@@ -1,5 +1,5 @@
 {% assign nav_english = false %}
-{% if page.lang == "en" %}{% assign nav_english = true %}{% endif %}
+{% if page.lang == "en" or blog_translation %}{% assign nav_english = true %}{% endif %}
 <header class="site-nav" data-site-nav{% if nav_english %} data-nav-language="en"{% endif %} data-page-layout="{{ page.layout | escape }}">
   <nav class="site-nav__inner" aria-label="{% if nav_english %}Main navigation{% else %}站点主导航{% endif %}">
     <a class="site-nav__brand" href="{{ site.baseurl }}/" aria-label="{{ site.title | escape }} {% if nav_english %}Home{% else %}首页{% endif %}">{{ site.title }}</a>

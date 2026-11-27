@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{% include blog-translation.html post=page %}
+
 <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
@@ -30,15 +32,15 @@ layout: default
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-                        <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
+                        <a class="tag" href="{{ site.baseurl }}/tags/#{{ tag }}" title="{{ tag | escape }}">{% if blog_translation %}{{ blog_translation.tags[forloop.index0] | default: tag | escape }}{% else %}{{ tag | escape }}{% endif %}</a>
                         {% endfor %}
                     </div>
-                    <h1>{{ page.title }}</h1>
+                    <h1{% if blog_translation %} data-original="{{ page.title | escape }}"{% endif %}>{{ blog_translation.title | default: page.title | escape }}</h1>
                     {% comment %}
                         always create a h2 for keeping the margin , Hux
                     {% endcomment %}
                     {% comment %} if page.subtitle {% endcomment %}
-                    <h2 class="subheading">{{ page.subtitle }}</h2>
+                    <h2 class="subheading"{% if blog_translation %} data-original="{{ page.subtitle | escape }}"{% endif %}>{{ blog_translation.subtitle | default: page.subtitle | escape }}</h2>
                     {% comment %} endif {% endcomment %}
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
@@ -58,24 +60,33 @@ layout: default
                 col-md-10 col-md-offset-1
                 post-container">
 
-				{{ content }}
+                {% if blog_translation %}
+                    <p><button type="button" class="btn btn-default btn-sm" id="post-language" aria-controls="post-body" hidden>查看中文原文</button></p>
+                    <div id="post-body" lang="en">{{ blog_translation.markdown | markdownify }}</div>
+                    <template id="post-original">{{ content }}</template>
+                    <script defer src="{{ '/js/post-language.js' | relative_url }}"></script>
+                {% else %}
+                    {{ content }}
+                {% endif %}
 
                 <hr style="visibility: hidden;">
 
                 <ul class="pager">
                     {% if page.previous.url %}
+                    {% include blog-translation.html post=page.previous %}
                     <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ blog_translation.title | default: page.previous.title | escape }}">
                         Previous<br>
-                        <span>{{page.previous.title}}</span>
+                        <span>{{ blog_translation.title | default: page.previous.title | escape }}</span>
                         </a>
                     </li>
                     {% endif %}
                     {% if page.next.url %}
+                    {% include blog-translation.html post=page.next %}
                     <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ blog_translation.title | default: page.next.title | escape }}">
                         Next<br>
-                        <span>{{page.next.title}}</span>
+                        <span>{{ blog_translation.title | default: page.next.title | escape }}</span>
                         </a>
                     </li>
                     {% endif %}
@@ -146,8 +157,8 @@ layout: default
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				{% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
-                				<a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                            {% if tag[1].size > site.featured-condition-size %}
+                <a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
                                     {{ tag[0] }}
                                 </a>
                             {% endif %}

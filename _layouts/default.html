@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+{% if page.layout == 'post' %}{% include blog-translation.html post=page %}{% endif %}
+<html lang="{% if blog_translation %}en{% elsif page.layout == 'post' %}{{ page.lang | default: 'zh-CN' }}{% else %}{{ page.lang | default: 'en' }}{% endif %}">
 
 {% include head.html %}
 

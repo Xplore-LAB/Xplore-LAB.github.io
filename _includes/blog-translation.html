@@ -1,0 +1,4 @@
+{%- assign blog_filename = include.post.path | split: "/" | last -%}
+{%- assign blog_extension = blog_filename | split: "." | last | prepend: "." -%}
+{%- assign blog_key = blog_filename | remove: blog_extension -%}
+{%- assign blog_translation = site.data.blog_en[blog_key] -%}

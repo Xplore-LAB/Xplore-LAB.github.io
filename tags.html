@@ -1,14 +1,15 @@
 ---
 title: Writing
-description: 项目复盘、技术笔记与持续更新的长文
+lang: en
+description: Project retrospectives, technical essays, and research paper breakdowns
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Writing | Xplore-LAB</title>
-<meta name="description" content="项目复盘、技术笔记与持续更新的长文">
+<meta name="description" content="Project retrospectives, technical essays, and research paper breakdowns">
 <script>document.documentElement.classList.add('js');</script>
 <style>
 :root {
@@ -117,7 +118,7 @@ footer a:hover { color: var(--accent); }
 
   <header class="archive-head">
     <h1>Writing</h1>
-    <p>共 {{ site.posts.size }} 篇 · 论文拆解、好文拆解与实践复盘，按类型分组</p>
+    <p>{{ site.posts.size }} articles · Paper breakdowns, technical essays, and project retrospectives</p>
   </header>
 
   {% assign section_order = "论文拆解,好文拆解,实践复盘" | split: "," %}
@@ -126,19 +127,20 @@ footer a:hover { color: var(--accent); }
     {% assign group_posts = site.posts | where: "section", sec %}
     {% if group_posts.size > 0 %}
     {% case sec %}
-      {% when '论文拆解' %}{% assign section_id = 'papers' %}
-      {% when '好文拆解' %}{% assign section_id = 'essays' %}
-      {% when '实践复盘' %}{% assign section_id = 'practice' %}
+      {% when '论文拆解' %}{% assign section_id = 'papers' %}{% assign section_title = "Paper Breakdowns" %}
+      {% when '好文拆解' %}{% assign section_id = 'essays' %}{% assign section_title = "Technical Essays" %}
+      {% when '实践复盘' %}{% assign section_id = 'practice' %}{% assign section_title = "Project Retrospectives" %}
     {% endcase %}
     <section class="year-group reveal" id="{{ section_id }}">
-      <h2>{{ sec }}<span class="count">{{ group_posts.size }} 篇</span></h2>
+      <h2>{{ section_title }}<span class="count">{{ group_posts.size }}</span></h2>
       <ul class="post-list">
         {% for post in group_posts %}
+        {% include blog-translation.html post=post %}
         <li>
           <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}" lang="{% if blog_translation %}en{% else %}{{ post.lang | default: 'zh-CN' }}{% endif %}">{{ blog_translation.title | default: post.title | escape }}</a>
           {% if post.tags.size > 0 %}
-          <span class="ptags">{{ post.tags | join: " · " }}</span>
+          <span class="ptags">{{ blog_translation.tags | default: post.tags | join: " · " | escape }}</span>
           {% endif %}
         </li>
         {% endfor %}
@@ -147,7 +149,7 @@ footer a:hover { color: var(--accent); }
     {% endif %}
     {% endfor %}
   {% else %}
-    <p class="muted">文章筹备中。</p>
+    <p class="muted">Articles are in preparation.</p>
   {% endif %}
 
   <footer>

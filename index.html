@@ -486,9 +486,10 @@ footer a:hover { color: var(--accent); }
       <h3 class="group-head">{{ section_titles[forloop.index0] }}<span class="count">{{ group_posts.size }}</span></h3>
       <ul class="post-list">
         {% for post in group_posts limit:5 %}
+        {% include blog-translation.html post=post %}
         <li class="reveal">
           <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          <a href="{{ post.url | relative_url }}" lang="{{ post.lang | default: 'zh-CN' }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}" lang="{% if blog_translation %}en{% else %}{{ post.lang | default: 'zh-CN' }}{% endif %}">{{ blog_translation.title | default: post.title | escape }}</a>
         </li>
         {% endfor %}
       </ul>
