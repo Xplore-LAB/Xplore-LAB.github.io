@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-11-26T09:38:24.923245+00:00",
+    "generated_at": "2026-11-28T08:56:39.658539+00:00",
     "items": [
         {
             "desc": "大模型论文追踪·公司研究动态·论文速览",
@@ -90,7 +90,7 @@
         {
             "desc": "SFT 指令微调数据集（详见仓库 README）",
             "badge": "Shell",
-            "stars": 0,
+            "stars": 1,
             "featured": false,
             "path": "https://github.com/Xplore-LAB/OKC-SFT-Dataset",
             "emoji": "🐚",
